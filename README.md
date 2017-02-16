@@ -15,7 +15,7 @@ los datos sobre más de 54.000 especies de la biodiversidad del país.
 ## Descarga
 
 ```sh
-$ git clone https://github.com/REPOSITORIO/PORTA_DATOS portal_datos
+$ git clone https://github.com/SIB-Colombia/dataportal_v2_frontend portal_datos
 $ cd portal_datos
 $ rm -rf .git
 $ npm install # or yarn
