@@ -1,4 +1,6 @@
-## Portal de Datos
+
+# New dataportal of SIB Colombia
+
 El Portal de Datos del Instituto de Investigación de Recursos Biológicos
 Alexander von Humboldt.  es un esfuerzo por poner a disposición de los
 colombianos y del mundo entero la información de registros que se han realizado
@@ -46,5 +48,5 @@ copiados en la carpeta `public`en el proceso de construcción.
 
 ## License
 
-[ToDo] Por definir, ver si el codigo fuente también se licencia en:
-Creative Commons 4.0 · 2016
+MIT · 2016
+
