@@ -1,13 +1,53 @@
-import React from 'react'
+import React from 'react';
+import {
+  PageTemplate,
+  Header,
+  Footer,
+  HomeCarousel,
+  FileCarousel,
+  CategoryCarousel,
+  GroupCarousel,
+  CommunityCarousel
+} from 'components';
 
-import { PageTemplate, Header, Hero, Footer, FeatureList } from 'components'
+import * as FileService from '../../../services/FileService';
 
-const HomePage = () => {
-  return (
-    <PageTemplate header={<Header />} hero={<Hero />} footer={<Footer />}>
-      <FeatureList />
-    </PageTemplate>
-  )
+class HomePage extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      files: [],
+      value: 1,
+      user: null
+    }
+
+  }
+  componentDidMount() {}
+
+  componentWillMount() {
+
+    // console.log(this.props.location.pathname);
+    FileService.getLastUpdatedRecords().then(data => {
+      this.setState({files: data});
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+
+  handleChange = (event, index, value) => this.setState({value});
+
+  render() {
+
+    return (
+      <PageTemplate header={< Header />} footer={< Footer />}>
+        {this.state.files.length > 0 && <HomeCarousel/>}
+        {this.state.files.length > 0 && <FileCarousel data={this.state.files} title="Fichas recientes"/>}<br/>
+        <CategoryCarousel/> {this.state.files.length > 0 && <GroupCarousel data={this.state.files}/>}
+        {this.state.files.length > 0 && <CommunityCarousel data={this.state.files}/>}
+      </PageTemplate>
+    )
+  }
 }
 
-export default HomePage
+export default HomePage;

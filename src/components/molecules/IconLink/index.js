@@ -1,15 +1,16 @@
-import React, { PropTypes } from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-import { Icon, Link } from 'components'
+import { Icon, Link } from 'components';
 
-const fontSize = ({ height }) => height ? `${height / 3 / 16}rem` : '0.75em'
+const fontSize = ({ height }) => height ? `${height / 3 / 16}rem` : '0.75em';
 
 const margin = ({ hasText, right }) => {
   if (hasText) {
-    return right ? '0 0 0 0.25em' : '0 0.25em 0 0'
+    return right ? '0 0 0 0.25em' : '0 0.25em 0 0';
   }
-  return 0
+  return 0;
 }
 
 const StyledIcon = styled(Icon)`
@@ -26,7 +27,7 @@ const Text = styled.span`
   }
 `
 
-const IconLink = ({ height, icon, right, responsive, children, ...props, palette, reverse }) => {
+const IconLink = ({ height, icon, right, responsive, children, ...props }) => {
   const iconElement = (
     <StyledIcon
       height={height}
@@ -34,8 +35,8 @@ const IconLink = ({ height, icon, right, responsive, children, ...props, palette
       hasText={!!children}
       right={right}
       responsive={responsive}
-      palette={palette}
-      reverse={reverse}
+      palette={props.palette}
+      reverse={props.reverse}
     />
   )
   return (
@@ -54,7 +55,7 @@ IconLink.propTypes = {
   reverse: PropTypes.bool,
   responsive: PropTypes.bool,
   right: PropTypes.bool,
-  children: PropTypes.node
+  children: PropTypes.node,
 }
 
-export default IconLink
+export default IconLink;

@@ -1,61 +1,100 @@
+// https://github.com/diegohaz/arc/wiki/Webpack
 const path = require('path')
-const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const devServer = require('@webpack-blocks/dev-server2')
+const splitVendor = require('webpack-blocks-split-vendor')
+const happypack = require('webpack-blocks-happypack')
 
-const ip = process.env.IP || '0.0.0.0'
-const port = process.env.PORT || 3000
-const DEBUG = process.env.NODE_ENV !== 'production'
+const {
+  addPlugins, createConfig, entryPoint, env, setOutput,
+  sourceMaps, defineConstants, webpack,
+} = require('@webpack-blocks/webpack2')
 
-const config = {
-  devtool: DEBUG ? 'eval' : false,
-  entry: [
-    path.join(__dirname, 'src')
-  ],
-  output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'app.[hash].js',
-    publicPath: '/'
+const host = process.env.HOST || 'localhost'
+const port = process.env.PORT || 3005
+const sourceDir = process.env.SOURCE || 'src'
+const publicPath = `/${process.env.PUBLIC_PATH || ''}/`.replace('//', '/')
+const sourcePath = path.join(process.cwd(), sourceDir)
+const outputPath = path.join(process.cwd(), 'dist')
+
+const babel = () => () => ({
+  module: {
+    rules: [
+      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader' },
+    ],
   },
-  resolve: {
-    modulesDirectories: ['src', 'node_modules']
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': `'${process.env.NODE_ENV}'`
-    }),
+})
+
+const config = createConfig([
+  entryPoint({
+    app: sourcePath,
+  }),
+  setOutput({
+    filename: '[name].js',
+    path: outputPath,
+    publicPath,
+  }),
+  defineConstants({
+    'process.env.NODE_ENV': process.env.NODE_ENV,
+    'process.env.PUBLIC_PATH': publicPath.replace(/\/$/, ''),
+  }),
+  addPlugins([
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: path.join(__dirname, '/public/index.html')
-    })
-  ],
-  module: {
-    loaders: [
-      { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
-      { test: /\.png$/, loader: 'url?prefix=images/&limit=8000&mimetype=image/png' },
-      { test: /\.jpg$/, loader: 'url?prefix=images/&limit=8000&mimetype=image/jpeg' },
-      { test: /\.woff$/, loader: 'url?prefix=fonts/&limit=8000&mimetype=application/font-woff' },
-      { test: /\.ttf$/, loader: 'file?prefix=fonts/' },
-      { test: /\.eot$/, loader: 'file?prefix=fonts/' },
-      { test: /\.json$/, loader: 'json' }
-    ]
-  }
-}
+      template: path.join(process.cwd(), 'public/index.html'),
+    }),
+  ]),
+  happypack([
+    babel(),
+  ], {
+    cacheContext: { sourceDir },
+  }),
+  addPlugins([
+    new webpack.ProgressPlugin(),
+  ]),
+  () => ({
+    resolve: {
+      modules: [sourceDir, 'node_modules'],
+    },
+    module: {
+      rules: [
+        { test: /\.(png|jpe?g|svg)$/, loader: 'url-loader?&limit=8000' },
+        { test: /\.(woff2?|ttf|eot)$/, loader: 'url-loader?&limit=8000' },
+        {
+          test: /\.css$/,
+          loader: 'style-loader!css-loader?modules',
+          include: /flexboxgrid/
+        }, {
+          test: /\.css$/,
+          loader: 'style-loader!css-loader!postcss-loader',
+          include: path.join(__dirname, 'node_modules'), // oops, this also includes flexboxgrid
+          exclude: /flexboxgrid/ // so we have to exclude it
+        }
+      ],
+    },
+  }),
 
-if (DEBUG) {
-  config.entry.unshift(
-    `webpack-dev-server/client?http://${ip}:${port}/`,
-    'webpack/hot/only-dev-server',
-    'react-hot-loader/patch'
-  )
+  env('development', [
+    devServer({
+      contentBase: 'public',
+      stats: 'errors-only',
+      historyApiFallback: { index: publicPath },
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      host,
+      port,
+    }),
+    sourceMaps(),
+    addPlugins([
+      new webpack.NamedModulesPlugin(),
+    ]),
+  ]),
 
-  config.plugins = config.plugins.concat([
-    new webpack.HotModuleReplacementPlugin()
-  ])
-} else {
-  config.plugins = config.plugins.concat([
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
-  ])
-}
+  env('production', [
+    splitVendor(),
+    addPlugins([
+      new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }),
+    ]),
+  ]),
+])
 
 module.exports = config
