@@ -14,9 +14,9 @@ class Map extends React.Component {
     this.state = {
       width: 0,
       height: 0,
-      latitude: 4.7577,
-      longitude: -74.4376,
-      zoom: 8
+      latitude: 3.9778673175455315,
+      longitude: -72.80307563849925,
+      zoom: 5
     }
     this.updateDimensions = this.updateDimensions.bind(this);
   }
@@ -37,7 +37,7 @@ class Map extends React.Component {
   }
 
   viewport(viewport) {
-    // console.log(viewport);
+    console.log(viewport);
     const {latitude, longitude, zoom} = viewport;
     this.setState({latitude});
     this.setState({longitude});
