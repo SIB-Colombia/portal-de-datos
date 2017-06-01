@@ -2,11 +2,14 @@ import theme from './default';
 
 const style = `
 html {
+
   height: 100%;
   box-sizing: border-box;
 }
 body {
+
   position: relative;
+  overflow-x:hidden;
   margin: 0;
   min-height: calc(100% - 65px);
 }
@@ -24,6 +27,26 @@ a{
 .modal-header-style{
   /*color:white !important;*/
   /*background:  ${theme.palette.secondary[0]};*/
+}
+
+/*Fixed Grid*/
+.container{
+  @media ${theme.sizes.xs}{
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+  @media ${theme.sizes.sm}{
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+  @media ${theme.sizes.md}{
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+  @media ${theme.sizes.lg}{
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
 }
 
 /*Titles*/

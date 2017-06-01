@@ -3,12 +3,12 @@ import {
   PageTemplate,
   Header,
   Footer,
-  HomeCarousel,
+  HomeHeader,
   FileCarousel,
-  CategoryCarousel,
-  GroupCarousel,
-  CommunityCarousel
+  HomeItem,
+  Alert
 } from 'components';
+import {Grid, Row, Col} from 'react-flexbox-grid';
 
 import * as FileService from '../../../services/FileService';
 
@@ -41,10 +41,12 @@ class HomePage extends React.Component {
 
     return (
       <PageTemplate header={< Header />} footer={< Footer />}>
-        {this.state.files.length > 0 && <HomeCarousel/>}
-        {this.state.files.length > 0 && <FileCarousel data={this.state.files} title="Fichas recientes"/>}<br/>
-        <CategoryCarousel/> {this.state.files.length > 0 && <GroupCarousel data={this.state.files}/>}
-        {this.state.files.length > 0 && <CommunityCarousel data={this.state.files}/>}
+
+        {this.state.files.length > 0 && <HomeHeader/>}
+        <Alert message="2.287.000 registros Biológicos encontrados, de los cuales 2.044.000 están georeferenciados."/>
+        {this.state.files.length > 0 && <FileCarousel data={this.state.files} title="Registros recientes"/>}
+        <br/>
+        <br/>
       </PageTemplate>
     )
   }

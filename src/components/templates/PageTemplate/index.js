@@ -55,7 +55,7 @@ const PageTemplate = ({
         case 'Login':
           injectGlobal `
       body{
-        background-image: url(/background/23890_orig.jpg);
+        background-image: url(/background/11285_orig.jpg);
         background-size: cover;
         background-position: center center;
         background-attachment:fixed;

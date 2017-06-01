@@ -66,15 +66,9 @@ svg{
 		display: none;
 	}
 }
-.brand-logo {
-	display: inline-block;
-	font-size: 43px;
-	padding: 0;
-	white-space: nowrap;
-	margin-top: 1px;
-	svg{
-		color:red !important;
-	}
+.portal-logo{
+	width: 180px;
+	padding: 10px 0px;
 }
 `
 
@@ -124,7 +118,6 @@ class Header extends React.Component {
       }
     })*/
 
-
   }
 
   handleOpen = () => {
@@ -163,17 +156,9 @@ class Header extends React.Component {
             <Row>
               <Col xs={12} sm={3} md={3} lg={3} className="box-logo">
                 {this.props.filter}
-                <IconLink to="/" icon="catalogo" className="brand-logo">
-                  <Title>
-                    <TitleMain>
-                      <b>Catálogo</b>
-                      de
-                    </TitleMain>
-                    <TitleSub>
-                      la Biodiversidad
-                    </TitleSub>
-                  </Title>
-                </IconLink>
+                <Link to={'/'}>
+                  <img src="/logo_dataportal.png" className="portal-logo"/>
+                </Link>
               </Col>
               <Col xs={12} sm={5} md={6} lg={6} className="box-nav-search-content">
                 <div className="box-search-color">
@@ -201,7 +186,7 @@ class Header extends React.Component {
                 </Link>
               </Col>}
               {isAuthenticated() && <Col xs={12} sm={4} md={3} lg={3} className="box-link">
-                <HeaderUserMenu />
+                <HeaderUserMenu/>
               </Col>}
             </Row>
           </Grid>

@@ -4,6 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const devServer = require('@webpack-blocks/dev-server2')
 const splitVendor = require('webpack-blocks-split-vendor')
 const happypack = require('webpack-blocks-happypack')
+const resolve = require('path').resolve;
+
 
 const {
   addPlugins, createConfig, entryPoint, env, setOutput,
@@ -55,6 +57,10 @@ const config = createConfig([
   () => ({
     resolve: {
       modules: [sourceDir, 'node_modules'],
+      alias: {
+           // From mapbox-gl-js README. Required for non-browserify bundlers (e.g. webpack):
+           //'mapbox-gl$': resolve('./node_modules/mapbox-gl/src/index.js')
+      }
     },
     module: {
       rules: [
@@ -71,7 +77,7 @@ const config = createConfig([
           exclude: /flexboxgrid/ // so we have to exclude it
         }
       ],
-    },
+    }
   }),
 
   env('development', [

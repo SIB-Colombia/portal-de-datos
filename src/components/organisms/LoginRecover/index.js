@@ -28,6 +28,10 @@ h3{
 .po{
   height: 100% !important;
 }
+.portal-logo{
+  padding: 50px 10px;
+
+}
 `
 
 class LoginRecover extends React.Component {
@@ -39,7 +43,7 @@ class LoginRecover extends React.Component {
           <Row>
             <Col xs={10} sm={6} md={4} lg={4} lgOffset={4} mdOffset={4} smOffset={3} xsOffset={1}>
               <Paper zDepth={1} className="login-content animated fadeIn">
-                <IconLink to="/" icon="catalogo" className="brand-logo"></IconLink>
+                <img src="/logo_dataportal.png" className="portal-logo"/>
                 <h3>Recuperar contraseña</h3>
                 <TextField hintText="Ingrese aquí su correo electrónico" type="email" floatingLabelText="Ingrese su correo electrónico" fullWidth={true}/>
                 <br/>

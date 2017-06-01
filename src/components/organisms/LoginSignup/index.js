@@ -23,6 +23,10 @@ padding: 40px 0px;
 .po{
   height: 100% !important;
 }
+.portal-logo{
+  padding: 50px 10px;
+
+}
 `
 
 class LoginSignup extends React.Component {
@@ -34,7 +38,7 @@ class LoginSignup extends React.Component {
           <Row>
             <Col xs={10} sm={6} md={4} lg={4} lgOffset={4} mdOffset={4} smOffset={3} xsOffset={1}>
               <Paper zDepth={1} className="login-content animated fadeIn">
-                <IconLink to="/" icon="catalogo" className="brand-logo"></IconLink>
+                <img src="/logo_dataportal.png" className="portal-logo"/>
                 <TitleSection align='center' color='grayscale-6'>Formulario de registro</TitleSection>
                 <TextField name='name' value={this.props.form.name} onChange={this.props.update} hintText="Escriba aquí su nombre" floatingLabelText="Nombre" fullWidth={true}/>
                 <TextField name='lastname' value={this.props.form.lastname} onChange={this.props.update} hintText="Escriba aquí su apellido" floatingLabelText="Apellido" fullWidth={true}/>

@@ -4,8 +4,8 @@ const Const = {
     amazon: 'http://ec2-52-200-3-121.compute-1.amazonaws.com',
     api_v1_5: 'http://api-catalogo-v2.biodiversidad.co/api/v1.5'
   },
-  TOKEN: 'token-c4t4l0go',
-  USER: 'user-c4t4l0go'
+  TOKEN: 'token-p0rt4lD4to5',
+  USER: 'user-p0rt4lD4to5'
 }
 
 export default Const;

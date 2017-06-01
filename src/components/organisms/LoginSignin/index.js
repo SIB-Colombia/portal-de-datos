@@ -18,6 +18,10 @@ padding: 40px 0px;
   padding: 20px;
   height: 100%;
 }
+.portal-logo{
+  padding: 50px 10px;
+
+}
 .po{
   height: 100% !important;
 }
@@ -36,9 +40,8 @@ class LoginSignin extends React.Component {
           <Row>
             <Col xs={10} sm={6} md={4} lg={4} lgOffset={4} mdOffset={4} smOffset={3} xsOffset={1}>
               <Paper zDepth={1} className="login-content animated fadeIn">
-                <IconLink to="/" icon="catalogo" className="brand-logo"></IconLink>
-                {/* <h3>Bienvenido al Catálogo de la Biodiversidad de Colombia</h3> */}
-                <TitleSection align='center' color='grayscale-6'>Bienvenido al Catálogo de la Biodiversidad de Colombia</TitleSection>
+                <img src="/logo_dataportal.png" className="portal-logo"/>
+                <TitleSection align='center' color='grayscale-6'>Bienvenido al portal de datos</TitleSection>
                 <TextField name='username' hintText="Escriba aquí su nombre usuario" floatingLabelText="Nombre de usuario" value={this.props.form.username} onChange={this.props.update} fullWidth={true}/>
                 <TextField name='password' hintText="Escriba aquí su contraseña" floatingLabelText="Contraseña" type="password" value={this.props.form.password} onChange={this.props.update} fullWidth={true}/>
                 <br/>

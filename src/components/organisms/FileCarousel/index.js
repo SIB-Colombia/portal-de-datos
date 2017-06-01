@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Link, FileCard,TitleSection} from 'components';
+import {Link, FileCard, TitleSection} from 'components';
 import Carousel from 'react-slick';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import {
@@ -61,35 +61,28 @@ class FileCarousel extends React.Component {
       draggable: false,
       responsive: [
         {
-          breakpoint: 768,
+          breakpoint: '49rem',
           settings: {
             slidesToShow: 1
           }
         }, {
-          breakpoint: 1024,
+          breakpoint: '65rem',
           settings: {
             slidesToShow: 3
           }
         }, {
-          breakpoint: 1368,
+          breakpoint: '1000rem',
           settings: {
             slidesToShow: 5
           }
-        }, {
-          breakpoint: 2000,
-          settings: {
-            slidesToShow: 5
-          }
-        }, {
-          breakpoint: 100000,
-          settings: 'unslick'
         }
       ]
     };
 
     return (
       <Wrapper className="padding-bottom-3">
-        <Grid>
+
+        <Grid className="container">
           <Row>
             <Col xs={12}>
               <TitleSection align="center" color="grayscale-6" className="padding-top-3 padding-bottom-3">{this.props.title}</TitleSection>
@@ -100,18 +93,19 @@ class FileCarousel extends React.Component {
                   </div>
                 ))}
               </Carousel>
+              <br/>
+              <br/>
+              <div className="align-center">
+                <FlatButton icon={< ArrowBack />} onTouchTap={this.previous}/>
+                <Link to={`/file/search`}>
+                  <RaisedButton label="Ver más" default={true}/>
+                </Link>
+                <FlatButton icon={< ArrowForward />} onTouchTap={this.next}/>
+              </div>
             </Col>
           </Row>
-          <br/>
-          <br/>
-          <div className="align-center">
-            <FlatButton icon={< ArrowBack />} onTouchTap={this.previous}/>
-            <Link to={`/file/search`}>
-              <RaisedButton label="Ver más" default={true}/>
-            </Link>
-            <FlatButton icon={< ArrowForward />} onTouchTap={this.next}/>
-          </div>
         </Grid>
+
       </Wrapper>
     )
   }
