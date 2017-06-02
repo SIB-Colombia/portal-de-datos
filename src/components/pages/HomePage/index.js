@@ -9,17 +9,19 @@ import {
   Alert
 } from 'components';
 import {Grid, Row, Col} from 'react-flexbox-grid';
+var format = require('format-number-with-string');
 
 import * as FileService from '../../../services/FileService';
+import * as DataPortalService from '../../../services/DataPortalService';
 
 class HomePage extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      files: [],
-      value: 1,
-      user: null
+      count: null,
+      countGeo: null,
+      files: []
     }
 
   }
@@ -27,23 +29,32 @@ class HomePage extends React.Component {
 
   componentWillMount() {
 
-    // console.log(this.props.location.pathname);
+    DataPortalService.getOccurrenceCount().then(data => {
+      this.setState({count: format(data.count, '#.###.')});
+    }).catch(err => {
+      console.log(err);
+    })
+
+    DataPortalService.getOccurrenceCount('geo').then(data => {
+      this.setState({countGeo: format(data.count, '#.###.')});
+    }).catch(err => {
+      console.log(err);
+    })
+
     FileService.getLastUpdatedRecords().then(data => {
       this.setState({files: data});
     }).catch(err => {
       console.log(err);
     })
-  }
 
-  handleChange = (event, index, value) => this.setState({value});
+  }
 
   render() {
 
     return (
       <PageTemplate header={< Header />} footer={< Footer />}>
-
         {this.state.files.length > 0 && <HomeHeader/>}
-        <Alert message="2.287.000 registros Biológicos encontrados, de los cuales 2.044.000 están georeferenciados."/>
+        {this.state.count && this.state.countGeo && <Alert className="animated swing" message={`${this.state.count} registros Biológicos encontrados, de los cuales ${this.state.countGeo} están georeferenciados.`} />}
         {this.state.files.length > 0 && <FileCarousel data={this.state.files} title="Registros recientes"/>}
         <br/>
         <br/>

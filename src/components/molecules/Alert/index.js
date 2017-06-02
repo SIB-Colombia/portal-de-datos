@@ -29,7 +29,7 @@ class Alert extends React.Component {
   render() {
 
     return (
-      <Wrapper>
+      <Wrapper {...this.props}>
         <span>
           {this.props.message}
         </span>

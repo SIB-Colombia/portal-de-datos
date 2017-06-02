@@ -22,6 +22,10 @@ const Wrapper = styled.div `
   &:hover{
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 8px, rgba(0, 0, 0, 0.23) 0px 3px 8px !important;
   }
+  img{
+    max-width: 200px !important;
+    min-width: 200px !important;
+  }
 }
 
 .card-title{
@@ -66,14 +70,12 @@ class FileCard extends React.Component {
   constructor(props) {
     super(props);
   }
-
   title(text){
     return text.split(' ').slice(0,2).join(' ');
   }
   subtitle(text){
     return text.split(' ').slice(2).join(' ');
   }
-
   render() {
 
     return (
@@ -81,7 +83,7 @@ class FileCard extends React.Component {
         <Link to={`/file/summary/${this.props.record._id}`}>
           <Card className="space-card card">
             <CardMedia>
-              <img src="/default/file.png"/>
+              <center><img src="/default/file.png"/></center>
             </CardMedia>
             <FileStatus title="EN"/>
             <CardTitle title={this.title(this.props.record.scientificNameSimple)} className="card-title" subtitle={this.subtitle(this.props.record.scientificNameSimple)}/>

@@ -71,6 +71,7 @@
   "dependencies": {
     "chart.js": "^2.6.0",
     "d3-array": "^1.2.0",
+    "format-number-with-string": "0.0.2",
     "has-flag": "^2.0.0",
     "history": "^4.6.1",
     "isomorphic-fetch": "^2.2.1",

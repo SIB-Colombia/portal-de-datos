@@ -4,6 +4,8 @@ import {Grid, Row, Col} from 'react-flexbox-grid';
 import MapGL, {ScatterplotOverlay, autobind} from 'react-map-gl/src/index';
 import Immutable from 'immutable';
 import {range} from 'd3-array';
+//import 'mapbox-gl/dist/mapbox-gl.css';
+
 
 import * as FileService from '../../../services/FileService';
 
@@ -55,10 +57,13 @@ class Map extends React.Component {
   _onChangeViewport(viewport) {
     this.setState({viewport});
   }
-  _onClick(val) {
-    console.log(val);
-    // this.setState({viewport});
-  }
+
+  _onClick(coordinates, pos) {
+    console.log(coordinates);
+    console.log(pos);
+  //  console.log(`${coordinates}\n${JSON.stringify(pos)}`);
+ }
+
 
   locations() {
       return Immutable.fromJS([
@@ -88,8 +93,9 @@ class Map extends React.Component {
     let height = this.state.height - 118;
     return (
       <Wrapper>
-        <MapGL {...viewport} width={width} height={height} mapboxApiAccessToken={'pk.eyJ1IjoianJpY29ndWUiLCJhIjoiY2lucGhheHh0MTA0anVpa2p0Mnh6ZHowNyJ9.kPlMUeabWeCWeoJEL2lc2w'} onChangeViewport={this._onChangeViewport} perspectiveEnabled>
-          <ScatterplotOverlay {...viewport} onClick={ this._onClick } isDragging={true} width={width} height={height} locations={this.locations()} dotRadius={5} globalOpacity={0.96} compositeOperation="screen" dotFill="#1FBAD6" renderWhileDragging={true}/>
+        <MapGL {...viewport} onClick={ this._onClick } width={width} height={height} mapboxApiAccessToken={'pk.eyJ1IjoianJpY29ndWUiLCJhIjoiY2lucGhheHh0MTA0anVpa2p0Mnh6ZHowNyJ9.kPlMUeabWeCWeoJEL2lc2w'} onChangeViewport={this._onChangeViewport} perspectiveEnabled>
+          <ScatterplotOverlay {...viewport}  isDragging={true} width={width} height={height} locations={this.locations()} dotRadius={5} globalOpacity={0.96} compositeOperation="screen" dotFill="#1FBAD6" renderWhileDragging={true}/>
+          
         </MapGL>
       </Wrapper>
     )
