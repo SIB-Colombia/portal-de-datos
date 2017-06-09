@@ -9,7 +9,7 @@ import {
   Alert
 } from 'components';
 import {Grid, Row, Col} from 'react-flexbox-grid';
-var format = require('format-number-with-string');
+const format = require('format-number-with-string');
 
 import * as FileService from '../../../services/FileService';
 import * as DataPortalService from '../../../services/DataPortalService';
@@ -53,7 +53,7 @@ class HomePage extends React.Component {
 
     return (
       <PageTemplate header={< Header />} footer={< Footer />}>
-        {this.state.files.length > 0 && <HomeHeader/>}
+        <HomeHeader/>
         {this.state.count && this.state.countGeo && <Alert className="animated swing" message={`${this.state.count} registros Biológicos encontrados, de los cuales ${this.state.countGeo} están georeferenciados.`} />}
         {this.state.files.length > 0 && <FileCarousel data={this.state.files} title="Registros recientes"/>}
         <br/>

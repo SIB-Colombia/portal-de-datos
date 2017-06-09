@@ -338,6 +338,16 @@ a{
       }
     }
 }
+.badge-circle{
+  span{
+    color: ${theme.palette.secondary[0]} !important;
+    background: none !important;
+    font-weight: bold !important;
+    width: auto !important;
+    padding: 2px !important;
+    min-width: 24px !important;
+  }
+}
 
 .card-star{
   position: absolute !important;
@@ -383,6 +393,11 @@ span[role=menuitem] {
 .carousel .slide iframe{
   margin: 0 !important;
   width: 100% !important;
+}
+.loading{
+  width: 100% !important;
+  text-align: center !important;
+  padding:20px;
 }
 
 `;
