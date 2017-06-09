@@ -15,6 +15,10 @@ const Wrapper = styled.div `
       width: 100%;
       max-width: 200px;
     }
+    &:hover{
+      cursor: pointer !important;
+      opacity: 0.8 !important;
+    }
   }
 
 
