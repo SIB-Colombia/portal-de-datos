@@ -28,15 +28,34 @@ class HomeItem extends React.Component {
   constructor(props) {
     super(props);
   }
+  
+  imagen(text){
+    return '/home/'+text+'.png';
+  }
+  
+  destino(text){
+  	if (text==="Taxonomía")
+  		text = "taxonomy";
+  	if (text==="Recursos")
+  		text = "resources";
+  	if (text==="Departamentos")
+  		text = "departments";
+  	if (text==="Entidades")
+  		text = "entities";
+  	return '/'+text.toLowerCase();
+  }
+  
 
   render() {
 
     return (
       <Wrapper>
         <Paper className="paper">
-          <TitleSection align='center' size='xxs' className="padding-bottom-1" lighter={600}>{this.props.title}</TitleSection>
-          <Divider/>
-          <img src='/file.jpg'/>
+          <Link to={this.destino(this.props.title)}>
+		      <TitleSection align='center' size='xxs' className="padding-bottom-1" lighter={600}>{this.props.title}</TitleSection>
+		      <Divider/>
+		      <img src={this.imagen(this.props.title)}/>
+		  </Link>
         </Paper>
       </Wrapper>
     )
