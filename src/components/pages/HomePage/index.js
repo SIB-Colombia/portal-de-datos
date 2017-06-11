@@ -41,11 +41,13 @@ class HomePage extends React.Component {
       console.log(err);
     })
 
+    /*
     FileService.getLastUpdatedRecords().then(data => {
       this.setState({files: data});
     }).catch(err => {
       console.log(err);
     })
+    */
 
   }
 
