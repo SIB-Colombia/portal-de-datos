@@ -29,7 +29,7 @@ export function getOccurrenceGrid() {
 export function getOcurrenceGridPbf() {
 
   return fetch(`${Const.server.api_bio_v1_5}/occurrence/grid/${z}/${x}/${y}.pbf`, http('GET')).then((response) => {
-    return response.json()
+    return response.json() //Este campo es binario?
   }).then((data) => {
     return data
   })
