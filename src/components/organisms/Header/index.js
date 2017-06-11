@@ -131,6 +131,19 @@ class Header extends React.Component {
   handleSearch = () => {
     console.log('buscar');
   };
+  
+  handleTextFieldKeyDown = event => {
+		switch (event.key) {
+			case 'Enter':
+		     	console.log("Enter");
+			    window.location.href = '/search?q='+event.target.value;
+			    break
+			case 'Escape':
+			    // etc...
+			    break
+			default: break
+		}
+  };
 
   render() {
 
@@ -139,7 +152,7 @@ class Header extends React.Component {
       }
       onTouchTap = {
         this.handleClose
-      } />, < Link to = "/file/search" > < RaisedButton label = "Buscar" className = "btn-secondary-modal" onTouchTap = {
+      } />, < Link to = "/search" > < RaisedButton label = "Buscar" className = "btn-secondary-modal" onTouchTap = {
         this.handleSearch
       } /> </Link>
     ];
@@ -148,6 +161,7 @@ class Header extends React.Component {
       width: '90%',
       maxWidth: 'none'
     };
+    
 
     return (
       <Wrapper>
@@ -167,7 +181,7 @@ class Header extends React.Component {
                       <Search/>
                     </Col>
                     <Col xs={10} sm={8} md={8} lg={10} className="box-nav-search">
-                      <TextField hintText="Buscar..." fullWidth={true}/>
+                      <TextField hintText="Buscar..." fullWidth={true} onKeyDown={this.handleTextFieldKeyDown} />
                     </Col>
                     <Col xs={1} sm={1} md={2} lg={1} className="box-nav-icon">
                       <a onTouchTap={this.handleOpen} className="box-nav-advance">
