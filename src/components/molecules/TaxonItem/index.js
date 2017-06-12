@@ -10,7 +10,7 @@ class TaxonItem extends React.Component {
   }
   
   destino(t){
-  	return '/search?'+
+  	return '/search?'+   //ToDo: define query params to search
   			'q='+t/*+'&'+
   			'kingdomName='+t+'&'+
   			'phylumName='+t+'&'+

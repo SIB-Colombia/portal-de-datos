@@ -52,6 +52,21 @@ class SearchList extends React.Component {
             <Col xs={12}>
               <Paper zDepth={1} className="static-content animated fadeIn">
                 <h3 className="Search-main-title">Busqueda</h3>
+                <Row>
+              
+                  <Col xs={3} sm={3} md={3} lg={3}>
+                    Proveedor
+                  </Col>
+                  <Col xs={3} sm={3} md={3} lg={3}>
+                    Recurso
+                  </Col>
+                  <Col xs={3} sm={3} md={3} lg={3}>
+                    Taxonomía
+                  </Col>
+                  <Col xs={3} sm={3} md={3} lg={3}>
+                    Ubicación
+                  </Col>
+                </Row>
                 {this.props.lista.map((item) => (
 	                <SearchItem key={item.id} item={item} />
                 ))}
