@@ -15,9 +15,9 @@ export function getOccurrenceCount(param) {
 }
 
 //Get getOccurrenceGrid v1.5
-export function getOccurrenceGrid() {
+export function getOccurrenceGrid(params) {
 
-  return fetch(`${Const.server.api_bio_v1_5}/occurrence/grid`, http('GET')).then((response) => {
+  return fetch(`${Const.server.api_bio_v1_5}/occurrence/grid${params}`, http('GET')).then((response) => {
     return response.json()
   }).then((data) => {
     return data

@@ -12,6 +12,7 @@ import {
   FileComment,
   FileHeader,
   FileTab,
+  OptionsTabs,
   FileMostRecent,
   SearchList
 } from 'components';
@@ -41,6 +42,7 @@ class SearchPage extends React.Component {
   render() {
     return (
       <PageTemplate header={< Header />} footer={< Footer />} wallpaper='File'>
+      	<OptionsTabs datos={this.props}/>
         {this.state.result && <Grid>
           <Row className="animated fadeIn">
             <Col xs={12} lg={12}>
