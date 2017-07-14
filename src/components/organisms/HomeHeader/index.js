@@ -1,19 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Link, HomeCard, HomeItem} from 'components';
-import {Grid, Row, Col} from 'react-flexbox-grid';
-import RaisedButton from 'material-ui/RaisedButton';
+import { Link, HomeCard, HomeItem } from 'components';
+import { Grid, Row, Col } from 'react-flexbox-grid';
+import FlatButton from 'material-ui/FlatButton';
 
-const Wrapper = styled.div `
+const Wrapper = styled.div`
 
   background-image: url('/background/11285_orig.jpg');
   background-size: cover;
   background-position: center center;
   background-attachment:fixed;
-  .items{
-    background: rgba(0,0,0,0.4);
-    padding: 20px;
-  }
 `
 class HomeHeader extends React.Component {
 
@@ -28,7 +24,7 @@ class HomeHeader extends React.Component {
   }
 
   updateDimensions() {
-    this.setState({width: window.innerWidth, height: window.innerHeight});
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
   componentDidMount() {
@@ -49,23 +45,23 @@ class HomeHeader extends React.Component {
 
     return (
       <Wrapper style={{
-        minHeight: `${this.state.height / 1.5}px`,
-        paddingTop: `${this.state.height / 3}px`
+        minHeight: `${this.state.height / 3}px`,
+        padding: `${this.state.height / 6}px`
       }}>
-        <Grid className="container items">
+        <Grid className="container">
           <Row>
-            <Col xs={6} sm={3} md={3} lg={3} className="animated fadeInLeft">
-              <HomeItem title="Taxonomía"/>
-            </Col>
-            <Col xs={6} sm={3} md={3} lg={3} className="animated fadeInDown">
-              <HomeItem title="Recursos"/>
-            </Col>
-            <Col xs={6} sm={3} md={3} lg={3} className="animated fadeInUp">
-              <HomeItem title="Departamentos"/>
-            </Col>
-            <Col xs={6} sm={3} md={3} lg={3} className="animated fadeInRight">
-              <HomeItem title="Entidades"/>
-            </Col>
+            <FlatButton backgroundColor="transparent" style={{
+              borderStyle: 'solid',
+              borderWidth: 2,
+              color: '#fff',
+              padding: 55,
+              paddingTop: 17,
+              fontSize: 25,
+              marginLeft: 'auto',
+              marginRight: 'auto'
+            }}>
+              EXPLORA LOS DATOS
+            </FlatButton>
           </Row>
         </Grid>
       </Wrapper>
