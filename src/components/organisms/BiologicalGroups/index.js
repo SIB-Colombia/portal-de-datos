@@ -7,6 +7,7 @@ import { BiologicalItem } from 'components';
 
 const Wrapper = styled.div` 
     margin-top: 85px;
+    margin-bottom: 130px;
 
     .title {
         font-weight: 400;

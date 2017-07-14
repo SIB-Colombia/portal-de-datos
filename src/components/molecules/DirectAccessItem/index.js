@@ -1,0 +1,56 @@
+import React, { Component } from 'react';
+import styled from 'styled-components';
+
+import { Grid, Row, Col } from 'react-flexbox-grid';
+
+
+const Wrapper = styled.div`
+    margin-top: 70px;
+    margin-bottom: 100px;
+
+    .titulo {
+        font-weight: 400;
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .accent-title {
+        margin-top: 15px;
+        border-top: 2px solid #ff7847;
+    }
+
+    .descripcion {
+        width: 330px;
+        text-align: center;
+        color: #545859;
+        font-size: 20px;
+        font-weight: 200;        
+    }
+
+`
+class DirectAccessItem extends Component {
+
+    constructor(props) {
+        super(props)
+    }
+
+    render() {
+
+        return (
+            <Wrapper>
+                <Col md className="titulo">
+                    {this.props.link.titulo}
+                </Col>
+                <Col md>
+                    <img alt={this.props.link.img}/>
+                </Col>
+                <Col className="accent-title" mdOffset={4} md={4}></Col>
+                <Col md className="descripcion">
+                    <i>{ this.props.link.descripcion }</i>
+                </Col>          
+            </Wrapper>
+        )
+    }
+}
+
+export default DirectAccessItem;
