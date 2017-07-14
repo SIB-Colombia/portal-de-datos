@@ -57,12 +57,10 @@ class HomePage extends React.Component {
             <PageTemplate header={< Header />} footer={< Footer />}>
                 <HomeHeader />
                 <GlobalInfo />
-                <BiologicalGroups />
-                <DirectAccess />
                 {/*this.state.count && this.state.countGeo && <Alert className="animated swing" message={`${this.state.count} registros Biológicos encontrados, de los cuales ${this.state.countGeo} están georeferenciados.`} />*/}
                 {this.state.files.length > 0 && <FileCarousel data={this.state.files} title="Registros recientes" />}
-                <br />
-                <br />
+                <BiologicalGroups />
+                <DirectAccess />
             </PageTemplate>
         )
     }

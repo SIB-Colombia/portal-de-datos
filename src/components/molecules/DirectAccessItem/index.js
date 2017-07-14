@@ -41,13 +41,13 @@ class DirectAccessItem extends Component {
                 <Col md className="titulo">
                     {this.props.link.titulo}
                 </Col>
-                <Col md>
-                    <img alt={this.props.link.img}/>
-                </Col>
                 <Col className="accent-title" mdOffset={4} md={4}></Col>
+                <Col md>
+                    <img alt={this.props.link.img} />
+                </Col>
                 <Col md className="descripcion">
-                    <i>{ this.props.link.descripcion }</i>
-                </Col>          
+                    <i>{this.props.link.descripcion}</i>
+                </Col>
             </Wrapper>
         )
     }

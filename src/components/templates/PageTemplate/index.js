@@ -9,10 +9,8 @@ const Header = styled.header `
 `
 const Content = styled.section `
   height: 100%;
-  padding-bottom: 53px;
 `
 const Footer = styled.footer `
-  margin-top: 10px;
 `
 const PageTemplate = ({
   header,
