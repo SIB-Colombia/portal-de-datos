@@ -58,24 +58,11 @@ class HomeHeader extends React.Component {
               paddingTop: 17,
               fontSize: 25,
               marginLeft: 'auto',
-              marginRight: 'auto  '
+              marginRight: 'auto'
             }}>
               EXPLORA LOS DATOS
             </FlatButton>
           </Row>
-            {/* QUITAR ESTO!!  */}
-          <Col xs={6} sm={3} md={3} lg={3} className="animated fadeInLeft">
-            <HomeItem title="Taxonomía" />
-          </Col>
-          <Col xs={6} sm={3} md={3} lg={3} className="animated fadeInDown">
-            <HomeItem title="Recursos" />
-          </Col>
-          <Col xs={6} sm={3} md={3} lg={3} className="animated fadeInUp">
-            <HomeItem title="Departamentos" />
-          </Col>
-          <Col xs={6} sm={3} md={3} lg={3} className="animated fadeInRight">
-            <HomeItem title="Entidades" />
-          </Col>
         </Grid>
       </Wrapper>
     )

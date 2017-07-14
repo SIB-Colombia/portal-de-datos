@@ -6,7 +6,8 @@ import {
   HomeHeader,
   FileCarousel,
   HomeItem,
-  Alert
+  Alert,
+  GlobalInfo
 } from 'components';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 const format = require('format-number-with-string');
@@ -56,7 +57,9 @@ class HomePage extends React.Component {
     return (
       <PageTemplate header={< Header />} footer={< Footer />}>
         <HomeHeader/>
-        {this.state.count && this.state.countGeo && <Alert className="animated swing" message={`${this.state.count} registros Biológicos encontrados, de los cuales ${this.state.countGeo} están georeferenciados.`} />}
+        <GlobalInfo />
+
+        {/*this.state.count && this.state.countGeo && <Alert className="animated swing" message={`${this.state.count} registros Biológicos encontrados, de los cuales ${this.state.countGeo} están georeferenciados.`} />*/}
         {this.state.files.length > 0 && <FileCarousel data={this.state.files} title="Registros recientes"/>}
         <br/>
         <br/>
