@@ -13,6 +13,7 @@ const Wrapper = styled.div`
         font-weight: 400;
         font-size: 30px;
         padding-left: 30px;
+        color: #4B5353;
     }
 
     .accent-title {
