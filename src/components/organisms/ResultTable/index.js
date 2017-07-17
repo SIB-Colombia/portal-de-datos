@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
-
+import { ResultRow } from 'components';
 import {
     Table,
     TableBody,
@@ -8,17 +8,52 @@ import {
     TableHeaderColumn,
     TableRow
 } from 'material-ui/Table';
-
-{/*import { ResultRow } from 'components';*/}
+import Pagination from 'material-ui-pagination';
 
 const Wrapper = styled.div`
     margin: 20px 0px;
+    text-align: center;
+
+    .font {
+        color: #4B5353 !important;
+        font-size: 15px !important;    
+    }
+
+    .pagination {
+        margin-top: 20px;
+    }
 `
 
 class ResultTable extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            total: 20,
+            display: 7,
+            number: 1,
+            registros: [
+                {
+                    'nom_cientifico': 'Sambucus nigra L.',
+                    'departamento': 'Colombia',
+                    'coordenadas': '4.7N, 74.1W',
+                    'tip_registro': 'Human Obrservation',
+                    'mes_ano': '2017 January',
+                    'conj_datos': 'iNaturalist Research-grade Observations',
+                    'rank': 'Species'
+                },
+                {
+                    'nom_cientifico': 'Sambucus nigra L.',
+                    'departamento': 'Colombia',
+                    'coordenadas': '4.7N, 74.1W',
+                    'tip_registro': 'Human Obrservation',
+                    'mes_ano': '2017 January',
+                    'conj_datos': 'iNaturalist Research-grade Observations',
+                    'rank': 'Species'
+                }
+            ]
+        }
     }
 
     render() {
@@ -31,19 +66,29 @@ class ResultTable extends React.Component {
                         adjustForCheckbox={false}
                     >
                         <TableRow>
-                            <TableHeaderColumn>Nombre Científico</TableHeaderColumn>
-                            <TableHeaderColumn>Departamento</TableHeaderColumn>
-                            <TableHeaderColumn>Coordenadas</TableHeaderColumn>
-                            <TableHeaderColumn>Tipo de Registro</TableHeaderColumn>
-                            <TableHeaderColumn>Mes y Año</TableHeaderColumn>
-                            <TableHeaderColumn>Conjunto de datos</TableHeaderColumn>
-                            <TableHeaderColumn>Rank</TableHeaderColumn>
+                            <TableHeaderColumn className="font"> Nombre Científico</TableHeaderColumn>
+                            <TableHeaderColumn className="font">Departamento</TableHeaderColumn>
+                            <TableHeaderColumn className="font">Coordenadas</TableHeaderColumn>
+                            <TableHeaderColumn className="font">Tipo de Registro</TableHeaderColumn>
+                            <TableHeaderColumn className="font">Mes y Año</TableHeaderColumn>
+                            <TableHeaderColumn className="font">Conjunto de datos</TableHeaderColumn>
+                            <TableHeaderColumn className="font">Rank</TableHeaderColumn>
                         </TableRow>
                     </TableHeader>
                     <TableBody displayRowCheckbox={false}>
-                        {/* <ResultRow />*/}
+                        {this.state.registros.map((registro, i) => (
+                            <ResultRow key={i} registro={registro} />
+                        ))}
                     </TableBody>
                 </Table>
+                <div className="pagination" >
+                    <Pagination
+                        total={this.state.total}
+                        current={this.state.number}
+                        display={this.state.display}
+                        onChange = { number => this.setState({ number }) }
+                    />
+                </div>
             </Wrapper>
         )
     }

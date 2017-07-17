@@ -6,7 +6,6 @@ import { PageTemplate, Header, Footer, FileSearchMenu, ResultTable } from 'compo
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import { Tabs, Tab } from 'material-ui/Tabs';
 
-import * as FileService from '../../../services/FileService';
 
 const Wrapper = styled.div`
     margin-top: 85px;
@@ -36,20 +35,10 @@ class SearchResultsPage extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            files: []
-        }
     }
 
-    componentDidMount() { }
-
-    componentWillMount() {
-
-        FileService.getLastUpdatedRecords().then(data => {
-            this.setState({ files: data });
-        }).catch(err => {
-            console.log(err);
-        })
+    handleActive() {
+        alert('Descargando!!')
     }
 
     render() {
@@ -75,6 +64,9 @@ class SearchResultsPage extends React.Component {
                             <Tab label="ESPECIES" />
                             <Tab label="RECURSOS" />
                             <Tab label="PUBLICADORES" />
+                            <Tab label="DESCARGAR" onActive={this.handleActive}>
+                                En este momento se esta descargando. Gracias!
+                            </Tab>
                         </Tabs>
                     </Grid>
                 </Wrapper>
