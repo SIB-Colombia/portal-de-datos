@@ -78,6 +78,7 @@
     "leaflet": "^1.0.3",
     "lodash": "^4.17.4",
     "material-ui": "^0.18.0",
+    "material-ui-pagination": "^1.0.4",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-chartjs": "^0.8.0",

@@ -5,6 +5,7 @@ import { Link } from 'components';
 import { palette } from 'styled-theme';
 
 const Wrapper = styled.footer`
+
     .creative {
         right: 0;
         bottom: 0;
@@ -44,7 +45,7 @@ const FooterPage = (props) => {
                     <Col md><strong>CATÁLOGO</strong> DE LA BIODIVERSIDAD</Col>
                     <Col md>PORTAL DE <strong>DATOS</strong></Col>
                     <Col md><strong>COLECCIONES</strong> EN LÍNEA</Col>
-                    <Col md><strong>LISTAS</strong> DE ESPECIES</Col>                    
+                    <Col md><strong>LISTAS</strong> DE ESPECIES</Col>
                 </Row>
             </Grid>
             <Grid fluid className="sib">

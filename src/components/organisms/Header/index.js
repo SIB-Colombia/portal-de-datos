@@ -181,7 +181,7 @@ class Header extends React.Component {
                       <Search/>
                     </Col>
                     <Col xs={10} sm={8} md={8} lg={10} className="box-nav-search">
-                      <TextField hintText="Buscar..." fullWidth={true} onKeyDown={this.handleTextFieldKeyDown} />
+                      <TextField hintText="Buscar" fullWidth={true} onKeyDown={this.handleTextFieldKeyDown} />
                     </Col>
                     <Col xs={1} sm={1} md={2} lg={1} className="box-nav-icon">
                       <a onTouchTap={this.handleOpen} className="box-nav-advance">
