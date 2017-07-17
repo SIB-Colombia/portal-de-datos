@@ -20,7 +20,7 @@ const Wrapper = styled.footer`
     .sib {
         background-color: #00292B;
         color: #FFFFFF;
-        padding: 50px;        
+        padding: 30px;
     }
 
     .access-direct {
@@ -49,11 +49,9 @@ const FooterPage = (props) => {
                 </Row>
             </Grid>
             <Grid fluid className="sib">
-                <Row around="md">
-                    <Col>
-                        <img alt="Sistema de Información sobre Biodiversidad de Colombia" />
-                    </Col>
-                    <Col>
+                <Row middle="md">
+                    <img src="/SiB-Footer-02.svg" alt="Sistema de Información sobre Biodiversidad de Colombia" width="300" />
+                    <Col md mdOffset={8}>
                         <Link>Sobre el portal</Link> | <Link>Terminos de uso</Link>
                     </Col>
                 </Row>

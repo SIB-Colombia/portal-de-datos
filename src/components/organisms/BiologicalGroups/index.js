@@ -29,12 +29,12 @@ class BiologicalGroups extends Component {
 
         this.state = {
             groups: [
-                { id: '0', img: 'inv_logo.jpg', title: 'INVERTEBRADOS' },
-                { id: '1', img: 'ver_logo.jpg', title: 'VERTEBRADOS' },
-                { id: '2', img: 'pla_logo.jpg', title: 'PLANTAS' },
-                { id: '3', img: 'hon_logo.jpg', title: 'HONGOS' },
-                { id: '4', img: 'chr_logo.jpg', title: 'CHROMISTA' },
-                { id: '5', img: 'otr_logo.jpg', title: 'OTROS' }
+                { id: '0', img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-invertebrados.png', title: 'INVERTEBRADOS' },
+                { id: '1', img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-vertebrados.png', title: 'VERTEBRADOS' },
+                { id: '2', img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-plantas.png', title: 'PLANTAS' },
+                { id: '3', img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-hongos.png', title: 'HONGOS' },
+                { id: '4', img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-chromista.png', title: 'CHROMISTA' },
+                { id: '5', img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-otros.png', title: 'OTROS' }
             ]
         }
     }

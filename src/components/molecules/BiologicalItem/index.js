@@ -10,6 +10,9 @@ const Wrapper = styled.div`
         width: 170px;
         text-align: center;
         display: inline-block;
+       &:hover{
+            cursor: pointer;
+        }
     }
 
     .circle-description {
@@ -18,6 +21,10 @@ const Wrapper = styled.div`
         font-size: 18px;
         font-weight: 200;
         margin-top: 20px;
+    }
+
+    img {
+        width: 100%;
     }
 `
 
@@ -28,16 +35,18 @@ class BiologicalItem extends Component {
     }
 
     redirect() {
-        
+
     }
     render() {
         return (
             <Wrapper onMouseEnter={this.redirect}>
                 <Col md>
-                    <Paper className="circle" circle={true} />
+                    <Paper className="circle" circle={true}>
+                        <img src={this.props.group.img} alt={this.props.group.title} />
+                    </Paper>
                 </Col>
                 <Col md className="circle-description">
-                    { this.props.group.title }
+                    {this.props.group.title}
                 </Col>
             </Wrapper>
         )
