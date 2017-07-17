@@ -35,11 +35,11 @@ class BiologicalItem extends Component {
     }
 
     redirect() {
-
+        alert('redirecionando!!')
     }
     render() {
         return (
-            <Wrapper onMouseEnter={this.redirect}>
+            <Wrapper onClick={this.redirect}>
                 <Col md>
                     <Paper className="circle" circle={true}>
                         <img src={this.props.group.img} alt={this.props.group.title} />
