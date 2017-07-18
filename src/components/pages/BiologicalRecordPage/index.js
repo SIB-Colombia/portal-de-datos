@@ -4,9 +4,11 @@ import {
   PageTemplate,
   Header,
   Footer,
-  FileSearchMenu,
   BasicInformation,
+  MoreDetails,
 } from 'components'
+
+import * as RegistroService from '../../../services/RegistroBiologicoService'
 
 class BiologicalRecordPage extends React.Component {
 
@@ -14,23 +16,24 @@ class BiologicalRecordPage extends React.Component {
     super(props)
 
     this.state = {
-      records: [
-        { title: 'Enterolobium schomburgkii (Benth.) Benth.' },
-      ],
+      records: [],
     }
+  }
+
+  componentWillMount() {
+    this.setState({
+      records: RegistroService.getBiologicalRecord(),
+    })
   }
 
   render() {
     return (
       <PageTemplate
-        header={
-          <Header
-            filter={<FileSearchMenu />}
-          />
-        }
+        header={<Header />}
         footer={<Footer />}
       >
         <BasicInformation record={this.state.records} />
+        <MoreDetails detail={this.state.records} />
       </PageTemplate>
     )
   }
