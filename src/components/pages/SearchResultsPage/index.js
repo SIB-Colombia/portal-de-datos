@@ -1,12 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
-
-import { PageTemplate, Header, Footer, FileSearchMenu, ResultTable, PublisherTable, HumboldtMap } from 'components'
+import {
+  PageTemplate,
+  Header,
+  Footer,
+  FileSearchMenu,
+  ResultTable,
+  PublisherTable,
+  HumboldtMap,
+  RecursosTable,
+} from 'components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import { Tabs, Tab } from 'material-ui/Tabs'
 
-
-const Wrapper = styled.div`
+const Wrapper = styled.div `
     margin-top: 85px;
     .title {
         font-weight: 400;
@@ -33,18 +40,13 @@ const Wrapper = styled.div`
 class SearchResultsPage extends React.Component {
 
   constructor(props) {
-      super(props)
-  }
-
-  handleActive() {
-    alert('Descargando!!')
+    super(props)
   }
 
   render() {
     return (
       <PageTemplate
-        header={<Header filter={<FileSearchMenu />} />}
-        footer={<Footer />}
+        header={<Header filter={<FileSearchMenu />} />} footer={<Footer />}
       >
         <Wrapper>
           <Grid>
@@ -54,7 +56,10 @@ class SearchResultsPage extends React.Component {
             </Row>
           </Grid>
           <Grid>
-            <Tabs className="tabs" tabItemContainerStyle={{ background: 'transparent' }} inkBarStyle={{ background: '#ff7847' }}>
+            <Tabs
+              className="tabs"
+              tabItemContainerStyle={{ background: 'transparent' }} inkBarStyle={{ background: '#ff7847' }}
+            >
               <Tab label="TABLA">
                 <ResultTable />
               </Tab>
@@ -62,7 +67,9 @@ class SearchResultsPage extends React.Component {
                 <HumboldtMap />
               </Tab>
               <Tab label="ESPECIES" />
-              <Tab label="RECURSOS" />
+              <Tab label="RECURSOS">
+                <RecursosTable />
+              </Tab>
               <Tab label="PUBLICADORES">
                 <PublisherTable />
               </Tab>
