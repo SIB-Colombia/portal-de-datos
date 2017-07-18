@@ -1,13 +1,19 @@
-import React, { PropTypes } from 'react';
-import fetch from 'isomorphic-fetch';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
+import {
+  PageTemplate,
+  Header,
+  Footer,
+  FileSearchMenu,
+  ResultTable,
+  PublisherTable,
+  HumboldtMap,
+  RecursosTable,
+} from 'components'
+import { Grid, Row, Col } from 'react-flexbox-grid'
+import { Tabs, Tab } from 'material-ui/Tabs'
 
-import { PageTemplate, Header, Footer, FileSearchMenu, ResultTable } from 'components';
-import { Grid, Row, Col } from 'react-flexbox-grid';
-import { Tabs, Tab } from 'material-ui/Tabs';
-
-
-const Wrapper = styled.div`
+const Wrapper = styled.div `
     margin-top: 85px;
     .title {
         font-weight: 400;
@@ -23,56 +29,59 @@ const Wrapper = styled.div`
 
     .tabs {
         margin-top: 30px;
-        
+
         div{
             color: #4B5353;
             font-size: 18px;
-        } 
+        }
     }
 `
 
 class SearchResultsPage extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props)
+  }
 
-    handleActive() {
-        alert('Descargando!!')
-    }
-
-    render() {
-
-        return (
-            <PageTemplate
-                header={<Header filter={< FileSearchMenu />} />}
-                footer={< Footer />}
+  render() {
+    return (
+      <PageTemplate
+        header={<Header filter={<FileSearchMenu />} />} footer={<Footer />}
+      >
+        <Wrapper>
+          <Grid>
+            <Row>
+              <Col className="title" md={12}>Registros biólogicos</Col>
+              <Col className="accent-title" md={1} />
+            </Row>
+          </Grid>
+          <Grid>
+            <Tabs
+              className="tabs"
+              tabItemContainerStyle={{ background: 'transparent' }} inkBarStyle={{ background: '#ff7847' }}
             >
-                <Wrapper>
-                    <Grid>
-                        <Row>
-                            <Col className="title" md={12}>Registros biólogicos</Col>
-                            <Col className="accent-title" md={1}></Col>
-                        </Row>
-                    </Grid>
-                    <Grid>
-                        <Tabs className="tabs" tabItemContainerStyle={{ background: 'transparent' }} inkBarStyle={{ background: '#ff7847' }}>
-                            <Tab label="TABLA">
-                                <ResultTable />
-                            </Tab>
-                            <Tab label="MAPA" />
-                            <Tab label="ESPECIES" />
-                            <Tab label="RECURSOS" />
-                            <Tab label="PUBLICADORES" />
-                            <Tab label="DESCARGAR" onActive={this.handleActive}>
-                                En este momento se esta descargando. Gracias!
-                            </Tab>
-                        </Tabs>
-                    </Grid>
-                </Wrapper>
-            </PageTemplate>
-        )
-    }
+              <Tab label="TABLA">
+                <ResultTable />
+              </Tab>
+              <Tab label="MAPA">
+                <HumboldtMap />
+              </Tab>
+              <Tab label="ESPECIES" />
+              <Tab label="RECURSOS">
+                <RecursosTable />
+              </Tab>
+              <Tab label="PUBLICADORES">
+                <PublisherTable />
+              </Tab>
+              <Tab label="DESCARGAR" onActive={this.handleActive}>
+                En este momento se esta descargando. Gracias!
+              </Tab>
+            </Tabs>
+          </Grid>
+        </Wrapper>
+      </PageTemplate>
+    )
+  }
 }
 
-export default SearchResultsPage;
+export default SearchResultsPage
