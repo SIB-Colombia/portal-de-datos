@@ -1,27 +1,29 @@
-import React, { PropTypes } from 'react';
-import styled from 'styled-components';
-
-import { TableRow, TableRowColumn } from 'material-ui/Table';
-
-const Wrapper = styled.div`
-`
+import React from 'react'
+import PropTypes from 'prop-types'
+import { TableRow, TableRowColumn } from 'material-ui/Table'
 
 class PublisherRow extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
+  static propTypes = {
+    publisher: PropTypes.any.isRequired,
+  }
 
-    render() {
-
-        return (
-                <TableRow>
-                  <TableRowColumn>{this.props.publisher.nombre}</TableRowColumn>
-                  <TableRowColumn>{this.props.publisher.nRegistros}</TableRowColumn>
-                  <TableRowColumn>{this.props.publisher.nRecursos}</TableRowColumn>
-                </TableRow>
-        )
+  constructor(props) {
+    super(props)
+    this.state = {
+      publisher: this.props.publisher,
     }
+  }
+
+  render() {
+    return (
+      <TableRow>
+        <TableRowColumn>{this.state.publisher.publicador}</TableRowColumn>
+        <TableRowColumn>{this.state.publisher.nRegistros}</TableRowColumn>
+        <TableRowColumn>{this.state.publisher.nRecursos}</TableRowColumn>
+      </TableRow>
+    )
+  }
 }
 
-export default PublisherRow;
+export default PublisherRow
