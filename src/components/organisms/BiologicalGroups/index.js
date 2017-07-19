@@ -29,12 +29,12 @@ class BiologicalGroups extends Component {
 
         this.state = {
             groups: [
-                { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-invertebrados.png', title: 'INVERTEBRADOS' },
-                { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-vertebrados.png', title: 'VERTEBRADOS' },
-                { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-plantas.png', title: 'PLANTAS' },
-                { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-hongos.png', title: 'HONGOS' },
-                { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-chromista.png', title: 'CHROMISTA' },
-                { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-otros.png', title: 'OTROS' }
+                { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-invertebrados.png', title: 'INVERTEBRADOS', name="invertebrata" },
+                { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-vertebrados.png', title: 'VERTEBRADOS', name="vertebrata" },
+                { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-plantas.png', title: 'PLANTAS', name="plants" },
+                { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-hongos.png', title: 'HONGOS', name="fungi" },
+                { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-chromista.png', title: 'CHROMISTA', name="CHROMISTA" },
+                { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-otros.png', title: 'OTROS', name="" }
             ]
         }
     }

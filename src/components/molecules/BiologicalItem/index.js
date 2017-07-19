@@ -34,12 +34,26 @@ class BiologicalItem extends Component {
         super(props);
     }
 
+    destino(t){
+    	return '/search?'+   //ToDo: define query params to search
+    			'q='+t/*+'&'+
+    			'kingdomName='+t+'&'+
+    			'phylumName='+t+'&'+
+    			'className='+t+'&'+
+    			'orderName='+t+'&'+
+    			'familyName='+t+'&'+
+    			'genusName='+t+'&'+
+    			'speciesName='+t
+    			*/;
+      
+    }
     redirect() {
         alert('redirecionando!!')
     }
     render() {
         return (
             <Wrapper onClick={this.redirect}>
+              <Link to={this.destino(this.props.group.name)}>
                 <Col md>
                     <Paper className="circle" circle={true}>
                         <img src={this.props.group.img} alt={this.props.group.title} />
@@ -48,6 +62,7 @@ class BiologicalItem extends Component {
                 <Col md className="circle-description">
                     {this.props.group.title}
                 </Col>
+              </Link>
             </Wrapper>
         )
     }
