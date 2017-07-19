@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
-import { BiologicalItem } from 'components';
+import { Link, BiologicalItem } from 'components';
 
 const Wrapper = styled.div` 
     margin-top: 85px;
