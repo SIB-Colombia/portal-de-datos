@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { Col } from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
+import { Link } from 'components';
 
 const Wrapper = styled.div`
     .circle {
@@ -34,12 +35,23 @@ class BiologicalItem extends Component {
         super(props);
     }
 
-    redirect() {
-        alert('redirecionando!!')
+    destino(t){
+    	return '/search?'+   //ToDo: define query params to search
+    			'q='+t/*+'&'+
+    			'kingdomName='+t+'&'+
+    			'phylumName='+t+'&'+
+    			'className='+t+'&'+
+    			'orderName='+t+'&'+
+    			'familyName='+t+'&'+
+    			'genusName='+t+'&'+
+    			'speciesName='+t
+    			*/;
+      
     }
     render() {
         return (
-            <Wrapper onClick={this.redirect}>
+            <Wrapper>
+              <Link to={this.destino(this.props.group.name)}>
                 <Col md>
                     <Paper className="circle" circle={true}>
                         <img src={this.props.group.img} alt={this.props.group.title} />
@@ -48,6 +60,7 @@ class BiologicalItem extends Component {
                 <Col md className="circle-description">
                     {this.props.group.title}
                 </Col>
+              </Link>
             </Wrapper>
         )
     }
