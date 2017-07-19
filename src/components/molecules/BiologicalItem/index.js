@@ -48,12 +48,9 @@ class BiologicalItem extends Component {
     			*/;
       
     }
-    redirect() {
-        alert('redirecionando!!')
-    }
     render() {
         return (
-            <Wrapper onClick={this.redirect}>
+            <Wrapper>
               <Link to={this.destino(this.props.group.name)}>
                 <Col md>
                     <Paper className="circle" circle={true}>
