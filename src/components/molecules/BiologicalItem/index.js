@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { Col } from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
+import { Link } from 'components';
 
 const Wrapper = styled.div`
     .circle {
