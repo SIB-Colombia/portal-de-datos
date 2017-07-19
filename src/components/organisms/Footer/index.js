@@ -27,7 +27,8 @@ const Wrapper = styled.footer`
         background-color: #00484D;
         text-align: center;
         color: #FFFFFF;
-        padding: 100px;
+        text-align: left;
+        padding: 70px;
     }
 
     a{
@@ -42,10 +43,56 @@ const FooterPage = (props) => {
         <Wrapper>
             <Grid fluid className="access-direct">
                 <Row around="md">
-                    <Col md><strong>CATÁLOGO</strong> DE LA BIODIVERSIDAD</Col>
-                    <Col md>PORTAL DE <strong>DATOS</strong></Col>
-                    <Col md><strong>COLECCIONES</strong> EN LÍNEA</Col>
-                    <Col md><strong>LISTAS</strong> DE ESPECIES</Col>
+                    <Col md>
+                        <Grid fluid >
+                            <Row middle="md" center="md">
+                                <Col md={2}>
+                                    <img src="/home/catalogo.png" />
+                                </Col>
+                                <Col md={6}>
+                                    <strong>CATÁLOGO</strong> DE LA BIODIVERSIDAD
+                                </Col>
+                            </Row>
+                        </Grid>
+                    </Col>
+                    <Col md>
+                        <Grid fluid >
+                            <Row middle="md" center="md">
+                                <Col md={2}>
+                                    <img src="/home/portal.png" />
+                                </Col>
+                                <Col md={4}>
+                                    PORTAL DE <strong>DATOS</strong>
+                                </Col>
+                            </Row>
+                        </Grid>
+                    </Col>
+                    <Col md>
+                        <Grid fluid >
+                            <Row middle="md" center="md">
+                                <Col md={3}>
+                                    <img src="/home/colecciones.png" />
+                                </Col>
+                                <Col md={3}>
+                                    <strong>COLECCIONES</strong> EN LÍNEA
+
+                                </Col>
+                            </Row>
+                        </Grid>
+                    </Col>
+                    <Col md>
+                        <Grid fluid >
+                            <Row middle="md" center="md">
+                                <Col md={2}>
+                                    <img src="/home/listas.png" />
+                                </Col>
+                                <Col md={4}>
+                                    <strong>LISTAS</strong> DE ESPECIES
+
+                                </Col>
+                            </Row>
+                        </Grid>
+                    </Col>
                 </Row>
             </Grid>
             <Grid fluid className="sib">

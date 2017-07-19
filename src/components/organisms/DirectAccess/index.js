@@ -18,19 +18,19 @@ class DirectAccess extends Component {
             links: [
                 {
                     titulo: 'Departamentos',
-                    img: 'col_log.jpg',
+                    img: '/home/colombia.png',
                     descripcion: 'Explora los datos disponibles para cada departamento',
                     to: '/departamentos/'
                 },
                 {
                     titulo: 'Publicadores',
-                    img: 'pub_log.jgp',
+                    img: '/home/publicadores.png',
                     descripcion: 'Explora los datos a travéz de las entidades que comparten datos a atávez del SiB Colombia',
                     to: '/publicadores/'
                 },
                 {
                     titulo: 'Recursos',
-                    img: 'rec_log.jpg',
+                    img: '/home/recursos.png',
                     descripcion: 'Explora a travez de los recursos disponibles en el portal',
                     to: '/recursos/'
                 }

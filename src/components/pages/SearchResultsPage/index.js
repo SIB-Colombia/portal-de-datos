@@ -29,7 +29,6 @@ const Wrapper = styled.div `
 
     .tabs {
         margin-top: 30px;
-
         div{
             color: #4B5353;
             font-size: 18px;
@@ -37,51 +36,41 @@ const Wrapper = styled.div `
     }
 `
 
-class SearchResultsPage extends React.Component {
-
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    return (
-      <PageTemplate
-        header={<Header filter={<FileSearchMenu />} />} footer={<Footer />}
-      >
-        <Wrapper>
-          <Grid>
-            <Row>
-              <Col className="title" md={12}>Registros biólogicos</Col>
-              <Col className="accent-title" md={1} />
-            </Row>
-          </Grid>
-          <Grid>
-            <Tabs
-              className="tabs"
-              tabItemContainerStyle={{ background: 'transparent' }} inkBarStyle={{ background: '#ff7847' }}
-            >
-              <Tab label="TABLA">
-                <ResultTable />
-              </Tab>
-              <Tab label="MAPA">
-                <HumboldtMap />
-              </Tab>
-              <Tab label="ESPECIES" />
-              <Tab label="RECURSOS">
-                <RecursosTable />
-              </Tab>
-              <Tab label="PUBLICADORES">
-                <PublisherTable />
-              </Tab>
-              <Tab label="DESCARGAR" onActive={this.handleActive}>
-                En este momento se esta descargando. Gracias!
-              </Tab>
-            </Tabs>
-          </Grid>
-        </Wrapper>
-      </PageTemplate>
-    )
-  }
+const SearchResultsPage = () => {
+  return (
+    <PageTemplate
+      header={<Header filter={<FileSearchMenu />} />} footer={<Footer />}
+    >
+      <Wrapper>
+        <Grid>
+          <Row>
+            <Col className="title" md={12}>Registros biólogicos</Col>
+            <Col className="accent-title" md={1} />
+          </Row>
+        </Grid>
+        <Grid>
+          <Tabs
+            className="tabs"
+            tabItemContainerStyle={{ background: 'transparent' }} inkBarStyle={{ background: '#ff7847' }}
+          >
+            <Tab label="TABLA">
+              <ResultTable />
+            </Tab>
+            <Tab label="MAPA">
+              <HumboldtMap />
+            </Tab>
+            <Tab label="ESPECIES" />
+            <Tab label="RECURSOS">
+              <RecursosTable />
+            </Tab>
+            <Tab label="PUBLICADORES">
+              <PublisherTable />
+            </Tab>
+          </Tabs>
+        </Grid>
+      </Wrapper>
+    </PageTemplate>
+  )
 }
 
 export default SearchResultsPage
