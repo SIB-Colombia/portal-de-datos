@@ -6,7 +6,7 @@ import ViewList from 'material-ui/svg-icons/action/view-list'
 import Apps from 'material-ui/svg-icons/navigation/apps'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
-import { EntidadesItem } from 'components'
+import { EntitiesItem } from 'components'
 import Pagination from 'material-ui-pagination'
 
 const Wrapper = styled.div`
@@ -33,7 +33,7 @@ const Wrapper = styled.div`
   }
 `
 
-export default class EntidadesList extends Component {
+export default class EntitiesList extends Component {
 
   constructor(props) {
     super(props)
@@ -75,7 +75,7 @@ export default class EntidadesList extends Component {
           <Col className="accent-divider" md={12} />
 
           <Col md={12}>
-            <EntidadesItem />
+            <EntitiesItem />
           </Col>
         </Row>
         <div className="pagination">

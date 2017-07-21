@@ -73,7 +73,7 @@ export function getFileComplete(id) {
 
 }
 
-//Get fullDescription v1.5
+// Get fullDescription v1.5
 export function getFullDescription(id) {
 
   return fetch(`${Const.server.api_v1_5}/record/${id}/full_description/1`, http('GET')).then((response) => {

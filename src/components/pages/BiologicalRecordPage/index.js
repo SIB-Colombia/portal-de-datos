@@ -1,5 +1,5 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
 import {
   PageTemplate,
   Header,
@@ -8,32 +8,39 @@ import {
   MoreDetails,
 } from 'components'
 
-import * as RegistroService from '../../../services/RegistroBiologicoService'
+import * as BiologicalRecordService from '../../../services/BiologicalRecordService'
 
 class BiologicalRecordPage extends React.Component {
+
+  static propTypes = {
+    match: PropTypes.any.isRequired,
+  }
 
   constructor(props) {
     super(props)
 
     this.state = {
-      records: [],
+      records: null,
     }
   }
 
   componentWillMount() {
-    this.setState({
-      records: RegistroService.getBiologicalRecord(),
+    BiologicalRecordService.getBiologicalRecord(this.props.match.params.id).then(data => {
+      this.setState({ records: data })
+    }).catch(err => {
+      console.log(err)
     })
   }
 
   render() {
+    console.log(this.state)
     return (
       <PageTemplate
         header={<Header />}
         footer={<Footer />}
       >
-        <BasicInformation record={this.state.records} />
-        <MoreDetails detail={this.state.records} />
+        { this.state.records && <BasicInformation record={this.state.records} />}
+        { this.state.records && <MoreDetails detail={this.state.records} /> }
       </PageTemplate>
     )
   }

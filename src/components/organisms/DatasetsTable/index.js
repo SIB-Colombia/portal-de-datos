@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'material-ui/Table'
 import Pagination from 'material-ui-pagination'
-import { RecursosRow } from 'components'
-import * as RecursosService from '../../../services/RecursosService'
+import { DatasetsRow } from 'components'
+import * as DatasetsService from '../../../services/DatasetsService'
 
 const Wrapper = styled.div `
   text-align: center;
@@ -18,7 +18,7 @@ const Wrapper = styled.div `
   }
 `
 
-export default class RecursosTable extends React.Component {
+export default class DatasetsTable extends React.Component {
 
   constructor(props) {
     super(props)
@@ -28,7 +28,7 @@ export default class RecursosTable extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({ recursos: RecursosService.getRecursos() })
+    this.setState({ recursos: DatasetsService.getRecursos() })
   }
 
   render() {
@@ -45,7 +45,7 @@ export default class RecursosTable extends React.Component {
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
             {this.state.recursos.map((recurso) => (
-              <RecursosRow key={recurso.id} recurso={recurso} />
+              <DatasetsRow key={recurso.id} recurso={recurso} />
             ))}
           </TableBody>
         </Table>

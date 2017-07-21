@@ -18,7 +18,7 @@ import {
   TaxonomyPage,
   SearchResultsPage,
   BiologicalRecordPage,
-  ListaEntidadesPage,
+  EntitiesListPage,
 } from 'components';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import theme from './themes/default';
@@ -60,7 +60,7 @@ const App = () => {
 
           <Route exact path="/search/result" component={SearchResultsPage} />
           <Route exact path="/occurrence/:id" component={BiologicalRecordPage} />
-          <Route exact path="/provider" component={ListaEntidadesPage} />
+          <Route exact path="/provider" component={EntitiesListPage} />
 
           <Route component={NotFoundPage} />
         </Switch>

@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { ResultRow } from 'components'
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'material-ui/Table'
 import Pagination from 'material-ui-pagination'
+import { SpeciesRow } from 'components'
 
-const Wrapper = styled.div `
+const Wrapper = styled.div`
     margin: 20px 0px;
     text-align: center;
 
@@ -19,10 +19,10 @@ const Wrapper = styled.div `
     }
 `
 
-class ResultTable extends React.Component {
+export default class SpeciesTable extends Component {
 
   static propTypes = {
-    results: PropTypes.any.isRequired,
+    species: PropTypes.any.isRequired,
   }
 
   constructor(props) {
@@ -40,19 +40,18 @@ class ResultTable extends React.Component {
         <Table selectable={false}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
-              <TableHeaderColumn className="font">Nombre Científico</TableHeaderColumn>
-              <TableHeaderColumn className="font">Departamento</TableHeaderColumn>
-              <TableHeaderColumn className="font">Coordenadas</TableHeaderColumn>
-              <TableHeaderColumn className="font">Tipo de Registro</TableHeaderColumn>
-              <TableHeaderColumn className="font">Mes y Año</TableHeaderColumn>
-              <TableHeaderColumn className="font">Conjunto de datos</TableHeaderColumn>
-              <TableHeaderColumn className="font">Rank</TableHeaderColumn>
-              <TableHeaderColumn className="font">Acciones</TableHeaderColumn>              
+              <TableHeaderColumn className="font"># de Registros</TableHeaderColumn>
+              <TableHeaderColumn className="font">Nombre Cientifico</TableHeaderColumn>
+              <TableHeaderColumn className="font">Reino</TableHeaderColumn>
+              <TableHeaderColumn className="font">Filo</TableHeaderColumn>
+              <TableHeaderColumn className="font">Clase</TableHeaderColumn>
+              <TableHeaderColumn className="font">Orden</TableHeaderColumn>
+              <TableHeaderColumn className="font">Familia</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
-            {this.props.results.map((registro) => (
-              <ResultRow key={registro.id} registro={registro} />
+            {this.props.species.map((species, i) => (
+              <SpeciesRow key={i} species={species} />
             ))}
           </TableBody>
         </Table>
@@ -63,5 +62,3 @@ class ResultTable extends React.Component {
     )
   }
 }
-
-export default ResultTable

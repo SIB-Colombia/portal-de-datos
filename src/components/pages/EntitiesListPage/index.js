@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { PageTemplate, Header, Footer, EntidadesList } from 'components'
+import { PageTemplate, Header, Footer, EntitiesList } from 'components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 
 const Wrapper = styled.div`
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   }
 `
 
-export default class ListaEntidadesPage extends Component {
+export default class EntitiesListPage extends Component {
 
   render() {
     return (
@@ -29,7 +29,7 @@ export default class ListaEntidadesPage extends Component {
               <Col className="title" md={12}>Publicadores</Col>
               <Col className="accent-title" md={1} />
             </Row>
-            <EntidadesList />
+            <EntitiesList />
           </Grid>
         </Wrapper>
       </PageTemplate>

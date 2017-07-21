@@ -27,7 +27,7 @@ const Wrapper = styled.div`
   }
 `
 
-class EventoSection extends React.Component {
+class EventSection extends React.Component {
 
   static propTypes = {
     evento: PropTypes.any.isRequired,
@@ -70,4 +70,4 @@ class EventoSection extends React.Component {
   }
 }
 
-export default EventoSection
+export default EventSection
