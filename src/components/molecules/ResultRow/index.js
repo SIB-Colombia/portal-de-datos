@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
 import { TableRow, TableRowColumn } from 'material-ui/Table'
+import { Link } from 'components'
 
 class ResultRow extends React.Component {
 
@@ -42,6 +42,7 @@ class ResultRow extends React.Component {
           */}
         </TableRowColumn>
         <TableRowColumn>{this.props.registro.taxon_rank}</TableRowColumn>
+        <TableRowColumn><Link to={`/occurrence/${this.props.registro.id}`}>[Ver]</Link></TableRowColumn>
       </TableRow>
     )
   }

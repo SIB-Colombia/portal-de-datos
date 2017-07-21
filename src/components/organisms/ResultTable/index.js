@@ -47,6 +47,7 @@ class ResultTable extends React.Component {
               <TableHeaderColumn className="font">Mes y Año</TableHeaderColumn>
               <TableHeaderColumn className="font">Conjunto de datos</TableHeaderColumn>
               <TableHeaderColumn className="font">Rank</TableHeaderColumn>
+              <TableHeaderColumn className="font">Acciones</TableHeaderColumn>              
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>

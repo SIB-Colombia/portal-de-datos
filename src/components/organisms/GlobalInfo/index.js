@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import Paper from 'material-ui/Paper';
+import Paper from 'material-ui/Paper'
 
 const Wrapper = styled.div`
     font-size: 18px;
@@ -29,22 +30,27 @@ const Wrapper = styled.div`
 
 class GLobalInfo extends Component {
 
-    constructor(props) {
-        super(props);
-    }
+  static propTypes = {
+    count: PropTypes.any.isRequired,
+    countGeo: PropTypes.any.isRequired,
+    species: PropTypes.any.isRequired,
+  }
 
-    render() {
+  constructor(props) {
+    super(props)
+  }
 
-        return (
-            <Wrapper>
-                <Paper className="paper">
-                    <span className="number">4600 </span> REGISTROS
-                    <span className="number">2500</span> ESPECIES
-                    <span className="number">1800</span> GEORREFERENCIADOS
-                </Paper>
-            </Wrapper>
-        )
-    }
+  render() {
+    return (
+      <Wrapper>
+        <Paper className="paper">
+          <span className="number">{this.props.count}</span> REGISTROS
+          <span className="number">{this.props.species.species}</span> ESPECIES
+          <span className="number">{this.props.countGeo}</span> GEORREFERENCIADOS
+        </Paper>
+      </Wrapper>
+    )
+  }
 }
 
 export default GLobalInfo

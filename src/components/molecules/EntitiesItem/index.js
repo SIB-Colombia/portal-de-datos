@@ -36,7 +36,7 @@ const Wrapper = styled.div`
   }
 `
 
-export default class EntidadesItem extends Component {
+export default class EntitiesItem extends Component {
   render() {
     return (
       <Wrapper>

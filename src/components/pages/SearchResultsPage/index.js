@@ -9,7 +9,7 @@ import {
   ResultTable,
   PublisherTable,
   HumboldtMap,
-  RecursosTable,
+  DatasetsTable,
 } from 'components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import { Tabs, Tab } from 'material-ui/Tabs'
@@ -81,7 +81,7 @@ class SearchResultsPage extends React.Component {
               </Tab>
               <Tab label="ESPECIES" />
               <Tab label="RECURSOS">
-                <RecursosTable />
+                <DatasetsTable />
               </Tab>
               <Tab label="PUBLICADORES">
                 <PublisherTable />

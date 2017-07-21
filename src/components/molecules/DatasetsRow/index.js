@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { TableRow, TableRowColumn } from 'material-ui/Table'
 
-export default class RecursosRow extends React.Component {
+export default class DatasetsRow extends React.Component {
 
   static propTypes = {
     recurso: PropTypes.any.isRequired,

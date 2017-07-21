@@ -27,7 +27,7 @@ const Wrapper = styled.div`
   }
 `
 
-class UbicacionSection extends React.Component {
+class LocationSection extends React.Component {
 
   static propTypes = {
     ubicacion: PropTypes.any.isRequired,
@@ -76,4 +76,4 @@ class UbicacionSection extends React.Component {
   }
 }
 
-export default UbicacionSection
+export default LocationSection

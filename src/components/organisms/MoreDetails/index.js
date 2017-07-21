@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import {
-  RegistroSection,
+  RegisterSection,
   OccurrenceSection,
-  UbicacionSection,
-  EventoSection,
+  LocationSection,
+  EventSection,
   TaxonSection,
   Link,
 } from 'components'
@@ -62,19 +62,19 @@ class MoreDetails extends React.Component {
         <Grid >
           <Row>
             <Col md={6}>
-              <RegistroSection registro={this.state.detail.registro} recurso={this.state.detail.recurso} />
+              <RegisterSection registro={this.state.detail.registro} recurso={this.state.detail.recurso} />
             </Col>
             <Col md={6}>
               <OccurrenceSection ocurrence={this.state.detail.occurrence} />
             </Col>
             <Col md={6}>
-              <EventoSection evento={this.state.detail.evento} />
+              <EventSection evento={this.state.detail.evento} />
             </Col>
             <Col md={6}>
               <TaxonSection taxon={this.state.detail.taxon} />
             </Col>
             <Col md={6}>
-              <UbicacionSection ubicacion={this.state.detail.ubicacion} />
+              <LocationSection ubicacion={this.state.detail.ubicacion} />
             </Col>
             <Col md={6}>
               <Col className="title-two" md={12}>Otros</Col>

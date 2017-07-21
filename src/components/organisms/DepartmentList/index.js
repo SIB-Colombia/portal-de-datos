@@ -1,14 +1,10 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import Divider from 'material-ui/Divider';
-import Paper from 'material-ui/Paper';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
-import {Grid, Row, Col} from 'react-flexbox-grid';
-import {IconLink, Link, DepartmentItem} from 'components';
+import Paper from 'material-ui/Paper'
+import { Grid, Row, Col } from 'react-flexbox-grid'
+import { DepartmentItem } from 'components'
 
-const Wrapper = styled.div `
+const Wrapper = styled.div`
 padding-top: 150px;
 text-align: center;
 .img-size{
@@ -40,11 +36,10 @@ h3{
 class DepartmentList extends React.Component {
 
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   render() {
-
     return (
       <Wrapper>
         <Grid>
@@ -53,7 +48,7 @@ class DepartmentList extends React.Component {
               <Paper zDepth={1} className="static-content animated fadeIn">
                 <h3 className="departments-main-title">Departamentos</h3>
                 {this.props.departments.map((item) => (
-	                <DepartmentItem department={item} />
+                  <DepartmentItem department={item} />
                 ))}
               </Paper>
             </Col>
@@ -64,4 +59,4 @@ class DepartmentList extends React.Component {
   }
 }
 
-export default DepartmentList;
+export default DepartmentList

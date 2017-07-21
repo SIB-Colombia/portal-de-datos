@@ -27,7 +27,7 @@ const Wrapper = styled.div`
   }
 `
 
-class RegistroSection extends React.Component {
+class RegisterSection extends React.Component {
 
   static propTypes = {
     registro: PropTypes.any.isRequired,
@@ -71,4 +71,4 @@ class RegistroSection extends React.Component {
   }
 }
 
-export default RegistroSection
+export default RegisterSection
