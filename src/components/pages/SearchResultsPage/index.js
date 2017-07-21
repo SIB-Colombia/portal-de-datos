@@ -10,10 +10,12 @@ import {
   PublisherTable,
   HumboldtMap,
   DatasetsTable,
+  SpeciesTable,
 } from 'components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import { Tabs, Tab } from 'material-ui/Tabs'
 import * as DataPortalService from '../../../services/DataPortalService'
+import * as SpeciesService from '../../../services/SpeciesService'
 
 const Wrapper = styled.div `
     margin-top: 85px;
@@ -48,12 +50,17 @@ class SearchResultsPage extends React.Component {
     super(props)
     this.state = {
       result: [],
+      species: [],
     }
   }
 
   componentWillMount() {
     DataPortalService.getOccurrenceSearch(this.props.location.search).then(data => {
       this.setState({ result: data.results })
+    })
+
+    SpeciesService.getSpecies(this.props.location.search).then(data => {
+      this.setState({ species: data })
     })
   }
 
@@ -79,7 +86,9 @@ class SearchResultsPage extends React.Component {
               <Tab label="MAPA">
                 <HumboldtMap />
               </Tab>
-              <Tab label="ESPECIES" />
+              <Tab label="ESPECIES">
+                <SpeciesTable species={this.state.species} />
+              </Tab>
               <Tab label="RECURSOS">
                 <DatasetsTable />
               </Tab>
