@@ -15,9 +15,9 @@ export default class DatasetsRow extends React.Component {
   render() {
     return (
       <TableRow>
-        <TableRowColumn>{this.props.recurso.occurrences}</TableRowColumn>
-        <TableRowColumn>{this.props.recurso.dataset}</TableRowColumn>
-        <TableRowColumn>{this.props.recurso.publisher}</TableRowColumn>
+        <TableRowColumn>{this.props.recurso.count}</TableRowColumn>
+        <TableRowColumn>{this.props.recurso.resourceName}</TableRowColumn>
+        <TableRowColumn>{this.props.recurso.providerName}</TableRowColumn>
         <TableRowColumn>{this.props.recurso.type}</TableRowColumn>
       </TableRow>
     )

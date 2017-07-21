@@ -5,7 +5,7 @@ import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'mate
 import Pagination from 'material-ui-pagination'
 import * as PublisherService from '../../../services/PublisherService'
 
-const Wrapper = styled.div `
+const Wrapper = styled.div`
     text-align: center;
     margin: 20px 0px;
     .font {
@@ -31,8 +31,10 @@ class PublisherTable extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({
-      publishers: PublisherService.getPublishers(),
+    PublisherService.getPublishers().then(data => {
+      this.setState({
+        publishers: data,
+      })
     })
   }
 
@@ -48,8 +50,8 @@ class PublisherTable extends React.Component {
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
-            {this.state.publishers.map((publisher) => (
-              <PublisherRow key={publisher.id} publisher={publisher} />
+            {this.state.publishers.map((publisher, i) => (
+              <PublisherRow key={i} publisher={publisher} />
             ))}
           </TableBody>
         </Table>

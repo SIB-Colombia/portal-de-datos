@@ -67,8 +67,9 @@ svg{
 	}
 }
 .portal-logo{
-	width: 180px;
-	padding: 10px 0px;
+	width: 160px;
+  padding: 7px 0px;
+  margin-bottom: -11px;
 }
 `
 
@@ -171,7 +172,7 @@ class Header extends React.Component {
               <Col xs={12} sm={3} md={3} lg={3} className="box-logo">
                 {this.props.filter}
                 <Link to={'/'}>
-                  <img src="/logo_dataportal.png" className="portal-logo"/>
+                  <img src="/log_portal.png" className="portal-logo"/>
                 </Link>
               </Col>
               <Col xs={12} sm={5} md={6} lg={6} className="box-nav-search-content">

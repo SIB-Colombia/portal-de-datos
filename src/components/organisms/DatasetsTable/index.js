@@ -5,7 +5,7 @@ import Pagination from 'material-ui-pagination'
 import { DatasetsRow } from 'components'
 import * as DatasetsService from '../../../services/DatasetsService'
 
-const Wrapper = styled.div `
+const Wrapper = styled.div`
   text-align: center;
   margin: 20px 0px;
   .font {
@@ -28,7 +28,9 @@ export default class DatasetsTable extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({ recursos: DatasetsService.getRecursos() })
+    DatasetsService.getDatasets().then(data => {
+      this.setState({ recursos: data })
+    })
   }
 
   render() {
@@ -44,8 +46,8 @@ export default class DatasetsTable extends React.Component {
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
-            {this.state.recursos.map((recurso) => (
-              <DatasetsRow key={recurso.id} recurso={recurso} />
+            {this.state.recursos.map((recurso, i) => (
+              <DatasetsRow key={i} recurso={recurso} />
             ))}
           </TableBody>
         </Table>

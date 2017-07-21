@@ -1,41 +1,11 @@
-export function getRecursos() {
-  const jsonResponse = [
-    {
-      id: 1,
-      occurrences: 275718645,
-      dataset: 'EOD - eBird Observation Dataset',
-      publisher: 'Cornell Lab of Ornithology',
-      type: 'occurrence dataset',
-    },
-    {
-      id: 2,
-      occurrences: 275718645,
-      dataset: 'EOD - eBird Observation Dataset',
-      publisher: 'Cornell Lab of Ornithology',
-      type: 'occurrence dataset',
-    },
-    {
-      id: 3,
-      occurrences: 275718645,
-      dataset: 'EOD - eBird Observation Dataset',
-      publisher: 'Cornell Lab of Ornithology',
-      type: 'occurrence dataset',
-    },
-    {
-      id: 4,
-      occurrences: 275718645,
-      dataset: 'EOD - eBird Observation Dataset',
-      publisher: 'Cornell Lab of Ornithology',
-      type: 'occurrence dataset',
-    },
-    {
-      id: 5,
-      occurrences: 275718645,
-      dataset: 'EOD - eBird Observation Dataset',
-      publisher: 'Cornell Lab of Ornithology',
-      type: 'occurrence dataset',
-    },
-  ]
+import fetch from 'isomorphic-fetch'
+import Const from '../../const'
+import { http } from '../../auth'
 
-  return jsonResponse
+export function getDatasets() {
+  return fetch(`${Const.server.local}/api/dataset/basic`, http('GET')).then((response) => {
+    return response.json()
+  }).then((data) => {
+    return data
+  })
 }

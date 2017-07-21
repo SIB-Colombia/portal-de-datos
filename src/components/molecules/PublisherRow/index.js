@@ -18,9 +18,9 @@ class PublisherRow extends React.Component {
   render() {
     return (
       <TableRow>
-        <TableRowColumn>{this.state.publisher.publicador}</TableRowColumn>
-        <TableRowColumn>{this.state.publisher.nRegistros}</TableRowColumn>
-        <TableRowColumn>{this.state.publisher.nRecursos}</TableRowColumn>
+        <TableRowColumn>{this.state.publisher.providerName}</TableRowColumn>
+        <TableRowColumn>{this.state.publisher.resourceCount}</TableRowColumn>
+        <TableRowColumn>{this.state.publisher.registryCount}</TableRowColumn>
       </TableRow>
     )
   }
