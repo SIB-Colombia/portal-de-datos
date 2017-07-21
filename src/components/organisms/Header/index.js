@@ -69,7 +69,7 @@ svg{
 .portal-logo{
 	width: 160px;
   padding: 7px 0px;
-  margin-bottom: -11px;
+  margin-bottom: -15px;
 }
 `
 

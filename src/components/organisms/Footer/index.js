@@ -5,7 +5,10 @@ import { Link } from 'components';
 import { palette } from 'styled-theme';
 
 const Wrapper = styled.footer`
-
+    position: ${window.innerHeight > window.outerHeight ? 'fixed' : 'relative'};
+    bottom: 0;
+    right: 0;
+    left: 0;
     .creative {
         right: 0;
         bottom: 0;
@@ -38,6 +41,7 @@ const Wrapper = styled.footer`
         text-decoration: none;
     }
 `
+
 const FooterPage = (props) => {
     return (
         <Wrapper>
