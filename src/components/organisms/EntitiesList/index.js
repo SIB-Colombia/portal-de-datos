@@ -8,6 +8,7 @@ import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import { EntitiesItem } from 'components'
 import Pagination from 'material-ui-pagination'
+import Masonry from 'react-masonry-component'
 
 const Wrapper = styled.div`
   .accent-divider {
@@ -73,9 +74,15 @@ export default class EntitiesList extends Component {
             </Row>
           </Col>
           <Col className="accent-divider" md={12} />
-
           <Col md={12}>
-            <EntitiesItem />
+            <Masonry >
+              <Col md={this.state.mode === 'grid' ? 6 : 12}>
+                <EntitiesItem />
+              </Col>
+              <Col md={this.state.mode === 'grid' ? 6 : 12}>
+                <EntitiesItem />
+              </Col>
+            </Masonry>
           </Col>
         </Row>
         <div className="pagination">

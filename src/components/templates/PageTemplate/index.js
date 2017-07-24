@@ -11,6 +11,7 @@ const Content = styled.section `
   height: 100%;
 `
 const Footer = styled.footer `
+margin-top: 220px;
 `
 const PageTemplate = ({
   header,

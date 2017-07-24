@@ -5,7 +5,7 @@ import { Link } from 'components';
 import { palette } from 'styled-theme';
 
 const Wrapper = styled.footer`
-    position: ${window.innerHeight > window.outerHeight ? 'fixed' : 'relative'};
+    position: relative;
     bottom: 0;
     right: 0;
     left: 0;
@@ -97,11 +97,11 @@ const FooterPage = () => {
         </Row>
       </Grid>
       <Grid fluid className="sib">
-        <Row middle="md">
-          <Col xs={12} sm={6} md>
+        <Row middle="xs" center="xs">
+          <Col xs={12} sm={6} md={6} lg={6}>
             <img src="/SiB-Footer-02.svg" alt="Sistema de Información sobre Biodiversidad de Colombia" width="300" />
           </Col>
-          <Col xs={12} sm={6} md>
+          <Col xs={12} sm={6} md={6} lg={6}>
             <Link>Sobre el portal</Link> | <Link>Terminos de uso</Link>
           </Col>
         </Row>

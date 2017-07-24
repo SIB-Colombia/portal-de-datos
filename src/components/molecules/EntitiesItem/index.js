@@ -3,6 +3,7 @@ import { Row, Col } from 'react-flexbox-grid'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
+
   .entidad-item {
     padding: 20px 60px;
     font-weight: 200;
@@ -54,8 +55,12 @@ export default class EntitiesItem extends Component {
               <Col md={12}>
                 <Row className="informacion-relevante">
                   <Col md>DEPARTAMENTO</Col>
-                  <Col md><span>900.000</span> REGISTROS</Col>
-                  <Col md><span>900.000</span> RECURSOS</Col>
+                  <Col md>
+                    <Row>
+                      <Col md><span>900.000</span> REGISTROS</Col>
+                      <Col md><span>900.000</span> RECURSOS</Col>
+                    </Row>
+                  </Col>
                 </Row>
               </Col>
             </Row>
