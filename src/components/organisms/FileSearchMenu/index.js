@@ -1,20 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import Carousel from 'react-slick';
-import {Grid, Row, Col} from 'react-flexbox-grid';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import Menu from 'material-ui/svg-icons/navigation/menu';
 import ArrowBack from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
 import Drawer from 'material-ui/Drawer';
 import Chip from 'material-ui/Chip';
-import {List, ListItem} from 'material-ui/List';
+import { List, ListItem } from 'material-ui/List';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
 import Subheader from 'material-ui/Subheader';
-import {Link} from 'components';
-import {size, palette} from 'styled-theme';
+import { Link } from 'components';
+import { size, palette } from 'styled-theme';
 
-const Wrapper = styled.div `
+const Wrapper = styled.div`
 
 float: left;
 left: -32px;
@@ -143,11 +143,11 @@ class FileSearchMenu extends React.Component {
     this.chipData = this.state.chipData;
     const chipToDelete = this.chipData.map((chip) => chip.value).indexOf(data.value);
     this.chipData.splice(chipToDelete, 1);
-    this.setState({chipData: this.chipData});
+    this.setState({ chipData: this.chipData });
     //schema update
     this.schema = this.state.schema;
     this.schema[data.i].items.unshift(data);
-    this.setState({schema: this.schema});
+    this.setState({ schema: this.schema });
   };
 
   handleAddChip = (record, i, j) => {
@@ -156,18 +156,18 @@ class FileSearchMenu extends React.Component {
     record.i = i;
     record.j = j;
     this.chipData.push(record);
-    this.setState({chipData: this.chipData});
+    this.setState({ chipData: this.chipData });
     //schema update
     this.schema = this.state.schema;
     this.schema[i].items.splice(j, 1);
-    this.setState({schema: this.schema});
+    this.setState({ schema: this.schema });
   };
 
   handleToggleMenu = () => this.setState({
     open: !this.state.open
   });
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   renderChip(data) {
 
@@ -180,14 +180,14 @@ class FileSearchMenu extends React.Component {
 
   render() {
 
-    const subcat = this.state.schema.map((record, i) => record.items.map((subrecord, j) => <ListItem key={j} primaryText={subrecord.name} onTouchTap={() => this.handleAddChip(subrecord, i, j)} leftIcon={< ActionGrade />}/>));
-    const listItems = this.state.schema.map((record, i) => <ListItem key={i} nestedItems={subcat[i]} primaryText={record.category} initiallyOpen={true} primaryTogglesNestedList={true}/>);
+    const subcat = this.state.schema.map((record, i) => record.items.map((subrecord, j) => <ListItem key={j} primaryText={subrecord.name} onTouchTap={() => this.handleAddChip(subrecord, i, j)} leftIcon={< ActionGrade />} />));
+    const listItems = this.state.schema.map((record, i) => <ListItem key={i} nestedItems={subcat[i]} primaryText={record.category} initiallyOpen={true} primaryTogglesNestedList={true} />);
 
     return (
       <Wrapper>
         <div className="btnFilters animated fadeInLeft">
           <FloatingActionButton onTouchTap={this.handleToggleMenu} className="style-btn">
-            <Menu/>
+            <Menu />
           </FloatingActionButton>
         </div>
         <Drawer open={this.state.open} containerClassName="drawer">

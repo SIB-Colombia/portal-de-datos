@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import {IconLink, Link, HeaderSearchAdvance, HeaderUserMenu} from 'components';
-import {Grid, Row, Col} from 'react-flexbox-grid';
+import { IconLink, Link, HeaderSearchAdvance, HeaderUserMenu } from 'components';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -10,11 +10,11 @@ import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import Tune from 'material-ui/svg-icons/image/tune';
 import Search from 'material-ui/svg-icons/action/search';
-import {size, palette} from 'styled-theme';
+import { size, palette } from 'styled-theme';
 // import {me, isAuthenticated} from '../../../auth';
-import {isAuthenticated} from '../../../auth';
+import { isAuthenticated } from '../../../auth';
 
-const Wrapper = styled.nav `
+const Wrapper = styled.nav`
 position:fixed;
 top:0%;
 width:100%;
@@ -27,7 +27,7 @@ z-index: 10 !important;
 		display: none;
 	}
 	.box-search-color{
-		background: ${palette('grayscale', 0)};
+		background: #F3F8F8;
 		hr{
 			display: none;
 		}
@@ -73,12 +73,12 @@ svg{
 }
 `
 
-const Title = styled.div `
+const Title = styled.div`
 display:inline-block;
 vertical-align: middle;
 color: ${palette('grayscale', 5)};
 `
-const TitleMain = styled.div `
+const TitleMain = styled.div`
 font-size:14px;
 text-transform: uppercase;
 margin-top: -5px;
@@ -88,7 +88,7 @@ b{
 }
 
 `
-const TitleSub = styled.div `
+const TitleSub = styled.div`
 font-size:14px;
 text-transform: uppercase;
 line-height:1;
@@ -122,38 +122,38 @@ class Header extends React.Component {
   }
 
   handleOpen = () => {
-    this.setState({open: true});
+    this.setState({ open: true });
   };
 
   handleClose = () => {
-    this.setState({open: false});
+    this.setState({ open: false });
   };
 
   handleSearch = () => {
     console.log('buscar');
   };
-  
+
   handleTextFieldKeyDown = event => {
-		switch (event.key) {
-			case 'Enter':
-		     	console.log("Enter");
-			    window.location.href = '/search?q='+event.target.value;
-			    break
-			case 'Escape':
-			    // etc...
-			    break
-			default: break
-		}
+    switch (event.key) {
+      case 'Enter':
+        console.log("Enter");
+        window.location.href = '/search?q=' + event.target.value;
+        break
+      case 'Escape':
+        // etc...
+        break
+      default: break
+    }
   };
 
   render() {
 
-    const actions = [ < FlatButton label = "Cancelar" primary = {
-        true
-      }
-      onTouchTap = {
+    const actions = [< FlatButton label="Cancelar" primary={
+      true
+    }
+      onTouchTap={
         this.handleClose
-      } />, < Link to = "/search" > < RaisedButton label = "Buscar" className = "btn-secondary-modal" onTouchTap = {
+      } />, < Link to="/search" > < RaisedButton label="Buscar" className="btn-secondary-modal" onTouchTap={
         this.handleSearch
       } /> </Link>
     ];
@@ -162,7 +162,7 @@ class Header extends React.Component {
       width: '90%',
       maxWidth: 'none'
     };
-    
+
 
     return (
       <Wrapper>
@@ -172,21 +172,21 @@ class Header extends React.Component {
               <Col xs={12} sm={3} md={3} lg={3} className="box-logo">
                 {this.props.filter}
                 <Link to={'/'}>
-                  <img src="/log_portal.png" className="portal-logo"/>
+                  <img src="/log_portal.png" className="portal-logo" />
                 </Link>
               </Col>
               <Col xs={12} sm={5} md={6} lg={6} className="box-nav-search-content">
                 <div className="box-search-color">
                   <Row>
                     <Col xs={1} sm={2} md={2} lg={1} className="box-nav-icon">
-                      <Search/>
+                      <Search />
                     </Col>
                     <Col xs={10} sm={8} md={8} lg={10} className="box-nav-search">
                       <TextField hintText="Buscar" fullWidth={true} onKeyDown={this.handleTextFieldKeyDown} />
                     </Col>
                     <Col xs={1} sm={1} md={2} lg={1} className="box-nav-icon">
                       <a onTouchTap={this.handleOpen} className="box-nav-advance">
-                        <Tune/>
+                        <Tune />
                       </a>
                     </Col>
                   </Row>
@@ -194,19 +194,19 @@ class Header extends React.Component {
               </Col>
               {!isAuthenticated() && <Col xs={12} sm={4} md={3} lg={3} className="box-link">
                 <Link to="/login/signup" activeClassName="active">
-                  <FlatButton label="Registrarse"/>
+                  <FlatButton label="Registrarse" />
                 </Link>
                 <Link to="/login/signin" activeClassName="active">
-                  <FlatButton label="Ingresar"/>
+                  <FlatButton label="Ingresar" />
                 </Link>
               </Col>}
               {isAuthenticated() && <Col xs={12} sm={4} md={3} lg={3} className="box-link">
-                <HeaderUserMenu/>
+                <HeaderUserMenu />
               </Col>}
             </Row>
           </Grid>
           <Dialog titleClassName="modal-header-style" title="Búsqueda avanzada" contentStyle={customContentStyle} actions={actions} modal={false} open={this.state.open} onRequestClose={this.handleClose} autoScrollBodyContent={true}>
-            <HeaderSearchAdvance/>
+            <HeaderSearchAdvance />
           </Dialog>
         </Paper>
       </Wrapper>

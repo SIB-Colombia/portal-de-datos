@@ -35,7 +35,7 @@ const App = () => {
 
   injectGlobal`
     body{
-      background: ${theme.palette.grayscale[1]};
+      background: ${theme.palette.grayscale[0]};
     }
   `;
 

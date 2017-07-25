@@ -25,6 +25,8 @@ class HomePage extends React.Component {
   }
 
   componentWillMount() {
+
+    console.log(window.innerHeight + window.addEventListener('resize', true))
     DataPortalService.getOccurrenceCount().then(data => {
       this.setState({ count: format(data.count, '#.###.') })
     }).catch(err => {

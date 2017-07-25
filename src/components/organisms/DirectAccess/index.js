@@ -18,7 +18,7 @@ class DirectAccess extends Component {
           titulo: 'Departamentos',
           img: '/home/colombia.png',
           descripcion: 'Explora los datos disponibles para cada departamento',
-          to: '/departaments/',
+          to: '/departments/',
         },
         {
           titulo: 'Publicadores',
