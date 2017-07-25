@@ -41,6 +41,10 @@ const Wrapper = styled.div`
       color: #3E5151;
       font-size: 24px;
       padding: 10px;
+
+      div:not(:first-child){
+        border-left: 1px solid rgb(224, 224, 224);
+      }
   }
 
   .number {
