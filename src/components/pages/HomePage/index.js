@@ -25,7 +25,6 @@ class HomePage extends React.Component {
   }
 
   componentWillMount() {
-
     DataPortalService.getOccurrenceCount().then(data => {
       this.setState({ count: format(data.count, '#.###.') })
     }).catch(err => {
