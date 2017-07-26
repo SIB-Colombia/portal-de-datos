@@ -63,7 +63,7 @@ export default class ChipFilterList extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      open: false,
+      open: true,
       nestedList: false,
       list: [],
       chips: [],
@@ -98,6 +98,11 @@ export default class ChipFilterList extends Component {
     this.list = this.state.list
     this.list[row].items.splice(column, 1)
     this.setState({ list: this.list })
+    this.coor = []
+    this.list[row].items[column].coor.map((x) => {
+      this.coor.push(parseFloat(x))
+    })
+    this.props.func(this.coor)
   }
 
   handleRequestDelete(data) {
@@ -112,7 +117,7 @@ export default class ChipFilterList extends Component {
 
   rChip(data) {
     return (
-      <Chip key={data.id} onRequestDelete={() => this.handleRequestDelete(data)} style={{ margin: 4 }}>
+      <Chip className="animated fadeIn" key={data.id} onRequestDelete={() => this.handleRequestDelete(data)} style={{ margin: 4 }}>
         {data.name}
       </Chip>
     )

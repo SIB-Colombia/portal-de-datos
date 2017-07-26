@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {render} from 'react-dom';
 import styled from 'styled-components';
-import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
+// import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
 
 const Wrapper = styled.div `
 .leaflet-container {

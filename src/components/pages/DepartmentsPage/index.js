@@ -2,11 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
-import { Map, TileLayer, FeatureGroup, LayersControl } from 'react-leaflet'
+import { Map, TileLayer, FeatureGroup, LayersControl, GeoJSON } from 'react-leaflet'
 import { ShapeFile } from 'react-leaflet-shapefile'
 import Paper from 'material-ui/Paper'
 import Divider from 'material-ui/Divider'
-import JQuery from 'jquery' // TODO: Arreglar mapa
 import {
   PageTemplate,
   Header,
@@ -15,6 +14,7 @@ import {
   Link,
 } from 'components'
 import * as DataPortalService from '../../../services/DataPortalService'
+import GeoData from '../../../../public/Colombia.geo.json'
 
 const { BaseLayer, Overlay } = LayersControl
 
@@ -44,12 +44,12 @@ const Wrapper = styled.div`
       margin: 30px 0px;
 
       a {
-        color: #3E5151;   
-        fontWeight: 200;  
-        font-size: 18px;           
+        color: #3E5151;
+        fontWeight: 200;
+        font-size: 18px;
         .number {
             font-weight: 400;
-            font-size: 28px;   
+            font-size: 28px;
         }
       }
 
@@ -59,10 +59,13 @@ const Wrapper = styled.div`
   }
 
   .leaflet-container {
-    height: 400px;
+    height: 500px;
     width: 100%;
   }
-  
+
+  .map {
+    margin-bottom: 50px;
+  }
 `
 
 export default class DepartmentsPage extends React.Component {
@@ -73,14 +76,17 @@ export default class DepartmentsPage extends React.Component {
 
   constructor(props) {
     super(props)
+    console.log(GeoData)
     this.state = {
       departments: null,
       geodata: null,
       isadded: false,
+      position: null,
     }
 
     this.handleFile = this.handleFile.bind(this)
     this.readerLoad = this.readerLoad.bind(this)
+    this.position = this.position.bind(this)
   }
 
   componentWillMount() {
@@ -89,22 +95,11 @@ export default class DepartmentsPage extends React.Component {
     DataPortalService.getRegistryDepartment(this.props.match.params.id).then(departments => {
       const list = [{ category: 'Departamentos', items: [] }]
       departments.map((department, i) => {
-        list[0].items[i] = { id: i, name: department.department_name }
+        list[0].items[i] = { id: i, name: department.department_name, coor: [department.lat, department.lng] }
         return list
       })
       this.setState({ departments: list })
     })
-  }
-
-
-  onEachFeature(feature, layer) {
-    if (feature.properties) {
-      layer.bindPopup(Object.keys(feature.properties).map((k) => {
-        return `${k} : ${feature.properties[k]}`
-      }).join('<br />'), {
-        maxHeight: 200,
-      })
-    }
   }
 
   handleFile(e) {
@@ -121,13 +116,30 @@ export default class DepartmentsPage extends React.Component {
     this.setState({ isadded: true })
   }
 
+  onEachFeature(feature, layer) {
+    if (feature.properties) {
+      layer.bindPopup(Object.keys(feature.properties).map(function (k) {
+        return k + ": " + feature.properties[k];
+      }).join("<br />"), {
+          maxHeight: 200
+        });
+    }
+  }
+
+  position(p) {
+    console.log(p)
+    this.setState({
+      position: p,
+    })
+  }
+
   render() {
     let ShapeLayers = null
     if (this.state.isadded === true) {
       ShapeLayers = (
         <Overlay checked name="Feature group">
-          <FeatureGroup color="purple">
-            <ShapeFile data={this.state.geodata} onEachFeature={this.onEachFeature} isArrayBufer />
+          <FeatureGroup>
+            <ShapeFile data={this.state.geodata} isArrayBufer />
           </FeatureGroup>
         </Overlay>
       )
@@ -135,7 +147,7 @@ export default class DepartmentsPage extends React.Component {
 
     return (
       <Wrapper>
-        <PageTemplate header={<Header filter={this.state.departments && <ChipFilterList list={this.state.departments} />} />} footer={<Footer />}>
+        <PageTemplate header={<Header filter={this.state.departments && <ChipFilterList list={this.state.departments} func={this.position} />} />} footer={<Footer />}>
           <Grid>
             <Row>
               <Col className="title" md={12}>Departamentos</Col>
@@ -164,17 +176,20 @@ export default class DepartmentsPage extends React.Component {
               </Row>
             </Paper>
           </Grid>
-          <Grid>
+          <Grid className="map">
             <div>
               <input type="file" onChange={this.handleFile.bind(this)} className="inputfile" />
             </div>
-            <Map center={[4.36, -74.04]} zoom={7}>
-              <LayersControl position="topright">
-                <BaseLayer checked name="OpenStreetMap.Mapnik">
+            <Map center={this.state.position} zoom={10}>
+              <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' />
+
+              {/* <LayersControl position="topright">
+                <BaseLayer checked name='OpenStreetMap.Mapnik'>
                   <TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
                 </BaseLayer>
                 {ShapeLayers}
-              </LayersControl>
+              </LayersControl>*/}
+              <GeoJSON data={GeoData.features[0]} onEachFeature={this.onEachFeature} />
             </Map>
           </Grid>
         </PageTemplate>
@@ -182,4 +197,3 @@ export default class DepartmentsPage extends React.Component {
     )
   }
 }
-

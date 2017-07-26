@@ -1,44 +1,35 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Grid, Row, Col } from 'react-flexbox-grid';
-import { Link } from 'components';
-import { palette } from 'styled-theme';
+import React from 'react'
+import styled from 'styled-components'
+import { Grid, Row, Col } from 'react-flexbox-grid'
+import { Link } from 'components'
+import { palette } from 'styled-theme'
 
 const Wrapper = styled.footer`
-    position: relative;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    .creative {
-        right: 0;
-        bottom: 0;
-        left: 0;
-        padding: 15px 0px;
-        background-color: #000000;
-        text-align: center;
-        color:${palette('option', 0)};
-        font-weight: 200;
-    }
+  .creative {
+    padding: 15px 0px;
+    background-color: #000000;
+    text-align: center;
+    color:${palette('option', 0)};
+    font-weight: 200;
+  }
 
-    .sib {
-        background-color: #00292B;
-        color: #FFFFFF;
-        padding: 30px;
-    }
+  .sib {
+      background-color: #00292B;
+      color: #FFFFFF;
+      padding: 30px;
+  }
 
-    .access-direct {
-        background-color: #00484D;
-        text-align: center;
-        color: #FFFFFF;
-        text-align: left;
-        padding: 70px;
-    }
+  .access-direct {
+      background-color: #00484D;
+      color: #FFFFFF;
+      padding: 70px;
+  }
 
-    a{
-        font-size: 18px;
-        color:${palette('option', 0)};
-        text-decoration: none;
-    }
+  a{
+      font-size: 18px;
+      color:${palette('option', 0)};
+      text-decoration: none;
+  }
 `
 
 const FooterPage = () => {

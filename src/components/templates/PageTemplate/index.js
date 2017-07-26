@@ -1,17 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled, {injectGlobal} from 'styled-components';
+import React from 'react'
+import styled, { injectGlobal } from 'styled-components'
+import size from 'styled-theme'
 
-const Wrapper = styled.div `
+const Wrapper = styled.div`
 `
-const Header = styled.header `
+const Header = styled.header`
     margin-bottom:65px;
 `
-const Content = styled.section `
+const Content = styled.section`
   height: 100%;
+  padding-bottom: 391px;
 `
-const Footer = styled.footer `
-margin-top: 220px;
+const Footer = styled.footer`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
 `
 const PageTemplate = ({
   header,
@@ -26,7 +30,7 @@ const PageTemplate = ({
     //Custom wallpaper
     if (wallpaper.indexOf('.jpg') > -1 || wallpaper.indexOf('.png') > -1) {
 
-      injectGlobal `
+      injectGlobal`
   body{
     background-image: url('${wallpaper}');
     background-size: cover;
@@ -40,7 +44,7 @@ const PageTemplate = ({
 
       switch (wallpaper) {
         case 'File':
-          injectGlobal `
+          injectGlobal`
       body{
         background-image: url(/demo/i2.jpg);
         background-size: cover;
@@ -52,7 +56,7 @@ const PageTemplate = ({
     `
           break;
         case 'Login':
-          injectGlobal `
+          injectGlobal`
       body{
         background-image: url(/background/11285_orig.jpg);
         background-size: cover;
@@ -62,7 +66,7 @@ const PageTemplate = ({
     `
           break;
         case 'Static':
-          injectGlobal `
+          injectGlobal`
       body{
         background-image: url(/background/82168_orig.jpg);
         background-size: cover;
