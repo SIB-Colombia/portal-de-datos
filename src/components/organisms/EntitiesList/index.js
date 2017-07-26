@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Row, Col } from 'react-flexbox-grid'
 import styled from 'styled-components'
 import IconButton from 'material-ui/IconButton'
@@ -35,6 +36,10 @@ const Wrapper = styled.div`
 `
 
 export default class EntitiesList extends Component {
+
+  static propTypes= {
+    entities: PropTypes.any.isRequired,
+  }
 
   constructor(props) {
     super(props)
@@ -75,13 +80,12 @@ export default class EntitiesList extends Component {
           </Col>
           <Col className="accent-divider" md={12} />
           <Col md={12}>
-            <Masonry >
-              <Col md={this.state.mode === 'grid' ? 6 : 12}>
-                <EntitiesItem />
-              </Col>
-              <Col md={this.state.mode === 'grid' ? 6 : 12}>
-                <EntitiesItem />
-              </Col>
+            <Masonry>
+              {this.props.entities.map((entitie) => (
+                <Col key={entitie.id} md={this.state.mode === 'grid' ? 6 : 12}>
+                  <EntitiesItem entities={entitie} />
+                </Col>
+              ))}
             </Masonry>
           </Col>
         </Row>

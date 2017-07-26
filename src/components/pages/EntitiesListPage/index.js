@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { PageTemplate, Header, Footer, EntitiesList } from 'components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
+import * as EntitiesRecordService from '../../../services/EntitiesRecordService'
 
 const Wrapper = styled.div`
   margin: 85px 0px;
@@ -20,6 +21,21 @@ const Wrapper = styled.div`
 
 export default class EntitiesListPage extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      entities: null,
+    }
+  }
+
+  componentWillMount() {
+    EntitiesRecordService.getEntitiesList().then(data => {
+      this.setState({
+        entities: data,
+      })
+    })
+  }
+
   render() {
     return (
       <PageTemplate header={<Header />} footer={<Footer />}>
@@ -29,7 +45,7 @@ export default class EntitiesListPage extends Component {
               <Col className="title" md={12}>Publicadores</Col>
               <Col className="accent-title" md={1} />
             </Row>
-            <EntitiesList />
+            {this.state.entities && <EntitiesList entities={this.state.entities} />}
           </Grid>
         </Wrapper>
       </PageTemplate>
