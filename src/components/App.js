@@ -55,11 +55,11 @@ const App = () => {
           <Route exact path="/user/profile" component={UserProfilePage} />
           <Route exact path="/map" component={MapPage} />
 
-          <Route exact path="/departments" component={DepartmentsPage} />
-          <Route exact path="/search" component={SearchPage} />
+          <Route exact path="/departments/:depart?" component={DepartmentsPage} />
+          {/* <Route exact path="/search" component={SearchPage} />*/}
           <Route exact path="/taxonomy" component={TaxonomyPage} />
 
-          <Route exact path="/search/result/:tab" component={SearchResultsPage} />
+          <Route exact path="/search/:tab" component={SearchResultsPage} />
           <Route exact path="/occurrence/:id" component={BiologicalRecordPage} />
           <Route exact path="/provider" component={EntitiesListPage} />
           <Route exact path="/provider/:id" component={EntitiesRecordPage} />

@@ -33,7 +33,7 @@ const Wrapper = styled.div`
 
     .tabs {
         margin-top: 30px;
-        div{
+        div > button > div > div {
             color: #4B5353;
             font-size: 18px;
         }

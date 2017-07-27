@@ -11,6 +11,7 @@ import ArrowDropDown from 'material-ui/svg-icons/navigation/arrow-drop-down'
 import ArrowDropUp from 'material-ui/svg-icons/navigation/arrow-drop-up'
 import Divider from 'material-ui/Divider'
 import Chip from 'material-ui/Chip'
+import _ from 'lodash'
 
 const Wrapper = styled.div`
   float: left;
@@ -58,6 +59,9 @@ const ChipList = styled.div`
 export default class ChipFilterList extends Component {
   static propTypes = {
     list: PropTypes.any.isRequired,
+    position: PropTypes.any.isRequired,
+    polygon: PropTypes.any.isRequired,
+    init: PropTypes.any,
   }
 
   constructor(props) {
@@ -66,7 +70,7 @@ export default class ChipFilterList extends Component {
       open: true,
       nestedList: false,
       list: [],
-      chips: [],
+      chip: null,
     }
 
     this.handleToggleMenu = this.handleToggleMenu.bind(this)
@@ -75,6 +79,10 @@ export default class ChipFilterList extends Component {
 
   componentWillMount() {
     this.setState({ list: this.props.list })
+  }
+  componentDidMount() {
+    const list = _.find(this.state.list[0].items, { iso_department_code: this.props.init })
+    if (list) this.handleAddChip(list, 0, 0)
   }
 
   handleToggleMenu() {
@@ -89,55 +97,58 @@ export default class ChipFilterList extends Component {
     })
   }
 
-  handleAddChip(list, row, column) {
-    this.chips = this.state.chips
-    list.row = row
-    list.column = column
-    this.chips.push(list)
-    this.setState({ chips: this.chips })
+  handleAddChip(chip, row) {
+    this.redirect(chip.iso_department_code)
     this.list = this.state.list
-    this.list[row].items.splice(column, 1)
+    const oldChip = this.state.chip
+    this.setState({ chip })
+    const item = this.list[row].items.splice(_(this.list[0].items).findIndex({ id: chip.id }), 1)
+    if (oldChip) this.list[row].items.unshift(oldChip)
+    // _(this.list[row].items).sortBy((o) => { return o.name })
     this.setState({ list: this.list })
     this.coor = []
-    this.list[row].items[column].coor.map((x) => {
-      this.coor.push(parseFloat(x))
-    })
-    this.props.func(this.coor)
+    item[row].coor.map((x) => this.coor.push(parseFloat(x)))
+    this.props.position(this.coor)
+    this.props.polygon(chip.id)
   }
 
-  handleRequestDelete(data) {
-    this.chips = this.state.chips
-    const chipToDelete = this.chips.map((chip) => chip.id).indexOf(data.id)
-    this.chips.splice(chipToDelete, 1)
-    this.setState({ chips: this.chips })
-    this.list = this.state.list
-    this.list[data.row].items.unshift(data)
-    this.setState({ list: this.list })
-  }
-
-  rChip(data) {
+  rCHip = (data) => {
     return (
-      <Chip className="animated fadeIn" key={data.id} onRequestDelete={() => this.handleRequestDelete(data)} style={{ margin: 4 }}>
+      <Chip className="animated fadeIn" style={{ marginLeft: 10 }}>
         {data.name}
       </Chip>
     )
   }
 
+  redirect = (path) => {
+    if (window.location.pathname !== `/departments/${path}`) {
+      window.location.href = `/departments/${path}`
+    }
+  }
+
   render() {
-    const lists = this.state.list.map((list, row) =>
-      <ListItem
-        key={row}
-        className="text-orange"
-        primaryText={list.category}
-        initiallyOpen
-        primaryTogglesNestedList
-        nestedItems={list.items.map((listItem, column) => (
-          <ListItem style={{ color: '#6f6f6f' }} key={column} primaryText={listItem.name} onTouchTap={() => this.handleAddChip(listItem, row, column)} />
-        ))}
-        rightIcon={this.state.nestedList ? <ArrowDropDown color="#FF7847" /> : <ArrowDropUp color="#FF7847" />}
-        onNestedListToggle={this.handleNestedListToggle}
-      />
-    )
+    const lists = this.state.list.map((list, row) => {
+      return (
+        <ListItem
+          key={row}
+          className="text-orange"
+          primaryText={list.category}
+          initiallyOpen
+          primaryTogglesNestedList
+          nestedItems={list.items.map((listItem) => (
+            <ListItem
+              key={listItem.id}
+              style={{ color: '#6f6f6f' }}
+              primaryText={listItem.name}
+              onTouchTap={() => this.handleAddChip(listItem, row)}
+            />
+          ))}
+          rightIcon={this.state.nestedList ? <ArrowDropDown color="#FF7847" /> : <ArrowDropUp color="#FF7847" />}
+          onNestedListToggle={this.handleNestedListToggle}
+        />
+      )
+    })
+
     return (
       <Wrapper>
         <div className="btnFilters animated fadeInLeft">
@@ -149,9 +160,9 @@ export default class ChipFilterList extends Component {
           <List>
             <ListItem primaryText="Filtros de búsqueda" leftIcon={<FilterList />} disabled />
             <Divider />
-            <ListItem className="text-orange" primaryText="Filtros activos" disabled />
+            <ListItem className="text-orange" primaryText="Filtro activo" disabled />
             <ChipList>
-              {this.state.chips.map(this.rChip, this)}
+              {this.state.chip && this.rCHip(this.state.chip)}
             </ChipList>
             {lists}
           </List>

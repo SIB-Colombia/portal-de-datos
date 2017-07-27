@@ -13,18 +13,19 @@ import {
   ChipFilterList,
   Link,
 } from 'components'
+import _ from 'lodash'
 import * as DataPortalService from '../../../services/DataPortalService'
 import GeoData from '../../../../public/Colombia.geo.json'
 
 const { BaseLayer, Overlay } = LayersControl
 
 const Wrapper = styled.div`
-  margin: 120px 0px;
   .title {
     font-weight: 400;
     font-size: 30px;
     padding-left: 30px;
     color: #4B5353;
+    margin-top:40px;
   }
 
   .sub-title {
@@ -61,6 +62,7 @@ const Wrapper = styled.div`
   .leaflet-container {
     height: 500px;
     width: 100%;
+    z-index: 0;
   }
 
   .map {
@@ -76,27 +78,25 @@ export default class DepartmentsPage extends React.Component {
 
   constructor(props) {
     super(props)
-    console.log(GeoData)
     this.state = {
       departments: null,
       geodata: null,
       isadded: false,
       position: null,
+      polygons: null,
     }
 
     this.handleFile = this.handleFile.bind(this)
     this.readerLoad = this.readerLoad.bind(this)
     this.position = this.position.bind(this)
+    this.polygon = this.polygon.bind(this)
   }
 
   componentWillMount() {
-    this.setState({ id: this.props.match.params.id })
-
     DataPortalService.getRegistryDepartment(this.props.match.params.id).then(departments => {
       const list = [{ category: 'Departamentos', items: [] }]
-      departments.map((department, i) => {
-        list[0].items[i] = { id: i, name: department.department_name, coor: [department.lat, department.lng] }
-        return list
+      _.forEach(departments, (value, key) => {
+        list[0].items[key] = { id: key, name: value.department_name, coor: [value.lat, value.lng], iso_department_code: value.iso_department_code }
       })
       this.setState({ departments: list })
     })
@@ -116,21 +116,18 @@ export default class DepartmentsPage extends React.Component {
     this.setState({ isadded: true })
   }
 
-  onEachFeature(feature, layer) {
-    if (feature.properties) {
-      layer.bindPopup(Object.keys(feature.properties).map(function (k) {
-        return k + ": " + feature.properties[k];
-      }).join("<br />"), {
-          maxHeight: 200
-        });
-    }
-  }
-
   position(p) {
-    console.log(p)
     this.setState({
       position: p,
     })
+  }
+
+  polygon(id) {
+    const GeoJson = _.sortBy(GeoData.features, (o) => {
+      return o.properties.NOMBRE_DPT
+    })
+
+    this.setState({ polygons: GeoJson[id] })
   }
 
   render() {
@@ -147,7 +144,7 @@ export default class DepartmentsPage extends React.Component {
 
     return (
       <Wrapper>
-        <PageTemplate header={<Header filter={this.state.departments && <ChipFilterList list={this.state.departments} func={this.position} />} />} footer={<Footer />}>
+        <PageTemplate header={<Header filter={this.state.departments && <ChipFilterList list={this.state.departments} position={this.position} polygon={this.polygon} init={this.props.match.params.depart} />} />} footer={<Footer />}>
           <Grid>
             <Row>
               <Col className="title" md={12}>Departamentos</Col>
@@ -163,7 +160,7 @@ export default class DepartmentsPage extends React.Component {
         </Grid>*/}
           <Grid>
             <Row center="md">
-              <Col className="sub-title" md={12}>Amazonas</Col>
+              {this.state.polygons && <Col className="sub-title" md={12}>{(this.state.polygons.properties.NOMBRE_DPT).charAt(0).toUpperCase() + (this.state.polygons.properties.NOMBRE_DPT).slice(1).toLowerCase()}</Col>}
               <Col className="accent-title" md={1} />
             </Row>
             <Divider />
@@ -177,20 +174,26 @@ export default class DepartmentsPage extends React.Component {
             </Paper>
           </Grid>
           <Grid className="map">
-            <div>
+            {/* <div>
               <input type="file" onChange={this.handleFile.bind(this)} className="inputfile" />
-            </div>
-            <Map center={this.state.position} zoom={10}>
-              <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' />
+            </div>*/}
+            <Paper>
+              <Row>
+                <Col md>
+                  <Map center={this.state.position || [4.36, -74.04]} zoom={6.5}>
+                    <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' />
 
-              {/* <LayersControl position="topright">
+                    {/* <LayersControl position="topright">
                 <BaseLayer checked name='OpenStreetMap.Mapnik'>
                   <TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
                 </BaseLayer>
                 {ShapeLayers}
               </LayersControl>*/}
-              <GeoJSON data={GeoData.features[0]} onEachFeature={this.onEachFeature} />
-            </Map>
+                    {this.state.polygons && <GeoJSON data={this.state.polygons} />}
+                  </Map>
+                </Col>
+              </Row>
+            </Paper>
           </Grid>
         </PageTemplate>
       </Wrapper>

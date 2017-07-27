@@ -60,7 +60,7 @@ class EventSection extends React.Component {
             <Col md={6} className="details-title">Año</Col>
             <Col md={6}>{(this.state.evento.fechaEvento).substr(0, 4)}</Col>
             <Col md={6} className="details-title">Fecha del evento</Col>
-            <Col md={6}>{this.state.evento.fechaEvento}</Col>
+            <Col md={6}>{this.state.evento.fechaEvento.slice(0, 10)}</Col>
             <Col md={6} className="details-title">ID del evento</Col>
             <Col md={6}>{this.state.evento.id}</Col>
           </Row>
