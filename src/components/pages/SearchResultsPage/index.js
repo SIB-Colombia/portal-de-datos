@@ -17,7 +17,7 @@ import { Tabs, Tab } from 'material-ui/Tabs'
 import * as DataPortalService from '../../../services/DataPortalService'
 import * as SpeciesService from '../../../services/SpeciesService'
 
-const Wrapper = styled.div `
+const Wrapper = styled.div`
     margin-top: 85px;
     .title {
         font-weight: 400;
@@ -33,7 +33,7 @@ const Wrapper = styled.div `
 
     .tabs {
         margin-top: 30px;
-        div{
+        div > button > div > div {
             color: #4B5353;
             font-size: 18px;
         }
@@ -44,11 +44,13 @@ class SearchResultsPage extends React.Component {
 
   static propTypes = {
     location: PropTypes.any.isRequired,
+    match: PropTypes.any.isRequired,
   }
 
-  constructor(props) {
-    super(props)
+  constructor(props, history) {
+    super(props, history)
     this.state = {
+      tab: 0,
       result: [],
       species: [],
     }
@@ -62,6 +64,31 @@ class SearchResultsPage extends React.Component {
     SpeciesService.getSpecies(this.props.location.search).then(data => {
       this.setState({ species: data })
     })
+
+    switch (this.props.match.params.tab) {
+      case 'table':
+        this.setState({ tab: 0 })
+        break
+      case 'map':
+        this.setState({ tab: 1 })
+        break
+      case 'specie':
+        this.setState({ tab: 2 })
+        break
+      case 'dataset':
+        this.setState({ tab: 3 })
+        break
+      case 'provider':
+        this.setState({ tab: 4 })
+        break
+      default:
+        this.setState({ tab: 0 })
+        break
+    }
+  }
+
+  handleTab() {
+    // TODO: Realizar modificacion por parametros en la url para cambio de tab
   }
 
   render() {
@@ -79,8 +106,9 @@ class SearchResultsPage extends React.Component {
               className="tabs"
               tabItemContainerStyle={{ background: 'transparent' }}
               inkBarStyle={{ background: '#ff7847' }}
+              initialSelectedIndex={this.state.tab}
             >
-              <Tab label="TABLA">
+              <Tab label="TABLA" onActive={this.handleTab()}>
                 <ResultTable results={this.state.result} />
               </Tab>
               <Tab label="MAPA">

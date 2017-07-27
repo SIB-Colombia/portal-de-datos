@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-
-import { Col } from 'react-flexbox-grid';
-import Paper from 'material-ui/Paper';
-import { Link } from 'components';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import { Col } from 'react-flexbox-grid'
+import Paper from 'material-ui/Paper'
+import { Link } from 'components'
 
 const Wrapper = styled.div`
     .circle {
@@ -31,39 +31,43 @@ const Wrapper = styled.div`
 
 class BiologicalItem extends Component {
 
-    constructor(props) {
-        super(props);
-    }
+  static propTypes = {
+    group: PropTypes.any.isRequired,
+  }
 
-    destino(t){
-    	return '/search?'+   //ToDo: define query params to search
-    			'q='+t/*+'&'+
-    			'kingdomName='+t+'&'+
-    			'phylumName='+t+'&'+
-    			'className='+t+'&'+
-    			'orderName='+t+'&'+
-    			'familyName='+t+'&'+
-    			'genusName='+t+'&'+
-    			'speciesName='+t
-    			*/;
-      
-    }
-    render() {
-        return (
-            <Wrapper>
-              <Link to={this.destino(this.props.group.name)}>
-                <Col md>
-                    <Paper className="circle" circle={true}>
-                        <img src={this.props.group.img} alt={this.props.group.title} />
-                    </Paper>
-                </Col>
-                <Col md className="circle-description">
-                    {this.props.group.title}
-                </Col>
-              </Link>
-            </Wrapper>
-        )
-    }
+  constructor(props) {
+    super(props)
+  }
+
+  destino(t) {
+    return '/search?' +  // ToDo: define query params to search
+      'q=' + t
+      /* +'&'+
+      'kingdomName='+t+'&'+
+      'phylumName='+t+'&'+
+      'className='+t+'&'+
+      'orderName='+t+'&'+
+      'familyName='+t+'&'+
+      'genusName='+t+'&'+
+      'speciesName='+t
+      */
+  }
+  render() {
+    return (
+      <Wrapper>
+        <Link to={this.destino(this.props.group.name)}>
+          <Col md>
+            <Paper className="circle" circle>
+              <img src={this.props.group.img} alt={this.props.group.title} />
+            </Paper>
+          </Col>
+          <Col md className="circle-description">
+            {this.props.group.title}
+          </Col>
+        </Link>
+      </Wrapper>
+    )
+  }
 }
 
 export default BiologicalItem

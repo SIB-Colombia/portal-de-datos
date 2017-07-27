@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Row, Col } from 'react-flexbox-grid'
 import styled from 'styled-components'
 import IconButton from 'material-ui/IconButton'
@@ -8,6 +9,7 @@ import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import { EntitiesItem } from 'components'
 import Pagination from 'material-ui-pagination'
+import Masonry from 'react-masonry-component'
 
 const Wrapper = styled.div`
   .accent-divider {
@@ -34,6 +36,10 @@ const Wrapper = styled.div`
 `
 
 export default class EntitiesList extends Component {
+
+  static propTypes= {
+    entities: PropTypes.any.isRequired,
+  }
 
   constructor(props) {
     super(props)
@@ -73,9 +79,14 @@ export default class EntitiesList extends Component {
             </Row>
           </Col>
           <Col className="accent-divider" md={12} />
-
           <Col md={12}>
-            <EntitiesItem />
+            <Masonry>
+              {this.props.entities.map((entitie) => (
+                <Col key={entitie.id} md={this.state.mode === 'grid' ? 6 : 12}>
+                  <EntitiesItem entities={entitie} />
+                </Col>
+              ))}
+            </Masonry>
           </Col>
         </Row>
         <div className="pagination">

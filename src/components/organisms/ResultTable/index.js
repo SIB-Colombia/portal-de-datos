@@ -5,13 +5,21 @@ import { ResultRow } from 'components'
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'material-ui/Table'
 import Pagination from 'material-ui-pagination'
 
-const Wrapper = styled.div `
+const Wrapper = styled.div`
     margin: 20px 0px;
     text-align: center;
 
     .font {
         color: #4B5353 !important;
         font-size: 15px !important;
+    }
+
+    .small{
+      width: 110px !important;
+    }
+
+    .large {
+      width: 200px !important;
     }
 
     .pagination {
@@ -44,10 +52,10 @@ class ResultTable extends React.Component {
               <TableHeaderColumn className="font">Departamento</TableHeaderColumn>
               <TableHeaderColumn className="font">Coordenadas</TableHeaderColumn>
               <TableHeaderColumn className="font">Tipo de Registro</TableHeaderColumn>
-              <TableHeaderColumn className="font">Mes y Año</TableHeaderColumn>
-              <TableHeaderColumn className="font">Conjunto de datos</TableHeaderColumn>
-              <TableHeaderColumn className="font">Rank</TableHeaderColumn>
-              <TableHeaderColumn className="font">Acciones</TableHeaderColumn>              
+              <TableHeaderColumn className="font small">Mes y Año</TableHeaderColumn>
+              <TableHeaderColumn className="font large">Conjunto de datos</TableHeaderColumn>
+              <TableHeaderColumn className="font small">Rank</TableHeaderColumn>
+              <TableHeaderColumn />
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>

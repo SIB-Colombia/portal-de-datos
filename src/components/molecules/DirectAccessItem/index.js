@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-
-import { Grid, Row, Col } from 'react-flexbox-grid';
-
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import { Col } from 'react-flexbox-grid'
+import { Link } from 'components'
 
 const Wrapper = styled.div`
     margin-top: 70px;
@@ -29,29 +29,32 @@ const Wrapper = styled.div`
     }
 
 `
-class DirectAccessItem extends Component {
+export default class DirectAccessItem extends Component {
 
-    constructor(props) {
-        super(props)
-    }
+  static propTypes = {
+    link: PropTypes.any.isRequired,
+  }
 
-    render() {
+  constructor(props) {
+    super(props)
+  }
 
-        return (
-            <Wrapper>
-                <Col md className="titulo">
-                    {this.props.link.titulo}
-                </Col>
-                <Col className="accent-title" mdOffset={4} md={4}></Col>
-                <Col md style={{ textAlign: 'center', padding: 30 }}>
-                    <img src={this.props.link.img} width="60%"/>
-                </Col>
-                <Col md className="descripcion">
-                    <i>{this.props.link.descripcion}</i>
-                </Col>
-            </Wrapper>
-        )
-    }
+  render() {
+    return (
+      <Wrapper>
+        <Link to={this.props.link.to}>
+          <Col md className="titulo">
+            {this.props.link.titulo}
+          </Col>
+          <Col className="accent-title" mdOffset={4} md={4} />
+          <Col md style={{ textAlign: 'center', padding: 30 }}>
+            <img src={this.props.link.img} alt="" width="60%" />
+          </Col>
+          <Col md className="descripcion">
+            <i>{this.props.link.descripcion}</i>
+          </Col>
+        </Link>
+      </Wrapper>
+    )
+  }
 }
-
-export default DirectAccessItem;

@@ -9,3 +9,11 @@ export function getEntitiesRecord() {
     return data
   })
 }
+
+export function getEntitiesList() {
+  return fetch(`${Const.server.local}/api/entities/list`, http('GET')).then((response) => {
+    return response.json()
+  }).then((data) => {
+    return data
+  })
+}

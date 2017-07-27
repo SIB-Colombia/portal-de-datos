@@ -8,7 +8,7 @@ import {
   LocationSection,
   EventSection,
   TaxonSection,
-  Link,
+  License,
 } from 'components'
 
 const Wrapper = styled.div`
@@ -80,11 +80,11 @@ class MoreDetails extends React.Component {
               <Col className="title-two" md={12}>Otros</Col>
               <Col className="accent-title" md={11} />
               <Grid fluid>
-                <Row className="more-details">
-                  <Col md={4} className="details-title">Lincencia</Col>
-                  <Col md={6}><Link>{this.state.detail.licencia}</Link></Col>
-                  <Col md={4} className="details-title">Motificado</Col>
-                  <Col md={8}>{this.state.detail.modificado}</Col>
+                <Row className="more-details" middle="md">
+                  <Col md={6} className="details-title">Licencia</Col>
+                  <Col md={6}><License id={this.state.detail.licencia} /></Col>
+                  <Col md={6} className="details-title">Modificado</Col>
+                  <Col md={6}>{this.state.detail.modificado.slice(0, 10)}</Col>
                 </Row>
               </Grid>
             </Col>

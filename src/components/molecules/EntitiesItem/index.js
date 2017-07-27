@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Row, Col } from 'react-flexbox-grid'
 import styled from 'styled-components'
+import { Link } from 'components'
 
 const Wrapper = styled.div`
+
   .entidad-item {
     padding: 20px 60px;
     font-weight: 200;
@@ -37,31 +40,46 @@ const Wrapper = styled.div`
 `
 
 export default class EntitiesItem extends Component {
+
+  constructor(props) {
+    super(props)
+  }
+
+  static propTypes = {
+    entities: PropTypes.any.isRequired,
+  }
+
   render() {
     return (
       <Wrapper>
-        <Row className="entidad-item">
-          <Col md={3}>
-            <img src="/logo_entidad.png" alt="" width="100%" />
-          </Col>
-          <Col md={8}>
-            <Row>
-              <Col md={12} className="entidad-title">Nombre de la entidad si es muy larguisimo se corta con puntos susp</Col>
-              <Col md={12} className="entidad-descripcion">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis beatae suscipit assumenda explicabo iure! Sunt laboriosam perspiciatis molestiae ad quibusdam esse cupiditate expedita, animi sequi dicta quidem eos odit adipisci?
-                  </Col>
-              <Col className="entidad-divider" md={12} />
-              <Col md={12}>
-                <Row className="informacion-relevante">
-                  <Col md>DEPARTAMENTO</Col>
-                  <Col md><span>900.000</span> REGISTROS</Col>
-                  <Col md><span>900.000</span> RECURSOS</Col>
-                </Row>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-        <Col className="entidad-divider" md={12} />
+        <Link to={`provider/${this.props.entities.id}`}>
+          <Row className="entidad-item">
+            <Col md={3}>
+              <img src={this.props.entities.imageUrl} alt="" width="100%" />
+            </Col>
+            <Col md={8}>
+              <Row>
+                <Col md={12} className="entidad-title">{this.props.entities.providerName}</Col>
+                <Col md={12} className="entidad-descripcion">
+                  {this.props.entities.description}
+                </Col>
+                <Col className="entidad-divider" md={12} />
+                <Col md={12}>
+                  <Row className="informacion-relevante">
+                    <Col md>{this.props.entities.department}</Col>
+                    <Col md>
+                      <Row>
+                        <Col md><span>{this.props.entities.globalInfo.records}</span> REGISTROS</Col>
+                        <Col md><span>{this.props.entities.globalInfo.datasets}</span> RECURSOS</Col>
+                      </Row>
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          <Col className="entidad-divider" md={12} />
+        </Link>
       </Wrapper>
     )
   }

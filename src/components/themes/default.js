@@ -1,9 +1,9 @@
-import {reversePalette} from 'styled-theme/composer';
+import { reversePalette } from 'styled-theme/composer'
 
-const theme = {};
+const theme = {}
 
 theme.palette = {
-  primary: ['#EF7748'],
+  primary: ['#FF7847'],
   secondary: ['#009CB0'],
   option: ['white'],
   grayscale: [
@@ -14,7 +14,7 @@ theme.palette = {
     '#999999',
     '#666666',
     '#333333',
-    '#222222'
+    '#222222',
   ],
   basescale: [
     '#e2e7e7',
@@ -28,12 +28,12 @@ theme.palette = {
     '#ff9800',
     '#795548',
     '#77A7B6',
-    '#FF6518'
+    '#FF6518',
   ],
-  text: ['#465252']
+  text: ['#465252'],
 }
 
-theme.reversePalette = reversePalette(theme.palette);
+theme.reversePalette = reversePalette(theme.palette)
 
 theme.fonts = {
   primary: 'Open Sans, sans-serif',
@@ -41,14 +41,14 @@ theme.fonts = {
   md: '22pt',
   sm: '18pt',
   xs: '16pt',
-  xxs: '14pt'
+  xxs: '14pt',
 }
 
 theme.sizes = {
   xs: '(max-width:49em)',
   sm: '(min-width:49em) and (max-width:65em)',
   md: '(min-width:65em) and (max-width:74em)',
-  lg: '(min-width:74em)'
+  lg: '(min-width:74em)',
 }
 
-export default theme;
+export default theme
