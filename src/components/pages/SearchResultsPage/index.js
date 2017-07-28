@@ -16,6 +16,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid'
 import { Tabs, Tab } from 'material-ui/Tabs'
 import * as DataPortalService from '../../../services/DataPortalService'
 import * as SpeciesService from '../../../services/SpeciesService'
+import * as EntitiesRecordService from '../../../services/EntitiesRecordService'
 
 const Wrapper = styled.div`
     margin-top: 85px;
@@ -53,6 +54,7 @@ class SearchResultsPage extends React.Component {
       tab: 0,
       result: [],
       species: [],
+      publishers: []
     }
   }
 
@@ -63,6 +65,10 @@ class SearchResultsPage extends React.Component {
 
     SpeciesService.getSpecies(this.props.location.search).then(data => {
       this.setState({ species: data })
+    })
+
+    EntitiesRecordService.getEntitiesList().then(data => {
+      this.setState({ publishers: data })
     })
 
     switch (this.props.match.params.tab) {
@@ -121,7 +127,7 @@ class SearchResultsPage extends React.Component {
                 <DatasetsTable />
               </Tab>
               <Tab label="PUBLICADORES">
-                <PublisherTable />
+                <PublisherTable publisher={this.state.publishers} />
               </Tab>
             </Tabs>
           </Grid>

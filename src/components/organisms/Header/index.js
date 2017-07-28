@@ -153,7 +153,7 @@ class Header extends React.Component {
     }
       onTouchTap={
         this.handleClose
-      } />, < Link to="/search" > < RaisedButton label="Buscar" className="btn-secondary-modal" onTouchTap={
+      } />, < Link to="/search/table" > < RaisedButton label="Buscar" className="btn-secondary-modal" onTouchTap={
         this.handleSearch
       } /> </Link>
     ];

@@ -50,7 +50,7 @@ class HomeHeader extends React.Component {
       }}>
         <Grid className="container">
           <Row>
-            <FlatButton backgroundColor="transparent" style={{
+            <FlatButton href="/search/table" backgroundColor="transparent" style={{
               borderStyle: 'solid',
               borderWidth: 2,
               color: '#fff',
