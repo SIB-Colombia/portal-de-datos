@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import { Link } from 'components'
+import Email from 'material-ui/svg-icons/communication/email'
 
 const Wrapper = styled.div`
   .title {
@@ -25,8 +26,7 @@ const Wrapper = styled.div`
 
   .link {
     color: #008995;
-    font-size: 18px;
-
+    font-size: 19px;
     span {
       text-decoration: underline;
     }
@@ -35,7 +35,6 @@ const Wrapper = styled.div`
 
 export default class DatasetsSection extends Component {
   static propTypes = {
-    prop: PropTypes
   }
 
   render() {
@@ -48,8 +47,8 @@ export default class DatasetsSection extends Component {
           </Row>
           <Row center="xs">
             <Col xs={12} sm={12} md={12} lg={12} className="sub-title">Herbario Amazónico Colombiano</Col>
-            <Col xs={12} sm={12} md={12} lg={12}><Link className="link">Publicado por <span>Instituto Amazónico de Investigaciones Cientificas Sinchi</span></Link></Col>
-            <Col xs={12} sm={12} md={12} lg={12} className="">Martha Isabel Velljo Joyas . [email]Hernando Garcia</Col>
+            <Col xs={12} sm={12} md={12} lg={12} style={{ marginBottom: 10 }}><Link className="link">Publicado por <span>Instituto Amazónico de Investigaciones Cientificas Sinchi</span></Link></Col>
+            <Col xs={12} sm={12} md={12} lg={12} className="">Martha Isabel Vallejo Joyas · <Email style={{ color: '#4B5353' }} viewBox="-8 5 30 1" />   Hernando Garcia</Col>
           </Row>
         </Grid>
       </Wrapper>
