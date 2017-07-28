@@ -40,7 +40,7 @@ class BiologicalItem extends Component {
   }
 
   destino(t) {
-    return '/search?' +  // ToDo: define query params to search
+    return '/search/table?' +  // ToDo: define query params to search
       'q=' + t
       /* +'&'+
       'kingdomName='+t+'&'+

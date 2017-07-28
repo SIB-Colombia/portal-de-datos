@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
-import { PageTemplate, Header, Footer, Link, HumboldtMap, PaperItem } from 'components'
+import { PageTemplate, Header, Footer, Link, HumboldtMap, PaperItem, Doi, DatasetsSection } from 'components'
 import { Tabs, Tab } from 'material-ui/Tabs'
 import Divider from 'material-ui/Divider'
 import Paper from 'material-ui/Paper'
@@ -16,12 +16,6 @@ import {
 
 const Wrapper = styled.div`
 color: #4B5353;
-  .title {
-    font-weight: 400;
-    font-size: 18px;
-    color: #4B5353;
-    margin-top: 85px;
-  }
 
   .title-two {
     font-weight: 400;
@@ -33,12 +27,6 @@ color: #4B5353;
   .accent-title {
     margin-top: 10px;
     border-top: 2px solid #ff7847;
-  }
-
-  .sub-title{
-    font-size: 36px;    
-    margin: 20px;
-    font-weight: 400;
   }
 
   .tabs {
@@ -158,21 +146,7 @@ export default class DatasetsRecordPage extends Component {
     return (
       <Wrapper>
         <PageTemplate header={<Header />} footer={<Footer />}>
-          <Grid>
-            <Row center="xs">
-              <Col className="title" xs={12} sm={12} md={12} lg={12}>RECURSO</Col>
-              <Col className="accent-title" xs={2} sm={1} md={1} lg={1} />
-            </Row>
-            <Row center="xs">
-              <Col xs={12} sm={12} md={12} lg={12} className="sub-title">Herbario Amazónico Colombiano</Col>
-              <Col xs={12} sm={12} md={12} lg={12} className="link">Publicado por <a href="">Instituto Amazónico de Investigaciones Cientificas Sinchi</a></Col>
-              <Col xs={12} sm={12} md={12} lg={12} className="contact">
-                <Row>
-                  <Col md>Martha Isabel Velljo Joyas . [email]Hernando Garcia</Col>
-                </Row>
-              </Col>
-            </Row>
-          </Grid>
+          <DatasetsSection />
           <Grid>
             <Tabs
               className="tabs"
@@ -187,14 +161,10 @@ export default class DatasetsRecordPage extends Component {
                     <Col xs={12} sm={12} md={4} lg={3}>
                       <Row center="xs">
                         <Col xs={12} sm={12} md={12} lg={12}>
-                          <img src="/logo_entidad.png" alt="" width="262" height="261" />
+                          <img src="/logo_entidad.png" alt="" width="100%" />
                         </Col>
                         <Col xs={12} sm={12} md={12} lg={12}>
-                          <Row middle="xs">
-                            <Col xs={1} sm={1} md={2} lg={2}>
-                              [DOI]
-                            </Col>
-                          </Row>
+                          <Doi doi="doi:10.15472/ch49b6" />
                         </Col>
                       </Row>
                     </Col>
@@ -337,7 +307,6 @@ export default class DatasetsRecordPage extends Component {
                                   <Stepper
                                     linear={false}
                                     orientation="vertical"
-                                    activeStep
                                   >
                                     <Step active>
                                       <StepLabel icon="1" />
@@ -489,7 +458,7 @@ export default class DatasetsRecordPage extends Component {
                                   <Col md={3}>Identifiers</Col>
                                   <Col md>
                                     <Row>
-                                      <Col md={12}>[DOI]</Col>
+                                      <Col md={12}><Doi doi="doi:10.15472/ch49b6" /></Col>
                                       <Col md={12}><Link>http://ipt.biodiversidad.co</Link></Col>
                                       <Col md={12}><Link>http://ipt.biodiversidad.co</Link></Col>
                                     </Row>
@@ -511,7 +480,7 @@ export default class DatasetsRecordPage extends Component {
                             </Row>
                           </Paper>
                         </Col>
-                        <PaperItem title="Citacion">
+                        <PaperItem title="Citacion" id="algo">
                           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore vel, adipisci pariatur. Nesciunt perspiciatis deserunt inventore veniam doloribus ullam, corporis porro minima error qui numquam consequuntur delectus autem cum possimus.
                         </PaperItem>
                       </Row>

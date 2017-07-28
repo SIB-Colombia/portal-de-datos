@@ -47,6 +47,7 @@ class PublisherTable extends React.Component {
               <TableHeaderColumn className="font">Publicador</TableHeaderColumn>
               <TableHeaderColumn className="font"># de Registros</TableHeaderColumn>
               <TableHeaderColumn className="font"># de Recursos</TableHeaderColumn>
+              <TableHeaderColumn />
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>

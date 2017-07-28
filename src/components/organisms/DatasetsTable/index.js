@@ -43,6 +43,7 @@ export default class DatasetsTable extends React.Component {
               <TableHeaderColumn className="font">Dataset</TableHeaderColumn>
               <TableHeaderColumn className="font">Publisher</TableHeaderColumn>
               <TableHeaderColumn className="font">Type</TableHeaderColumn>
+              <TableHeaderColumn />
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>

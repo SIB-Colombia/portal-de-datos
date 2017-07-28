@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { TableRow, TableRowColumn } from 'material-ui/Table'
+import FlatButton from 'material-ui/FlatButton'
+
 
 class PublisherRow extends React.Component {
 
@@ -21,6 +23,7 @@ class PublisherRow extends React.Component {
         <TableRowColumn>{this.state.publisher.providerName}</TableRowColumn>
         <TableRowColumn>{this.state.publisher.resourceCount}</TableRowColumn>
         <TableRowColumn>{this.state.publisher.registryCount}</TableRowColumn>
+        <TableRowColumn><FlatButton primary href={`/provider/${this.props.publisher.id}`} label="Ver mas" /></TableRowColumn>
       </TableRow>
     )
   }
