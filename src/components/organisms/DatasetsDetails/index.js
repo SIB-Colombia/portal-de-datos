@@ -2,15 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
-import { Link, HumboldtMap, PaperItem, Doi, PrincipalDataset } from 'components'
+import { Link, HumboldtMap, PaperItem, Doi, PrincipalDataset, TaxonomicCoverageSection, MethodologySection } from 'components'
 import Paper from 'material-ui/Paper'
 import { List, ListItem } from 'material-ui/List'
-import {
-  Step,
-  Stepper,
-  StepLabel,
-  StepContent,
-} from 'material-ui/Stepper'
+import _ from 'lodash'
 
 const Wrapper = styled.div`
 
@@ -26,21 +21,19 @@ const Wrapper = styled.div`
     border-top: 2px solid #ff7847;
   }
 
-  .separated{
-    .paper {
-      color: #3E5151;
-      font-size: 18px;
-      padding: 10px;
-      font-weight: 200;
+  .paper {
+    color: #3E5151;
+    font-size: 18px;
+    padding: 10px;
+    font-weight: 200;
 
-      div:not(:first-child){
-        border-left: 1px solid rgb(224, 224, 224);
-      }
+    div:not(:first-child){
+      border-left: 1px solid rgb(224, 224, 224);
+    }
 
-      .number {
-        font-weight: 400;
-        font-size: 28px;   
-      }
+    .number {
+      font-weight: 400;
+      font-size: 28px;   
     }
   }
 
@@ -53,9 +46,9 @@ const Wrapper = styled.div`
 
     .third-title {
       font-weight: 400;
-      font-size: 30px;
+      font-size: 24px;
       color: #3E5151;
-      padding-bottom: 10p;
+      padding: 12px 0px;
     }
 
     .normal-info {
@@ -66,6 +59,11 @@ const Wrapper = styled.div`
         padding: 20px;
         line-height: 35px;
         font-weight: 200;
+
+        .link {
+          color: #008995;
+          font-size: 17px;
+        }
       }
     }
   }
@@ -102,6 +100,10 @@ const Wrapper = styled.div`
   .fourd-title {
     font-weight: 600;
   }
+
+  .separated {
+    margin-bottom: 10px;
+  }
 `
 
 export default class DatasetsDetails extends Component {
@@ -110,216 +112,77 @@ export default class DatasetsDetails extends Component {
       <Wrapper>
         <PrincipalDataset />
         <Paper className="separated">
-          <Grid fluid>
+          <Grid>
             <Row className="paper" center="xs">
-              <Col xs={12} sm={6} md={4} lg={3}><span className="number">546.321</span> REGISTROS</Col>
+              <Col xs={12} sm={12} md={12} lg={12}><span className="number">546.321</span> REGISTROS</Col>
             </Row>
           </Grid>
-        </Paper>
-        <Paper>
           <HumboldtMap />
         </Paper>
         <Grid >
           <Row className="information">
-            <Col md={3}>
+            <Col xs={12} sm={12} md={3} lg={3}>
               <Paper className="indice">
                 <List>
-                  <ListItem>Description</ListItem>
-                  <ListItem>Temporal</ListItem>
-                  <ListItem>Geográfica</ListItem>
-                  <ListItem>Taxonómia</ListItem>
-                  <ListItem>Método de muestreo</ListItem>
-                  <ListItem>Información adicional</ListItem>
-                  <ListItem>Bibliografía</ListItem>
-                  <ListItem>Partes asociadas</ListItem>
-                  <ListItem>Descripción de los datos</ListItem>
-                  <ListItem>Registro en GBIF</ListItem>
-                  <ListItem>Citación</ListItem>
+                  {_.map([
+                    'Descripción',
+                    'Temporal',
+                    'Geográfica',
+                    'Taxonómia',
+                    'Método de muestreo',
+                    'Información adicional',
+                    'Bibliografía',
+                    'Partes asociadas',
+                    'Descripción de los datos',
+                    'Registro en GBIF',
+                    'Citación',
+                  ], (key) => (<ListItem key={key}>{key}</ListItem>))}
                 </List>
               </Paper>
             </Col>
-            <Col md={9}>
+            <Col xs={12} sm={12} md={9} lg={9}>
               <Row>
                 <PaperItem title="Descripción">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore vel, adipisci pariatur. Nesciunt perspiciatis deserunt inventore veniam doloribus ullam, corporis porro minima error qui numquam consequuntur delectus autem cum possimus.
-                        </PaperItem>
+                </PaperItem>
                 <PaperItem title="Cobertura temporal">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore vel, adipisci pariatur. Nesciunt perspiciatis deserunt inventore veniam doloribus ullam, corporis porro minima error qui numquam consequuntur delectus autem cum possimus.
-                        </PaperItem>
-                {/* COBERTURA GEOGRAFICA */}
-                <Col xs={12} sm={12} md={12} lg={12}>
-                  <Paper className="normal-info">
-                    <Row>
-                      <Col className="title-two" xs={12} sm={12} md={12} lg={12}>Cobertura geográfica</Col>
-                      <Col className="accent-title" xs={2} sm={2} md={2} />
-                    </Row>
-                    <Row>
-                      <Col className="description" xs={12} sm={12} md={12} lg={12}>
-                        <HumboldtMap />
-                      </Col>
-                    </Row>
-                  </Paper>
-                </Col>
-                {/* COBERTURA TAXONOMICA */}
-                <Col xs={12} sm={12} md={12} lg={12}>
-                  <Paper className="normal-info">
-                    <Row>
-                      <Col className="title-two" xs={12} sm={12} md={12} lg={12}>Cobertura taxonómica</Col>
-                      <Col className="accent-title" xs={2} sm={2} md={2} />
-                    </Row>
-                    <Row>
-                      <Col className="description" xs={12} sm={12} md={12} lg={12}>
-                        <Row>
-                          <Col className="third-title" md={12}>Genéro</Col>
-                          <Col md={4}>
-                            <Link className="link">Lorem ipsum</Link>
-                          </Col>
-                          <Col md={4}>
-                            <Link className="link">Lorem ipsum</Link>
-                          </Col>
-                          <Col md={4}>
-                            <Link className="link">Lorem ipsum</Link>
-                          </Col>
-                          <Col md={4}>
-                            <Link className="link">Lorem ipsum</Link>
-                          </Col>
-                          <Col md={4}>
-                            <Link className="link">Lorem ipsum</Link>
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col className="third-title" md={12}>Especie</Col>
-                          <Col md={4}>
-                            <Link className="link">Lorem ipsum</Link>
-                          </Col>
-                          <Col md={4}>
-                            <Link className="link">Lorem ipsum</Link>
-                          </Col>
-                          <Col md={4}>
-                            <Link className="link">Lorem ipsum</Link>
-                          </Col>
-                          <Col md={4}>
-                            <Link className="link">Lorem ipsum</Link>
-                          </Col>
-                          <Col md={4}>
-                            <Link className="link">Lorem ipsum</Link>
-                          </Col>
-                        </Row>
-                      </Col>
-                    </Row>
-                  </Paper>
-                </Col>
-                {/* METODOLOGIA */}
-                <Col xs={12} sm={12} md={12} lg={12}>
-                  <Paper className="normal-info">
-                    <Row>
-                      <Col className="title-two" xs={12} sm={12} md={12} lg={12}>Metodología</Col>
-                      <Col className="accent-title" xs={2} sm={2} md={2} />
-                    </Row>
-                    <Row>
-                      <Col className="description" xs={12} sm={12} md={12} lg={12}>
-                        <Row>
-                          <Col className="third-title" md={12}>Area de estudio</Col>
-                          <Col md>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis eos impedit amet rerum! Itaque magni eveniet tempore dicta, nemo veritatis temporibus unde in molestias rem aperiam veniam consequuntur iste qui!</Col>
-                        </Row>
-                        <Row>
-                          <Col className="third-title" md={12}>Muestreo</Col>
-                          <Col md>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis eos impedit amet rerum! Itaque magni eveniet tempore dicta, nemo veritatis temporibus unde in molestias rem aperiam veniam consequuntur iste qui!</Col>
-                        </Row>
-                        <Row>
-                          <Col className="third-title" md={12}>Control de calidad</Col>
-                          <Col md>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis eos impedit amet rerum! Itaque magni eveniet tempore dicta, nemo veritatis temporibus unde in molestias rem aperiam veniam consequuntur iste qui!</Col>
-                        </Row>
-                        <Row>
-                          <Col className="third-title" md={12}>Descripción de la metodología paso a paso:</Col>
-                          <Stepper
-                            linear={false}
-                            orientation="vertical"
-                          >
-                            <Step active>
-                              <StepLabel icon="1" />
-                              <StepContent>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, sed. Quam sit, optio aliquam laboriosam nam soluta aspernatur adipisci molestiae iure debitis laudantium repellat quo! Sit debitis vel reprehenderit perspiciatis?
-                                      </StepContent>
-                            </Step>
-                            <Step active>
-                              <StepLabel icon="2" />
-                              <StepContent>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias accusantium voluptatum ratione reprehenderit labore beatae, at pariatur laboriosam ex ad, nesciunt commodi? Eaque voluptatum aliquam accusantium fugit aut rem, odio?
-                                      </StepContent>
-                            </Step>
-                            <Step active>
-                              <StepLabel icon="3" />
-                              <StepContent>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt reiciendis quaerat, earum quae quasi dolorum iure dicta praesentium totam officiis! Commodi vitae labore laboriosam aliquid fugit quisquam sunt, nisi, deleniti.
-                                      </StepContent>
-                            </Step>
-                            <Step />
-                          </Stepper>
-                        </Row>
-                      </Col>
-                    </Row>
-                  </Paper>
-                </Col>
+                </PaperItem>
+                <PaperItem title="Cobertura geográfica">
+                  <HumboldtMap />
+                </PaperItem>
+                <PaperItem title="Cobertura taxonómica">
+                  <TaxonomicCoverageSection />
+                </PaperItem>
+                <PaperItem title="Metodología">
+                  <MethodologySection />
+                </PaperItem>
                 <PaperItem title="Bibliografía">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore vel, adipisci pariatur. Nesciunt perspiciatis deserunt inventore veniam doloribus ullam, corporis porro minima error qui numquam consequuntur delectus autem cum possimus.
-                        </PaperItem>
-                {/* PARTES ASOCIADAS */}
-                <Col xs={12} sm={12} md={12} lg={12}>
-                  <Paper className="normal-info">
-                    <Row>
-                      <Col className="title-two" xs={12} sm={12} md={12} lg={12}>Cobertura geográfica</Col>
-                      <Col className="accent-title" xs={2} sm={2} md={2} />
-                    </Row>
-                    <Row className="contacts">
-                      <Col md={6}>
-                        <Col xs={12} sm={12} md={12} lg={12} className="contact-title">Martha Isabel Vallejo Joyas</Col>
-                        <Col xs={12} sm={12} md={12} lg={12} className="box">
-                          <Row>
-                            <Col xs={12} sm={12} md={12} lg={12}>Originator . Metadata Author</Col>
-                            <Col xs={12} sm={12} md={12} lg={12}>Principal INvestigator</Col>
-                            <Col xs={12} sm={12} md={12} lg={12}>Investigador Principal</Col>
-                            <Col xs={12} sm={12} md={12} lg={12}>Calle 28 A No. 15-09</Col>
-                            <Col xs={12} sm={12} md={12} lg={12}>Bogotá D.C</Col>
-                            <Col xs={12} sm={12} md={12} lg={12}>Colombia</Col>
-                            <Col xs={12} sm={12} md={12} lg={12}><Link>martisavallejo@gmail.com</Link></Col>
-                            <Col xs={12} sm={12} md={12} lg={12}>320-27</Col>
-                          </Row>
-                        </Col>
+                </PaperItem>
+                <PaperItem title="Cobertura geográfica">
+                  <Row className="contacts">
+                    {_.map([0, 1, 2], () => (
+                      <Col xs={12} sm={12} md={6} lg={6}>
+                        <Row>
+                          <Col xs={12} sm={12} md={12} lg={12} className="contact-title">Martha Isabel Vallejo Joyas</Col>
+                          <Col xs={12} sm={12} md={12} lg={12} className="box">
+                            <Row>
+                              <Col xs={12} sm={12} md={12} lg={12}>Originator . Metadata Author</Col>
+                              <Col xs={12} sm={12} md={12} lg={12}>Principal INvestigator</Col>
+                              <Col xs={12} sm={12} md={12} lg={12}>Investigador Principal</Col>
+                              <Col xs={12} sm={12} md={12} lg={12}>Calle 28 A No. 15-09</Col>
+                              <Col xs={12} sm={12} md={12} lg={12}>Bogotá D.C</Col>
+                              <Col xs={12} sm={12} md={12} lg={12}>Colombia</Col>
+                              <Col xs={12} sm={12} md={12} lg={12}><Link>martisavallejo@gmail.com</Link></Col>
+                              <Col xs={12} sm={12} md={12} lg={12}>320-27</Col>
+                            </Row>
+                          </Col>
+                        </Row>
                       </Col>
-                      <Col md={6}>
-                        <Col xs={12} sm={12} md={12} lg={12} className="contact-title">Martha Isabel Vallejo Joyas</Col>
-                        <Col xs={12} sm={12} md={12} lg={12} className="box">
-                          <Row>
-                            <Col xs={12} sm={12} md={12} lg={12}>Originator . Metadata Author</Col>
-                            <Col xs={12} sm={12} md={12} lg={12}>Principal INvestigator</Col>
-                            <Col xs={12} sm={12} md={12} lg={12}>Investigador Principal</Col>
-                            <Col xs={12} sm={12} md={12} lg={12}>Calle 28 A No. 15-09</Col>
-                            <Col xs={12} sm={12} md={12} lg={12}>Bogotá D.C</Col>
-                            <Col xs={12} sm={12} md={12} lg={12}>Colombia</Col>
-                            <Col xs={12} sm={12} md={12} lg={12}><Link>martisavallejo@gmail.com</Link></Col>
-                            <Col xs={12} sm={12} md={12} lg={12}>320-27</Col>
-                          </Row>
-                        </Col>
-                      </Col>
-                      <Col md={6}>
-                        <Col xs={12} sm={12} md={12} lg={12} className="contact-title">Martha Isabel Vallejo Joyas</Col>
-                        <Col xs={12} sm={12} md={12} lg={12} className="box">
-                          <Row>
-                            <Col xs={12} sm={12} md={12} lg={12}>Originator . Metadata Author</Col>
-                            <Col xs={12} sm={12} md={12} lg={12}>Principal INvestigator</Col>
-                            <Col xs={12} sm={12} md={12} lg={12}>Investigador Principal</Col>
-                            <Col xs={12} sm={12} md={12} lg={12}>Calle 28 A No. 15-09</Col>
-                            <Col xs={12} sm={12} md={12} lg={12}>Bogotá D.C</Col>
-                            <Col xs={12} sm={12} md={12} lg={12}>Colombia</Col>
-                            <Col xs={12} sm={12} md={12} lg={12}><Link>martisavallejo@gmail.com</Link></Col>
-                            <Col xs={12} sm={12} md={12} lg={12}>320-27</Col>
-                          </Row>
-                        </Col>
-                      </Col>
-                    </Row>
-                  </Paper>
-                </Col>
+                    ))}
+                  </Row>
+                </PaperItem>
                 {/* DESCRIPCION DE LOS DATOS */}
                 <Col xs={12} sm={12} md={12} lg={12}>
                   <Paper className="normal-info">
@@ -410,7 +273,7 @@ export default class DatasetsDetails extends Component {
                 </Col>
                 <PaperItem title="Citacion" id="algo">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore vel, adipisci pariatur. Nesciunt perspiciatis deserunt inventore veniam doloribus ullam, corporis porro minima error qui numquam consequuntur delectus autem cum possimus.
-                        </PaperItem>
+                </PaperItem>
               </Row>
             </Col>
           </Row>
