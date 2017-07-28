@@ -28,7 +28,7 @@ export default class DatasetsTable extends React.Component {
   }
 
   componentWillMount() {
-    DatasetsService.getDatasets().then(data => {
+    DatasetsService.getDatasetsList().then(data => {
       this.setState({ recursos: data })
     })
   }
