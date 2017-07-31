@@ -36,9 +36,13 @@ export default class PaperItem extends Component {
     map: PropTypes.any,
   }
 
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     return (
-      <Col xs={12} sm={12} md={12} lg={12}>
+      <Col xs={12} sm={12} md={12} lg={12} {...this.props} >
         <Wrapper>
           <Paper className="normal-info">
             <Row>

@@ -32,8 +32,8 @@ export default class ContactItem extends Component {
 
   render() {
     return (
-      <Wrapper>
-        <Col xs={12} sm={12} md={4} lg={4}>
+      <Col xs={12} sm={12} md={6} lg={6}>
+        <Wrapper>
           <Row>
             <Col xs={12} sm={12} md={12} lg={12} className="contact-title">{this.props.contact.name}</Col>
             <Col xs={12} sm={12} md={12} lg={12} className="box">
@@ -44,8 +44,8 @@ export default class ContactItem extends Component {
               </Row>
             </Col>
           </Row>
-        </Col>
-      </Wrapper>
+        </Wrapper>
+      </Col>
     )
   }
 }
