@@ -40,7 +40,7 @@ class DirectAccess extends Component {
     return (
       <Wrapper>
         <Grid>
-          <Row around="md">
+          <Row around="xs">
             {this.state.links.map((link, i) => (
               <DirectAccessItem key={i} link={link} />
             ))}

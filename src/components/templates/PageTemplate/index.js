@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { injectGlobal } from 'styled-components'
-import size from 'styled-theme'
+import { size } from 'styled-theme'
 
 const Wrapper = styled.div`
 `
@@ -10,6 +10,12 @@ const Header = styled.header`
 const Content = styled.section`
   height: 100%;
   padding-bottom: 391px;
+  @media ${size('xs')}{
+    padding-bottom: 618px;
+  }
+  @media ${size('sm')}{
+    padding-bottom: 468px;
+  }
 `
 const Footer = styled.footer`
   position: absolute;
