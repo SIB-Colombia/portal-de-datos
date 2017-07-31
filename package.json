@@ -99,6 +99,7 @@
     "react-router-dom": "^4.1.1",
     "react-schema-form": "^0.3.2",
     "react-schema-form-rc-select": "^0.2.0",
+    "react-scrollchor": "^4.0.0",
     "react-scrollspy": "^3.1.1",
     "react-slick": "^0.14.11",
     "react-tap-event-plugin": "^2.0.1",
