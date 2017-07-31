@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
-import { Link, HumboldtMap, PaperItem, Doi, PrincipalDataset, TaxonomicCoverageSection, MethodologySection, ContactItem } from 'components'
+import { Link, HumboldtMap, PaperItem, Doi, PrincipalDataset, TaxonomicCoverageSection, MethodologySection, ContactItem, GlobalInfo } from 'components'
 import Paper from 'material-ui/Paper'
 import { List, ListItem } from 'material-ui/List'
 import _ from 'lodash'
@@ -130,7 +130,7 @@ export default class DatasetsDetails extends Component {
         <Paper className="separated">
           <Grid>
             <Row className="paper" center="xs">
-              <Col xs={12} sm={12} md={12} lg={12}><span className="number">546.321</span> REGISTROS</Col>
+              <GlobalInfo inf={[{ name: 'REGISTROS', count: 546321 }]} />
             </Row>
           </Grid>
           <HumboldtMap />
@@ -201,7 +201,6 @@ export default class DatasetsDetails extends Component {
                     </Col>
                   </Row>
                 </PaperItem>
-                {/* REGISTRO EN GBIF */}
                 <PaperItem title="Registros en GBIF" id="registro">
                   <Row>
                     <Col className="description" xs={12} sm={12} md={12} lg={12}>

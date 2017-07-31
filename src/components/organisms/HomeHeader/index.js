@@ -44,7 +44,7 @@ class HomeHeader extends React.Component {
         style={{
           minHeight: `${this.state.height / 3}px`,
           paddingTop: `${this.state.height / 6}px`,
-          paddingBottom: `${this.state.height / 6}px`,          
+          paddingBottom: `${this.state.height / 6}px`,
         }}
       >
         <Grid>
