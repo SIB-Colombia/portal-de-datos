@@ -1,24 +1,29 @@
-import React from 'react';
-import styled from 'styled-components';
-import {Grid, Row, Col} from 'react-flexbox-grid';
-import SelectField from 'material-ui/SelectField';
-import TextField from 'material-ui/TextField';
-import MenuItem from 'material-ui/MenuItem';
-import Checkbox from 'material-ui/Checkbox';
-import Subheader from 'material-ui/Subheader';
-import DatePicker from 'material-ui/DatePicker';
-import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+import React from 'react'
+import styled from 'styled-components'
+import Checkbox from 'material-ui/Checkbox'
+import Subheader from 'material-ui/Subheader'
+import Divider from 'material-ui/Divider'
+import _ from 'lodash'
+import { size } from 'styled-theme'
 
-const Wrapper = styled.div `
-.box-search{
-  margin-top: 8px;
-}
+const Wrapper = styled.div`
+  column-count: 3;
+  @media ${size('xs')}{
+    column-count: 2;
+  }
+  @media ${size('sm')}{
+    column-count: 2;
+  }
+
+  .box {
+    padding: 2px;
+  }
 `
 
 class HeaderSearchAdvance extends React.Component {
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       files: 1,
       search: 1,
@@ -28,108 +33,159 @@ class HeaderSearchAdvance extends React.Component {
       stateThreat: 1,
       range: 1,
       orderBy: 1,
-      license: 1
-    };
-
-  }
-
-  handleChange = (event, index, value) => {
-
-    this.setState({value});
-  };
-
-  render() {
-    const items = [];
-    for (let i = 0; i < 10; i++) {
-      items.push(<MenuItem value={i} key={i} primaryText={`Fichas ${i}`}/>);
+      license: 1,
     }
 
+    this.filters = {
+      grupos_biologicos: [
+        {
+          name: 'Reino',
+          groups: [
+            { name: 'Animales', q: 'kingdomName=Animalia' },
+            { name: 'Plantas', q: 'kingdomName=Plantae' },
+            { name: 'Hongos', q: 'kingdomName=Fungi' },
+            { name: 'Bacterias', q: 'kingdomName=Bacteria' },
+            { name: 'Protozoos', q: 'kingdomName=Protozoa' },
+            { name: 'Arquea', q: 'kingdomName=Archaea' },
+            { name: 'Virus', q: 'kingdomName=Viruses' },
+          ],
+        },
+        {
+          name: 'Grupos de Animales',
+          groups: [
+            { name: 'Mamíferos', q: 'className=Mammalia' },
+            { name: 'Aves', q: 'className=Aves' },
+            { name: 'Reptiles', q: 'className=Reptilia' },
+            { name: 'Anfibios', q: 'className=Amphibia' },
+            { name: 'Peces', q: 'className=Actinopterygii&className=Sarcopterygii&className=Elasmobranchii&className=Chondrichthyes' },
+            { name: 'Insectos', q: 'className=Insecta' },
+            { name: 'Escarabajos', q: 'orderName=Coleoptera' },
+            { name: 'Mariposas', q: 'orderName=Lepidoptera' },
+            { name: 'Hormigas', q: 'familyName=Formicidae' },
+            { name: 'Abejas', q: 'familyName=Apidae&familyName=Colletidae&familyName=Halictidae' },
+            { name: 'Moscas y zancudos', q: 'orderName=?Diptera' },
+            { name: 'Arácnidos', q: 'className=Arachnida' },
+            { name: 'Moluscos', q: 'phylumName=Mollusca' },
+            { name: 'Decápodos', q: 'orderName=Decapoda' },
+            { name: 'Equinodermos', q: 'phylumName=Echinodermata' },
+            { name: 'Esponjas', q: 'phylumName=Porifera' },
+            { name: 'Corales y afines', q: 'className=Anthozoa&className=Hydrozoa' },
+          ],
+        },
+        {
+          name: 'Grupos de Plantas',
+          groups: [
+            { name: 'Orquídeas', q: 'familyName=Orchidaceae' },
+            { name: 'Magnolias y afines', q: 'familyName=Magnoliaceae&familyName=Podocarpaceae&familyName=Myristicaceae' },
+            { name: 'Palmas', q: 'familyName=Arecaceae' },
+            { name: 'Frailejones', q: 'genusName=Carramboa&genusName=Coespeletia&genusName=Espeletia,Espeletiopsis&genusName=Libanothamnus&genusName=Paramiflos&genusName=Ruilopezia,Tamania' },
+            { name: 'Cactus', q: 'familyName=Cactaceae' },
+            { name: 'Bromelias, labiadas y pasifloras', q: 'familyName=Bromeliaceae&familyName=Labiatae&familyName=Passifloraceae' },
+            { name: 'Fanerógamas', q: 'familyName=Chrysobalanaceae&familyName=Dichapetalaceae&familyName=Lecythidaceae' },
+            { name: 'Helechos y afines', q: 'className=Polypodiopsida&className=Lycopodiopsida&className=Equisetopsida&className=Psilotopsida&className=Marattiopsida' },
+            { name: 'Zamias', q: 'familyName=Zamiaceae' },
+            { name: 'Musgos y afines', q: 'phylumName=Bryophyta&phylumName=Hepaticophyta&phylumName=Anthocerophyta&phylumName=Marchantiophyta' },
+          ],
+        },
+      ],
+      explorador_geografico: [
+        {
+          name: 'País',
+          groups: [
+            { name: 'Colombia', q: 'true' },
+            { name: 'Otros países', q: 'false' },
+          ],
+        },
+        {
+          name: 'Departamento',
+          groups: [
+            { name: 'Amazonas', q: 'true' },
+            { name: 'Antioquia', q: 'true' },
+            { name: 'Arauca', q: 'true' },
+            { name: 'Archipiélago de San Andrés, Providencia y Santa Catalina', q: 'true' },
+            { name: 'Atlántico', q: 'true' },
+            { name: 'Bogotá, D.C.', q: 'true' },
+            { name: 'Bolívar', q: 'true' },
+            { name: 'Boyacá', q: 'true' },
+            { name: 'Caldas', q: 'true' },
+            { name: 'Caquetá', q: 'true' },
+            { name: 'Casanare', q: 'true' },
+            { name: 'Cauca', q: 'true' },
+            { name: 'Cesar', q: 'true' },
+            { name: 'Chocó', q: 'true' },
+            { name: 'Córdoba', q: 'true' },
+            { name: 'Cundinamarca', q: 'true' },
+            { name: 'Guainía', q: 'true' },
+            { name: 'Guaviare', q: 'true' },
+            { name: 'Huila', q: 'true' },
+            { name: 'La Guajira', q: 'true' },
+            { name: 'Magdalena', q: 'true' },
+            { name: 'Meta', q: 'true' },
+            { name: 'Nariño', q: 'true' },
+            { name: 'Norte de Santander', q: 'true' },
+            { name: 'Putumayo', q: 'true' },
+            { name: 'Quindío', q: 'true' },
+            { name: 'Risaralda', q: 'true' },
+            { name: 'Santander', q: 'true' },
+            { name: 'Sucre', q: 'true' },
+            { name: 'Tolima', q: 'true' },
+            { name: 'Valle del Cauca', q: 'true' },
+            { name: 'Vaupés', q: 'true' },
+            { name: 'Vichada', q: 'true' },
+          ],
+        },
+      ],
+      tipos_registro: [
+        {
+          name: 'Base del registro',
+          groups: [
+            { name: 'Observaciones humanas', q: 'basisOfRecord=HumanObservation' },
+            { name: 'Observaciones con máquina', q: 'basisOfRecord=MachineObservation' },
+            { name: 'Especímenes en colecciones', q: 'basisOfRecord=PreservedSpecimen' },
+          ],
+        },
+      ],
+    }
+  }
+
+  handleClick() {
+  }
+
+  render() {
+
+    const filter = (
+      _(this.filters).forEach((value, key) => (
+        _(value).forEach((value) => (
+          <Wrapper>
+            <Subheader><strong>Taxonomía</strong></Subheader>
+            {
+              _(value.groups).forEach((value, key) => (
+                <Checkbox label={value.name} />
+              ))
+            }
+          </Wrapper>
+        ))
+      ))
+    )
     return (
       <Wrapper>
-
-        <Row className="box-search">
-          <Col xs={12} sm={12} md={12} lg={2}>
-            <SelectField fullWidth={true} value={this.state.files} onChange={this.handleChange} maxHeight={200}>
-              {items}
-            </SelectField>
-          </Col>
-          <Col xs={12} sm={12} md={12} lg={10}>
-            <TextField hintText="Buscar..." fullWidth={true}/>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12} sm={6} md={3} lg={3}>
-            <SelectField fullWidth={true} floatingLabelText="Grupo biológico" value={this.state.biologicalGroup} onChange={this.handleChange}>
-              <MenuItem value={1} primaryText="Opción 1"/>
-              <MenuItem value={2} primaryText="Opción 2"/>
-            </SelectField>
-          </Col>
-          <Col xs={12} sm={6} md={3} lg={3}>
-            <SelectField fullWidth={true} floatingLabelText="Departamentos" value={this.state.departments} onChange={this.handleChange}>
-              <MenuItem value={1} primaryText="Opción 1"/>
-              <MenuItem value={2} primaryText="Opción 2"/>
-            </SelectField>
-          </Col>
-          <Col xs={12} sm={6} md={3} lg={3}>
-            <SelectField fullWidth={true} floatingLabelText="Ecosistema" value={this.state.ecosystem} onChange={this.handleChange}>
-              <MenuItem value={1} primaryText="Opción 1"/>
-              <MenuItem value={2} primaryText="Opción 2"/>
-            </SelectField>
-          </Col>
-          <Col xs={12} sm={6} md={3} lg={3}>
-            <SelectField fullWidth={true} floatingLabelText="Estado de amenaza" value={this.state.stateThreat} onChange={this.handleChange}>
-              <MenuItem value={1} primaryText="Opción 1"/>
-              <MenuItem value={2} primaryText="Opción 2"/>
-            </SelectField>
-          </Col>
-        </Row>
-        <br/>
-        <Row>
-          <Subheader>Mostrar</Subheader>
-          <Col xs={12} sm={6} md={6} lg={6}>
-            <Checkbox label="Salvaje"/>
-            <Checkbox label="En cautividad"/>
-            <Checkbox label="Verificable"/>
-            <Checkbox label="Grado de investigación"/>
-            <Checkbox label="Necesita identificador"/>
-          </Col>
-          <Col xs={12} sm={6} md={6} lg={6}>
-            <Checkbox label="Amenazado"/>
-            <Checkbox label="Introducida"/>
-            <Checkbox label="Popular"/>
-            <Checkbox label="Tiene sonidos"/>
-            <Checkbox label="Tiene Fotos"/>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12} sm={6} md={6} lg={6}>
-            <Subheader>Revisada</Subheader>
-            <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">
-              <RadioButton value="indiferente" label="Cualquiera"/>
-              <RadioButton value="si" label="Sí"/>
-              <RadioButton value="no" label="No"/>
-            </RadioButtonGroup>
-            <br/>
-            <SelectField fullWidth={true} floatingLabelText="Rango" value={this.state.range} onChange={this.handleChange}>
-              <MenuItem value={1} primaryText="Opción 1"/>
-              <MenuItem value={2} primaryText="Opción 2"/>
-            </SelectField>
-            <SelectField fullWidth={true} floatingLabelText="Ordenado por" value={this.state.orderBy} onChange={this.handleChange}>
-              <MenuItem value={1} primaryText="Opción 1"/>
-              <MenuItem value={2} primaryText="Opción 2"/>
-            </SelectField>
-          </Col>
-          <Col xs={12} sm={6} md={6} lg={6}>
-            <TextField floatingLabelText="Persona" fullWidth={true}/>
-            <TextField floatingLabelText="Proyecto" fullWidth={true}/>
-            <DatePicker floatingLabelText="Fecha observación" mode="landscape" fullWidth={true}/>
-            <SelectField fullWidth={true} floatingLabelText="Licencia" value={this.state.license} onChange={this.handleChange}>
-              <MenuItem value={1} primaryText="Opción 1"/>
-              <MenuItem value={2} primaryText="Opción 2"/>
-            </SelectField>
-          </Col>
-
-        </Row>
+        {
+          _.map(this.filters, (value) => (
+            _.map(value, (row, key) => (
+              <div key={key}>
+                <Subheader>{row.name}</Subheader>
+                <div className="box">
+                  <Divider inset />
+                  {
+                    _.map(row.groups, (column, key) => (
+                      <Checkbox key={key} label={column.name} name={column.name} value={column.q} onClick={this.handleClick} />
+                    ))
+                  }
+                </div>
+              </div>
+            ))
+          ))
+        }
       </Wrapper>
     )
   }

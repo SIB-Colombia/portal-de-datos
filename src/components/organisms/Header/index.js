@@ -137,7 +137,7 @@ class Header extends React.Component {
     switch (event.key) {
       case 'Enter':
         console.log("Enter");
-        window.location.href = '/search?q=' + event.target.value;
+        window.location.href = '/search/table?q=' + event.target.value;
         break
       case 'Escape':
         // etc...
@@ -147,21 +147,27 @@ class Header extends React.Component {
   };
 
   render() {
-
-    const actions = [< FlatButton label="Cancelar" primary={
-      true
-    }
-      onTouchTap={
-        this.handleClose
-      } />, < Link to="/search/table" > < RaisedButton label="Buscar" className="btn-secondary-modal" onTouchTap={
-        this.handleSearch
-      } /> </Link>
-    ];
+    const actions = [
+      <FlatButton
+        label="Cancelar"
+        primary
+        onTouchTap={
+          this.handleClose
+        }
+      />,
+      <Link to="/search/table" >
+        <RaisedButton
+          label="Buscar"
+          className="btn-secondary-modal"
+          onTouchTap={this.handleSearch}
+        />
+      </Link>,
+    ]
 
     const customContentStyle = {
       width: '90%',
-      maxWidth: 'none'
-    };
+      maxWidth: 'none',
+    }
 
 
     return (
@@ -205,7 +211,7 @@ class Header extends React.Component {
               </Col>}
             </Row>
           </Grid>
-          <Dialog titleClassName="modal-header-style" title="Búsqueda avanzada" contentStyle={customContentStyle} actions={actions} modal={false} open={this.state.open} onRequestClose={this.handleClose} autoScrollBodyContent={true}>
+          <Dialog titleClassName="modal-header-style" title="Filtros de búsqueda" contentStyle={customContentStyle} actions={actions} modal={false} open={this.state.open} onRequestClose={this.handleClose} autoScrollBodyContent>
             <HeaderSearchAdvance />
           </Dialog>
         </Paper>
