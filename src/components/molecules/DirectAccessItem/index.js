@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Col } from 'react-flexbox-grid'
+import { Row, Col } from 'react-flexbox-grid'
 import { Link } from 'components'
 
 const Wrapper = styled.div`
@@ -41,20 +41,24 @@ export default class DirectAccessItem extends Component {
 
   render() {
     return (
-      <Wrapper>
-        <Link to={this.props.link.to}>
-          <Col md className="titulo">
-            {this.props.link.titulo}
-          </Col>
-          <Col className="accent-title" mdOffset={4} md={4} />
-          <Col md style={{ textAlign: 'center', padding: 30 }}>
-            <img src={this.props.link.img} alt="" width="60%" />
-          </Col>
-          <Col md className="descripcion">
-            <i>{this.props.link.descripcion}</i>
-          </Col>
-        </Link>
-      </Wrapper>
+      <Col>
+        <Wrapper>
+          <Row>
+            <Link to={this.props.link.to}>
+              <Col md className="titulo">
+                {this.props.link.titulo}
+              </Col>
+              <Col className="accent-title" mdOffset={4} md={4} />
+              <Col md style={{ textAlign: 'center', padding: 30 }}>
+                <img src={this.props.link.img} alt="" width="60%" />
+              </Col>
+              <Col md className="descripcion">
+                <i>{this.props.link.descripcion}</i>
+              </Col>
+            </Link>
+          </Row>
+        </Wrapper>
+      </Col>
     )
   }
 }

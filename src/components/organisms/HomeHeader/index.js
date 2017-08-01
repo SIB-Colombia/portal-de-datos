@@ -1,8 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link, HomeCard, HomeItem } from 'components';
-import { Grid, Row, Col } from 'react-flexbox-grid';
-import FlatButton from 'material-ui/FlatButton';
+import React from 'react'
+import styled from 'styled-components'
+import { Grid, Row, Col } from 'react-flexbox-grid'
+import FlatButton from 'material-ui/FlatButton'
 
 const Wrapper = styled.div`
 
@@ -14,54 +13,58 @@ const Wrapper = styled.div`
 class HomeHeader extends React.Component {
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       width: 0,
-      height: 0
+      height: 0,
     }
 
-    this.updateDimensions = this.updateDimensions.bind(this);
-  }
-
-  updateDimensions() {
-    this.setState({ width: window.innerWidth, height: window.innerHeight });
-  }
-
-  componentDidMount() {
-    window.addEventListener("resize", this.updateDimensions);
+    this.updateDimensions = this.updateDimensions.bind(this)
   }
 
   componentWillMount() {
+    this.updateDimensions()
+  }
 
-    this.updateDimensions();
-
+  componentDidMount() {
+    window.addEventListener('resize', this.updateDimensions)
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.updateDimensions);
+    window.removeEventListener('resize', this.updateDimensions)
+  }
+
+  updateDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight })
   }
 
   render() {
-
     return (
-      <Wrapper style={{
-        minHeight: `${this.state.height / 3}px`,
-        padding: `${this.state.height / 6}px`
-      }}>
-        <Grid className="container">
-          <Row>
-            <FlatButton href="/search/table" backgroundColor="transparent" style={{
-              borderStyle: 'solid',
-              borderWidth: 2,
-              color: '#fff',
-              padding: 55,
-              paddingTop: 17,
-              fontSize: 25,
-              marginLeft: 'auto',
-              marginRight: 'auto'
-            }}>
-              EXPLORA LOS DATOS
+      <Wrapper
+        style={{
+          minHeight: `${this.state.height / 3}px`,
+          paddingTop: `${this.state.height / 6}px`,
+          paddingBottom: `${this.state.height / 6}px`,
+        }}
+      >
+        <Grid>
+          <Row center="xs">
+            <Col xs={12} sm={12} md={12} lg={12}>
+              <FlatButton
+                href="/search/table"
+                backgroundColor="transparent"
+                style={{
+                  borderStyle: 'solid',
+                  borderWidth: 2,
+                  color: '#fff',
+                  padding: 55,
+                  paddingTop: 17,
+                  fontSize: 25,
+                }}
+              >
+                EXPLORA LOS DATOS
             </FlatButton>
+            </Col>
           </Row>
         </Grid>
       </Wrapper>
