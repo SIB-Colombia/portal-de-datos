@@ -104,8 +104,12 @@ class Header extends React.Component {
     super(props);
     this.state = {
       user: null,
-      open: false
+      open: false,
     }
+
+    this.url = null
+
+    this.changeUrl = this.changeUrl.bind(this)
   }
 
   componentWillMount() {
@@ -126,18 +130,19 @@ class Header extends React.Component {
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({ open: false })
+    window.history.replaceState('data to be passed', 'Title of the page', '/')
   };
 
   handleSearch = () => {
-    console.log('buscar');
+    window.location.href = this.url
   };
 
   handleTextFieldKeyDown = event => {
     switch (event.key) {
       case 'Enter':
         console.log("Enter");
-        window.location.href = '/search?q=' + event.target.value;
+        window.location.href = '/search/table?q=' + event.target.value;
         break
       case 'Escape':
         // etc...
@@ -146,23 +151,30 @@ class Header extends React.Component {
     }
   };
 
-  render() {
+  changeUrl(url) {
+    this.url = url
+  }
 
-    const actions = [< FlatButton label="Cancelar" primary={
-      true
-    }
-      onTouchTap={
-        this.handleClose
-      } />, < Link to="/search/table" > < RaisedButton label="Buscar" className="btn-secondary-modal" onTouchTap={
-        this.handleSearch
-      } /> </Link>
-    ];
+  render() {
+    const actions = [
+      <FlatButton
+        label="Cancelar"
+        primary
+        onTouchTap={
+          this.handleClose
+        }
+      />,
+      <RaisedButton
+        label="Buscar"
+        className="btn-secondary-modal"
+        onTouchTap={this.handleSearch}
+      />,
+    ]
 
     const customContentStyle = {
       width: '90%',
-      maxWidth: 'none'
-    };
-
+      maxWidth: 'none',
+    }
 
     return (
       <Wrapper>
@@ -205,8 +217,8 @@ class Header extends React.Component {
               </Col>}
             </Row>
           </Grid>
-          <Dialog titleClassName="modal-header-style" title="Búsqueda avanzada" contentStyle={customContentStyle} actions={actions} modal={false} open={this.state.open} onRequestClose={this.handleClose} autoScrollBodyContent={true}>
-            <HeaderSearchAdvance />
+          <Dialog titleClassName="modal-header-style" title="Filtros de búsqueda" contentStyle={customContentStyle} actions={actions} modal={false} open={this.state.open} onRequestClose={this.handleClose} autoScrollBodyContent>
+            <HeaderSearchAdvance url={this.changeUrl} />
           </Dialog>
         </Paper>
       </Wrapper>
