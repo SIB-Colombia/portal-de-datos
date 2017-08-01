@@ -104,8 +104,12 @@ class Header extends React.Component {
     super(props);
     this.state = {
       user: null,
-      open: false
+      open: false,
     }
+
+    this.url = null
+
+    this.changeUrl = this.changeUrl.bind(this)
   }
 
   componentWillMount() {
@@ -126,11 +130,12 @@ class Header extends React.Component {
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({ open: false })
+    window.history.replaceState('data to be passed', 'Title of the page', '/')
   };
 
   handleSearch = () => {
-    console.log('buscar');
+    window.location.href = this.url
   };
 
   handleTextFieldKeyDown = event => {
@@ -146,6 +151,10 @@ class Header extends React.Component {
     }
   };
 
+  changeUrl(url) {
+    this.url = url
+  }
+
   render() {
     const actions = [
       <FlatButton
@@ -155,20 +164,17 @@ class Header extends React.Component {
           this.handleClose
         }
       />,
-      <Link to="/search/table" >
-        <RaisedButton
-          label="Buscar"
-          className="btn-secondary-modal"
-          onTouchTap={this.handleSearch}
-        />
-      </Link>,
+      <RaisedButton
+        label="Buscar"
+        className="btn-secondary-modal"
+        onTouchTap={this.handleSearch}
+      />,
     ]
 
     const customContentStyle = {
       width: '90%',
       maxWidth: 'none',
     }
-
 
     return (
       <Wrapper>
@@ -212,7 +218,7 @@ class Header extends React.Component {
             </Row>
           </Grid>
           <Dialog titleClassName="modal-header-style" title="Filtros de búsqueda" contentStyle={customContentStyle} actions={actions} modal={false} open={this.state.open} onRequestClose={this.handleClose} autoScrollBodyContent>
-            <HeaderSearchAdvance />
+            <HeaderSearchAdvance url={this.changeUrl} />
           </Dialog>
         </Paper>
       </Wrapper>

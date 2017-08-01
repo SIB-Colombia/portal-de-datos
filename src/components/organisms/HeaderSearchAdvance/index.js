@@ -6,7 +6,10 @@ import Divider from 'material-ui/Divider'
 import _ from 'lodash'
 import { size } from 'styled-theme'
 
+
 const Wrapper = styled.div`
+  -webkit-column-count: 3; /* Chrome, Safari, Opera */
+  -moz-column-count: 3; /* Firefox */
   column-count: 3;
   @media ${size('xs')}{
     column-count: 2;
@@ -14,6 +17,9 @@ const Wrapper = styled.div`
   @media ${size('sm')}{
     column-count: 2;
   }
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  transform: translateX(0);
 
   .box {
     padding: 2px;
@@ -92,46 +98,46 @@ class HeaderSearchAdvance extends React.Component {
         {
           name: 'País',
           groups: [
-            { name: 'Colombia', q: 'true' },
-            { name: 'Otros países', q: 'false' },
+            { name: 'Colombia', q: 'Colombia=true' },
+            { name: 'Otros países', q: 'Colombia=false' },
           ],
         },
         {
           name: 'Departamento',
           groups: [
-            { name: 'Amazonas', q: 'true' },
-            { name: 'Antioquia', q: 'true' },
-            { name: 'Arauca', q: 'true' },
-            { name: 'Archipiélago de San Andrés, Providencia y Santa Catalina', q: 'true' },
-            { name: 'Atlántico', q: 'true' },
-            { name: 'Bogotá, D.C.', q: 'true' },
-            { name: 'Bolívar', q: 'true' },
-            { name: 'Boyacá', q: 'true' },
-            { name: 'Caldas', q: 'true' },
-            { name: 'Caquetá', q: 'true' },
-            { name: 'Casanare', q: 'true' },
-            { name: 'Cauca', q: 'true' },
-            { name: 'Cesar', q: 'true' },
-            { name: 'Chocó', q: 'true' },
-            { name: 'Córdoba', q: 'true' },
-            { name: 'Cundinamarca', q: 'true' },
-            { name: 'Guainía', q: 'true' },
-            { name: 'Guaviare', q: 'true' },
-            { name: 'Huila', q: 'true' },
-            { name: 'La Guajira', q: 'true' },
-            { name: 'Magdalena', q: 'true' },
-            { name: 'Meta', q: 'true' },
-            { name: 'Nariño', q: 'true' },
-            { name: 'Norte de Santander', q: 'true' },
-            { name: 'Putumayo', q: 'true' },
-            { name: 'Quindío', q: 'true' },
-            { name: 'Risaralda', q: 'true' },
-            { name: 'Santander', q: 'true' },
-            { name: 'Sucre', q: 'true' },
-            { name: 'Tolima', q: 'true' },
-            { name: 'Valle del Cauca', q: 'true' },
-            { name: 'Vaupés', q: 'true' },
-            { name: 'Vichada', q: 'true' },
+            { name: 'Amazonas', q: 'CO-AMA=true' },
+            { name: 'Antioquia', q: 'CO-ANT=true' },
+            { name: 'Arauca', q: 'CO-ARA=true' },
+            { name: 'Archipiélago de San Andrés, Providencia y Santa Catalina', q: 'CO-SAP=true' },
+            { name: 'Atlántico', q: 'CO-ATL=true' },
+            { name: 'Bogotá, D.C.', q: 'CO-DC=true' },
+            { name: 'Bolívar', q: 'CO-BOL=true' },
+            { name: 'Boyacá', q: 'CO-BOY=true' },
+            { name: 'Caldas', q: 'CO-CAL=true' },
+            { name: 'Caquetá', q: 'CO-CAQ=true' },
+            { name: 'Casanare', q: 'CO-CAS=true' },
+            { name: 'Cauca', q: 'CO-CAU=true' },
+            { name: 'Cesar', q: 'CO-CES=true' },
+            { name: 'Chocó', q: 'CO-CHO=true' },
+            { name: 'Córdoba', q: 'CO-COR=true' },
+            { name: 'Cundinamarca', q: 'CO-CUN=true' },
+            { name: 'Guainía', q: 'CO-GUA=true' },
+            { name: 'Guaviare', q: 'CO-GUV=true' },
+            { name: 'Huila', q: 'CO-HUI=true' },
+            { name: 'La Guajira', q: 'CO-LAG=true' },
+            { name: 'Magdalena', q: 'CO-MAG=true' },
+            { name: 'Meta', q: 'CO-MET=true' },
+            { name: 'Nariño', q: 'CO-NAR=true' },
+            { name: 'Norte de Santander', q: 'CO-NSA=true' },
+            { name: 'Putumayo', q: 'CO-PUT=true' },
+            { name: 'Quindío', q: 'CO-QUI=true' },
+            { name: 'Risaralda', q: 'CO-RIS=true' },
+            { name: 'Santander', q: 'CO-SAN=true' },
+            { name: 'Sucre', q: 'CO-SUC=true' },
+            { name: 'Tolima', q: 'CO-TOL=true' },
+            { name: 'Valle del Cauca', q: 'CO-VAC=true' },
+            { name: 'Vaupés', q: 'CO-VAU=true' },
+            { name: 'Vichada', q: 'CO-VID=true' },
           ],
         },
       ],
@@ -146,27 +152,30 @@ class HeaderSearchAdvance extends React.Component {
         },
       ],
     }
+
+    this.search = []
   }
 
-  handleClick() {
+  handleCheck(d) {
+    const item = _.findIndex(this.search, (o) => { return o.name === d.name })
+    if (item >= 0) {
+      this.search.splice(item, 1)
+    } else {
+      this.search.unshift(d)
+    }
+    let query = '/search/table?'
+    _.forEachRight(this.search, (value, key) => {
+      if (key === this.search.length - 1) {
+        query += value.q
+      } else {
+        query += `&${value.q}`
+      }
+    })
+    window.history.pushState('data to be passed', 'Title of the page', query)
+    this.props.url(query)
   }
 
   render() {
-
-    const filter = (
-      _(this.filters).forEach((value, key) => (
-        _(value).forEach((value) => (
-          <Wrapper>
-            <Subheader><strong>Taxonomía</strong></Subheader>
-            {
-              _(value.groups).forEach((value, key) => (
-                <Checkbox label={value.name} />
-              ))
-            }
-          </Wrapper>
-        ))
-      ))
-    )
     return (
       <Wrapper>
         {
@@ -178,7 +187,7 @@ class HeaderSearchAdvance extends React.Component {
                   <Divider inset />
                   {
                     _.map(row.groups, (column, key) => (
-                      <Checkbox key={key} label={column.name} name={column.name} value={column.q} onClick={this.handleClick} />
+                      <Checkbox key={key} label={column.name} name={column.name} value={column.q} onCheck={() => this.handleCheck(column)} />
                     ))
                   }
                 </div>
