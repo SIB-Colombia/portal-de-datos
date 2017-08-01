@@ -6,23 +6,28 @@ import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'mate
 import Pagination from 'material-ui-pagination'
 
 const Wrapper = styled.div`
-    margin: 20px 0px;
-    text-align: center;
-
+margin-top: 15px;
     .font {
-        color: #4B5353 !important;
-        font-size: 15px !important;
+      color: #4B5353 !important;
+      font-size: 15px !important;
+      padding-left: 5px !important;      
+      padding-right: 0px !important;
+      word-wrap: break-word !important;
+      white-space: normal !important;
     }
 
-    .small{
-      width: 110px !important;
+    .row {
+      padding-left: 5px !important;      
+      padding-right: 0px !important;
     }
 
     .large {
-      width: 200px !important;
+      word-wrap: break-word !important;
+      white-space: normal !important;
     }
 
     .pagination {
+      text-align: center;
         margin-top: 20px;
     }
 `
@@ -49,12 +54,21 @@ class ResultTable extends React.Component {
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               <TableHeaderColumn className="font">Nombre Científico</TableHeaderColumn>
+              <TableHeaderColumn className="font">País</TableHeaderColumn>
               <TableHeaderColumn className="font">Departamento</TableHeaderColumn>
               <TableHeaderColumn className="font">Coordenadas</TableHeaderColumn>
-              <TableHeaderColumn className="font">Tipo de Registro</TableHeaderColumn>
-              <TableHeaderColumn className="font small">Mes y Año</TableHeaderColumn>
-              <TableHeaderColumn className="font large">Conjunto de datos</TableHeaderColumn>
-              <TableHeaderColumn className="font small">Rank</TableHeaderColumn>
+              <TableHeaderColumn className="font">Base del Registro</TableHeaderColumn>
+              <TableHeaderColumn className="font">Fecha del Evento</TableHeaderColumn>
+              <TableHeaderColumn className="font">Publicador</TableHeaderColumn>
+              <TableHeaderColumn className="font">Nombre del Recurso</TableHeaderColumn>
+              <TableHeaderColumn className="font">Categoría Taxonómica</TableHeaderColumn>
+              <TableHeaderColumn className="font">Reino</TableHeaderColumn>
+              <TableHeaderColumn className="font">Filo</TableHeaderColumn>
+              <TableHeaderColumn className="font">Clase</TableHeaderColumn>
+              <TableHeaderColumn className="font">Orden</TableHeaderColumn>
+              <TableHeaderColumn className="font">Familia</TableHeaderColumn>
+              <TableHeaderColumn className="font">Género</TableHeaderColumn>
+              <TableHeaderColumn className="font">Epíteto Específico</TableHeaderColumn>
               <TableHeaderColumn />
             </TableRow>
           </TableHeader>

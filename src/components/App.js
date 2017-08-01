@@ -60,7 +60,7 @@ const App = () => {
           {/* <Route exact path="/search" component={SearchPage} />*/}
           <Route exact path="/taxonomy" component={TaxonomyPage} />
 
-          <Route exact path="/search/:tab" component={SearchResultsPage} />
+          <Route exact path="/search/:tab?" component={SearchResultsPage} />
           <Route exact path="/occurrence/:id" component={BiologicalRecordPage} />
           <Route exact path="/provider" component={EntitiesListPage} />
           <Route exact path="/provider/:id" component={EntitiesRecordPage} />

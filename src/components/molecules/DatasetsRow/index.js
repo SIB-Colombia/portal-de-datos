@@ -16,10 +16,9 @@ export default class DatasetsRow extends React.Component {
   render() {
     return (
       <TableRow>
-        <TableRowColumn>{this.props.recurso.count}</TableRowColumn>
         <TableRowColumn>{this.props.recurso.resourceName}</TableRowColumn>
+        <TableRowColumn>{this.props.recurso.count}</TableRowColumn>
         <TableRowColumn>{this.props.recurso.providerName}</TableRowColumn>
-        <TableRowColumn>{this.props.recurso.type}</TableRowColumn>
         <TableRowColumn><FlatButton primary href={`/datasets/${this.props.recurso.resourceId}`} label="Ver mas" /></TableRowColumn>
       </TableRow>
     )

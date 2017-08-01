@@ -39,10 +39,9 @@ export default class DatasetsTable extends React.Component {
         <Table selectable={false}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
-              <TableHeaderColumn className="font">Occurrences</TableHeaderColumn>
-              <TableHeaderColumn className="font">Dataset</TableHeaderColumn>
-              <TableHeaderColumn className="font">Publisher</TableHeaderColumn>
-              <TableHeaderColumn className="font">Type</TableHeaderColumn>
+              <TableHeaderColumn className="font">Nombre del Recurso</TableHeaderColumn>
+              <TableHeaderColumn className="font">Registros</TableHeaderColumn>
+              <TableHeaderColumn className="font">Publicador</TableHeaderColumn>
               <TableHeaderColumn />
             </TableRow>
           </TableHeader>

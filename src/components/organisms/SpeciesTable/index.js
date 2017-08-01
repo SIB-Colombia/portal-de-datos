@@ -47,6 +47,8 @@ export default class SpeciesTable extends Component {
               <TableHeaderColumn className="font">Clase</TableHeaderColumn>
               <TableHeaderColumn className="font">Orden</TableHeaderColumn>
               <TableHeaderColumn className="font">Familia</TableHeaderColumn>
+              <TableHeaderColumn className="font">Generó</TableHeaderColumn>
+              <TableHeaderColumn className="font">Epíteto Específico</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
