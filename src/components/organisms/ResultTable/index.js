@@ -4,20 +4,22 @@ import PropTypes from 'prop-types'
 import { ResultRow } from 'components'
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'material-ui/Table'
 import Pagination from 'material-ui-pagination'
+import _ from 'lodash'
+import * as DataPortalService from '../../../services/DataPortalService'
 
 const Wrapper = styled.div`
 margin-top: 15px;
     .font {
       color: #4B5353 !important;
       font-size: 15px !important;
-      padding-left: 5px !important;      
+      padding-left: 5px !important;
       padding-right: 0px !important;
       word-wrap: break-word !important;
       white-space: normal !important;
     }
 
     .row {
-      padding-left: 5px !important;      
+      padding-left: 5px !important;
       padding-right: 0px !important;
     }
 
@@ -35,16 +37,39 @@ margin-top: 15px;
 class ResultTable extends React.Component {
 
   static propTypes = {
-    results: PropTypes.any.isRequired,
+    id: PropTypes.any.isRequired,
   }
 
   constructor(props) {
     super(props)
     this.state = {
-      total: 20,
-      display: 7,
-      number: 1,
+      display: null,
+      current: null,
+      total: null,
+      result: [],
     }
+  }
+
+  componentWillMount() {
+    DataPortalService.getOccurrenceSearch(this.props.id, 0).then(data => {
+      this.setState({
+        display: data.size,
+        current: data.offset,
+        total: data.count,
+        result: data,
+      })
+    })
+  }
+
+  getNextOccurrencePage(page) {
+    DataPortalService.getOccurrenceSearch(this.props.id, page - 1).then(data => {
+      this.setState({
+        display: data.size,
+        current: data.offset,
+        total: data.count,
+        result: data,
+      })
+    })
   }
 
   render() {
@@ -73,13 +98,13 @@ class ResultTable extends React.Component {
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
-            {this.props.results.map((registro) => (
+            {this.state.result && _.map(this.state.result.results, (registro) => (
               <ResultRow key={registro.id} registro={registro} />
             ))}
           </TableBody>
         </Table>
         <div className="pagination">
-          <Pagination total={this.state.total} current={this.state.number} display={this.state.display} onChange={number => this.setState({ number })} />
+          <Pagination total={Math.ceil((this.state.total) / this.state.display)} current={this.state.current + 1} display={this.state.display} onChange={number => this.getNextOccurrencePage(number)} />
         </div>
       </Wrapper>
     )

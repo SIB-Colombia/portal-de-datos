@@ -11,10 +11,10 @@ import {
   HumboldtMap,
   DatasetsTable,
   SpeciesTable,
+  Loading
 } from 'components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import { Tabs, Tab } from 'material-ui/Tabs'
-import * as DataPortalService from '../../../services/DataPortalService'
 import * as SpeciesService from '../../../services/SpeciesService'
 import * as EntitiesRecordService from '../../../services/EntitiesRecordService'
 
@@ -59,9 +59,7 @@ class SearchResultsPage extends React.Component {
   }
 
   componentWillMount() {
-    DataPortalService.getOccurrenceSearch(this.props.location.search).then(data => {
-      this.setState({ result: data.results })
-    })
+
 
     SpeciesService.getSpecies(this.props.location.search).then(data => {
       this.setState({ species: data })
@@ -128,23 +126,23 @@ class SearchResultsPage extends React.Component {
           </Grid>
           {this.state.tab === 0 &&
             <Grid fluid>
-              <ResultTable results={this.state.result} />
+              {<ResultTable id={this.props.location.search} /> || <Loading />}
             </Grid>
           }
-          {this.state.tab === 1 && <HumboldtMap />}
+          {this.state.tab === 1 && <HumboldtMap /> }
           {this.state.tab === 2 &&
             <Grid>
-              <SpeciesTable species={this.state.species} />
+              {<SpeciesTable species={this.state.species} /> || <Loading />}
             </Grid>
           }
           {this.state.tab === 3 &&
             <Grid>
-              <DatasetsTable />
+              {<DatasetsTable /> || <Loading />}
             </Grid>
           }
           {this.state.tab === 4 &&
             <Grid>
-              <PublisherTable publisher={this.state.publishers} />
+              {<PublisherTable publisher={this.state.publishers} /> || <Loading />}
             </Grid>
           }
         </Wrapper>

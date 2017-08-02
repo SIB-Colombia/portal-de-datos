@@ -11,7 +11,6 @@ class ResultRow extends React.Component {
 
   constructor(props) {
     super(props)
-    console.log(this.props.registro)
   }
 
   render() {
@@ -33,7 +32,7 @@ class ResultRow extends React.Component {
         <TableRowColumn className="row">{this.props.registro.taxonomy.family_name ? this.props.registro.taxonomy.family_name : ''}</TableRowColumn>
         <TableRowColumn className="row">{this.props.registro.taxonomy.genus_name ? this.props.registro.taxonomy.genus_name : ''}</TableRowColumn>
         <TableRowColumn className="row">{this.props.registro.taxonomy.specific_epithet ? this.props.registro.taxonomy.specific_epithet : ''}</TableRowColumn>
-        <TableRowColumn className="row"><FlatButton primary href={`/occurrence/${this.props.registro.id}`} label="Ver mas" /></TableRowColumn>
+        <TableRowColumn className="row"><FlatButton primary href={`/occurrence/${this.props.registro.occurrenceid}`} label="Ver mas" /></TableRowColumn>
       </TableRow>
     )
   }

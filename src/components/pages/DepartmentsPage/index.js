@@ -11,7 +11,6 @@ import {
   Header,
   Footer,
   ChipFilterList,
-  Link,
   GlobalInfo,
 } from 'components'
 import _ from 'lodash'

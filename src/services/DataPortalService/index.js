@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import Const from '../../const';
-import {http} from '../../auth';
+import { http } from '../../auth';
 
 // Api Humboldt
 /*Data Portal*/
@@ -35,9 +35,8 @@ export function getOcurrenceGridPbf() {
   })
 }
 //Get getOccurrenceSearch v1.5
-export function getOccurrenceSearch(params) {
-
-  return fetch(`${Const.server.api_bio_v1_5}/occurrence/search${params}`, http('GET')).then((response) => {
+export function getOccurrenceSearch(params, page) {
+  return fetch(`${Const.server.api_bio_v1_5}/occurrence/search${params}${'&page=' + page || ''}`, http('GET')).then((response) => {
     return response.json()
   }).then((data) => {
     return data

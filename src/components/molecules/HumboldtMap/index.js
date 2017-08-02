@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Map, TileLayer } from 'react-leaflet'
+import { Map, TileLayer, Marker } from 'react-leaflet'
 
 const Wrapper = styled.div`
 .leaflet-container {
@@ -16,8 +16,9 @@ class HumboldtMap extends React.Component {
       <Wrapper>
         <Map center={position} zoom={5}>
           <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' />
+          {this.props.marker && <Marker position={this.props.marker} />}
         </Map>
-      </Wrapper>
+      </Wrapper >
     )
   }
 }
