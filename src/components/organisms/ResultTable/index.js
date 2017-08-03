@@ -61,11 +61,11 @@ export default class ResultTable extends React.Component {
     })
   }
 
-  getNextOccurrencePage(page) {
-    DataPortalService.getOccurrenceSearch(this.props.id, page - 1).then(data => {
+  getNextOccurrencePage(offset) {
+    DataPortalService.getOccurrenceSearch(this.props.id, offset + 10).then(data => {
       this.setState({
         display: data.size,
-        current: data.offset,
+        current: data.offset - 10,
         total: data.count,
         result: data,
       })
@@ -73,6 +73,7 @@ export default class ResultTable extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <Wrapper>
         <Table selectable={false}>
@@ -104,7 +105,7 @@ export default class ResultTable extends React.Component {
           </TableBody>
         </Table>
         <div className="pagination">
-          <Pagination total={Math.ceil((this.state.total) / this.state.display)} current={this.state.current + 1} display={this.state.display} onChange={number => this.getNextOccurrencePage(number)} />
+          <Pagination total={Math.ceil((this.state.total) / this.state.display)} current={this.state.current} display={this.state.display} onChange={number => this.getNextOccurrencePage(number)} />
         </div>
       </Wrapper>
     )

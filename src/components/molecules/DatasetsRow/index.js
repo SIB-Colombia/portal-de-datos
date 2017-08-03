@@ -23,7 +23,7 @@ export default class DatasetsRow extends React.Component {
       this.setState({ publisherKey: data.title })
     })
 
-    GBIFService.getOccurrenceCount(this.props.recurso.key).then(data => {
+    GBIFService.getOccurrenceCount(this.props.recurso.key, 'dataset_key').then(data => {
       this.setState({ count: data.count })
     })
   }

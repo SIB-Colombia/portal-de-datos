@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'material-ui/Table'
 import Pagination from 'material-ui-pagination'
 import { DatasetsRow } from 'components'
-import * as GBIFService from '../../../services/GBIFService'
 import _ from 'lodash'
+import * as GBIFService from '../../../services/GBIFService'
 
 const Wrapper = styled.div`
   text-align: center;
@@ -43,18 +43,6 @@ export default class DatasetsTable extends React.Component {
     })
   }
 
-  getPublisher = (id) => {
-    GBIFService.getPublisherById(id).then(data => {
-      return data.title
-    })
-  }
-
-  getOccurrences = (id) => {
-    GBIFService.getOccurrenceCount(id).then(data => {
-      return data.count
-    })
-  }
-
   getNextOccurrencePage(page) {
     GBIFService.getDatasetList(page - 1).then(data => {
       this.setState({
@@ -88,7 +76,7 @@ export default class DatasetsTable extends React.Component {
           </TableBody>
         </Table>
         <div className="pagination">
-          <Pagination total={this.state.count} current={this.state.offset + 1} display={this.state.limit} onChange={number => this.getNextOccurrencePage(number)} />
+          <Pagination total={Math.ceil(this.state.count / this.state.limit)} current={this.state.offset - 9} display={this.state.limit} onChange={number => this.getNextOccurrencePage(number + 10)} />
         </div>
       </Wrapper>
     )
