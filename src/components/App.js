@@ -49,7 +49,7 @@ const App = () => {
           <Route exact path="/login/signin" component={LoginSigninPage} />
           <Route exact path="/login/signup" component={LoginSignupPage} />
           <Route exact path="/login/recover" component={LoginRecoverPage} />
-          <Route exact path="/static/about" component={StaticPage} />
+          <Route exact path="/static/:id" component={StaticPage} />
           <Route exact path="/file/summary/:id" component={FileSummaryPage} />
           <Route exact path="/file/detail/:id" component={FileDetailPage} />
           <Route exact path="/file/search" component={FileSearchPage} />
