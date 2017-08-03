@@ -8,3 +8,45 @@ export function getOccurrenceById(id) {
     return data
   })
 }
+
+export function getOccurrenceCount(id) {
+  return fetch(`http://api.gbif.org/v1/occurrence/search?dataset_key=${id}&limit=0`, http('GET')).then((response) => {
+    return response.json()
+  }).then((data) => {
+    return data
+  })
+}
+
+export function getDatasetById(id) {
+  return fetch(`http://api.gbif.org/v1/dataset/${id}`, http('GET')).then((response) => {
+    return response.json()
+  }).then((data) => {
+    return data
+  })
+}
+
+export function getDatasetList(page) {
+  const offset = page ? `&offset=${page}` : ''
+  return fetch(`http://api.gbif.org/v1/dataset?limit=10&country=CO${offset}`, http('GET')).then((response) => {
+    return response.json()
+  }).then((data) => {
+    return data
+  })
+}
+
+export function getPublisherById(id) {
+  return fetch(`http://api.gbif.org/v1/organization/${id}`, http('GET')).then((response) => {
+    return response.json()
+  }).then((data) => {
+    return data
+  })
+}
+
+export function getPublisherList(page) {
+  const offset = page ? `&page=${page}` : ''
+  return fetch(`http://api.gbif.org/v1/organization?limit=10&country=CO${offset}`, http('GET')).then((response) => {
+    return response.json()
+  }).then((data) => {
+    return data
+  })
+}

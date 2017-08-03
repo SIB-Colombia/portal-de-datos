@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'material-ui/Table'
 import Pagination from 'material-ui-pagination'
 import { DatasetsRow } from 'components'
-import * as DatasetsService from '../../../services/DatasetsService'
+import * as GBIFService from '../../../services/GBIFService'
+import _ from 'lodash'
 
 const Wrapper = styled.div`
   text-align: center;
@@ -24,16 +25,53 @@ export default class DatasetsTable extends React.Component {
     super(props)
     this.state = {
       recursos: [],
+      count: null,
+      limit: null,
+      offset: null,
     }
+    this.occurrences = []
   }
 
   componentWillMount() {
-    DatasetsService.getDatasetsList().then(data => {
-      this.setState({ recursos: data })
+    GBIFService.getDatasetList().then(data => {
+      this.setState({
+        recursos: data.results,
+        count: data.count,
+        limit: data.limit,
+        offset: data.offset,
+      })
+    })
+  }
+
+  getPublisher = (id) => {
+    GBIFService.getPublisherById(id).then(data => {
+      return data.title
+    })
+  }
+
+  getOccurrences = (id) => {
+    GBIFService.getOccurrenceCount(id).then(data => {
+      return data.count
+    })
+  }
+
+  getNextOccurrencePage(page) {
+    GBIFService.getDatasetList(page - 1).then(data => {
+      this.setState({
+        recursos: data.results,
+        count: data.count,
+        limit: data.limit,
+        offset: data.offset,
+      })
     })
   }
 
   render() {
+    const rows = (
+      this.state.recursos && _.map(this.state.recursos, (recurso) => (
+        <DatasetsRow key={recurso.key} recurso={recurso} />
+      ))
+    )
     return (
       <Wrapper>
         <Table selectable={false}>
@@ -46,13 +84,11 @@ export default class DatasetsTable extends React.Component {
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
-            {this.state.recursos.map((recurso, i) => (
-              <DatasetsRow key={i} recurso={recurso} />
-            ))}
+            {rows}
           </TableBody>
         </Table>
         <div className="pagination">
-          <Pagination total={this.state.total} current={this.state.number} display={this.state.display} onChange={number => this.setState({ number })} />
+          <Pagination total={this.state.count} current={this.state.offset + 1} display={this.state.limit} onChange={number => this.getNextOccurrencePage(number)} />
         </div>
       </Wrapper>
     )

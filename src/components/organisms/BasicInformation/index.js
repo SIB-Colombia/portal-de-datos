@@ -75,12 +75,6 @@ class BasicInformation extends React.Component {
     }
   }
 
-  componentWillMount() {
-    this.setState({
-      record: this.props.record,
-    })
-  }
-
   render() {
     return (
       <Wrapper>

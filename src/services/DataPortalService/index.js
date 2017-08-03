@@ -36,7 +36,8 @@ export function getOcurrenceGridPbf() {
 }
 //Get getOccurrenceSearch v1.5
 export function getOccurrenceSearch(params, page) {
-  return fetch(`${Const.server.api_bio_v1_5}/occurrence/search${params}${'&page=' + page || ''}`, http('GET')).then((response) => {
+  const offset = page ? `page=${page}` : ''
+  return fetch(`${Const.server.api_bio_v1_5}/occurrence/search${params ? `${params}&` : '?'}${offset}`, http('GET')).then((response) => {
     return response.json()
   }).then((data) => {
     return data

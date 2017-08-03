@@ -11,12 +11,10 @@ import {
   HumboldtMap,
   DatasetsTable,
   SpeciesTable,
-  Loading
+  Loading,
 } from 'components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import { Tabs, Tab } from 'material-ui/Tabs'
-import * as SpeciesService from '../../../services/SpeciesService'
-import * as EntitiesRecordService from '../../../services/EntitiesRecordService'
 
 const Wrapper = styled.div`
     margin-top: 85px;
@@ -48,26 +46,16 @@ class SearchResultsPage extends React.Component {
     match: PropTypes.any.isRequired,
   }
 
-  constructor(props, history) {
-    super(props, history)
+  constructor(props) {
+    super(props)
     this.state = {
       tab: 0,
-      result: [],
       species: [],
-      publishers: []
+      publishers: [],
     }
   }
 
   componentWillMount() {
-
-
-    SpeciesService.getSpecies(this.props.location.search).then(data => {
-      this.setState({ species: data })
-    })
-
-    EntitiesRecordService.getEntitiesList().then(data => {
-      this.setState({ publishers: data })
-    })
     this.handleTab(this.props.match.params.tab)
   }
 
@@ -126,23 +114,23 @@ class SearchResultsPage extends React.Component {
           </Grid>
           {this.state.tab === 0 &&
             <Grid fluid>
-              {<ResultTable id={this.props.location.search} /> || <Loading />}
+              <ResultTable id={this.props.location.search} />
             </Grid>
           }
-          {this.state.tab === 1 && <HumboldtMap /> }
+          {this.state.tab === 1 && <HumboldtMap />}
           {this.state.tab === 2 &&
             <Grid>
-              {<SpeciesTable species={this.state.species} /> || <Loading />}
+              <SpeciesTable />
             </Grid>
           }
           {this.state.tab === 3 &&
             <Grid>
-              {<DatasetsTable /> || <Loading />}
+              <DatasetsTable />
             </Grid>
           }
           {this.state.tab === 4 &&
             <Grid>
-              {<PublisherTable publisher={this.state.publishers} /> || <Loading />}
+              <PublisherTable />
             </Grid>
           }
         </Wrapper>

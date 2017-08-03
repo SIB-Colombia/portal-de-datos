@@ -34,7 +34,7 @@ margin-top: 15px;
     }
 `
 
-class ResultTable extends React.Component {
+export default class ResultTable extends React.Component {
 
   static propTypes = {
     id: PropTypes.any.isRequired,
@@ -51,7 +51,7 @@ class ResultTable extends React.Component {
   }
 
   componentWillMount() {
-    DataPortalService.getOccurrenceSearch(this.props.id, 0).then(data => {
+    DataPortalService.getOccurrenceSearch(this.props.id).then(data => {
       this.setState({
         display: data.size,
         current: data.offset,
@@ -110,5 +110,3 @@ class ResultTable extends React.Component {
     )
   }
 }
-
-export default ResultTable

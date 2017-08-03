@@ -57,7 +57,7 @@ class BiologicalRecordPage extends React.Component {
     return (
       <PageTemplate header={<Header />} footer={<Footer />}>
         {basicInformation && <BasicInformation record={basicInformation} />}
-        {this.state.records && <MoreDetails detail={this.state.records} />}
+        {basicInformation && <MoreDetails more={basicInformation} />}
       </PageTemplate>
     )
   }
