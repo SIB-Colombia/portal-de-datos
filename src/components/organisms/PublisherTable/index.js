@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import { PublisherRow } from 'components'
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'material-ui/Table'
 import Pagination from 'material-ui-pagination'
-import * as PublisherService from '../../../services/PublisherService'
+import _ from 'lodash'
+import * as GBIFService from '../../../services/GBIFService'
 
 const Wrapper = styled.div`
     text-align: center;
@@ -23,41 +24,59 @@ class PublisherTable extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      total: 20,
-      display: 7,
-      number: 1,
+      count: null,
+      offset: null,
+      limit: null,
       publishers: [],
     }
   }
 
   componentWillMount() {
-    PublisherService.getPublishers().then(data => {
+    GBIFService.getPublisherList().then(data => {
       this.setState({
+        publishers: data,
+        count: data.count,
+        limit: data.limit,
+        offset: data.offset,
+      })
+    })
+  }
+
+  getNextOccurrencePage(page) {
+    GBIFService.getPublisherList(page * 10).then(data => {
+      this.setState({
+        offset: data.offset / 10,
+        count: data.count,
+        limit: data.limit,
         publishers: data,
       })
     })
   }
 
   render() {
+    const rows = (
+      this.state.publishers && _.map(this.state.publishers.results, (publisher) => (
+        <PublisherRow key={publisher.key} publisher={publisher} />
+      ))
+    )
+    console.log(this.state.publishers)
     return (
       <Wrapper>
         <Table selectable={false}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               <TableHeaderColumn className="font">Publicador</TableHeaderColumn>
-              <TableHeaderColumn className="font"># de Registros</TableHeaderColumn>
-              <TableHeaderColumn className="font"># de Recursos</TableHeaderColumn>
+              <TableHeaderColumn className="font">Registros</TableHeaderColumn>
+              <TableHeaderColumn className="font">Recursos</TableHeaderColumn>
               <TableHeaderColumn />
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
-            {this.state.publishers.map((publisher, i) => (
-              <PublisherRow key={i} publisher={publisher} />
-            ))}
+            {rows}
           </TableBody>
         </Table>
         <div className="pagination">
-          <Pagination total={this.state.total} current={this.state.number} display={this.state.display} onChange={number => this.setState({ number })} />
+          <Pagination total={Math.ceil(this.state.count / this.state.limit)} current={this.state.offset} display={this.state.limit} onChange={number => this.getNextOccurrencePage(number)} />
         </div>
       </Wrapper>
     )

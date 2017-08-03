@@ -4,11 +4,10 @@ import styled from 'styled-components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import {
   RegisterSection,
-  OccurrenceSection,
   LocationSection,
   EventSection,
   TaxonSection,
-  License,
+  RegistrationElementSection,
 } from 'components'
 
 const Wrapper = styled.div`
@@ -40,7 +39,7 @@ const Wrapper = styled.div`
 class MoreDetails extends React.Component {
 
   static propTypes = {
-    detail: PropTypes.any.isRequired,
+    more: PropTypes.any.isRequired,
   }
 
   constructor(props) {
@@ -52,7 +51,7 @@ class MoreDetails extends React.Component {
 
   componentWillMount() {
     this.setState({
-      detail: this.props.detail,
+      detail: this.props.more,
     })
   }
 
@@ -62,31 +61,40 @@ class MoreDetails extends React.Component {
         <Grid >
           <Row>
             <Col md={6}>
-              <RegisterSection registro={this.state.detail.registro} recurso={this.state.detail.recurso} />
+              {this.state.detail.occurrence && <RegisterSection ocurrence={this.state.detail.occurrence} />}
             </Col>
             <Col md={6}>
-              <OccurrenceSection ocurrence={this.state.detail.occurrence} />
+              {this.state.detail.occurrence && <RegistrationElementSection ocurrence={this.state.detail.occurrence} />}
             </Col>
             <Col md={6}>
-              <EventSection evento={this.state.detail.evento} />
+              {this.state.detail.occurrence && <EventSection ocurrence={this.state.detail.occurrence} />}
             </Col>
             <Col md={6}>
-              <TaxonSection taxon={this.state.detail.taxon} />
+              {this.state.detail.occurrence && <LocationSection ocurrence={this.state.detail.occurrence} />}
             </Col>
             <Col md={6}>
-              <LocationSection ubicacion={this.state.detail.ubicacion} />
+              {this.state.detail.occurrence && <TaxonSection ocurrence={this.state.detail.occurrence} />}
             </Col>
             <Col md={6}>
-              <Col className="title-two" md={12}>Otros</Col>
-              <Col className="accent-title" md={11} />
-              <Grid fluid>
-                <Row className="more-details" middle="md">
-                  <Col md={6} className="details-title">Licencia</Col>
-                  <Col md={6}><License id={this.state.detail.licencia} /></Col>
-                  <Col md={6} className="details-title">Modificado</Col>
-                  <Col md={6}>{this.state.detail.modificado.slice(0, 10)}</Col>
-                </Row>
-              </Grid>
+              {this.state.detail.occurrence && <IDSection ocurrence={this.state.detail.occurrence} />}
+            </Col>
+            <Col md={6}>
+              {this.state.detail.occurrence && <OrganismSection ocurrence={this.state.detail.occurrence} />}
+            </Col>
+            <Col md={6}>
+              {this.state.detail.occurrence && <SampleSection ocurrence={this.state.detail.occurrence} />}
+            </Col>
+            <Col md={6}>
+              {this.state.detail.measurementOrFact && <MeasuresFactsSection ocurrence={this.state.detail.measurementOrFact} />}
+            </Col>
+            <Col md={6}>
+              {this.state.detail.occurrence && <GeologicalContextSection ocurrence={this.state.detail.occurrence} />}
+            </Col>
+            <Col md={6}>
+              {this.state.detail.resourceRelationship && <RelatedResourcesSection ocurrence={this.state.detail.resourceRelationship} />}
+            </Col>
+            <Col md={6}>
+              {this.state.detail.multimedia && <MultimediaSection ocurrence={this.state.detail.multimedia} />}
             </Col>
           </Row>
         </Grid>

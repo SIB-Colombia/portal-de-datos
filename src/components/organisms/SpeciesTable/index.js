@@ -6,17 +6,17 @@ import Pagination from 'material-ui-pagination'
 import { SpeciesRow } from 'components'
 
 const Wrapper = styled.div`
-    margin: 20px 0px;
-    text-align: center;
+  margin: 20px 0px;
+  text-align: center;
 
-    .font {
-        color: #4B5353 !important;
-        font-size: 15px !important;
-    }
+  .font {
+    color: #4B5353 !important;
+    font-size: 15px !important;
+  }
 
-    .pagination {
-        margin-top: 20px;
-    }
+  .pagination {
+    margin-top: 20px;
+  }
 `
 
 export default class SpeciesTable extends Component {
@@ -47,6 +47,8 @@ export default class SpeciesTable extends Component {
               <TableHeaderColumn className="font">Clase</TableHeaderColumn>
               <TableHeaderColumn className="font">Orden</TableHeaderColumn>
               <TableHeaderColumn className="font">Familia</TableHeaderColumn>
+              <TableHeaderColumn className="font">Generó</TableHeaderColumn>
+              <TableHeaderColumn className="font">Epíteto Específico</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>

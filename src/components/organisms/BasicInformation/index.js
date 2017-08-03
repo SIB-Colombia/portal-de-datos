@@ -75,12 +75,6 @@ class BasicInformation extends React.Component {
     }
   }
 
-  componentWillMount() {
-    this.setState({
-      record: this.props.record,
-    })
-  }
-
   render() {
     return (
       <Wrapper>
@@ -92,29 +86,29 @@ class BasicInformation extends React.Component {
             <Col className="accent-title" md={1} />
           </Row>
           <Row style={{ padding: 20 }}>
-            <Col md={12} className="sub-title" >{this.props.record.nombreCientifico}</Col>
+            <Col md={12} className="sub-title" >{this.props.record[0].scientificName}</Col>
             <Col md className="breadcrums">
-              {this.props.record.taxon.reino} &gt; {this.props.record.taxon.filo} &gt; {this.props.record.taxon.clase} &gt; {this.props.record.taxon.orden} &gt; {this.props.record.taxon.familia} &gt; {this.props.record.taxon.genero} &gt; {this.props.record.especies}
+              {this.props.record[0].kingdom} &gt; {this.props.record[0].phylum} &gt; {this.props.record[0].order} &gt; {this.props.record[0].family} &gt; {this.props.record[0].genus} &gt; {this.props.record[0].specificEpithet}
             </Col>
           </Row>
         </Grid>
         <Divider />
         <Grid>
           <Row className="detalles-basicos">
-            <Col md={6} className="detalle-item"><span>Especies:</span> <Link to={'to'}><i> {this.props.record.especies}</i></Link></Col>
-            <Col md={6} className="detalle-item"><span>Recurso:</span> <Link to={'to'}> {this.props.record.recurso.nombre}</Link></Col>
-            <Col md={6} className="detalle-item"><span>Verbatim Name:</span> {this.props.record.verbatimName}</Col>
-            <Col md={6} className="detalle-item"><span>Publicador:</span> <Link to={'to'}> {this.props.record.publicador.nombre}</Link></Col>
-            <Col md={12} className="detalle-item"><span>Ubicacion:</span> {`${this.props.record.ubicacion.departamento}, ${this.props.record.ubicacion.pais}`}</Col>
-            <Col md={12} className="detalle-item"><span>Basis of Record:</span> {this.props.record.basisOfRecord}</Col>
+            <Col md={6} className="detalle-item"><span>Nombre científico:</span> <Link to={'to'}><i> {this.props.record[0].scientificName}</i></Link></Col>
+            <Col md={6} className="detalle-item"><span>Nombre del recurso:</span> <Link to={'to'}> {this.props.record[0].resourceName}</Link></Col>
+            <Col md={6} className="detalle-item"><span>Ubicacion:</span> {`${this.props.record[0].country}, ${this.props.record[0].stateProvince}`}</Col>
+            <Col md={6} className="detalle-item"><span>Publicador:</span> <Link to={'to'}> {this.props.record[0].providerName}</Link></Col>
+            <Col md={12} className="detalle-item"><span>Base del Registro:</span> {this.props.record[0].basisOfRecord}</Col>
+            <Col md={12} className="detalle-item"><span>Hábitat:</span> {this.props.record[0].habitat}</Col>
           </Row>
         </Grid>
-        <HumboldtMap />
+        <HumboldtMap marker={[this.props.record[0].decimalLatitude, this.props.record[0].decimalLongitude]} />
         <Grid>
           <Row>
             <Col className="title-two" md={12}>Sobre el recurso</Col>
             <Col className="accent-title" md={1} />
-            <Col md={12} className="sobre-recurso">{this.props.record.recurso.descripcion}</Col>
+            <Col md={12} className="sobre-recurso">{/* this.props.record.recurso.descripcion*/} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, commodi, error. Amet impedit sit dolorem reiciendis maiores blanditiis qui temporibus numquam, ullam perferendis, labore doloribus officiis aut ipsum explicabo sapiente.</Col>
           </Row>
         </Grid>
       </Wrapper>

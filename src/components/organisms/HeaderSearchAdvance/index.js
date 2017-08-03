@@ -163,7 +163,7 @@ class HeaderSearchAdvance extends React.Component {
     } else {
       this.search.unshift(d)
     }
-    let query = '/search/table?'
+    let query = ''
     _.forEachRight(this.search, (value, key) => {
       if (key === this.search.length - 1) {
         query += value.q
@@ -171,7 +171,7 @@ class HeaderSearchAdvance extends React.Component {
         query += `&${value.q}`
       }
     })
-    window.history.pushState('data to be passed', 'Title of the page', query)
+    window.history.pushState('data to be passed', 'Title of the page', `/search/table?${query}`)
     this.props.url(query)
   }
 

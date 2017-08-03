@@ -135,7 +135,7 @@ class Header extends React.Component {
   };
 
   handleSearch = () => {
-    window.location.href = this.url
+    window.location.href = `/search/table?${this.url !== null ? this.url : ''}`
   };
 
   handleTextFieldKeyDown = event => {

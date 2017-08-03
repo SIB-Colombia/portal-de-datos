@@ -11,12 +11,10 @@ import {
   HumboldtMap,
   DatasetsTable,
   SpeciesTable,
+  Loading,
 } from 'components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import { Tabs, Tab } from 'material-ui/Tabs'
-import * as DataPortalService from '../../../services/DataPortalService'
-import * as SpeciesService from '../../../services/SpeciesService'
-import * as EntitiesRecordService from '../../../services/EntitiesRecordService'
 
 const Wrapper = styled.div`
     margin-top: 85px;
@@ -48,53 +46,46 @@ class SearchResultsPage extends React.Component {
     match: PropTypes.any.isRequired,
   }
 
-  constructor(props, history) {
-    super(props, history)
+  constructor(props) {
+    super(props)
     this.state = {
       tab: 0,
-      result: [],
       species: [],
-      publishers: []
+      publishers: [],
     }
   }
 
   componentWillMount() {
-    DataPortalService.getOccurrenceSearch(this.props.location.search).then(data => {
-      this.setState({ result: data.results })
-    })
+    this.handleTab(this.props.match.params.tab)
+  }
 
-    SpeciesService.getSpecies(this.props.location.search).then(data => {
-      this.setState({ species: data })
-    })
-
-    EntitiesRecordService.getEntitiesList().then(data => {
-      this.setState({ publishers: data })
-    })
-
-    switch (this.props.match.params.tab) {
+  handleTab(tab) {
+    switch (tab) {
       case 'table':
+        window.history.replaceState('data', 'title', `/search/table${this.props.location.search}`)
         this.setState({ tab: 0 })
         break
       case 'map':
+        window.history.replaceState('data', 'title', `/search/map${this.props.location.search}`)
         this.setState({ tab: 1 })
         break
-      case 'specie':
+      case 'species':
+        window.history.replaceState('data', 'title', `/search/species${this.props.location.search}`)
         this.setState({ tab: 2 })
         break
-      case 'dataset':
+      case 'datasets':
+        window.history.replaceState('data', 'title', `/search/datasets${this.props.location.search}`)
         this.setState({ tab: 3 })
         break
-      case 'provider':
+      case 'providers':
+        window.history.replaceState('data', 'title', `/search/providers${this.props.location.search}`)
         this.setState({ tab: 4 })
         break
       default:
+        window.history.replaceState('data', 'title', `/search/table${this.props.location.search}`)
         this.setState({ tab: 0 })
         break
     }
-  }
-
-  handleTab() {
-    // TODO: Realizar modificacion por parametros en la url para cambio de tab
   }
 
   render() {
@@ -114,23 +105,34 @@ class SearchResultsPage extends React.Component {
               inkBarStyle={{ background: '#ff7847' }}
               initialSelectedIndex={this.state.tab}
             >
-              <Tab label="TABLA" onActive={this.handleTab()}>
-                <ResultTable results={this.state.result} />
-              </Tab>
-              <Tab label="MAPA">
-                <HumboldtMap />
-              </Tab>
-              <Tab label="ESPECIES">
-                <SpeciesTable species={this.state.species} />
-              </Tab>
-              <Tab label="RECURSOS">
-                <DatasetsTable />
-              </Tab>
-              <Tab label="PUBLICADORES">
-                <PublisherTable publisher={this.state.publishers} />
-              </Tab>
+              <Tab label="TABLA" onActive={() => this.handleTab('table')} />
+              <Tab label="MAPA" onActive={() => this.handleTab('map')} />
+              <Tab label="ESPECIES" onActive={() => this.handleTab('species')} />
+              <Tab label="RECURSOS" onActive={() => this.handleTab('datasets')} />
+              <Tab label="PUBLICADORES" onActive={() => this.handleTab('providers')} />
             </Tabs>
           </Grid>
+          {this.state.tab === 0 &&
+            <Grid fluid>
+              <ResultTable id={this.props.location.search} />
+            </Grid>
+          }
+          {this.state.tab === 1 && <HumboldtMap />}
+          {this.state.tab === 2 &&
+            <Grid>
+              <SpeciesTable />
+            </Grid>
+          }
+          {this.state.tab === 3 &&
+            <Grid>
+              <DatasetsTable />
+            </Grid>
+          }
+          {this.state.tab === 4 &&
+            <Grid>
+              <PublisherTable />
+            </Grid>
+          }
         </Wrapper>
       </PageTemplate>
     )
