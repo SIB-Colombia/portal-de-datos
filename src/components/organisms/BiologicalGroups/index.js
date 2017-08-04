@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import { BiologicalItem } from 'components'
 
-const Wrapper = styled.div` 
+const Wrapper = styled.div`
     margin-top: 85px;
     margin-bottom: 130px;
 
@@ -27,15 +27,17 @@ class BiologicalGroups extends Component {
 
     this.state = {
       groups: [
-        { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-invertebrados.png', title: 'INVERTEBRADOS', name: 'invertebrata' },
-        { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-vertebrados.png', title: 'VERTEBRADOS', name: 'vertebrata' },
-        { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-plantas.png', title: 'PLANTAS', name: 'plants' },
-        { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-hongos.png', title: 'HONGOS', name: 'fungi' },
-        { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-chromista.png', title: 'CHROMISTA', name: 'CHROMISTA' },
-        { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-otros.png', title: 'OTROS', name: '' },
+        { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-invertebrados.png', title: 'INVERTEBRADOS', q: 'phylumName=Chordata' },
+        { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-vertebrados.png', title: 'VERTEBRADOS', q: 'phylumName=Acanthocephala&phylumName=Annelida&phylumName=Arthropoda&phylumName=Brachiopoda&phylumName=Bryozoa&phylumName=Chaetognatha&phylumName=Cnidaria&phylumName=Echinodermata&phylumName=Gastrotricha&phylumName=Mollusca&phylumName=Myxozoa&phylumName=Nematoda&phylumName=Onychophora&phylumName=Platyhelminthes&phylumName=Porifera&phylumName=Rotifera&phylumName=Sipuncula' },
+        { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-plantas.png', title: 'PLANTAS', q: 'kingdomName=Plantae' },
+        { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-hongos.png', title: 'HONGOS', q: 'kingdomName=Fungi' },
+        { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-chromista.png', title: 'CHROMISTA', q: 'kingdomName=Chromista' },
+        { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-otros.png', title: 'OTROS', q: 'ingdomName=Archaea&ingdomName=Bacteria&ingdomName=incertae sedis&ingdomName=Protozoa&ingdomName=Viruses' },
       ],
     }
   }
+
+
 
   render() {
     return (

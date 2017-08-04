@@ -15,10 +15,10 @@ class DirectAccess extends Component {
     this.state = {
       links: [
         {
-          titulo: 'Departamentos',
-          img: '/home/colombia.png',
-          descripcion: 'Explora los datos disponibles para cada departamento',
-          to: '/departments',
+          titulo: 'Registros',
+          img: '/home/registros.png',
+          descripcion: 'Explora a través del buscador de registros biológicos',
+          to: '/occurrences',
         },
         {
           titulo: 'Publicadores',

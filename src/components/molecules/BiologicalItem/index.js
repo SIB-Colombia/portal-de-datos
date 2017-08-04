@@ -40,8 +40,8 @@ class BiologicalItem extends Component {
   }
 
   destino(t) {
-    return '/search/table?' +  // ToDo: define query params to search
-      'q=' + t
+    return '/search/table?' + t  // ToDo: define query params to search
+    //  'q=' + t
     /* +'&'+
     'kingdomName='+t+'&'+
     'phylumName='+t+'&'+
@@ -57,7 +57,7 @@ class BiologicalItem extends Component {
       <Col xs={12} sm={6} md={6} lg>
         <Row center="xs">
           <Wrapper>
-            <Link to={this.destino(this.props.group.name)}>
+            <Link to={this.destino(this.props.group.q)}>
               <Col xs={12} sm={12} md={12} lg={12}>
                 <Paper className="circle" circle>
                   <img src={this.props.group.img} alt={this.props.group.title} />
