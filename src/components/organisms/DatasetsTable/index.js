@@ -44,12 +44,12 @@ export default class DatasetsTable extends React.Component {
   }
 
   getNextOccurrencePage(page) {
-    GBIFService.getDatasetList(page - 1).then(data => {
+    GBIFService.getDatasetList(page * 10).then(data => {
       this.setState({
         recursos: data.results,
         count: data.count,
         limit: data.limit,
-        offset: data.offset,
+        offset: data.offset / 10,
       })
     })
   }

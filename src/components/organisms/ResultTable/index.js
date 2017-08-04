@@ -73,7 +73,6 @@ export default class ResultTable extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <Wrapper>
         <Table selectable={false}>

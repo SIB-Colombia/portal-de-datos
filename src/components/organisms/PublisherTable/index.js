@@ -59,7 +59,6 @@ class PublisherTable extends React.Component {
         <PublisherRow key={publisher.key} publisher={publisher} />
       ))
     )
-    console.log(this.state.publishers)
     return (
       <Wrapper>
         <Table selectable={false}>
