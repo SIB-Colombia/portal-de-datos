@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'material-ui/Table'
 import Pagination from 'material-ui-pagination'
 import { SpeciesRow, Loading } from 'components'
+import * as SpeciesService from '../../../services/SpeciesService'
 
 const Wrapper = styled.div`
   margin: 20px 0px;
@@ -31,13 +32,20 @@ export default class SpeciesTable extends Component {
       total: 20,
       display: 7,
       number: 1,
+      species: null,
     }
+  }
+
+  componentWillMount() {
+    SpeciesService.getSpecies().then(data => {
+      this.setState({ species: data })
+    })
   }
 
   render() {
     return (
       <Wrapper>
-        {this.props.species && <Table selectable={false}>
+        {this.state.species && <Table selectable={false}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               <TableHeaderColumn className="font"># de Registros</TableHeaderColumn>
@@ -52,7 +60,7 @@ export default class SpeciesTable extends Component {
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
-            {this.props.species.map((species, i) => (
+            {this.state.species.map((species, i) => (
               <SpeciesRow key={i} species={species} />
             ))}
           </TableBody>

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { PublisherRow } from 'components'
+import { PublisherRow, Loading } from 'components'
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'material-ui/Table'
 import Pagination from 'material-ui-pagination'
 import _ from 'lodash'
@@ -61,7 +61,7 @@ class PublisherTable extends React.Component {
     )
     return (
       <Wrapper>
-        <Table selectable={false}>
+        {this.state.publishers && <Table selectable={false}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               <TableHeaderColumn className="font">Publicador</TableHeaderColumn>
@@ -73,7 +73,7 @@ class PublisherTable extends React.Component {
           <TableBody displayRowCheckbox={false}>
             {rows}
           </TableBody>
-        </Table>
+        </Table> || <Loading />}
         <div className="pagination">
           <Pagination total={Math.ceil(this.state.count / this.state.limit)} current={this.state.offset} display={this.state.limit} onChange={number => this.getNextOccurrencePage(number)} />
         </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'material-ui/Table'
 import Pagination from 'material-ui-pagination'
-import { DatasetsRow } from 'components'
+import { DatasetsRow, Loading } from 'components'
 import _ from 'lodash'
 import * as GBIFService from '../../../services/GBIFService'
 
@@ -62,7 +62,7 @@ export default class DatasetsTable extends React.Component {
     )
     return (
       <Wrapper>
-        <Table selectable={false}>
+        {this.state.recursos && <Table selectable={false}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               <TableHeaderColumn className="font">Nombre del Recurso</TableHeaderColumn>
@@ -74,7 +74,7 @@ export default class DatasetsTable extends React.Component {
           <TableBody displayRowCheckbox={false}>
             {rows}
           </TableBody>
-        </Table>
+        </Table> || <Loading />}
         <div className="pagination">
           <Pagination total={Math.ceil(this.state.count / this.state.limit)} current={this.state.offset - 9} display={this.state.limit} onChange={number => this.getNextOccurrencePage(number + 10)} />
         </div>
