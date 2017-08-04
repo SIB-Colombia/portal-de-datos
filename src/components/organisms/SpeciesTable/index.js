@@ -23,7 +23,6 @@ const Wrapper = styled.div`
 export default class SpeciesTable extends Component {
 
   static propTypes = {
-    species: PropTypes.any.isRequired,
   }
 
   constructor(props) {

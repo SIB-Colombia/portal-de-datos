@@ -1,18 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
-import Carousel from 'react-slick';
-import { Grid, Row, Col } from 'react-flexbox-grid';
-import RaisedButton from 'material-ui/RaisedButton';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import Menu from 'material-ui/svg-icons/navigation/menu';
-import ArrowBack from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
-import Drawer from 'material-ui/Drawer';
-import Chip from 'material-ui/Chip';
-import { List, ListItem } from 'material-ui/List';
-import ActionGrade from 'material-ui/svg-icons/action/grade';
-import Subheader from 'material-ui/Subheader';
-import { Link } from 'components';
-import { size, palette } from 'styled-theme';
+import React from 'react'
+import styled from 'styled-components'
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import Menu from 'material-ui/svg-icons/navigation/menu'
+import Drawer from 'material-ui/Drawer'
+import Chip from 'material-ui/Chip'
+import { List, ListItem } from 'material-ui/List'
+import ActionGrade from 'material-ui/svg-icons/action/grade'
+import Subheader from 'material-ui/Subheader'
+import { size, palette } from 'styled-theme'
 
 const Wrapper = styled.div`
 
