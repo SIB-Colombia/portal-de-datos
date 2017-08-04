@@ -28,6 +28,10 @@ const Wrapper = styled.div`
         font-weight: 200;
     }
 
+    .color-hover {
+        fill: red;
+    }
+
 `
 export default class GeographicExplorerItem extends Component {
 
@@ -37,6 +41,9 @@ export default class GeographicExplorerItem extends Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+      color: true,
+    }
   }
 
   render() {
@@ -48,8 +55,8 @@ export default class GeographicExplorerItem extends Component {
               {this.props.link.titulo}
             </Col>
             <Col className="accent-title" mdOffset={4} md={4} />
-            <Col md style={{ textAlign: 'center', padding: 30 }}>
-              <img src={this.props.link.img} alt="" width="60%" />
+            <Col md style={{ textAlign: 'center', padding: 30 }} onMouseEnter={() => this.setState({ color: !this.state.color })} onMouseLeave={() => this.setState({ color: !this.state.color })}>
+              <img src={this.state.color ? this.props.link.img : this.props.link.imgC} alt="" width="60%" className="color-hover" />
             </Col>
             <Col md className="descripcion">
               <i>{this.props.link.descripcion}</i>
