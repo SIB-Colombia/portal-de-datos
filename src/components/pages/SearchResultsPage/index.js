@@ -11,10 +11,11 @@ import {
   HumboldtMap,
   DatasetsTable,
   SpeciesTable,
-  Loading,
 } from 'components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import { Tabs, Tab } from 'material-ui/Tabs'
+import FlatButton from 'material-ui/FlatButton'
+import FileDownload from 'material-ui/svg-icons/file/file-download'
 
 const Wrapper = styled.div`
     margin-top: 85px;
@@ -93,9 +94,17 @@ class SearchResultsPage extends React.Component {
       <PageTemplate header={<Header filter={<FileSearchMenu />} />} footer={<Footer />}>
         <Wrapper>
           <Grid>
-            <Row>
+            <Row between="xs">
               <Col className="title" md={12}>Registros biólogicos</Col>
               <Col className="accent-title" md={1} />
+              <Col md={1}>
+                <FlatButton
+                  label="DESCARGA"
+                  labelPosition="before"
+                  icon={<FileDownload />}
+                  style={{ color: '#4B5353' }}
+                />
+              </Col>
             </Row>
           </Grid>
           <Grid>

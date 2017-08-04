@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'material-ui/Table'
 import Pagination from 'material-ui-pagination'
-import { SpeciesRow } from 'components'
+import { SpeciesRow, Loading } from 'components'
 
 const Wrapper = styled.div`
   margin: 20px 0px;
@@ -37,7 +37,7 @@ export default class SpeciesTable extends Component {
   render() {
     return (
       <Wrapper>
-        <Table selectable={false}>
+        {this.props.species && <Table selectable={false}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               <TableHeaderColumn className="font"># de Registros</TableHeaderColumn>
@@ -56,7 +56,7 @@ export default class SpeciesTable extends Component {
               <SpeciesRow key={i} species={species} />
             ))}
           </TableBody>
-        </Table>
+        </Table> || <Loading />}
         <div className="pagination">
           <Pagination total={this.state.total} current={this.state.number} display={this.state.display} onChange={number => this.setState({ number })} />
         </div>
