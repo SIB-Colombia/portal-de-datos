@@ -5,7 +5,7 @@ import {
   PageTemplate,
   Header,
   Footer,
-  FileSearchMenu,
+  FileSearchFilter,
   ResultTable,
   PublisherTable,
   HumboldtMap,
@@ -91,7 +91,7 @@ class SearchResultsPage extends React.Component {
 
   render() {
     return (
-      <PageTemplate header={<Header filter={<FileSearchMenu />} />} footer={<Footer />}>
+      <PageTemplate header={<Header filter={<FileSearchFilter />} />} footer={<Footer />}>
         <Wrapper>
           <Grid>
             <Row between="xs">
