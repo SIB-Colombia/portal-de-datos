@@ -32,7 +32,7 @@ class BiologicalGroups extends Component {
         { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-plantas.png', title: 'PLANTAS', q: 'kingdomName=Plantae' },
         { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-hongos.png', title: 'HONGOS', q: 'kingdomName=Fungi' },
         { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-chromista.png', title: 'CHROMISTA', q: 'kingdomName=Chromista' },
-        { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-otros.png', title: 'OTROS', q: 'ingdomName=Archaea&ingdomName=Bacteria&ingdomName=incertae sedis&ingdomName=Protozoa&ingdomName=Viruses' },
+        { img: 'https://s3.amazonaws.com/sib-resources/images/catalogo/inicio/png/h-otros.png', title: 'OTROS', q: 'kingdomName=Archaea&kingdomName=Bacteria&kingdomName=incertae sedis&kingdomName=Protozoa&kingdomName=Viruses' },
       ],
     }
   }

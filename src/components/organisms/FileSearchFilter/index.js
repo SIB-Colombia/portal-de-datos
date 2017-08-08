@@ -11,7 +11,8 @@ import Replay from 'material-ui/svg-icons/av/replay'
 import { Card, CardHeader, CardText } from 'material-ui/Card'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
-import TextField from 'material-ui/TextField'
+import AutoComplete from 'material-ui/AutoComplete'
+import { FileSearchItem } from 'components'
 
 const Wrapper = styled.div`
   float: left;
@@ -47,6 +48,23 @@ const Wrapper = styled.div`
     }
   }
 `
+
+
+const colors = [
+  'Red',
+  'Orange',
+  'Yellow',
+  'Green',
+  'Blue',
+  'Purple',
+  'Black',
+  'White',
+]
+
+const menuProps = {
+  desktop: true,
+  disableAutoFocus: true,
+}
 
 export default class FileSearchFilter extends Component {
   static propTypes = {
@@ -90,39 +108,34 @@ export default class FileSearchFilter extends Component {
             <Menu />
           </FloatingActionButton>
         </div>
-        <Drawer open={this.state.open} containerClassName="drawer" width={300}>
+        <Drawer open={this.state.open} containerClassName="drawer" width={290}>
           <List>
-            <ListItem primaryText="Filtros de búsqueda" leftIcon={<FilterList />} rightIcon={<IconButton className="material-icons" style={{ padding: 0, boxSizing: 'none' }} tooltip="Reiniciar filtros" tooltipPosition="bottom-left" touch><Replay /></IconButton>} disabled />
+            <ListItem primaryText="Filtros de búsqueda" leftIcon={<FilterList />} rightIcon={<IconButton className="material-icons" style={{ padding: 0, boxSizing: 'none' }} tooltip="Reiniciar filtros" tooltipPosition="bottom-left"><Replay /></IconButton>} disabled />
           </List>
-          <Card className="paper">
-            <CardHeader
-              title="Taxonomía"
-              actAsExpander
-              showExpandableButton
-              titleColor="#FF7847"
-              titleStyle={{ fontSize: 17 }}
+          <FileSearchItem title="Taxonomía">
+            <SelectField
+              value={this.state.value}
+              onChange={this.handleChange}
+              labelStyle={{ color: '#838787' }}
+              underlineStyle={{ borderColor: '#FF7847' }}
+              iconStyle={{ fill: '#838787' }}
+              underlineFocusStyle={{ borderColor: '#FF7847' }}
+            >
+              <MenuItem value={1} primaryText="Nombre científico" />
+              <MenuItem value={2} primaryText="Every Night" />
+              <MenuItem value={3} primaryText="Weeknights" />
+              <MenuItem value={4} primaryText="Weekends" />
+              <MenuItem value={5} primaryText="Weekly" />
+            </SelectField>
+            <AutoComplete
+              hintText="Escriba el nombre científico"
+              dataSource={colors}
+              menuProps={menuProps}
+              underlineStyle={{ borderColor: '#FF7847' }}
+              underlineFocusStyle={{ borderColor: '#FF7847' }}
+              hintStyle={{ color: '#838787' }}
             />
-            <CardText expandable style={{ background: '#F2F2F2' }}>
-              <SelectField
-                value={this.state.value}
-                onChange={this.handleChange}
-                labelStyle={{ color: '#4F5757' }}
-                underlineStyle={{ borderColor: '#FF7847' }}
-              >
-                <MenuItem value={1} primaryText="Nombre científico" />
-                <MenuItem value={2} primaryText="Every Night" />
-                <MenuItem value={3} primaryText="Weeknights" />
-                <MenuItem value={4} primaryText="Weekends" />
-                <MenuItem value={5} primaryText="Weekly" />
-              </SelectField>
-              <TextField
-                hintText="Escriba el nombre cientifico"
-                hintStyle={{ color: '#4F5757' }}
-                underlineStyle={{ borderColor: '#FF7847' }}
-                underlineFocusStyle={{ borderColor: '#FF7847' }}
-              />
-            </CardText>
-          </Card>
+          </FileSearchItem>
         </Drawer>
       </Wrapper>
     )
