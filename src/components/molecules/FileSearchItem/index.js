@@ -26,7 +26,6 @@ export default class FileSearchItem extends Component {
             title={this.props.title}
             actAsExpander
             showExpandableButton
-            titleStyle={{ fontSize: 17 }}
           />
           <CardText expandable style={{ background: '#F3F8F8' }}>
             {this.props.children}
