@@ -76,4 +76,4 @@ class OrganismSection extends React.Component {
   }
 }
 
-export default TaxonSection
+export default OrganismSection

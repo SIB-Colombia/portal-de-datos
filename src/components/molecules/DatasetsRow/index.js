@@ -18,7 +18,7 @@ export default class DatasetsRow extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     GBIFService.getPublisherById(this.props.recurso.publishingOrganizationKey).then(data => {
       this.setState({ publisherKey: data.title })
     })

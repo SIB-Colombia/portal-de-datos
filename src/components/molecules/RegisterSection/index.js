@@ -100,5 +100,3 @@ export default class RegisterSection extends React.Component {
     )
   }
 }
-
-export default RegisterSection

@@ -7,18 +7,22 @@ const Wrapper = styled.div`
   background: #00AAB9;
   margin: 5px 0px;
   .doi {
-    color: white; 
+    color: white;
     font-weight: 600;
     padding-left: 16px;
     padding-top: 3px;
-    padding-bottom: 3px;    
+    padding-bottom: 3px;
+    text-align: right;
   }
 
   .url{
     background: white;
     margin: 2px;
-    margin-right: 10px;    
+    margin-left: 10px;
+    margin-right: 10px;
     color: #4B5353;
+    padding: 0;
+    font-size: 16px;
   }
 `
 

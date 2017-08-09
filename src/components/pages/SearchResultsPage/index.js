@@ -11,6 +11,16 @@ import {
   HumboldtMap,
   DatasetsTable,
   SpeciesTable,
+  TaxonomySearchItem,
+  TaxonomicCategorySearchItem,
+  LocationSearchItem,
+  HabitatSearchItem,
+  ElevationSearchItem,
+  DepthSearchItem,
+  PublisherSearchItem,
+  DateEventSearchItem,
+  NameCollectorSearchItem,
+  ResourceNameSearchItem,
 } from 'components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import { Tabs, Tab } from 'material-ui/Tabs'
@@ -91,7 +101,27 @@ class SearchResultsPage extends React.Component {
 
   render() {
     return (
-      <PageTemplate header={<Header filter={<FileSearchFilter />} />} footer={<Footer />}>
+      <PageTemplate
+        header={
+          <Header
+            filter={
+              <FileSearchFilter>
+                <TaxonomySearchItem />
+                <TaxonomicCategorySearchItem />
+                <LocationSearchItem />
+                <HabitatSearchItem />
+                <ElevationSearchItem />
+                <DepthSearchItem />
+                <PublisherSearchItem />
+                <DateEventSearchItem />
+                <NameCollectorSearchItem />
+                <ResourceNameSearchItem />
+              </FileSearchFilter>
+            }
+          />
+        }
+        footer={<Footer />}
+      >
         <Wrapper>
           <Grid>
             <Row between="xs">

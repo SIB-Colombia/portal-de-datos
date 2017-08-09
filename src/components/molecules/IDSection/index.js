@@ -76,4 +76,4 @@ class IDSection extends React.Component {
   }
 }
 
-export default TaxonSection
+export default IDSection
