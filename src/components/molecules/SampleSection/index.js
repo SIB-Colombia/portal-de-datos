@@ -53,8 +53,8 @@ class SampleSection extends React.Component {
         <Col className="accent-title" md={11} />
         <Grid fluid>
           <Row className="more-details">
-            {this.state. && <Col md={6} className="details-title"></Col>}
-            {this.state. && <Col md={6}>{this.state.}</Col>}
+            {this.state.ocurrence.materialSampleID && <Col md={6} className="details-title">ID de muestra del ejemplar</Col>}
+            {this.state.ocurrence.materialSampleID && <Col md={6}>{this.state.ocurrence.materialSampleID}</Col>}
           </Row>
         </Grid>
       </Wrapper>
@@ -62,4 +62,4 @@ class SampleSection extends React.Component {
   }
 }
 
-export default TaxonSection
+export default SampleSection

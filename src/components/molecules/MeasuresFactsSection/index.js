@@ -53,24 +53,24 @@ class MeasuresFactsSection extends React.Component {
         <Col className="accent-title" md={11} />
         <Grid fluid>
           <Row className="more-details">
-            {this.state. && <Col md={6} className="details-title"></Col>}
-            {this.state. && <Col md={6}>{this.state.}</Col>}
-            {this.state. && <Col md={6} className="details-title"></Col>}
-            {this.state. && <Col md={6}>{this.state.}</Col>}
-            {this.state. && <Col md={6} className="details-title"></Col>}
-            {this.state. && <Col md={6}>{this.state.}</Col>}
-            {this.state. && <Col md={6} className="details-title"></Col>}
-            {this.state. && <Col md={6}>{this.state.}</Col>}
-            {this.state. && <Col md={6} className="details-title"></Col>}
-            {this.state. && <Col md={6}>{this.state.}</Col>}
-            {this.state. && <Col md={6} className="details-title"></Col>}
-            {this.state. && <Col md={6}>{this.state.}</Col>}
-            {this.state. && <Col md={6} className="details-title"></Col>}
-            {this.state. && <Col md={6}>{this.state.}</Col>}
-            {this.state. && <Col md={6} className="details-title"></Col>}
-            {this.state. && <Col md={6}>{this.state.}</Col>}
-            {this.state. && <Col md={6} className="details-title"></Col>}
-            {this.state. && <Col md={6}>{this.state.}</Col>}
+            {this.state.measurementOrFact.measurementID && <Col md={6} className="details-title">Identificador</Col>}
+            {this.state.measurementOrFact.measurementID && <Col md={6}>{this.state.measurementOrFact.measurementID}</Col>}
+            {this.state.measurementOrFact.measurementType && <Col md={6} className="details-title">Tipo</Col>}
+            {this.state.measurementOrFact.measurementType && <Col md={6}>{this.state.measurementOrFact.measurementType}</Col>}
+            {this.state.measurementOrFact.measurementValue && <Col md={6} className="details-title">Valor</Col>}
+            {this.state.measurementOrFact.measurementValue && <Col md={6}>{this.state.measurementOrFact.measurementValue}</Col>}
+            {this.state.measurementOrFact.measurementAccuracy && <Col md={6} className="details-title">Precisión</Col>}
+            {this.state.measurementOrFact.measurementAccuracy && <Col md={6}>{this.state.measurementOrFact.measurementAccuracy}</Col>}
+            {this.state.measurementOrFact.measurementUnit && <Col md={6} className="details-title">Unidad de medida</Col>}
+            {this.state.measurementOrFact.measurementUnit && <Col md={6}>{this.state.measurementOrFact.measurementUnit}</Col>}
+            {this.state.measurementOrFact.measurementDeterminedBy && <Col md={6} className="details-title">Determinado por</Col>}
+            {this.state.measurementOrFact.measurementDeterminedBy && <Col md={6}>{this.state.measurementOrFact.measurementDeterminedBy}</Col>}
+            {this.state.measurementOrFact.measurementDeterminedDate && <Col md={6} className="details-title">Fecha</Col>}
+            {this.state.measurementOrFact.measurementDeterminedDate && <Col md={6}>{this.state.measurementOrFact.measurementDeterminedDate}</Col>}
+            {this.state.measurementOrFact.measurementMethod && <Col md={6} className="details-title">Método</Col>}
+            {this.state.measurementOrFact.measurementMethod && <Col md={6}>{this.state.measurementOrFact.measurementMethod}</Col>}
+            {this.state.measurementOrFact.measurementRemarks && <Col md={6} className="details-title">Comentarios</Col>}
+            {this.state.measurementOrFact.measurementRemarks && <Col md={6}>{this.state.measurementOrFact.measurementRemarks}</Col>}
           </Row>
         </Grid>
       </Wrapper>
@@ -78,4 +78,4 @@ class MeasuresFactsSection extends React.Component {
   }
 }
 
-export default TaxonSection
+export default MeasuresFactsSection

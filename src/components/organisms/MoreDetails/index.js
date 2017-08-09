@@ -8,6 +8,11 @@ import {
   EventSection,
   TaxonSection,
   RegistrationElementSection,
+  IDSection,
+  OrganismSection,
+  SampleSection,
+  MeasuresFactsSection,
+  RelatedResourcesSection,
 } from 'components'
 
 const Wrapper = styled.div`
