@@ -34,7 +34,7 @@ const Wrapper = styled.div`
 
     .number {
       font-weight: 400;
-      font-size: 28px;   
+      font-size: 28px;
     }
   }
 
@@ -108,6 +108,14 @@ const Wrapper = styled.div`
 `
 
 export default class DatasetsDetails extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      eml: null,
+    }
+  }
+
   render() {
     this.contact = {
       name: 'Martha Isabel Vallejo Joyas',
@@ -127,18 +135,14 @@ export default class DatasetsDetails extends Component {
     return (
       <Wrapper>
         <PrincipalDataset />
-        <Paper className="separated">
-          <Grid>
-            <Row className="paper" center="xs">
-              <GlobalInfo inf={[{ name: 'REGISTROS', count: 546321 }]} />
-            </Row>
-          </Grid>
+        <GlobalInfo inf={[{ name: 'REGISTROS', count: 546321 }, { name: 'CON COORDENADAS', count: 346321 }, { name: 'TAXONES', count: 46321 }]} />
+        <Paper>
           <HumboldtMap />
         </Paper>
         <Grid >
           <Row className="information">
             <Col xs={12} sm={12} md={3} lg={3}>
-              <Paper className="indice">
+              <Paper className="indice" style={{ position: 'sticky', top: 80 }}>
                 <List>
                   {_.map([
                     { to: 'descripcion', name: 'Descripción' },
@@ -158,15 +162,9 @@ export default class DatasetsDetails extends Component {
             </Col>
             <Col xs={12} sm={12} md={9} lg={9}>
               <Row>
-                <PaperItem title="Descripción" id="descripcion">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore vel, adipisci pariatur. Nesciunt perspiciatis deserunt inventore veniam doloribus ullam, corporis porro minima error qui numquam consequuntur delectus autem cum possimus.
-                </PaperItem>
-                <PaperItem title="Cobertura temporal" id="temporal">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore vel, adipisci pariatur. Nesciunt perspiciatis deserunt inventore veniam doloribus ullam, corporis porro minima error qui numquam consequuntur delectus autem cum possimus.
-                </PaperItem>
-                <PaperItem title="Cobertura geográfica" id="geografia">
-                  <HumboldtMap />
-                </PaperItem>
+                {this.state.eml && <PaperItem title="Descripción" id="descripcion">{this.state.eml.dataset.abstract.para}</PaperItem>}
+                {this.state.eml && <PaperItem title="Cobertura temporal" id="temporal">{this.state.eml.dataset.purpose.para}</PaperItem>}
+                {this.state.eml && <PaperItem title="Cobertura geográfica" id="geografia"><HumboldtMap /></PaperItem>}
                 <PaperItem title="Cobertura taxonómica" id="taxonomia">
                   <TaxonomicCoverageSection />
                 </PaperItem>
@@ -236,7 +234,7 @@ export default class DatasetsDetails extends Component {
                         <Col md={3}>Identifiers</Col>
                         <Col md>
                           <Row>
-                            <Col md={12}><Doi doi="doi:10.15472/ch49b6" /></Col>
+                            <Col md={6}><Doi doi="doi:10.15472/ch49b6" /></Col>
                             <Col md={12}><Link>http://ipt.biodiversidad.co</Link></Col>
                             <Col md={12}><Link>http://ipt.biodiversidad.co</Link></Col>
                           </Row>
@@ -257,7 +255,7 @@ export default class DatasetsDetails extends Component {
                     </Col>
                   </Row>
                 </PaperItem>
-                <PaperItem title="Citacion" id="citacion">
+                <PaperItem title="Citación" id="citacion">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore vel, adipisci pariatur. Nesciunt perspiciatis deserunt inventore veniam doloribus ullam, corporis porro minima error qui numquam consequuntur delectus autem cum possimus.
                 </PaperItem>
               </Row>
