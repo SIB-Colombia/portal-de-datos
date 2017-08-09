@@ -103,7 +103,7 @@ class BasicInformation extends React.Component {
             <Col md={12} className="detalle-item"><span>Hábitat:</span> {this.props.record[0].habitat}</Col>
           </Row>
         </Grid>
-        <HumboldtMap marker={[this.props.record[0].decimalLatitude, this.props.record[0].decimalLongitude]} />
+        <HumboldtMap marker={[this.props.record[0].decimalLatitude, this.props.record[0].decimalLongitude]} zoom={true} />
         <Grid>
           <Row>
             <Col className="title-two" md={12}>Sobre el recurso</Col>

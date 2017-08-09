@@ -13,10 +13,15 @@ const Wrapper = styled.div`
 const position = [4.36, -74.04]
 
 class HumboldtMap extends React.Component {
+
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     return (
       <Wrapper>
-        <Map center={position} zoom={5}>
+        <Map center={position} zoom={5} scrollWheelZoom={false}>
           <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' />
           {this.props.marker && <Marker position={this.props.marker} />}
         </Map>

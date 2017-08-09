@@ -30,19 +30,19 @@ const Wrapper = styled.div`
 class EventSection extends React.Component {
 
   static propTypes = {
-    evento: PropTypes.any.isRequired,
+    ocurrence: PropTypes.any.isRequired,
   }
 
   constructor(props) {
     super(props)
     this.state = {
-      evento: [],
+      ocurrence: [],
     }
   }
 
   componentWillMount() {
     this.setState({
-      evento: this.props.evento,
+      ocurrence: this.props.ocurrence,
     })
   }
 
@@ -53,16 +53,42 @@ class EventSection extends React.Component {
         <Col className="accent-title" md={11} />
         <Grid fluid>
           <Row className="more-details">
-            <Col md={6} className="details-title">Día</Col>
-            <Col md={6}>{(this.state.evento.fechaEvento).substr(8, 2)}</Col>
-            <Col md={6} className="details-title">Mes</Col>
-            <Col md={6}>{(this.state.evento.fechaEvento).substr(5, 2)}</Col>
-            <Col md={6} className="details-title">Año</Col>
-            <Col md={6}>{(this.state.evento.fechaEvento).substr(0, 4)}</Col>
-            <Col md={6} className="details-title">Fecha del evento</Col>
-            <Col md={6}>{this.state.evento.fechaEvento.slice(0, 10)}</Col>
-            <Col md={6} className="details-title">ID del evento</Col>
-            <Col md={6}>{this.state.evento.id}</Col>
+            {this.state.ocurrence.eventID && <Col md={6} className="details-title">ID del evento</Col>}
+            {this.state.ocurrence.eventID && <Col md={6}>{this.state.ocurrence.eventID}</Col>}
+            {this.state.ocurrence.parentEventID && <Col md={6} className="details-title">ID del evento parental</Col>}
+            {this.state.ocurrence.parentEventID && <Col md={6}>{this.state.ocurrence.parentEventID}</Col>}
+            {this.state.ocurrence.samplingProtocol && <Col md={6} className="details-title">Protocolo de muestreo</Col>}
+            {this.state.ocurrence.samplingProtocol && <Col md={6}>{this.state.ocurrence.samplingProtocol}</Col>}
+            {this.state.ocurrence.sampleSizeValue && <Col md={6} className="details-title">Tamaño de la muestra</Col>}
+            {this.state.ocurrence.sampleSizeValue && <Col md={6}>{this.state.ocurrence.sampleSizeValue}</Col>}
+            {this.state.ocurrence.sampleSizeUnit && <Col md={6} className="details-title">Unidad del tamaño</Col>}
+            {this.state.ocurrence.sampleSizeUnit && <Col md={6}>{this.state.ocurrence.sampleSizeUnit}</Col>}
+            {this.state.ocurrence.samplingEffort && <Col md={6} className="details-title">Esfuerzo de muestreo</Col>}
+            {this.state.ocurrence.samplingEffort && <Col md={6}>{this.state.ocurrence.samplingEffort}</Col>}
+            {this.state.ocurrence.eventDate && <Col md={6} className="details-title">Fecha del evento</Col>}
+            {this.state.ocurrence.eventDate && <Col md={6}>{this.state.ocurrence.eventDate}</Col>}
+            {this.state.ocurrence.eventTime && <Col md={6} className="details-title">Hora del evento</Col>}
+            {this.state.ocurrence.eventTime && <Col md={6}>{this.state.ocurrence.eventTime}</Col>}
+            {this.state.ocurrence.startDayOfYear && <Col md={6} className="details-title">Día inicial del año</Col>}
+            {this.state.ocurrence.startDayOfYear && <Col md={6}>{this.state.ocurrence.startDayOfYear}</Col>}
+            {this.state.ocurrence.endDayOfYear && <Col md={6} className="details-title">Día final del año</Col>}
+            {this.state.ocurrence.endDayOfYear && <Col md={6}>{this.state.ocurrence.endDayOfYear}</Col>}
+            {this.state.ocurrence.year && <Col md={6} className="details-title">Año</Col>}
+            {this.state.ocurrence.year && <Col md={6}>{this.state.ocurrence.year}</Col>}
+            {this.state.ocurrence.month && <Col md={6} className="details-title">Mes</Col>}
+            {this.state.ocurrence.month && <Col md={6}>{this.state.ocurrence.month}</Col>}
+            {this.state.ocurrence.day && <Col md={6} className="details-title">Día</Col>}
+            {this.state.ocurrence.day && <Col md={6}>{this.state.ocurrence.day}</Col>}
+            {this.state.ocurrence.verbatimEventDate && <Col md={6} className="details-title">Fecha original del evento</Col>}
+            {this.state.ocurrence.verbatimEventDate && <Col md={6}>{this.state.ocurrence.verbatimEventDate}</Col>}
+            {this.state.ocurrence.habitat && <Col md={6} className="details-title">Hábitat</Col>}
+            {this.state.ocurrence.habitat && <Col md={6}>{this.state.ocurrence.habitat}</Col>}
+            {this.state.ocurrence.fieldNumber && <Col md={6} className="details-title">Número de campo</Col>}
+            {this.state.ocurrence.fieldNumber && <Col md={6}>{this.state.ocurrence.fieldNumber}</Col>}
+            {this.state.ocurrence.fieldNotes && <Col md={6} className="details-title">Notas de campo</Col>}
+            {this.state.ocurrence.fieldNotes && <Col md={6}>{this.state.ocurrence.fieldNotes}</Col>}
+            {this.state.ocurrence.eventRemarks && <Col md={6} className="details-title">Comentarios del evento</Col>}
+            {this.state.ocurrence.eventRemarks && <Col md={6}>{this.state.ocurrence.eventRemarks}</Col>}
           </Row>
         </Grid>
       </Wrapper>
