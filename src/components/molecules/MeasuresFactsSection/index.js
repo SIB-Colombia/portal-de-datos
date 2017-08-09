@@ -30,19 +30,19 @@ const Wrapper = styled.div `
 class MeasuresFactsSection extends React.Component {
 
   static propTypes = {
-    ocurrence: PropTypes.any.isRequired,
+    measurementOrFact: PropTypes.any.isRequired,
   }
 
   constructor(props) {
     super(props)
     this.state = {
-      ocurrence: [],
+      measurementOrFact: [],
     }
   }
 
   componentWillMount() {
     this.setState({
-      ocurrence: this.props.ocurrence,
+      measurementOrFact: this.props.measurementOrFact,
     })
   }
 

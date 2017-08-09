@@ -30,19 +30,19 @@ const Wrapper = styled.div `
 class RelatedResourcesSection extends React.Component {
 
   static propTypes = {
-    ocurrence: PropTypes.any.isRequired,
+    resourceRelationship: PropTypes.any.isRequired,
   }
 
   constructor(props) {
     super(props)
     this.state = {
-      ocurrence: [],
+      resourceRelationship: [],
     }
   }
 
   componentWillMount() {
     this.setState({
-      ocurrence: this.props.ocurrence,
+      resourceRelationship: this.props.resourceRelationship,
     })
   }
 

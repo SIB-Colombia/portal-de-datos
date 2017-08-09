@@ -13,6 +13,8 @@ import {
   SampleSection,
   MeasuresFactsSection,
   RelatedResourcesSection,
+  MultimediaSection,
+  GeologicalContextSection,
 } from 'components'
 
 const Wrapper = styled.div`
@@ -96,10 +98,10 @@ class MoreDetails extends React.Component {
               {this.state.detail.occurrence && <GeologicalContextSection ocurrence={this.state.detail.occurrence} />}
             </Col>
             <Col md={6}>
-              {this.state.detail.resourceRelationship && <RelatedResourcesSection ocurrence={this.state.detail.resourceRelationship} />}
+              {this.state.detail.resourceRelationship && <RelatedResourcesSection resourceRelationship={this.state.detail.resourceRelationship} />}
             </Col>
             <Col md={6}>
-              {this.state.detail.multimedia && <MultimediaSection ocurrence={this.state.detail.multimedia} />}
+              {this.state.detail.multimedia && <MultimediaSection multimedia={this.state.detail.multimedia} />}
             </Col>
           </Row>
         </Grid>
