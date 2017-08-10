@@ -127,21 +127,6 @@ export default class DatasetsDetails extends Component {
   }
 
   render() {
-    this.contact = {
-      name: 'Martha Isabel Vallejo Joyas',
-      inf: [
-        'Orginator Metadata Author',
-        'Principal Investigador',
-        'Investigador principal',
-        'Calle 28 A No. 15-09',
-        'Bogotá, D.C',
-        'Bogotá, D.C',
-        'Colombia',
-        'martisavallejo@gmail.com',
-        '320-2767',
-      ],
-    }
-
     return (
       <Wrapper>
         {this.state.eml && <PrincipalDataset eml={this.state.eml} />}
@@ -179,10 +164,10 @@ export default class DatasetsDetails extends Component {
                 {this.state.eml.dataset.coverage.taxonomicCoverage && <PaperItem title="Cobertura taxonómica" id="taxonomia"><TaxonomicCoverageSection /></PaperItem>}
                 {this.state.eml.dataset.methods && <PaperItem title="Metodología" id="metodo_muestro"><MethodologySection method={this.state.eml.dataset.methods} /></PaperItem>}
                 {this.state.eml.additionalMetadata.metadata.gbif.bibliography && <PaperItem title="Bibliografía" id="bibliografia">{this.state.eml.additionalMetadata.metadata.gbif.bibliography}</PaperItem>}
-                {this.state.eml.associatedParty && <PaperItem title="Partes asociadas" id="partes_asociadas">
+                {this.state.eml.contacts && <PaperItem title="Partes asociadas" id="partes_asociadas">
                   <Row className="contacts">
-                    {_.map([0, 1], (key) => (
-                      <ContactItem key={key} contact={this.contact} />
+                    {_.map(this.state.eml.contacts, (value, key) => (
+                      <ContactItem key={key} contact={value} />
                     ))}
                   </Row>
                 </PaperItem>}

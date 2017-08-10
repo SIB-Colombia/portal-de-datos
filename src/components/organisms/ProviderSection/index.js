@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   }
 
   .sub-title{
-    font-size: 36px;    
+    font-size: 36px;
     margin: 20px;
     font-weight: 400;
   }
@@ -49,12 +49,12 @@ const Wrapper = styled.div`
 
   .number {
       font-weight: 400;
-      font-size: 28px;   
+      font-size: 28px;
   }
 
   .more-datails{
     text-align: left;
-    
+
     .description {
       padding: 20px;
       line-height: 35px;
@@ -62,7 +62,7 @@ const Wrapper = styled.div`
 
     .hiper-link{
       font-weight: 400;
-      color: #10AFBD;      
+      color: #10AFBD;
     }
 
     .direct-links {
@@ -103,10 +103,10 @@ export default class ProviderSection extends Component {
         <Paper className="separated">
           <Grid fluid>
             <Row className="paper">
-              <Col xs={12} sm={6} md={4} lg={3}><span className="number">{this.props.provider.globalInfo.records}</span> REGISTROS</Col>
-              <Col xs={12} sm={6} md={4} lg={3}><span className="number">{this.props.provider.globalInfo.datasets}</span> RECURSOS</Col>
-              <Col xs={12} sm={6} md={4} lg={3}><span className="number">{this.props.provider.globalInfo.species}</span> ESPECIES</Col>
-              <Col xs={12} sm={6} md={12} lg={3}><span className="number">{this.props.provider.globalInfo.georeferenced}</span> GEORREFERENCIADOS</Col>
+              <Col xs={12} sm={6} md={4} lg={3}><span className="number">{this.props.provider.occurrence.count.providerName}</span> REGISTROS</Col>
+              <Col xs={12} sm={6} md={4} lg={3}><span className="number">{this.props.provider.occurrence.count.providerName}</span> RECURSOS</Col>
+              <Col xs={12} sm={6} md={4} lg={3}><span className="number">{this.props.provider.occurrence.count.scientificName}</span> ESPECIES</Col>
+              <Col xs={12} sm={6} md={12} lg={3}><span className="number">{this.props.provider.occurrence.count.resourceName}</span> GEORREFERENCIADOS</Col>
             </Row>
           </Grid>
         </Paper>
@@ -115,7 +115,7 @@ export default class ProviderSection extends Component {
             <Col xs={12} sm={12} md={4} lg={3}>
               <Row center="xs">
                 <Col xs={12} sm={12} md={12} lg={12}>
-                  <img src={this.props.provider.imageUrl} alt="" width="262" height="261" />
+                  <img src={this.props.provider.additionalMetadata.metadata.gbif.resourceLogoUrl} alt="" width="262" height="261" />
                 </Col>
                 <Col xs={12} sm={12} md={12} lg={12}>
                   <Row middle="xs">
@@ -125,7 +125,7 @@ export default class ProviderSection extends Component {
                       </IconButton>
                     </Col>
                     <Col xs={11} sm={11} md={10} lg={10}>
-                      <Link to="#" className="hiper-link">{this.props.provider.webLink}</Link>
+                      <Link to="#" className="hiper-link">{this.props.provider.dataset.organization.web_site}</Link>
                     </Col>
                   </Row>
                 </Col>
@@ -137,13 +137,11 @@ export default class ProviderSection extends Component {
                 <Col className="accent-title" xs={2} sm={1} md={1} />
               </Row>
               <Row>
-                <Col className="description" xs={12} sm={12} md={12} lg={12}>{this.props.provider.description}</Col>
+                <Col className="description" xs={12} sm={12} md={12} lg={12}>{this.props.provider.dataset.organization.description}</Col>
               </Row>
               <Row className="direct-links">
-                <Col xs={12} sm={12} md={12} lg={12}>Endorsed by <Link>{this.props.provider.principalContacts.endorcedBy}</Link></Col>
-                <Col xs={12} sm={12} md={12} lg={12}>Installation <Link>{this.props.provider.principalContacts.installation}</Link></Col>
-                <Col xs={12} sm={12} md={12} lg={12}>Administritive contact: <Link>{this.props.provider.principalContacts.administrativeContact}</Link></Col>
-                <Col xs={12} sm={12} md={12} lg={12}>Technical contact: <Link>{this.props.provider.principalContacts.technicalContact}</Link></Col>
+                <Col xs={12} sm={12} md={12} lg={12}>Administritive contact: <Link>{this.props.provider.dataset.organization.contacts[0].name}</Link></Col>
+                <Col xs={12} sm={12} md={12} lg={12}>Technical contact: <Link>{this.props.provider.dataset.organization.contacts[1].name}</Link></Col>
               </Row>
             </Col>
           </Row>

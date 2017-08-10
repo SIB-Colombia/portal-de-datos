@@ -30,10 +30,10 @@ const Wrapper = styled.div`
     .informacion-relevante{
       padding: 10px 0px;
       font-size: 18px;
-      font-weight: 400;  
+      font-weight: 400;
 
       span {
-        font-weight: 600;        
+        font-weight: 600;
       }
     }
   }
@@ -55,22 +55,22 @@ export default class EntitiesItem extends Component {
         <Link to={`provider/${this.props.entities.id}`}>
           <Row className="entidad-item">
             <Col md={3}>
-              <img src={this.props.entities.imageUrl} alt="" width="100%" />
+              <img src="" alt={this.props.entities.eml.additionalMetadata.metadata.gbif.resourceLogoUrl} width="100%" />
             </Col>
             <Col md={8}>
               <Row>
-                <Col md={12} className="entidad-title">{this.props.entities.providerName}</Col>
+                <Col md={12} className="entidad-title">{this.props.entities.eml.providerName}</Col>
                 <Col md={12} className="entidad-descripcion">
-                  {this.props.entities.description}
+                  {this.props.entities.eml.dataset.organization.description}
                 </Col>
                 <Col className="entidad-divider" md={12} />
                 <Col md={12}>
                   <Row className="informacion-relevante">
-                    <Col md>{this.props.entities.department}</Col>
+                    <Col md>{this.props.entities.eml.dataset.organization.city}</Col>
                     <Col md>
                       <Row>
-                        <Col md><span>{this.props.entities.globalInfo.records}</span> REGISTROS</Col>
-                        <Col md><span>{this.props.entities.globalInfo.datasets}</span> RECURSOS</Col>
+                        <Col md><span>{this.props.entities.eml.occurrence.count.providerName}</span> REGISTROS</Col>
+                        <Col md><span>{this.props.entities.eml.occurrence.count.resourceName}</span> RECURSOS</Col>
                       </Row>
                     </Col>
                   </Row>
