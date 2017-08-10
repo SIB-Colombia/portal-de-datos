@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   }
 
   .sub-title{
-    font-size: 36px;    
+    font-size: 36px;
     margin: 20px;
     font-weight: 400;
   }
@@ -35,6 +35,20 @@ const Wrapper = styled.div`
 
 export default class DatasetsSection extends Component {
   static propTypes = {
+    eml: PropTypes.any,
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      eml: null,
+    }
+  }
+
+  componentWillMount() {
+    this.setState({
+      eml: this.props.eml,
+    })
   }
 
   render() {
@@ -46,8 +60,8 @@ export default class DatasetsSection extends Component {
             <Col className="accent-title" xs={2} sm={1} md={1} lg={1} />
           </Row>
           <Row center="xs">
-            <Col xs={12} sm={12} md={12} lg={12} className="sub-title">Herbario Amazónico Colombiano</Col>
-            <Col xs={12} sm={12} md={12} lg={12} style={{ marginBottom: 10 }}><Link className="link">Publicado por <span>Instituto Amazónico de Investigaciones Cientificas Sinchi</span></Link></Col>
+            <Col xs={12} sm={12} md={12} lg={12} className="sub-title">{this.state.eml.resourceName}</Col>
+            <Col xs={12} sm={12} md={12} lg={12} style={{ marginBottom: 10 }}><Link className="link">Publicado por <span>{this.state.eml.providerName}</span></Link></Col>
             <Col xs={12} sm={12} md={12} lg={12} className="">Martha Isabel Vallejo Joyas · <Email style={{ color: '#4B5353' }} viewBox="-8 5 30 1" />   Hernando Garcia</Col>
           </Row>
         </Grid>

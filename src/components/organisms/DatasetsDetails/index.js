@@ -109,11 +109,21 @@ const Wrapper = styled.div`
 
 export default class DatasetsDetails extends Component {
 
+  static propTypes = {
+    eml: PropTypes.any,
+  }
+
   constructor(props) {
     super(props)
     this.state = {
       eml: null,
     }
+  }
+
+  componentWillMount() {
+    this.setState({
+      eml: this.props.eml,
+    })
   }
 
   render() {
@@ -134,7 +144,7 @@ export default class DatasetsDetails extends Component {
 
     return (
       <Wrapper>
-        <PrincipalDataset />
+        {this.state.eml && <PrincipalDataset eml={this.state.eml} />}
         <GlobalInfo inf={[{ name: 'REGISTROS', count: 546321 }, { name: 'CON COORDENADAS', count: 346321 }, { name: 'TAXONES', count: 46321 }]} />
         <Paper>
           <HumboldtMap />
@@ -162,26 +172,21 @@ export default class DatasetsDetails extends Component {
             </Col>
             <Col xs={12} sm={12} md={9} lg={9}>
               <Row>
-                {this.state.eml && <PaperItem title="Descripción" id="descripcion">{this.state.eml.dataset.abstract.para}</PaperItem>}
-                {this.state.eml && <PaperItem title="Cobertura temporal" id="temporal">{this.state.eml.dataset.purpose.para}</PaperItem>}
-                {this.state.eml && <PaperItem title="Cobertura geográfica" id="geografia"><HumboldtMap /></PaperItem>}
-                <PaperItem title="Cobertura taxonómica" id="taxonomia">
-                  <TaxonomicCoverageSection />
-                </PaperItem>
-                <PaperItem title="Metodología" id="metodo_muestro">
-                  <MethodologySection />
-                </PaperItem>
-                <PaperItem title="Bibliografía" id="bibliografia">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore vel, adipisci pariatur. Nesciunt perspiciatis deserunt inventore veniam doloribus ullam, corporis porro minima error qui numquam consequuntur delectus autem cum possimus.
-                </PaperItem>
-                <PaperItem title="Partes asociadas" id="partes_asociadas">
+                {this.state.eml.dataset.abstract.para && <PaperItem title="Descripción" id="descripcion">{this.state.eml.dataset.abstract.para}</PaperItem>}
+                {this.state.eml.dataset.purpose.para && <PaperItem title="Propósito" id="proposito">{this.state.eml.dataset.purpose.para}</PaperItem>}
+                {this.state.eml.dataset.coverage.temporalCoverage && <PaperItem title="Cobertura temporal" id="temporal">{this.state.eml.dataset.coverage.temporalCoverage}</PaperItem>}
+                {this.state.eml.dataset.coverage.geographicCoverage && <PaperItem title="Cobertura geográfica" id="geografia"><HumboldtMap /></PaperItem>}
+                {this.state.eml.dataset.coverage.taxonomicCoverage && <PaperItem title="Cobertura taxonómica" id="taxonomia"><TaxonomicCoverageSection /></PaperItem>}
+                {this.state.eml.dataset.methods && <PaperItem title="Metodología" id="metodo_muestro"><MethodologySection method={this.state.eml.dataset.methods} /></PaperItem>}
+                {this.state.eml.additionalMetadata.metadata.gbif.bibliography && <PaperItem title="Bibliografía" id="bibliografia">{this.state.eml.additionalMetadata.metadata.gbif.bibliography}</PaperItem>}
+                {this.state.eml.associatedParty && <PaperItem title="Partes asociadas" id="partes_asociadas">
                   <Row className="contacts">
                     {_.map([0, 1], (key) => (
                       <ContactItem key={key} contact={this.contact} />
                     ))}
                   </Row>
-                </PaperItem>
-                <PaperItem title="Descripción de los datos" id="descripcion_datos">
+                </PaperItem>}
+                {this.state.eml && <PaperItem title="Descripción de los datos" id="descripcion_datos">
                   <Row>
                     <Col className="description" xs={12} sm={12} md={12} lg={12}>
                       <Row>
@@ -198,8 +203,8 @@ export default class DatasetsDetails extends Component {
                       </Row>
                     </Col>
                   </Row>
-                </PaperItem>
-                <PaperItem title="Registros en GBIF" id="registro">
+                </PaperItem>}
+                {this.state.eml && <PaperItem title="Registros en GBIF" id="registro">
                   <Row>
                     <Col className="description" xs={12} sm={12} md={12} lg={12}>
                       <Row>
@@ -254,10 +259,8 @@ export default class DatasetsDetails extends Component {
                       </Row>
                     </Col>
                   </Row>
-                </PaperItem>
-                <PaperItem title="Citación" id="citacion">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore vel, adipisci pariatur. Nesciunt perspiciatis deserunt inventore veniam doloribus ullam, corporis porro minima error qui numquam consequuntur delectus autem cum possimus.
-                </PaperItem>
+                </PaperItem>}
+                {this.state.eml.additionalMetadata.metadata.gbif.citation_identifier && <PaperItem title="Citación" id="citacion">{this.state.eml.additionalMetadata.metadata.gbif.citation_identifier}</PaperItem>}
               </Row>
             </Col>
           </Row>
