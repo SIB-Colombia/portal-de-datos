@@ -6,7 +6,7 @@ import * as EntitiesRecordService from '../../../services/EntitiesRecordService'
 
 const Wrapper = styled.div`
   font-size: 18px;
-  font-weight: 200; 
+  font-weight: 200;
   text-align: center;
   color: #4B5353;
 
@@ -40,7 +40,7 @@ export default class EntitiesRecordPage extends Component {
   componentWillMount() {
     EntitiesRecordService.getEntitiesRecord().then(data => {
       this.setState({
-        entities: data,
+        entities: data.eml,
       })
     })
   }
@@ -50,7 +50,7 @@ export default class EntitiesRecordPage extends Component {
       <Wrapper>
         <PageTemplate header={<Header />} footer={<Footer />}>
           {this.state.entities && <ProviderSection provider={this.state.entities} />}
-          {this.state.entities && <ContactsSection contacts={this.state.entities.contacts} />}
+          {this.state.entities && <ContactsSection contacts={this.state.entities.dataset.organization.contacts} />}
           <Grid className="georeferencia">
             <Row>
               <Col className="title-two" md={12}>Registros georeferenciados</Col>

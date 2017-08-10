@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { PageTemplate, Header, Footer, DatasetsList } from 'components'
+import {
+  PageTemplate,
+  Header,
+  Footer,
+  DatasetsList,
+  FileSearchFilter,
+  ResourceNameSearchItem,
+  PublisherSearchItem,
+} from 'components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import * as DatasetsService from '../../../services/DatasetsService'
 
@@ -38,7 +46,19 @@ export default class DatasetsListPage extends Component {
 
   render() {
     return (
-      <PageTemplate header={<Header />} footer={<Footer />}>
+      <PageTemplate
+        header={
+          <Header
+            filter={
+              <FileSearchFilter>
+                <PublisherSearchItem />
+                <ResourceNameSearchItem />
+              </FileSearchFilter>
+            }
+          />
+        }
+        footer={<Footer />}
+      >
         <Wrapper>
           <Grid>
             <Row>

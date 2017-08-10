@@ -18,7 +18,7 @@ class PublisherRow extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     GBIFService.getOccurrenceCount(this.props.publisher.key, 'publishing_org').then(data => {
       this.setState({ countO: data.count })
     })

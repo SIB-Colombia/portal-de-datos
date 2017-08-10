@@ -8,18 +8,8 @@ import { List, ListItem } from 'material-ui/List'
 import FilterList from 'material-ui/svg-icons/content/filter-list'
 import IconButton from 'material-ui/IconButton'
 import Replay from 'material-ui/svg-icons/av/replay'
-import {
-  TaxonomySearchItem,
-  TaxonomicCategorySearchItem,
-  LocationSearchItem,
-  HabitatSearchItem,
-  ElevationSearchItem,
-  DepthSearchItem,
-  PublisherSearchItem,
-  DateEventSearchItem,
-  NameCollectorSearchItem,
-  ResourceNameSearchItem,
-} from 'components'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
 
 const Wrapper = styled.div`
   float: left;
@@ -67,6 +57,7 @@ const Wrapper = styled.div`
 
 export default class FileSearchFilter extends Component {
   static propTypes = {
+    filters: PropTypes.any,
   }
 
   constructor(props) {
@@ -107,21 +98,11 @@ export default class FileSearchFilter extends Component {
             <Menu />
           </FloatingActionButton>
         </div>
-        <Drawer open={this.state.open} containerClassName="drawer" width={290}>
+        <Drawer open={this.state.open} containerClassName="drawer" width={300}>
           <List>
             <ListItem primaryText="Filtros de búsqueda" leftIcon={<FilterList />} rightIcon={<IconButton className="material-icons" style={{ padding: 0, boxSizing: 'none' }} tooltip="Reiniciar filtros" tooltipPosition="bottom-left"><Replay /></IconButton>} disabled />
           </List>
-          {/* Taxonomía */}
-          <TaxonomySearchItem />
-          <TaxonomicCategorySearchItem />
-          <LocationSearchItem />
-          <HabitatSearchItem />
-          <ElevationSearchItem />
-          <DepthSearchItem />
-          <PublisherSearchItem />
-          <DateEventSearchItem />
-          <NameCollectorSearchItem />
-          <ResourceNameSearchItem />
+          {this.props.children}
         </Drawer>
       </Wrapper>
     )

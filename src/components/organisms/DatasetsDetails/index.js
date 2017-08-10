@@ -34,7 +34,7 @@ const Wrapper = styled.div`
 
     .number {
       font-weight: 400;
-      font-size: 28px;   
+      font-size: 28px;
     }
   }
 
@@ -108,37 +108,36 @@ const Wrapper = styled.div`
 `
 
 export default class DatasetsDetails extends Component {
-  render() {
-    this.contact = {
-      name: 'Martha Isabel Vallejo Joyas',
-      inf: [
-        'Orginator Metadata Author',
-        'Principal Investigador',
-        'Investigador principal',
-        'Calle 28 A No. 15-09',
-        'Bogotá, D.C',
-        'Bogotá, D.C',
-        'Colombia',
-        'martisavallejo@gmail.com',
-        '320-2767',
-      ],
-    }
 
+  static propTypes = {
+    eml: PropTypes.any,
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      eml: null,
+    }
+  }
+
+  componentWillMount() {
+    this.setState({
+      eml: this.props.eml,
+    })
+  }
+
+  render() {
     return (
       <Wrapper>
-        <PrincipalDataset />
-        <Paper className="separated">
-          <Grid>
-            <Row className="paper" center="xs">
-              <GlobalInfo inf={[{ name: 'REGISTROS', count: 546321 }]} />
-            </Row>
-          </Grid>
+        {this.state.eml && <PrincipalDataset eml={this.state.eml} />}
+        <GlobalInfo inf={[{ name: 'REGISTROS', count: 546321 }, { name: 'CON COORDENADAS', count: 346321 }, { name: 'TAXONES', count: 46321 }]} />
+        <Paper>
           <HumboldtMap />
         </Paper>
         <Grid >
           <Row className="information">
             <Col xs={12} sm={12} md={3} lg={3}>
-              <Paper className="indice">
+              <Paper className="indice" style={{ position: 'sticky', top: 80 }}>
                 <List>
                   {_.map([
                     { to: 'descripcion', name: 'Descripción' },
@@ -158,32 +157,21 @@ export default class DatasetsDetails extends Component {
             </Col>
             <Col xs={12} sm={12} md={9} lg={9}>
               <Row>
-                <PaperItem title="Descripción" id="descripcion">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore vel, adipisci pariatur. Nesciunt perspiciatis deserunt inventore veniam doloribus ullam, corporis porro minima error qui numquam consequuntur delectus autem cum possimus.
-                </PaperItem>
-                <PaperItem title="Cobertura temporal" id="temporal">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore vel, adipisci pariatur. Nesciunt perspiciatis deserunt inventore veniam doloribus ullam, corporis porro minima error qui numquam consequuntur delectus autem cum possimus.
-                </PaperItem>
-                <PaperItem title="Cobertura geográfica" id="geografia">
-                  <HumboldtMap />
-                </PaperItem>
-                <PaperItem title="Cobertura taxonómica" id="taxonomia">
-                  <TaxonomicCoverageSection />
-                </PaperItem>
-                <PaperItem title="Metodología" id="metodo_muestro">
-                  <MethodologySection />
-                </PaperItem>
-                <PaperItem title="Bibliografía" id="bibliografia">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore vel, adipisci pariatur. Nesciunt perspiciatis deserunt inventore veniam doloribus ullam, corporis porro minima error qui numquam consequuntur delectus autem cum possimus.
-                </PaperItem>
-                <PaperItem title="Partes asociadas" id="partes_asociadas">
+                {this.state.eml.dataset.abstract.para && <PaperItem title="Descripción" id="descripcion">{this.state.eml.dataset.abstract.para}</PaperItem>}
+                {this.state.eml.dataset.purpose.para && <PaperItem title="Propósito" id="proposito">{this.state.eml.dataset.purpose.para}</PaperItem>}
+                {this.state.eml.dataset.coverage.temporalCoverage && <PaperItem title="Cobertura temporal" id="temporal">{this.state.eml.dataset.coverage.temporalCoverage}</PaperItem>}
+                {this.state.eml.dataset.coverage.geographicCoverage && <PaperItem title="Cobertura geográfica" id="geografia"><HumboldtMap /></PaperItem>}
+                {this.state.eml.dataset.coverage.taxonomicCoverage && <PaperItem title="Cobertura taxonómica" id="taxonomia"><TaxonomicCoverageSection /></PaperItem>}
+                {this.state.eml.dataset.methods && <PaperItem title="Metodología" id="metodo_muestro"><MethodologySection method={this.state.eml.dataset.methods} /></PaperItem>}
+                {this.state.eml.additionalMetadata.metadata.gbif.bibliography && <PaperItem title="Bibliografía" id="bibliografia">{this.state.eml.additionalMetadata.metadata.gbif.bibliography}</PaperItem>}
+                {this.state.eml.contacts && <PaperItem title="Partes asociadas" id="partes_asociadas">
                   <Row className="contacts">
-                    {_.map([0, 1], (key) => (
-                      <ContactItem key={key} contact={this.contact} />
+                    {_.map(this.state.eml.contacts, (value, key) => (
+                      <ContactItem key={key} contact={value} />
                     ))}
                   </Row>
-                </PaperItem>
-                <PaperItem title="Descripción de los datos" id="descripcion_datos">
+                </PaperItem>}
+                {this.state.eml && <PaperItem title="Descripción de los datos" id="descripcion_datos">
                   <Row>
                     <Col className="description" xs={12} sm={12} md={12} lg={12}>
                       <Row>
@@ -200,8 +188,8 @@ export default class DatasetsDetails extends Component {
                       </Row>
                     </Col>
                   </Row>
-                </PaperItem>
-                <PaperItem title="Registros en GBIF" id="registro">
+                </PaperItem>}
+                {this.state.eml && <PaperItem title="Registros en GBIF" id="registro">
                   <Row>
                     <Col className="description" xs={12} sm={12} md={12} lg={12}>
                       <Row>
@@ -236,7 +224,7 @@ export default class DatasetsDetails extends Component {
                         <Col md={3}>Identifiers</Col>
                         <Col md>
                           <Row>
-                            <Col md={12}><Doi doi="doi:10.15472/ch49b6" /></Col>
+                            <Col md={6}><Doi doi="doi:10.15472/ch49b6" /></Col>
                             <Col md={12}><Link>http://ipt.biodiversidad.co</Link></Col>
                             <Col md={12}><Link>http://ipt.biodiversidad.co</Link></Col>
                           </Row>
@@ -256,10 +244,8 @@ export default class DatasetsDetails extends Component {
                       </Row>
                     </Col>
                   </Row>
-                </PaperItem>
-                <PaperItem title="Citacion" id="citacion">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore vel, adipisci pariatur. Nesciunt perspiciatis deserunt inventore veniam doloribus ullam, corporis porro minima error qui numquam consequuntur delectus autem cum possimus.
-                </PaperItem>
+                </PaperItem>}
+                {this.state.eml.additionalMetadata.metadata.gbif.citation_identifier && <PaperItem title="Citación" id="citacion">{this.state.eml.additionalMetadata.metadata.gbif.citation_identifier}</PaperItem>}
               </Row>
             </Col>
           </Row>

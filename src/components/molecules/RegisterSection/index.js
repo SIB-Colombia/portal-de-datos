@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
+import { Link } from 'components'
 
 const Wrapper = styled.div`
   .title-two {
@@ -27,25 +28,22 @@ const Wrapper = styled.div`
   }
 `
 
-class RegisterSection extends React.Component {
+export default class RegisterSection extends React.Component {
 
   static propTypes = {
-    registro: PropTypes.any.isRequired,
-    recurso: PropTypes.any.isRequired,
+    ocurrence: PropTypes.any.isRequired,
   }
 
   constructor(props) {
     super(props)
     this.state = {
-      registro: [],
-      recurso: [],
+      ocurrence: [],
     }
   }
 
   componentWillMount() {
     this.setState({
-      registro: this.props.registro,
-      recurso: this.props.recurso,
+      ocurrence: this.props.ocurrence,
     })
   }
 
@@ -56,19 +54,49 @@ class RegisterSection extends React.Component {
         <Col className="accent-title" md={11} />
         <Grid fluid>
           <Row className="more-details">
-            <Col md={6} className="details-title">Base del registro</Col>
-            <Col md={6}>{this.state.registro.baseRegistro}</Col>
-            <Col md={6} className="details-title">Código de coleccíon</Col>
-            <Col md={6}>{this.state.registro.codigoColeccion}</Col>
-            <Col md={6} className="details-title">Nombre del recurso</Col>
-            <Col md={6}>{this.state.recurso.nombre}</Col>
-            <Col md={6} className="details-title">Código de la institucíon</Col>
-            <Col md={6}>{this.state.registro.codigoInstitucion}</Col>
+            {this.state.ocurrence.occurrenceID && <Col md={6} className="details-title">ID del registro biológico</Col>}
+            {this.state.ocurrence.occurrenceID && <Col md={6}>{this.state.ocurrence.occurrenceID}</Col>}
+            {this.state.ocurrence.catalogNumber && <Col md={6} className="details-title">Número de catálogo</Col>}
+            {this.state.ocurrence.catalogNumber && <Col md={6}>{this.state.ocurrence.catalogNumber}</Col>}
+            {this.state.ocurrence.occurrenceRemarks && <Col md={6} className="details-title">Comentarios del registro biológico</Col>}
+            {this.state.ocurrence.occurrenceRemarks && <Col md={6}>{this.state.ocurrence.occurrenceRemarks}</Col>}
+            {this.state.ocurrence.recordNumber && <Col md={6} className="details-title">Número de registro</Col>}
+            {this.state.ocurrence.recordNumber && <Col md={6}>{this.state.ocurrence.recordNumber}</Col>}
+            {this.state.ocurrence.recordedBy && <Col md={6} className="details-title">Registrado por</Col>}
+            {this.state.ocurrence.recordedBy && <Col md={6}>{this.state.ocurrence.recordedBy}</Col>}
+            {this.state.ocurrence.organismID && <Col md={6} className="details-title">ID del individuo</Col>}
+            {this.state.ocurrence.organismID && <Col md={6}>{this.state.ocurrence.organismID}</Col>}
+            {this.state.ocurrence.individualCount && <Col md={6} className="details-title">Número de individuos</Col>}
+            {this.state.ocurrence.individualCount && <Col md={6}>{this.state.ocurrence.individualCount}</Col>}
+            {this.state.ocurrence.sex && <Col md={6} className="details-title">Sexo</Col>}
+            {this.state.ocurrence.sex && <Col md={6}>{this.state.ocurrence.sex}</Col>}
+            {this.state.ocurrence.lifeStage && <Col md={6} className="details-title">Etapa de vida</Col>}
+            {this.state.ocurrence.lifeStage && <Col md={6}>{this.state.ocurrence.lifeStage}</Col>}
+            {this.state.ocurrence.reproductiveCondition && <Col md={6} className="details-title">Condición reproductiva</Col>}
+            {this.state.ocurrence.reproductiveCondition && <Col md={6}>{this.state.ocurrence.reproductiveCondition}</Col>}
+            {this.state.ocurrence.behavior && <Col md={6} className="details-title">Comportamiento</Col>}
+            {this.state.ocurrence.behavior && <Col md={6}>{this.state.ocurrence.behavior}</Col>}
+            {this.state.ocurrence.establishmentMeans && <Col md={6} className="details-title">Medios de establecimiento</Col>}
+            {this.state.ocurrence.establishmentMeans && <Col md={6}>{this.state.ocurrence.establishmentMeans}</Col>}
+            {this.state.ocurrence.occurrenceStatus && <Col md={6} className="details-title">Estado del registro biológico</Col>}
+            {this.state.ocurrence.occurrenceStatus && <Col md={6}>{this.state.ocurrence.occurrenceStatus}</Col>}
+            {this.state.ocurrence.preparations && <Col md={6} className="details-title">Preparaciones</Col>}
+            {this.state.ocurrence.preparations && <Col md={6}>{this.state.ocurrence.preparations}</Col>}
+            {this.state.ocurrence.disposition && <Col md={6} className="details-title">Disposición</Col>}
+            {this.state.ocurrence.disposition && <Col md={6}>{this.state.ocurrence.disposition}</Col>}
+            {this.state.ocurrence.otherCatalogNumbers && <Col md={6} className="details-title">Otros números de catálogo</Col>}
+            {this.state.ocurrence.otherCatalogNumbers && <Col md={6}>{this.state.ocurrence.otherCatalogNumbers}</Col>}
+            {this.state.ocurrence.associatedMedia && <Col md={6} className="details-title">Medios asociados</Col>}
+            {this.state.ocurrence.associatedMedia && <Col md={6}>{this.state.ocurrence.associatedMedia}</Col>}
+            {this.state.ocurrence.associatedReferences && <Col md={6} className="details-title">Referencias asociadas</Col>}
+            {this.state.ocurrence.associatedReferences && <Col md={6}>{this.state.ocurrence.associatedReferences}</Col>}
+            {this.state.ocurrence.associatedSequences && <Col md={6} className="details-title">Secuencias asociadas</Col>}
+            {this.state.ocurrence.associatedSequences && <Col md={6}>{this.state.ocurrence.associatedSequences}</Col>}
+            {this.state.ocurrence.associatedTaxa && <Col md={6} className="details-title">Taxones asociados</Col>}
+            {this.state.ocurrence.associatedTaxa && <Col md={6}>{this.state.ocurrence.associatedTaxa}</Col>}
           </Row>
         </Grid>
       </Wrapper>
     )
   }
 }
-
-export default RegisterSection

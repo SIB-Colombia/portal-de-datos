@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Grid } from 'react-flexbox-grid'
 import { PageTemplate, Header, Footer, DatasetsSection, DatasetsDetails } from 'components'
 import { Tabs, Tab } from 'material-ui/Tabs'
 import Divider from 'material-ui/Divider'
+import * as DatasetsService from '../../../services/DatasetsService'
 
 const Wrapper = styled.div`
   color: #4B5353;
@@ -20,11 +20,28 @@ const Wrapper = styled.div`
 
 export default class DatasetsRecordPage extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      eml: null,
+    }
+  }
+
+  componentWillMount() {
+    DatasetsService.getDataset().then(data => {
+      this.setState({
+        eml: data.eml,
+      })
+    }).catch(err => {
+      console.log(err)
+    })
+  }
+
   render() {
     return (
       <Wrapper>
         <PageTemplate header={<Header />} footer={<Footer />}>
-          <DatasetsSection />
+          {this.state.eml && <DatasetsSection eml={this.state.eml} />}
           <Grid>
             <Tabs
               className="tabs"
@@ -34,7 +51,7 @@ export default class DatasetsRecordPage extends Component {
             >
               <Tab label="RECURSOS">
                 <Divider />
-                <DatasetsDetails />
+                {this.state.eml && <DatasetsDetails eml={this.state.eml} />}
               </Tab>
               <Tab label="PROYECTO" />
               <Tab label="ESTADISTICAS*" />

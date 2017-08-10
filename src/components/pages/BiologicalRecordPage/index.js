@@ -26,7 +26,6 @@ class BiologicalRecordPage extends React.Component {
 
   componentWillMount() {
     GBIFService.getOccurrenceById(this.props.match.params.id).then(data => {
-      console.log(data)
       this.setState({ occurrence: data })
     }).catch(err => {
       console.log(err)

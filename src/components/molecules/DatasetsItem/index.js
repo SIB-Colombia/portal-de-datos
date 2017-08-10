@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Row, Col } from 'react-flexbox-grid'
 import styled from 'styled-components'
-import { Link } from 'components'
+import { Link, Doi, License } from 'components'
 
 const Wrapper = styled.div`
 
@@ -30,10 +30,10 @@ const Wrapper = styled.div`
     .informacion-relevante{
       padding: 10px 0px;
       font-size: 18px;
-      font-weight: 400;  
+      font-weight: 400;
 
       span {
-        font-weight: 600;        
+        font-weight: 600;
       }
     }
   }
@@ -57,7 +57,7 @@ export default class DatasetsItem extends Component {
             <Col md={3}>
               <img src={this.props.dataset.imageUrl} alt="" width="100%" />
             </Col>
-            <Col md={8}>
+            <Col xs={8} sm={8} md={8} lg={8}>
               <Row>
                 <Col md={12} className="entidad-title">{this.props.dataset.resourceName}</Col>
                 <Col md={12} className="entidad-descripcion">
@@ -65,13 +65,15 @@ export default class DatasetsItem extends Component {
                 </Col>
                 <Col className="entidad-divider" md={12} />
                 <Col md={12}>
-                  <Row className="informacion-relevante">
-                    <Col md>{this.props.dataset.location}</Col>
-                    <Col md>
+                  <Row className="informacion-relevante" middle="xs">
+                    <Col md={6}>PUBLICADOR</Col>
+                    <Col md={6}>
                       <Row>
                         <Col md><span>{this.props.dataset.count}</span> REGISTROS</Col>
                       </Row>
                     </Col>
+                    <Col md={6}><Doi doi="doi:10.15472/ch49b6" /></Col>
+                    <Col md={6}><License id="by" /></Col>
                   </Row>
                 </Col>
               </Row>
