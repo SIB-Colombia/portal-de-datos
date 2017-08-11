@@ -18,7 +18,7 @@ class DirectAccess extends Component {
           titulo: 'Registros',
           img: '/home/registros.png',
           descripcion: 'Explora a través del buscador de registros biológicos',
-          to: '/occurrences',
+          to: '/search/',
         },
         {
           titulo: 'Publicadores',
