@@ -16,6 +16,7 @@ import {
   MultimediaSection,
   GeologicalContextSection,
 } from 'components'
+import Masonry from 'react-masonry-component'
 
 const Wrapper = styled.div`
   background-color: #ffffff;
@@ -65,43 +66,51 @@ class MoreDetails extends React.Component {
   render() {
     return (
       <Wrapper>
-        <Grid >
+        <Grid>
           <Row>
             <Col md={6}>
-              {this.state.detail.occurrence && <RegisterSection ocurrence={this.state.detail.occurrence} />}
+              <Row>
+                <Col md={12}>
+                  {this.state.detail.occurrence && <RegisterSection ocurrence={this.state.detail.occurrence} />}
+                </Col>
+                <Col md={12}>
+                  {this.state.detail.occurrence && <EventSection ocurrence={this.state.detail.occurrence} />}
+                </Col>
+                <Col md={12}>
+                  {this.state.detail.occurrence && <TaxonSection ocurrence={this.state.detail.occurrence} />}
+                </Col>
+                <Col md={12}>
+                  {this.state.detail.occurrence && <OrganismSection ocurrence={this.state.detail.occurrence} />}
+                </Col>
+                <Col md={12}>
+                  {this.state.detail.measurementOrFact && <MeasuresFactsSection measurementOrFact={this.state.detail.measurementOrFact} />}
+                </Col>
+                <Col md={12}>
+                  {this.state.detail.resourceRelationship && <RelatedResourcesSection resourceRelationship={this.state.detail.resourceRelationship} />}
+                </Col>
+              </Row>
             </Col>
             <Col md={6}>
-              {this.state.detail.occurrence && <RegistrationElementSection ocurrence={this.state.detail.occurrence} />}
-            </Col>
-            <Col md={6}>
-              {this.state.detail.occurrence && <EventSection ocurrence={this.state.detail.occurrence} />}
-            </Col>
-            <Col md={6}>
-              {this.state.detail.occurrence && <LocationSection ocurrence={this.state.detail.occurrence} />}
-            </Col>
-            <Col md={6}>
-              {this.state.detail.occurrence && <TaxonSection ocurrence={this.state.detail.occurrence} />}
-            </Col>
-            <Col md={6}>
-              {this.state.detail.occurrence && <IDSection ocurrence={this.state.detail.occurrence} />}
-            </Col>
-            <Col md={6}>
-              {this.state.detail.occurrence && <OrganismSection ocurrence={this.state.detail.occurrence} />}
-            </Col>
-            <Col md={6}>
-              {this.state.detail.occurrence && <SampleSection ocurrence={this.state.detail.occurrence} />}
-            </Col>
-            <Col md={6}>
-              {this.state.detail.measurementOrFact && <MeasuresFactsSection ocurrence={this.state.detail.measurementOrFact} />}
-            </Col>
-            <Col md={6}>
-              {this.state.detail.occurrence && <GeologicalContextSection ocurrence={this.state.detail.occurrence} />}
-            </Col>
-            <Col md={6}>
-              {this.state.detail.resourceRelationship && <RelatedResourcesSection resourceRelationship={this.state.detail.resourceRelationship} />}
-            </Col>
-            <Col md={6}>
-              {this.state.detail.multimedia && <MultimediaSection multimedia={this.state.detail.multimedia} />}
+              <Row>
+                <Col md={12}>
+                  {this.state.detail.occurrence && <RegistrationElementSection ocurrence={this.state.detail.occurrence} />}
+                </Col>
+                <Col md={12}>
+                  {this.state.detail.occurrence && <LocationSection ocurrence={this.state.detail.occurrence} />}
+                </Col>
+                <Col md={12}>
+                  {this.state.detail.occurrence && <IDSection ocurrence={this.state.detail.occurrence} />}
+                </Col>
+                <Col md={12}>
+                  {this.state.detail.occurrence && <SampleSection ocurrence={this.state.detail.occurrence} />}
+                </Col>
+                <Col md={12}>
+                  {this.state.detail.occurrence && <GeologicalContextSection ocurrence={this.state.detail.occurrence} />}
+                </Col>
+                <Col md={12}>
+                  {this.state.detail.multimedia && <MultimediaSection multimedia={this.state.detail.multimedia} />}
+                </Col>
+              </Row>
             </Col>
           </Row>
         </Grid>

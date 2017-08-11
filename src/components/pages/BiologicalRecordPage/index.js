@@ -9,6 +9,7 @@ import {
 } from 'components'
 import _ from 'lodash'
 import * as GBIFService from '../../../services/GBIFService'
+import * as BiologicalRecordService from '../../../services/BiologicalRecordService'
 
 class BiologicalRecordPage extends React.Component {
 
@@ -20,20 +21,27 @@ class BiologicalRecordPage extends React.Component {
     super(props)
 
     this.state = {
-      occurrence: null,
+      occurrenceBasic: null,
+      moreDetails: null,
     }
   }
 
   componentWillMount() {
     GBIFService.getOccurrenceById(this.props.match.params.id).then(data => {
-      this.setState({ occurrence: data })
+      this.setState({ occurrenceBasic: data })
     }).catch(err => {
       console.log(err)
     })
+
+    BiologicalRecordService.getBiologicalRecord().then(data => {
+      this.setState({
+        moreDetails: data,
+      })
+    }).catch(err => console.log(err))
   }
 
   render() {
-    const basicInformation = this.state.occurrence && _.map(this.state.occurrence.results, (o) => {
+    const basicInformation = this.state.occurrenceBasic && _.map(this.state.occurrenceBasic.results, (o) => {
       return {
         scientificName: o.scientificName,
         kingdom: o.kingdom,
@@ -56,7 +64,7 @@ class BiologicalRecordPage extends React.Component {
     return (
       <PageTemplate header={<Header />} footer={<Footer />}>
         {basicInformation && <BasicInformation record={basicInformation} />}
-        {basicInformation && <MoreDetails more={basicInformation} />}
+        {this.state.moreDetails && <MoreDetails more={this.state.moreDetails} />}
       </PageTemplate>
     )
   }

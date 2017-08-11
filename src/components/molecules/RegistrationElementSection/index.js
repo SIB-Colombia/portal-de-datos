@@ -37,20 +37,20 @@ export default class RegistrationElementSection extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      ocurrence: [],
+      occurrence: [],
     }
   }
 
   componentWillMount() {
     this.setState({
-      ocurrence: this.props.ocurrence,
+      occurrence: this.props.ocurrence,
     })
   }
 
   render() {
     return (
       <Wrapper>
-        <Col className="title-two" md={12}>Ocurrence</Col>
+        <Col className="title-two" md={12}>occurrence</Col>
         <Col className="accent-title" md={11} />
         <Grid fluid>
           <Row className="more-details">
