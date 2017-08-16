@@ -1,11 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled, { injectGlobal } from 'styled-components'
 import { size } from 'styled-theme'
 
 const Wrapper = styled.div`
 `
 const Header = styled.header`
-    margin-bottom:65px;
+  margin-bottom:65px;
 `
 const Content = styled.section`
   height: 100%;
@@ -30,59 +31,53 @@ const PageTemplate = ({
   footer,
   ...props
 }) => {
-
   if (wallpaper) {
-
-    //Custom wallpaper
+    // Custom wallpaper
     if (wallpaper.indexOf('.jpg') > -1 || wallpaper.indexOf('.png') > -1) {
-
       injectGlobal`
-  body{
-    background-image: url('${wallpaper}');
-    background-size: cover;
-    background-position: center center;
-    background-attachment:fixed;
-  }
-`
+        body{
+          background-image: url('${wallpaper}');
+          background-size: cover;
+          background-position: center center;
+          background-attachment:fixed;
+        }
+      `
     } else {
-
-      //Module wallpaper
-
+      // Module wallpaper
       switch (wallpaper) {
         case 'File':
           injectGlobal`
-      body{
-        background-image: url(/demo/i2.jpg);
-        background-size: cover;
-        background-position: center center;
-        background-attachment:fixed;
-        background-repeat: no-repeat;
-        background-color: #222;
-      }
-    `
-          break;
+            body{
+              background-image: url(/demo/i2.jpg);
+              background-size: cover;
+              background-position: center center;
+              background-attachment:fixed;
+              background-repeat: no-repeat;
+              background-color: #222;
+            }
+          `
+          break
         case 'Login':
           injectGlobal`
-      body{
-        background-image: url(/background/11285_orig.jpg);
-        background-size: cover;
-        background-position: center center;
-        background-attachment:fixed;
-      }
-    `
-          break;
+            body{
+              background-image: url(/background/11285_orig.jpg);
+              background-size: cover;
+              background-position: center center;
+              background-attachment:fixed;
+            }
+          `
+          break
         case 'Static':
           injectGlobal`
-      body{
-        background-image: url(/background/82168_orig.jpg);
-        background-size: cover;
-        background-position: center center;
-        background-attachment:fixed;
-      }
-    `
-          break;
+            body{
+              background-image: url(/background/82168_orig.jpg);
+              background-size: cover;
+              background-position: center center;
+              background-attachment:fixed;
+            }
+          `
+          break
         default:
-
       }
     }
   }
@@ -100,10 +95,11 @@ const PageTemplate = ({
   )
 }
 
-// PageTemplate.propTypes = {
-//   header: PropTypes.node.isRequired,
-//   footer: PropTypes.node.isRequired,
-//   children: PropTypes.any.isRequired
-// }
+PageTemplate.propTypes = {
+  header: PropTypes.node.isRequired,
+  footer: PropTypes.node.isRequired,
+  children: PropTypes.any.isRequired,
+  wallpaper: PropTypes.any,
+}
 
-export default PageTemplate;
+export default PageTemplate

@@ -53,7 +53,7 @@ class HomePage extends React.Component {
         </Grid>
         <BiologicalGroups />
         <DirectAccess />
-        {/* <GeographicExplorer /> */}
+        <GeographicExplorer />
         <Grid
           fluid
           style={{
