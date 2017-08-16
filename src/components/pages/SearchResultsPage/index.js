@@ -61,8 +61,6 @@ class SearchResultsPage extends React.Component {
     super(props)
     this.state = {
       tab: 0,
-      species: [],
-      publishers: [],
     }
   }
 

@@ -31,21 +31,15 @@ class HomePage extends React.Component {
   componentWillMount() {
     DataPortalService.getOccurrenceCount().then(data => {
       this.setState({ count: { name: 'REGISTROS', count: format(data.count, '#.###.') } })
-    }).catch(err => {
-      console.log(err)
-    })
+    }).catch(err => new Error(err))
 
     DataPortalService.getOccurrenceCount('geo').then(data => {
       this.setState({ countGeo: { name: 'GEORREFERENCIADOS', count: format(data.count, '#.###.') } })
-    }).catch(err => {
-      console.log(err)
-    })
+    }).catch(err => new Error(err))
 
     HomePageService.getStatisticsData().then(data => {
       this.setState({ species: data })
-    }).catch(err => {
-      console.log(err)
-    })
+    }).catch(err => new Error(err))
   }
 
   render() {
@@ -53,11 +47,13 @@ class HomePage extends React.Component {
       <PageTemplate header={<Header />} footer={<Footer />}>
         <HomeHeader />
         <Grid>
-          {this.state.count && this.state.countGeo && this.state.species && <GlobalInfo style={{ margin: '-30px auto' }} inf={_.concat(this.state.count, this.state.countGeo, { name: 'ESPECIES', count: this.state.species.species })} />}
+          <Grid fluid>
+            {this.state.count && this.state.countGeo && this.state.species && <GlobalInfo style={{ margin: '-30px auto' }} inf={_.concat(this.state.count, this.state.countGeo, { name: 'ESPECIES', count: this.state.species.species })} />}
+          </Grid>
         </Grid>
         <BiologicalGroups />
         <DirectAccess />
-        <GeographicExplorer />
+        {/* <GeographicExplorer /> */}
         <Grid
           fluid
           style={{
