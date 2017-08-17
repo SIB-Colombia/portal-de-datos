@@ -24,6 +24,10 @@ margin-top: 15px;
     overflow-x: visible !important;
     overflow-y: visible !important;
   }
+
+  .hover {
+    cursor: pointer;
+  }
 `
 
 export default class ResultTable extends React.Component {

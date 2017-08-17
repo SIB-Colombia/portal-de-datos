@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { TableRow, TableRowColumn } from 'material-ui/Table'
+import { Link } from 'components'
 
 class ResultRow extends React.Component {
 
@@ -12,9 +13,13 @@ class ResultRow extends React.Component {
     super(props)
   }
 
+  redirect(url) {
+    window.location.href = url
+  }
+
   render() {
     return (
-      <TableRow hoverable>
+      <TableRow hoverable onClick={() => this.redirect(`/occurrence/${this.props.registro.id}`)} className="hover">
         <TableRowColumn>{this.props.registro.canonical ? this.props.registro.canonical : ''}</TableRowColumn>
         <TableRowColumn>{this.props.registro.country_name ? this.props.registro.country_name : ''}</TableRowColumn>
         <TableRowColumn>{this.props.registro.department_interpreted}</TableRowColumn>
