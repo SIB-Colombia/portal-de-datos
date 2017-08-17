@@ -57,7 +57,8 @@ const Wrapper = styled.div`
 
 export default class FileSearchFilter extends Component {
   static propTypes = {
-    filters: PropTypes.any,
+    children: PropTypes.any,
+    open: PropTypes.func,
   }
 
   constructor(props) {
@@ -75,6 +76,7 @@ export default class FileSearchFilter extends Component {
 
   handleToggleMenu() {
     this.setState((prevState) => {
+      this.props.open(!prevState.open)
       return { open: !prevState.open }
     })
   }
@@ -98,7 +100,7 @@ export default class FileSearchFilter extends Component {
             <Menu />
           </FloatingActionButton>
         </div>
-        <Drawer open={this.state.open} containerClassName="drawer" width={300}>
+        <Drawer open={this.state.open} containerClassName="drawer" width={340}>
           <List>
             <ListItem primaryText="Filtros de búsqueda" leftIcon={<FilterList />} rightIcon={<IconButton className="material-icons" style={{ padding: 0, boxSizing: 'none' }} tooltip="Reiniciar filtros" tooltipPosition="bottom-left"><Replay /></IconButton>} disabled />
           </List>

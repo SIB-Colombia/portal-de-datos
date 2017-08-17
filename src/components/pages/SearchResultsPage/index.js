@@ -61,9 +61,9 @@ class SearchResultsPage extends React.Component {
     super(props)
     this.state = {
       tab: 0,
-      species: [],
-      publishers: [],
+      open: true,
     }
+    this.openMenu = this.openMenu.bind(this)
   }
 
   componentWillMount() {
@@ -99,13 +99,19 @@ class SearchResultsPage extends React.Component {
     }
   }
 
+  openMenu(open) {
+    this.setState({
+      open,
+    })
+  }
+
   render() {
     return (
       <PageTemplate
         header={
           <Header
             filter={
-              <FileSearchFilter>
+              <FileSearchFilter open={this.openMenu}>
                 <TaxonomySearchItem />
                 <TaxonomicCategorySearchItem />
                 <LocationSearchItem />
@@ -122,7 +128,7 @@ class SearchResultsPage extends React.Component {
         }
         footer={<Footer />}
       >
-        <Wrapper>
+        <Wrapper style={this.state.open ? { marginLeft: 340 } : { marginLeft: 'auto' }} >
           <Grid>
             <Row between="xs">
               <Col className="title" md={12}>Registros biólogicos</Col>
