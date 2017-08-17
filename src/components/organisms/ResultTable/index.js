@@ -17,11 +17,12 @@ margin-top: 15px;
   .pagination {
     text-align: center;
     margin-top: 20px;
+    margin-bottom: 10px;    
   }
 
-  .responsive > div > div {
-    /* overflow-x: none !important;
-    overflow-y: none !important; */
+  div:not(:first-child) {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
   }
 `
 
@@ -65,9 +66,9 @@ export default class ResultTable extends React.Component {
 
   render() {
     return (
-      <Wrapper className="responsive">
+      <Wrapper>
         {this.state.result &&
-          <Table selectable={false} style={{ tableLayout: 'none' }} >
+          <Table selectable={false} style={{ tableLayout: 'none' }}>
             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
               <TableRow>
                 <TableHeaderColumn className="font">Nombre Científico</TableHeaderColumn>
