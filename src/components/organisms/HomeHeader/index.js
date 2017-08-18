@@ -1,16 +1,31 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Grid, Row, Col } from 'react-flexbox-grid'
-import FlatButton from 'material-ui/FlatButton'
+import _ from 'lodash'
+import { size } from 'styled-theme'
+import { HomeCard } from 'components'
+
+const Carousel = require('react-responsive-carousel').Carousel
 
 const Wrapper = styled.div`
-
-  background-image: url('/background/11285_orig.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-attachment:fixed;
+  .slide-background{
+    background: #fff;
+    overflow: auto;
+  }
+  .carousel .slide{
+    background: #fff !important;
+  }
+  .control-dots{
+    margin: 50px 0 !important;
+    @media ${size('sm')}{
+      margin: 70px 0 !important;
+    }
+  }
+  .carousel .control-dots .dot{
+    width: 12px;
+    height: 12px;
+  }
 `
-class HomeHeader extends React.Component {
+class HomeHeader extends Component {
 
   constructor(props) {
     super(props)
@@ -22,51 +37,48 @@ class HomeHeader extends React.Component {
     this.updateDimensions = this.updateDimensions.bind(this)
   }
 
-  componentWillMount() {
-    this.updateDimensions()
-  }
+  componentWillMount() { this.updateDimensions() }
 
-  componentDidMount() {
-    window.addEventListener('resize', this.updateDimensions)
-  }
+  componentDidMount() { window.addEventListener('resize', this.updateDimensions) }
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDimensions)
-  }
+  componentWillUnmount() { window.removeEventListener('resize', this.updateDimensions) }
 
-  updateDimensions() {
-    this.setState({ width: window.innerWidth, height: window.innerHeight })
-  }
+  updateDimensions() { this.setState({ width: window.innerWidth, height: window.innerHeight }) }
 
   render() {
+    const sliders = [
+      {
+        id: 1,
+        type: 'image',
+        url: '89714_orig.jpg',
+        copyright: 'Ejemplo de pie de página número 1',
+      },
+      {
+        id: 2,
+        type: 'image',
+        url: '03893_orig.jpg',
+        copyright: 'Ejemplo de pie de página número 2',
+      },
+      {
+        id: 3,
+        type: 'image',
+        url: '82168_orig.jpg',
+        copyright: 'Ejemplo de pie de página número 3',
+      },
+    ]
+
     return (
-      <Wrapper
-        style={{
-          minHeight: `${this.state.height / 3}px`,
-          paddingTop: `${this.state.height / 6}px`,
-          paddingBottom: `${this.state.height / 6}px`,
-        }}
-      >
-        <Grid>
-          <Row center="xs">
-            <Col xs={12} sm={12} md={12} lg={12}>
-              <FlatButton
-                href="/search/table"
-                backgroundColor="transparent"
-                style={{
-                  borderStyle: 'solid',
-                  borderWidth: 2,
-                  color: '#fff',
-                  padding: 55,
-                  paddingTop: 17,
-                  fontSize: 25,
-                }}
-              >
-                EXPLORA LOS DATOS
-            </FlatButton>
-            </Col>
-          </Row>
-        </Grid>
+      <Wrapper>
+        <Carousel showThumbs={false} showStatus={false}>
+          {
+            _.map(sliders, (value) => (
+              <div key={value.id} className="slide-background">
+                {value.type === 'image' && <HomeCard slider={value} height={this.state.height} />}
+                {value.type === 'video'}
+              </div>
+            ))
+          }
+        </Carousel>
       </Wrapper>
     )
   }

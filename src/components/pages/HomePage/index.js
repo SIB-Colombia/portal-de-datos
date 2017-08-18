@@ -12,6 +12,7 @@ import {
 import _ from 'lodash'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import FlatButton from 'material-ui/FlatButton'
+import Paper from 'material-ui/Paper'
 import * as DataPortalService from '../../../services/DataPortalService'
 import * as HomePageService from '../../../services/HomePageService'
 
@@ -31,21 +32,15 @@ class HomePage extends React.Component {
   componentWillMount() {
     DataPortalService.getOccurrenceCount().then(data => {
       this.setState({ count: { name: 'REGISTROS', count: format(data.count, '#.###.') } })
-    }).catch(err => {
-      console.log(err)
-    })
+    }).catch(err => new Error(err))
 
     DataPortalService.getOccurrenceCount('geo').then(data => {
       this.setState({ countGeo: { name: 'GEORREFERENCIADOS', count: format(data.count, '#.###.') } })
-    }).catch(err => {
-      console.log(err)
-    })
+    }).catch(err => new Error(err))
 
     HomePageService.getStatisticsData().then(data => {
       this.setState({ species: data })
-    }).catch(err => {
-      console.log(err)
-    })
+    }).catch(err => new Error(err))
   }
 
   render() {
@@ -53,7 +48,11 @@ class HomePage extends React.Component {
       <PageTemplate header={<Header />} footer={<Footer />}>
         <HomeHeader />
         <Grid>
-          {this.state.count && this.state.countGeo && this.state.species && <GlobalInfo style={{ margin: '-30px auto' }} inf={_.concat(this.state.count, this.state.countGeo, { name: 'ESPECIES', count: this.state.species.species })} />}
+          <Grid fluid>
+            <Paper style={{ position: 'relative' }}>
+              {this.state.count && this.state.countGeo && this.state.species && <GlobalInfo style={{ margin: '-30px auto' }} inf={_.concat(this.state.count, this.state.countGeo, { name: 'ESPECIES', count: this.state.species.species })} />}
+            </Paper>
+          </Grid>
         </Grid>
         <BiologicalGroups />
         <DirectAccess />

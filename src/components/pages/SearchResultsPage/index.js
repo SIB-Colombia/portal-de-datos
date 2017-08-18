@@ -26,28 +26,33 @@ import { Grid, Row, Col } from 'react-flexbox-grid'
 import { Tabs, Tab } from 'material-ui/Tabs'
 import FlatButton from 'material-ui/FlatButton'
 import FileDownload from 'material-ui/svg-icons/file/file-download'
+import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right'
 
 const Wrapper = styled.div`
-    margin-top: 85px;
-    .title {
-        font-weight: 400;
-        font-size: 30px;
-        padding-left: 30px;
-        color: #4B5353;
-    }
+  margin-top: 85px;
+  .title {
+      font-weight: 400;
+      font-size: 30px;
+      padding-left: 30px;
+      color: #4B5353;
+  }
 
-    .accent-title {
-        margin-top: 15px;
-        border-top: 2px solid #ff7847;
-    }
+  .accent-title {
+      margin-top: 15px;
+      border-top: 2px solid #ff7847;
+  }
 
-    .tabs {
-        margin-top: 30px;
-        div > button > div > div {
-            color: #4B5353;
-            font-size: 18px;
-        }
-    }
+  .tabs {
+      margin-top: 30px;
+      div > button > div > div {
+          color: #4B5353;
+          font-size: 18px;
+      }
+  }
+
+  .download {
+    text-align: right;
+  }  
 `
 
 class SearchResultsPage extends React.Component {
@@ -61,9 +66,9 @@ class SearchResultsPage extends React.Component {
     super(props)
     this.state = {
       tab: 0,
-      species: [],
-      publishers: [],
+      open: true,
     }
+    this.openMenu = this.openMenu.bind(this)
   }
 
   componentWillMount() {
@@ -99,13 +104,19 @@ class SearchResultsPage extends React.Component {
     }
   }
 
+  openMenu(open) {
+    this.setState({
+      open,
+    })
+  }
+
   render() {
     return (
       <PageTemplate
         header={
           <Header
             filter={
-              <FileSearchFilter>
+              <FileSearchFilter open={this.openMenu}>
                 <TaxonomySearchItem />
                 <TaxonomicCategorySearchItem />
                 <LocationSearchItem />
@@ -122,12 +133,30 @@ class SearchResultsPage extends React.Component {
         }
         footer={<Footer />}
       >
-        <Wrapper>
+        <Wrapper style={this.state.open ? { marginLeft: 350 } : { marginLeft: 'auto' }} >
           <Grid>
             <Row between="xs">
-              <Col className="title" md={12}>Registros biólogicos</Col>
+              <Col className="title" md={12}>BÚSQUEDA POR REGISTROS BIOLÓGICOS <ChevronRight /> <span>45.954.321</span> RESULTADOS</Col>
               <Col className="accent-title" md={1} />
-              <Col md={1}>
+            </Row>
+          </Grid>
+          <Grid>
+            <Row bottom="xs">
+              <Col xs={8} sm={8} md={8} lg={8}>
+                <Tabs
+                  className="tabs"
+                  tabItemContainerStyle={{ background: 'transparent' }}
+                  inkBarStyle={{ background: '#ff7847' }}
+                  initialSelectedIndex={this.state.tab}
+                >
+                  <Tab label="TABLA" onActive={() => this.handleTab('table')} />
+                  <Tab label="MAPA" onActive={() => this.handleTab('map')} />
+                  <Tab label="ESPECIES" onActive={() => this.handleTab('species')} />
+                  <Tab label="RECURSOS" onActive={() => this.handleTab('datasets')} />
+                  <Tab label="PUBLICADORES" onActive={() => this.handleTab('providers')} />
+                </Tabs>
+              </Col>
+              <Col xs sm md lg className={this.state.open ? '' : 'download'} style={{ paddingBottom: 5 }}>
                 <FlatButton
                   label="DESCARGA"
                   labelPosition="before"
@@ -136,20 +165,6 @@ class SearchResultsPage extends React.Component {
                 />
               </Col>
             </Row>
-          </Grid>
-          <Grid>
-            <Tabs
-              className="tabs"
-              tabItemContainerStyle={{ background: 'transparent' }}
-              inkBarStyle={{ background: '#ff7847' }}
-              initialSelectedIndex={this.state.tab}
-            >
-              <Tab label="TABLA" onActive={() => this.handleTab('table')} />
-              <Tab label="MAPA" onActive={() => this.handleTab('map')} />
-              <Tab label="ESPECIES" onActive={() => this.handleTab('species')} />
-              <Tab label="RECURSOS" onActive={() => this.handleTab('datasets')} />
-              <Tab label="PUBLICADORES" onActive={() => this.handleTab('providers')} />
-            </Tabs>
           </Grid>
           {this.state.tab === 0 &&
             <Grid fluid>

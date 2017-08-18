@@ -1,12 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Grid, Row, Col } from 'react-flexbox-grid'
+import { Row, Col } from 'react-flexbox-grid'
 import Paper from 'material-ui/Paper'
 import { Link } from 'components'
 import _ from 'lodash'
+import { size } from 'styled-theme'
 
 const Wrapper = styled.div`
+position: relative;
   .paper {
       color: #3E5151;
       font-size: 24px;
@@ -22,37 +24,40 @@ const Wrapper = styled.div`
             font-size: 28px;
         }
       }
-
-      div:not(:first-child){
-        border-left: 1px solid rgb(224, 224, 224);
+      @media ${size('xs')}{
+        margin: 30px !important;
+      }
+      @media ${size('sm')}{
+        margin: 30px;
+        div:not(:first-child){
+          border-left: 1px solid rgb(224, 224, 224);
+        }
+      }
+      @media ${size('md')}{
+        div:not(:first-child){
+          border-left: 1px solid rgb(224, 224, 224);
+        }
+      }
+      @media ${size('lg')}{
+        div:not(:first-child){
+          border-left: 1px solid rgb(224, 224, 224);
+        }
       }
   }
 `
+const GLobalInfo = ({ style, inf }) => (
+  <Wrapper>
+    <Row className="paper" center="xs" style={style}>
+      {_.map(inf, (value, key) => (
+        <Col xs sm md lg key={key}><Link to="#"><span className="number">{value.count}</span> {value.name}</Link></Col>
+      ))}
+    </Row>
+  </Wrapper>
+)
 
-class GLobalInfo extends Component {
-
-  static propTypes = {
-    inf: PropTypes.any.isRequired,
-    style: PropTypes.any,
-  }
-
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    return (
-      <Wrapper>
-        <Paper>
-          <Row className="paper" center="xs" style={this.props.style}>
-            {_.map(this.props.inf, (value, key) => (
-              <Col xs={12} sm={6} md={4} lg key={key}><Link><span className="number">{value.count}</span> {value.name}</Link></Col>
-            ))}
-          </Row>
-        </Paper>
-      </Wrapper>
-    )
-  }
+GLobalInfo.propTypes = {
+  inf: PropTypes.any.isRequired,
+  style: PropTypes.any,
 }
 
 export default GLobalInfo

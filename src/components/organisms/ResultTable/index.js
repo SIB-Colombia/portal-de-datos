@@ -9,29 +9,25 @@ import * as DataPortalService from '../../../services/DataPortalService'
 
 const Wrapper = styled.div`
 margin-top: 15px;
-    .font {
-      color: #4B5353 !important;
-      font-size: 15px !important;
-      padding-left: 5px !important;
-      padding-right: 0px !important;
-      word-wrap: break-word !important;
-      white-space: normal !important;
-    }
+  .font {
+    color: #4B5353 !important;
+    font-size: 15px !important;
+  }
 
-    .row {
-      padding-left: 5px !important;
-      padding-right: 0px !important;
-    }
+  .pagination {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;    
+  }
 
-    .large {
-      word-wrap: break-word !important;
-      white-space: normal !important;
-    }
+  div:not(:first-child) {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+  }
 
-    .pagination {
-      text-align: center;
-        margin-top: 20px;
-    }
+  .hover {
+    cursor: pointer;
+  }
 `
 
 export default class ResultTable extends React.Component {
@@ -76,7 +72,7 @@ export default class ResultTable extends React.Component {
     return (
       <Wrapper>
         {this.state.result &&
-          <Table selectable={false}>
+          <Table selectable={false} style={{ tableLayout: 'none' }}>
             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
               <TableRow>
                 <TableHeaderColumn className="font">Nombre Científico</TableHeaderColumn>
@@ -95,16 +91,15 @@ export default class ResultTable extends React.Component {
                 <TableHeaderColumn className="font">Familia</TableHeaderColumn>
                 <TableHeaderColumn className="font">Género</TableHeaderColumn>
                 <TableHeaderColumn className="font">Epíteto Específico</TableHeaderColumn>
-                <TableHeaderColumn />
               </TableRow>
             </TableHeader>
-            <TableBody displayRowCheckbox={false}>
+            <TableBody displayRowCheckbox={false} showRowHover>
               {this.state.result && _.map(this.state.result.results, (registro) => (
                 <ResultRow key={registro.id} registro={registro} />
               ))}
             </TableBody>
           </Table>
-        || <Loading />
+          || <Loading />
         }
         <div className="pagination">
           <Pagination total={Math.ceil((this.state.total) / this.state.display)} current={this.state.current} display={this.state.display} onChange={number => this.getNextOccurrencePage(number)} />
