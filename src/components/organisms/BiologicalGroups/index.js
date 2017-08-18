@@ -44,7 +44,7 @@ class BiologicalGroups extends Component {
       <Wrapper>
         <Grid>
           <Row>
-            <Col className="title" md={12}>Explora los datos a travéz de grupos biológicos</Col>
+            <Col className="title" md={12}>Explora los datos a través de grupos biológicos</Col>
             <Col className="accent-title" md={1} />
           </Row>
           <Row style={{ marginTop: 50 }} between="md">
