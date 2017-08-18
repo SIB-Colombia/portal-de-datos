@@ -7,7 +7,7 @@ import ViewList from 'material-ui/svg-icons/action/view-list'
 import Apps from 'material-ui/svg-icons/navigation/apps'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
-import { DatasetsItem } from 'components'
+import { DatasetsItem, DatasetsSmallItem } from 'components'
 import Pagination from 'material-ui-pagination'
 import Masonry from 'react-masonry-component'
 
@@ -81,10 +81,11 @@ export default class DatasetsList extends Component {
           <Col className="accent-divider" md={12} />
           <Col md={12}>
             <Masonry>
-              {this.props.datasets.map((dataset) => (
-                <Col key={dataset.resourceId} md={this.state.mode === 'grid' ? 6 : 12}>
-                  <DatasetsItem dataset={dataset} />
-                </Col>
+              {this.props.datasets && this.state.mode === 'grid' && this.props.datasets.map((dataset) => (
+                <DatasetsSmallItem key={dataset.key} dataset={dataset} />
+              ))}
+              {this.props.datasets && this.state.mode === 'list' && this.props.datasets.map((dataset) => (
+                <DatasetsItem key={dataset.key} dataset={dataset} />
               ))}
             </Masonry>
           </Col>

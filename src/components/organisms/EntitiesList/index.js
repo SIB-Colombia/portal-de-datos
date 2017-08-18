@@ -7,7 +7,7 @@ import ViewList from 'material-ui/svg-icons/action/view-list'
 import Apps from 'material-ui/svg-icons/navigation/apps'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
-import { EntitiesItem } from 'components'
+import { EntitiesItem, EntitiesSmallItem } from 'components'
 import Pagination from 'material-ui-pagination'
 import Masonry from 'react-masonry-component'
 
@@ -37,7 +37,7 @@ const Wrapper = styled.div`
 
 export default class EntitiesList extends Component {
 
-  static propTypes= {
+  static propTypes = {
     entities: PropTypes.any.isRequired,
   }
 
@@ -81,10 +81,11 @@ export default class EntitiesList extends Component {
           <Col className="accent-divider" md={12} />
           <Col md={12}>
             <Masonry>
-              {this.props.entities.map((entitie) => (
-                <Col key={entitie.id} md={this.state.mode === 'grid' ? 6 : 12}>
-                  <EntitiesItem entities={entitie} />
-                </Col>
+              {this.props.entities && this.state.mode === 'grid' && this.props.entities.map((entitie) => (
+                <EntitiesSmallItem key={entitie.id} entitie={entitie} />
+              ))}
+              {this.props.entities && this.state.mode === 'list' && this.props.entities.map((entitie) => (
+                <EntitiesItem key={entitie.id} entitie={entitie} />
               ))}
             </Masonry>
           </Col>

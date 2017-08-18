@@ -10,6 +10,7 @@ import {
   PublisherSearchItem,
 } from 'components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
+import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right'
 import * as DatasetsService from '../../../services/DatasetsService'
 
 const Wrapper = styled.div`
@@ -33,7 +34,9 @@ export default class DatasetsListPage extends Component {
     super(props)
     this.state = {
       datasets: null,
+      open: true,
     }
+    this.openMenu = this.openMenu.bind(this)
   }
 
   componentWillMount() {
@@ -44,13 +47,19 @@ export default class DatasetsListPage extends Component {
     })
   }
 
+  openMenu(open) {
+    this.setState({
+      open,
+    })
+  }
+
   render() {
     return (
       <PageTemplate
         header={
           <Header
             filter={
-              <FileSearchFilter>
+              <FileSearchFilter open={this.openMenu}>
                 <PublisherSearchItem />
                 <ResourceNameSearchItem />
               </FileSearchFilter>
@@ -59,10 +68,10 @@ export default class DatasetsListPage extends Component {
         }
         footer={<Footer />}
       >
-        <Wrapper>
+        <Wrapper style={this.state.open ? { marginLeft: 350 } : { marginLeft: 'auto' }}>
           <Grid>
             <Row>
-              <Col className="title" md={12}>Recursos</Col>
+              <Col className="title" md={12}>BÚSQUEDA POR RECURSO <ChevronRight /> <span>45.954.321</span> RESULTADOS</Col>
               <Col className="accent-title" md={1} />
             </Row>
             {this.state.datasets && <DatasetsList datasets={this.state.datasets} />}

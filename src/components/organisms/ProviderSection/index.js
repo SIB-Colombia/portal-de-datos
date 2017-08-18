@@ -5,7 +5,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid'
 import Paper from 'material-ui/Paper'
 import IconButton from 'material-ui/IconButton'
 import InsertLink from 'material-ui/svg-icons/editor/insert-link'
-import { Link } from 'components'
+import { Link, GlobalInfo } from 'components'
 
 const Wrapper = styled.div`
   .title {
@@ -101,13 +101,19 @@ export default class ProviderSection extends Component {
           </Row>
         </Grid>
         <Paper className="separated">
-          <Grid fluid>
-            <Row className="paper">
-              <Col xs={12} sm={6} md={4} lg={3}><span className="number">{this.props.provider.occurrence.count.providerName}</span> REGISTROS</Col>
-              <Col xs={12} sm={6} md={4} lg={3}><span className="number">{this.props.provider.occurrence.count.providerName}</span> RECURSOS</Col>
-              <Col xs={12} sm={6} md={4} lg={3}><span className="number">{this.props.provider.occurrence.count.scientificName}</span> ESPECIES</Col>
-              <Col xs={12} sm={6} md={12} lg={3}><span className="number">{this.props.provider.occurrence.count.resourceName}</span> GEORREFERENCIADOS</Col>
-            </Row>
+          <Grid>
+            <Grid fluid>
+              {this.props.provider.occurrence.count &&
+                <GlobalInfo
+                  inf={[
+                    { name: 'REGISTROS', count: this.props.provider.occurrence.count.providerName },
+                    { name: 'RECURSOS', count: this.props.provider.occurrence.count.providerName },
+                    { name: 'ESPECIES', count: this.props.provider.occurrence.count.scientificName },
+                    { name: 'GEORREFERENCIADOS', count: this.props.provider.occurrence.count.resourceName },
+                  ]}
+                />
+              }
+            </Grid>
           </Grid>
         </Paper>
         <Grid className="more-datails">

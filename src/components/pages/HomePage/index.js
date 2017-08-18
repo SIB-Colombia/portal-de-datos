@@ -12,6 +12,7 @@ import {
 import _ from 'lodash'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import FlatButton from 'material-ui/FlatButton'
+import Paper from 'material-ui/Paper'
 import * as DataPortalService from '../../../services/DataPortalService'
 import * as HomePageService from '../../../services/HomePageService'
 
@@ -48,7 +49,9 @@ class HomePage extends React.Component {
         <HomeHeader />
         <Grid>
           <Grid fluid>
-            {this.state.count && this.state.countGeo && this.state.species && <GlobalInfo style={{ margin: '-30px auto' }} inf={_.concat(this.state.count, this.state.countGeo, { name: 'ESPECIES', count: this.state.species.species })} />}
+            <Paper style={{ position: 'relative' }}>
+              {this.state.count && this.state.countGeo && this.state.species && <GlobalInfo style={{ margin: '-30px auto' }} inf={_.concat(this.state.count, this.state.countGeo, { name: 'ESPECIES', count: this.state.species.species })} />}
+            </Paper>
           </Grid>
         </Grid>
         <BiologicalGroups />

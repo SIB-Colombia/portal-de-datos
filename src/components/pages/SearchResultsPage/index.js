@@ -26,6 +26,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid'
 import { Tabs, Tab } from 'material-ui/Tabs'
 import FlatButton from 'material-ui/FlatButton'
 import FileDownload from 'material-ui/svg-icons/file/file-download'
+import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right'
 
 const Wrapper = styled.div`
   margin-top: 85px;
@@ -132,10 +133,10 @@ class SearchResultsPage extends React.Component {
         }
         footer={<Footer />}
       >
-        <Wrapper style={this.state.open ? { marginLeft: 340 } : { marginLeft: 'auto' }} >
+        <Wrapper style={this.state.open ? { marginLeft: 350 } : { marginLeft: 'auto' }} >
           <Grid>
             <Row between="xs">
-              <Col className="title" md={12}>Registros biólogicos</Col>
+              <Col className="title" md={12}>BÚSQUEDA POR REGISTROS BIOLÓGICOS <ChevronRight /> <span>45.954.321</span> RESULTADOS</Col>
               <Col className="accent-title" md={1} />
             </Row>
           </Grid>
