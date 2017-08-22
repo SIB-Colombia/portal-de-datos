@@ -197,7 +197,6 @@ class Header extends React.Component {
 
     const customContentStyle = {
       width: '90%',
-      maxWidth: 'none',
     }
 
     return (

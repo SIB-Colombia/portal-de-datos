@@ -24,8 +24,8 @@ class DirectAccess extends Component {
         {
           titulo: 'Publicadores',
           img: '/home/publicadores.png',
-          descripcion: 'Explora los datos a través de las entidades que comparten datos a través del SiB Colombia',
-          to: '/provider',
+          descripcion: 'Conoce las entidades que comparten datos a través del SiB Colombia',
+          to: '/publishers',
         },
         {
           titulo: 'Recursos',
