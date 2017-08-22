@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { HomeButton } from 'components'
+import theme from '../../themes/default'
 
 const Wrapper = styled.div`
   .box-home{
@@ -14,7 +15,7 @@ const HomeCard = ({ slider, height }) => (
     <div
       className="box-home"
       style={{
-        color: 'white',
+        color: theme.palette.grayscale[0],
         height: height / 1.8,
         backgroundImage: `url(/background/${slider.url})`,
         backgroundPosition: 'center center',

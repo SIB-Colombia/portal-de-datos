@@ -3,13 +3,14 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { size } from 'styled-theme'
 import Copyright from 'material-ui/svg-icons/action/copyright'
+import theme from '../../themes/default'
 
 const Wrapper = styled.div`
   .carousel-middle{
-    color: white;
-    font-size: 22px;
+    color: ${theme.palette.grayscale[0]};
+    font-size: ${theme.fonts.titleTwo.font};
     font-weight: 500;
-    border: 2px solid white;
+    border: 2px solid ${theme.palette.grayscale[0]};
     padding: 15px 30px;
     position: absolute;
     left: 50%;
@@ -32,7 +33,7 @@ const Wrapper = styled.div`
     right: 0px;
     padding: 10px 20px;
     background: rgba(0,0,0,0.5);
-    color: white;
+    color: ${theme.palette.grayscale[0]};
     font-size: 11px;
     @media ${size('xs')}{
       bottom: 0px;
@@ -43,15 +44,19 @@ const Wrapper = styled.div`
     svg{
       margin-left: 5px !important;
       vertical-align: middle !important;
-      color:white !important;
+      color: ${theme.palette.grayscale[0]} !important;
       height: 18px !important;
       width: 18px !important;
     }
   }
 `
 
+const redirect = () => {
+  window.location.href = '/search/table'
+}
+
 const HomeButton = ({ footer }, props) => (
-  <Wrapper {...props}>
+  <Wrapper {...props} onClick={redirect}>
     <div className="carousel-middle animated fadeIn">EXPLORA LOS DATOS</div>
     <div className="carousel-footer">
       {footer}<Copyright />
