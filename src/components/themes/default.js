@@ -19,12 +19,12 @@ theme.palette = {
   basescale: [
     '#F1F8F7',
     '#E0E7E7',
-    '#00AAB9',
+    '#00AAB9', // title
     '#008995',
-    '#006972',
+    '#006972', // title
     '#002428',
-    '#FF7847',
-    '#465252',
+    '#FF7847', // link
+    '#465252', // title
   ],
   text: ['#465252'],
 }
@@ -34,23 +34,23 @@ theme.reversePalette = reversePalette(theme.palette)
 theme.fonts = {
   titleOne: {
     font: '28px',
-    weight: 'regular',
+    weight: 'normal',
   },
   titleTwo: {
     font: '22px',
-    weight: 'regular',
+    weight: 'normal',
   },
   subTitleOne: {
     font: '18px',
-    weight: 'regular',
+    weight: 'normal',
   },
   subTitleTwo: {
     font: '16px',
-    weight: 'light',
+    weight: 'lighter',
   },
   content: {
     font: '14px',
-    weight: 'light',
+    weight: 'lighter',
   },
   primary: 'Open Sans, sans-serif',
   lineHeight: '28',

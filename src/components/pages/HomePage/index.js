@@ -50,7 +50,7 @@ class HomePage extends React.Component {
         <Grid>
           <Grid fluid>
             <Paper style={{ position: 'relative' }}>
-              {this.state.count && this.state.countGeo && this.state.species && <GlobalInfo style={{ margin: '-30px auto' }} inf={_.concat(this.state.count, this.state.countGeo, { name: 'ESPECIES', count: this.state.species.species })} />}
+              {this.state.count && this.state.countGeo && this.state.species && <GlobalInfo style={{ margin: '-30px auto' }} inf={_.concat(this.state.count, this.state.countGeo, { name: 'ESPECIES', count: format((this.state.species.species).toString(), '#.###.') })} />}
             </Paper>
           </Grid>
         </Grid>
