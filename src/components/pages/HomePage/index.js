@@ -8,6 +8,7 @@ import {
   BiologicalGroups,
   DirectAccess,
   GeographicExplorer,
+  LandingSection,
 } from 'components'
 import _ from 'lodash'
 import { Grid, Row, Col } from 'react-flexbox-grid'
@@ -57,34 +58,7 @@ class HomePage extends React.Component {
         <BiologicalGroups />
         <DirectAccess />
         <GeographicExplorer />
-        <Grid
-          fluid
-          style={{
-            backgroundColor: '#0098A3',
-            color: '#fff',
-            padding: '100px 0px',
-          }}
-        >
-          <Row center="xs" middle="xs">
-            <Col xs={12} sm={12} md={12} lg={6} style={{ fontSize: 40, fontWeight: 600 }}>¿Quieres compartir tus datos?</Col>
-            <Col xs={12} sm={12} md={12} lg={6}>
-              <FlatButton
-                href="/static/enterate-como"
-                backgroundColor="transparent"
-                style={{
-                  borderStyle: 'solid',
-                  borderWidth: 2,
-                  color: '#fff',
-                  padding: 55,
-                  paddingTop: 17,
-                  fontSize: 36,
-                }}
-              >
-                ENTÉRATE CÓMO
-            </FlatButton>
-            </Col>
-          </Row>
-        </Grid>
+        <LandingSection />
       </PageTemplate>
     )
   }

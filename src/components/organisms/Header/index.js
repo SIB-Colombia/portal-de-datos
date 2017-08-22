@@ -20,7 +20,7 @@ import theme from '../../themes/default'
 
 const Wrapper = styled.nav`
 position:fixed;
-top:0%;
+top:0;
 width:100%;
 z-index: 10 !important;
   .box-nav-search-content{
@@ -211,21 +211,19 @@ class Header extends React.Component {
                 </Link>
               </Col>
               <Col xs={12} sm={4} md={4} lg={5} className="box-nav-search-content">
-                <div className="box-search-color">
-                  <Row>
-                    <Col xs={1} sm={2} md={2} lg={1} className="box-nav-icon align-right">
-                      <Search />
-                    </Col>
-                    <Col xs={10} sm={8} md={8} lg={10} className="box-nav-search">
-                      <TextField hintText="Buscar" fullWidth onKeyDown={this.handleTextFieldKeyDown} />
-                    </Col>
-                    <Col xs={1} sm={2} md={2} lg={1} className="box-nav-icon align-left">
-                      <a onTouchTap={this.handleOpen} className="box-nav-advance">
-                        <Tune />
-                      </a>
-                    </Col>
-                  </Row>
-                </div>
+                <Row className="box-search-color">
+                  <Col xs={1} sm={2} md={2} lg={1} className="box-nav-icon align-right">
+                    <Search />
+                  </Col>
+                  <Col xs={10} sm={8} md={8} lg={10} className="box-nav-search">
+                    <TextField hintText="Buscar" fullWidth onKeyDown={this.handleTextFieldKeyDown} />
+                  </Col>
+                  <Col xs={1} sm={2} md={2} lg={1} className="box-nav-icon align-left">
+                    <a onTouchTap={this.handleOpen} className="box-nav-advance">
+                      <Tune />
+                    </a>
+                  </Col>
+                </Row>
               </Col>
               {!isAuthenticated() && <Col xs={12} sm={4} md={5} lg={4} className="box-link">
                 <FlatButton
