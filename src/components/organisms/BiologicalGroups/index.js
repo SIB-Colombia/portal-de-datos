@@ -2,21 +2,22 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import { BiologicalItem } from 'components'
+import theme from '../../themes/default'
 
 const Wrapper = styled.div`
-    margin-top: 85px;
-    margin-bottom: 130px;
+    margin-top: 70px;
+    margin-bottom: 70px;
 
     .title {
-        font-weight: 400;
-        font-size: 30px;
+        font-weight: ${theme.fonts.titleOne.weight};
+        font-size: ${theme.fonts.titleOne.font};
         padding-left: 30px;
-        color: #4B5353;
+        color: ${theme.palette.text[0]};
     }
 
     .accent-title {
         margin-top: 15px;
-        border-top: 2px solid #ff7847;
+        border-top: 2px solid ${theme.palette.basescale[6]};
     }
 `
 
@@ -37,21 +38,21 @@ class BiologicalGroups extends Component {
     }
   }
 
-
-
   render() {
     return (
       <Wrapper>
         <Grid>
-          <Row>
-            <Col className="title" md={12}>Explora los datos a travéz de grupos biológicos</Col>
-            <Col className="accent-title" md={1} />
-          </Row>
-          <Row style={{ marginTop: 50 }} between="md">
-            {this.state.groups.map((group, i) => (
-              <BiologicalItem key={i} group={group} />
-            ))}
-          </Row>
+          <Grid fluid>
+            <Row>
+              <Col className="title" xs={12} sm={12} md={12} lg={12}>Explora a través de grupos biológicos</Col>
+              <Col className="accent-title" xs={1} sm={1} md={1} lg={1} />
+            </Row>
+            <Row style={{ marginTop: 45 }} between="md">
+              {this.state.groups.map((group, i) => (
+                <BiologicalItem key={i} group={group} />
+              ))}
+            </Row>
+          </Grid>
         </Grid>
       </Wrapper>
     )

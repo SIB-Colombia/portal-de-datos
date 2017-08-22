@@ -3,16 +3,17 @@ import styled from 'styled-components'
 import _ from 'lodash'
 import { size } from 'styled-theme'
 import { HomeCard } from 'components'
+import theme from '../../themes/default'
 
 const Carousel = require('react-responsive-carousel').Carousel
 
 const Wrapper = styled.div`
   .slide-background{
-    background: #fff;
+    background: ${theme.palette.grayscale[0]};
     overflow: auto;
   }
   .carousel .slide{
-    background: #fff !important;
+    background: ${theme.palette.grayscale[0]} !important;
   }
   .control-dots{
     margin: 50px 0 !important;
@@ -50,7 +51,7 @@ class HomeHeader extends Component {
       {
         id: 1,
         type: 'image',
-        url: '89714_orig.jpg',
+        url: 'fondo-pd.jpg',
         copyright: 'Ejemplo de pie de página número 1',
       },
       {

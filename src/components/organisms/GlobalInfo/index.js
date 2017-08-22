@@ -2,23 +2,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Row, Col } from 'react-flexbox-grid'
-import Paper from 'material-ui/Paper'
 import { Link } from 'components'
 import _ from 'lodash'
 import { size } from 'styled-theme'
+import theme from '../../themes/default'
 
 const Wrapper = styled.div`
 position: relative;
   .paper {
-      color: #3E5151;
-      font-size: 24px;
+      color: ${theme.palette.text[0]};
+      font-size: ${theme.fonts.subTitleOne.font};
       padding: 10px;
       margin: 30px 0px;
 
       a {
-        color: #3E5151;
-        fontWeight: 200;
-        font-size: 18px;
+        color: ${theme.palette.text[0]};
+        fontWeight: ${theme.fonts.subTitleTwo.weight};
+        font-size: ${theme.fonts.subTitleTwo.font};
         .number {
             font-weight: 400;
             font-size: 28px;

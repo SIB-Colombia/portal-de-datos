@@ -1,79 +1,80 @@
-import React from 'react';
-import styled from 'styled-components';
-import { IconLink, Link, HeaderSearchAdvance, HeaderUserMenu } from 'components';
-import { Grid, Row, Col } from 'react-flexbox-grid';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import FontIcon from 'material-ui/FontIcon';
-import TextField from 'material-ui/TextField';
-import Paper from 'material-ui/Paper';
-import Tune from 'material-ui/svg-icons/image/tune';
-import Search from 'material-ui/svg-icons/action/search';
-import { size, palette } from 'styled-theme';
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import { Link, HeaderSearchAdvance, HeaderUserMenu } from 'components'
+import { Grid, Row, Col } from 'react-flexbox-grid'
+import Dialog from 'material-ui/Dialog'
+import FlatButton from 'material-ui/FlatButton'
+import RaisedButton from 'material-ui/RaisedButton'
+import TextField from 'material-ui/TextField'
+import Paper from 'material-ui/Paper'
+import Tune from 'material-ui/svg-icons/image/tune'
+import Search from 'material-ui/svg-icons/action/search'
+import { size } from 'styled-theme'
+import Popover, { PopoverAnimationVertical } from 'material-ui/Popover'
+import Menu from 'material-ui/Menu'
+import MenuItem from 'material-ui/MenuItem'
 // import {me, isAuthenticated} from '../../../auth';
-import { isAuthenticated } from '../../../auth';
+import { isAuthenticated } from '../../../auth'
+import theme from '../../themes/default'
 
 const Wrapper = styled.nav`
 position:fixed;
-top:0%;
+top:0;
 width:100%;
-background: red !important;
 z-index: 10 !important;
-.box-nav-search-content{
-	text-align: center;
-	padding: 6px 0px;
-	@media ${size('xs')}{
-		display: none;
-	}
-	.box-search-color{
-		background: #F3F8F8;
-		hr{
-			display: none;
-		}
+  .box-nav-search-content{
+    text-align: center;
+    padding: 6px 0px;
+    @media ${size('xs')}{
+      display: none;
+    }
+    .box-search-color{
+      background: ${theme.palette.basescale[0]};
+      hr{
+        display: none;
+      }
+    }
+    .box-nav-advance{
+      cursor: pointer;
+      &:hover{
+        opacity: 0.5;
+      }
+    }
+    .box-nav-search{
+      padding:2px;
+    }
+    .box-nav-icon{
+      padding-top: 15px;
+    }
 
-	}
-	.box-nav-advance{
-	  cursor: pointer;
-	  &:hover{
-	    opacity: 0.5;
-	  }
-	}
-	.box-nav-search{
-	  padding:2px;
-	}
-	.box-nav-icon{
-	  padding-top: 13px;
-	}
-
-}
-svg{
-	font-weight: lighter;
-	color: ${palette('grayscale', 5)} !important;
-}
-.box-logo{
-	@media ${size('xs')}{
-		text-align: center;
-	}
-}
-.box-link{
-	text-align:right;
-	a {
-		height:100% !important;
-		line-height: 4 !important;
-	}
-	@media ${size('xs')}{
-		display: none;
-	}
-}
-.portal-logo{
-	width: 160px;
-  padding: 7px 0px;
-  margin-bottom: -15px;
-}
+  }
+  svg{
+    color: ${theme.palette.grayscale[5]} !important;
+  }
+  .box-logo{
+    @media ${size('xs')}{
+      text-align: center;
+    }
+  }
+  .box-link{
+    text-align:right;
+    a {
+      height:100% !important;
+      line-height: 4 !important;
+    }
+    @media ${size('xs')}{
+      display: none;
+    }
+  }
+  .portal-logo{
+    width: 160px;
+    padding: 7px 0px;
+    margin-bottom: -15px;
+  }
 `
 
-const Title = styled.div`
+/* const Title = styled.div`
 display:inline-block;
 vertical-align: middle;
 color: ${palette('grayscale', 5)};
@@ -84,7 +85,7 @@ text-transform: uppercase;
 margin-top: -5px;
 line-height: 1;
 b{
-	margin-right: 2px;
+margin-right: 2px;
 }
 
 `
@@ -92,28 +93,34 @@ const TitleSub = styled.div`
 font-size:14px;
 text-transform: uppercase;
 line-height:1;
-`
+` */
 
-//Get user from Redis [Once time], this module remember promise
+// Get user from Redis [Once time], this module remember promise
 
 // const getMe = me();
 
 class Header extends React.Component {
 
+  static propTypes = {
+    filter: PropTypes.any,
+  }
+
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       user: null,
       open: false,
+      openD: false,
     }
 
     this.url = null
-
     this.changeUrl = this.changeUrl.bind(this)
+    this.handleTouchTap = this.handleTouchTap.bind(this)
+    this.handleRequestClose = this.handleRequestClose.bind(this)
   }
 
   componentWillMount() {
-    /*getMe.then(data => {
+    /* getMe.then(data => {
       //console.log('res me',data);
       if (data) {
         console.log('user logged->', data);
@@ -126,7 +133,7 @@ class Header extends React.Component {
   }
 
   handleOpen = () => {
-    this.setState({ open: true });
+    this.setState({ open: true })
   };
 
   handleClose = () => {
@@ -141,8 +148,8 @@ class Header extends React.Component {
   handleTextFieldKeyDown = event => {
     switch (event.key) {
       case 'Enter':
-        console.log("Enter");
-        window.location.href = '/search/table?q=' + event.target.value;
+        console.log('Enter')
+        window.location.href = `/search/table?q=${event.target.value}`
         break
       case 'Escape':
         // etc...
@@ -154,6 +161,23 @@ class Header extends React.Component {
   changeUrl(url) {
     this.url = url
   }
+
+  handleTouchTap = (event) => {
+    // This prevents ghost click.
+    event.preventDefault()
+
+    this.setState({
+      openD: true,
+      anchorEl: event.currentTarget,
+    })
+  }
+
+  handleRequestClose = () => {
+    this.setState({
+      openD: false,
+    })
+  }
+
 
   render() {
     const actions = [
@@ -173,7 +197,6 @@ class Header extends React.Component {
 
     const customContentStyle = {
       width: '90%',
-      maxWidth: 'none',
     }
 
     return (
@@ -184,27 +207,45 @@ class Header extends React.Component {
               <Col xs={12} sm={3} md={3} lg={3} className="box-logo">
                 {this.props.filter}
                 <Link to={'/'}>
-                  <img src="/log_portal.png" className="portal-logo" />
+                  <img src="/log_portal.png" alt="" className="portal-logo" />
                 </Link>
               </Col>
-              <Col xs={12} sm={5} md={6} lg={6} className="box-nav-search-content">
-                <div className="box-search-color">
-                  <Row>
-                    <Col xs={1} sm={2} md={2} lg={1} className="box-nav-icon">
-                      <Search />
-                    </Col>
-                    <Col xs={10} sm={8} md={8} lg={10} className="box-nav-search">
-                      <TextField hintText="Buscar" fullWidth={true} onKeyDown={this.handleTextFieldKeyDown} />
-                    </Col>
-                    <Col xs={1} sm={1} md={2} lg={1} className="box-nav-icon">
-                      <a onTouchTap={this.handleOpen} className="box-nav-advance">
-                        <Tune />
-                      </a>
-                    </Col>
-                  </Row>
-                </div>
+              <Col xs={12} sm={4} md={4} lg={5} className="box-nav-search-content">
+                <Row className="box-search-color">
+                  <Col xs={1} sm={2} md={2} lg={1} className="box-nav-icon align-right">
+                    <Search />
+                  </Col>
+                  <Col xs={10} sm={8} md={8} lg={10} className="box-nav-search">
+                    <TextField hintText="Buscar" fullWidth onKeyDown={this.handleTextFieldKeyDown} />
+                  </Col>
+                  <Col xs={1} sm={2} md={2} lg={1} className="box-nav-icon align-left">
+                    <a onTouchTap={this.handleOpen} className="box-nav-advance">
+                      <Tune />
+                    </a>
+                  </Col>
+                </Row>
               </Col>
-              {!isAuthenticated() && <Col xs={12} sm={4} md={3} lg={3} className="box-link">
+              {!isAuthenticated() && <Col xs={12} sm={4} md={5} lg={4} className="box-link">
+                <FlatButton
+                  onClick={this.handleTouchTap}
+                  label="Explorar"
+                />
+                <Popover
+                  open={this.state.openD}
+                  anchorEl={this.state.anchorEl}
+                  anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+                  targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+                  onRequestClose={this.handleRequestClose}
+                  animation={PopoverAnimationVertical}
+                >
+                  <Menu>
+                    <MenuItem primaryText="Registros" href="/search/table" />
+                    <MenuItem primaryText="Recursos" href="datasets" />
+                    <MenuItem primaryText="Publicadores" href="publishers" />
+                    <MenuItem primaryText="Explorador geográfico" href="departments" />
+                  </Menu>
+                </Popover>
+
                 <Link to="/login/signup" activeClassName="active">
                   <FlatButton label="Registrarse" />
                 </Link>
@@ -226,4 +267,4 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+export default Header
