@@ -44,7 +44,7 @@ class BiologicalItem extends Component {
 
   render() {
     return (
-      <Col xs={12} sm={6} md={6} lg>
+      <Col xs={12} sm={4} md={4} lg>
         <Row center="xs">
           <Wrapper>
             <Link to={this.destino(this.props.group.q)}>

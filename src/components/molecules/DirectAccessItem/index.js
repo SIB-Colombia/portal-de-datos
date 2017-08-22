@@ -2,32 +2,33 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Row, Col } from 'react-flexbox-grid'
-import { Link } from 'components'
+import theme from '../../themes/default'
 
 const Wrapper = styled.div`
-    margin-top: 70px;
-    margin-bottom: 100px;
+  margin-top: 70px;
+  margin-bottom: 70px;
+  color: ${theme.palette.text[0]};
+  .titulo {
+    font-weight: ${theme.fonts.titleOne.weight};
+    font-size: ${theme.fonts.titleOne.font};
+  }
 
-    .titulo {
-        font-weight: 400;
-        font-size: 30px;
-        text-align: center;
-        color: #4B5353;
-    }
+  .accent-title {
+    margin-top: 15px;
+    border-top: 2px solid ${theme.palette.basescale[6]};
+  }
 
-    .accent-title {
-        margin-top: 15px;
-        border-top: 2px solid #ff7847;
-    }
+  .descripcion {
+    font-size: ${theme.fonts.subTitleOne.font};
+    font-weight: ${theme.fonts.subTitleTwo.weight};
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 
-    .descripcion {
-        width: 330px;
-        text-align: center;
-        color: #545859;
-        font-size: 20px;
-        font-weight: 200;        
-    }
-
+  img {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
 `
 export default class DirectAccessItem extends Component {
 
@@ -41,21 +42,19 @@ export default class DirectAccessItem extends Component {
 
   render() {
     return (
-      <Col>
+      <Col xs={12} sm={6} md={4} lg={4}>
         <Wrapper>
-          <Row>
-            <Link to={this.props.link.to}>
-              <Col md className="titulo">
-                {this.props.link.titulo}
-              </Col>
-              <Col className="accent-title" mdOffset={4} md={4} />
-              <Col md style={{ textAlign: 'center', padding: 30 }}>
-                <img src={this.props.link.img} alt="" width="60%" />
-              </Col>
-              <Col md className="descripcion">
-                <i>{this.props.link.descripcion}</i>
-              </Col>
-            </Link>
+          <Row center="xs">
+            <Col xs={12} sm={12} md={12} lg={12} className="titulo">
+              {this.props.link.titulo}
+            </Col>
+            <Col className="accent-title"xs={3} sm={3} md={3} lg={3} />
+            <Col xs={12} sm={12} md={12} lg={12}>
+              <img src={this.props.link.img} alt="" width="130" />
+            </Col>
+            <Col xs={12} sm={12} md={12} lg={12} className="descripcion">
+              <i>{this.props.link.descripcion}</i>
+            </Col>
           </Row>
         </Wrapper>
       </Col>

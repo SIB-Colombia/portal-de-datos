@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Grid, Row } from 'react-flexbox-grid'
 import { DirectAccessItem } from 'components'
+import theme from '../../themes/default'
 
 const Wrapper = styled.div`
-    background-color: white;
+    background-color: ${theme.palette.grayscale[0]};
 `
 
 class DirectAccess extends Component {
@@ -40,7 +41,7 @@ class DirectAccess extends Component {
     return (
       <Wrapper>
         <Grid>
-          <Row around="xs">
+          <Row center="xs">
             {this.state.links.map((link, i) => (
               <DirectAccessItem key={i} link={link} />
             ))}
