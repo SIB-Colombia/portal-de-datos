@@ -27,32 +27,49 @@ import { Tabs, Tab } from 'material-ui/Tabs'
 import FlatButton from 'material-ui/FlatButton'
 import FileDownload from 'material-ui/svg-icons/file/file-download'
 import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right'
+import Divider from 'material-ui/Divider'
+import Popover from 'material-ui/Popover/Popover'
+import { Menu, MenuItem } from 'material-ui/Menu'
+import theme from '../../themes/default'
 
 const Wrapper = styled.div`
-  margin-top: 85px;
+  margin-top: 70px;
   .title {
-      font-weight: 400;
-      font-size: 30px;
-      padding-left: 30px;
-      color: #4B5353;
+    padding-top: 65px;
+    font-weight: 600;
+    font-size: ${theme.fonts.titleTwo.font};
+    padding-left: 30px;
+    color: ${theme.palette.text[0]};
+    span {
+      font-size: ${theme.fonts.subTitleTwo.font};
+      font-weight: ${theme.fonts.subTitleTwo.weight};
+    }
   }
 
   .accent-title {
       margin-top: 15px;
-      border-top: 2px solid #ff7847;
+      border-top: 2px solid ${theme.palette.basescale[6]};
   }
 
   .tabs {
-      margin-top: 30px;
+      margin-top: 35px;
       div > button > div > div {
-          color: #4B5353;
-          font-size: 18px;
+          color: ${theme.palette.text[0]};
+          font-size: ${theme.fonts.subTitleTwo.font};
+          font-weight: ${theme.fonts.subTitleOne.weight};
       }
   }
 
   .download {
     text-align: right;
-  }  
+  }
+
+  .icon {
+    fill: ${theme.palette.basescale[6]} !important;
+    width: 30px !important;
+    height: 30px !important;
+  }
+
 `
 
 class SearchResultsPage extends React.Component {
@@ -67,8 +84,11 @@ class SearchResultsPage extends React.Component {
     this.state = {
       tab: 0,
       open: true,
+      openP: false,
     }
     this.openMenu = this.openMenu.bind(this)
+    this.handleTouchTap = this.handleTouchTap.bind(this)
+    this.handleRequestClose = this.handleRequestClose.bind(this)
   }
 
   componentWillMount() {
@@ -110,6 +130,21 @@ class SearchResultsPage extends React.Component {
     })
   }
 
+  handleTouchTap = (event) => {
+    // This prevents ghost click.
+    event.preventDefault()
+    this.setState({
+      openP: true,
+      anchorEl: event.currentTarget,
+    })
+  };
+
+  handleRequestClose = () => {
+    this.setState({
+      openP: false,
+    })
+  };
+
   render() {
     return (
       <PageTemplate
@@ -133,15 +168,15 @@ class SearchResultsPage extends React.Component {
         }
         footer={<Footer />}
       >
-        <Wrapper style={this.state.open ? { marginLeft: 350 } : { marginLeft: 'auto' }} >
-          <Grid>
+        <Wrapper style={this.state.open ? { marginLeft: 300 } : { marginLeft: 'auto' }} >
+          <Grid fluid={this.state.open}>
             <Row between="xs">
-              <Col className="title" md={12}>BÚSQUEDA POR REGISTROS BIOLÓGICOS <ChevronRight /> <span>45.954.321</span> RESULTADOS</Col>
-              <Col className="accent-title" md={1} />
+              <Col className="title" xs={12} sm={12} md={12} lg={12}>BÚSQUEDA POR REGISTROS BIOLÓGICOS <ChevronRight className="icon" viewBox="0 0 25 15" /> 45.954.321 <span>RESULTADOS</span></Col>
+              <Col className="accent-title" xs={3} sm={2} md={1} lg={1} />
             </Row>
           </Grid>
-          <Grid>
-            <Row bottom="xs">
+          <Grid fluid={this.state.open}>
+            <Row bottom="xs" between="xs">
               <Col xs={8} sm={8} md={8} lg={8}>
                 <Tabs
                   className="tabs"
@@ -156,18 +191,34 @@ class SearchResultsPage extends React.Component {
                   <Tab label="PUBLICADORES" onActive={() => this.handleTab('providers')} />
                 </Tabs>
               </Col>
-              <Col xs sm md lg className={this.state.open ? '' : 'download'} style={{ paddingBottom: 5 }}>
+              <Col xs sm md lg className="download" style={{ paddingBottom: 5 }}>
                 <FlatButton
                   label="DESCARGA"
-                  labelPosition="before"
+                  primary
                   icon={<FileDownload />}
-                  style={{ color: '#4B5353' }}
+                  style={{ color: theme.palette.text[0] }}
+                  labelStyle={{ fontSize: theme.fonts.subTitleTwo.font, fontWeight: theme.fonts.subTitleOne.weight }}
+                  onClick={this.handleTouchTap}
                 />
+                <Popover
+                  open={this.state.openP}
+                  anchorEl={this.state.anchorEl}
+                  anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                  targetOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+                  onRequestClose={this.handleRequestClose}
+                >
+                  <Menu>
+                    <MenuItem primaryText="Excel" />
+                    <MenuItem primaryText="PDF" />
+                    <MenuItem primaryText="DwC" />
+                  </Menu>
+                </Popover>
               </Col>
             </Row>
+            <Divider />
           </Grid>
           {this.state.tab === 0 &&
-            <Grid fluid>
+            <Grid fluid={this.state.open}>
               <ResultTable id={this.props.location.search} />
             </Grid>
           }

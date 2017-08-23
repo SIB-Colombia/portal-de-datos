@@ -1,6 +1,6 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { injectGlobal, ThemeProvider } from 'styled-components';
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
+import { injectGlobal, ThemeProvider } from 'styled-components'
 import {
   HomePage,
   NotFoundPage,
@@ -21,24 +21,23 @@ import {
   EntitiesRecordPage,
   DatasetsListPage,
   DatasetsRecordPage,
-} from 'components';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import theme from './themes/default';
-import style from './themes/style';
-import { middleware } from '../auth';
+} from 'components'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import theme from './themes/default'
+import style from './themes/style'
+// import { middleware } from '../auth'
 
 
-injectGlobal`${style}`;
+injectGlobal`${style}`
 
 const App = () => {
-
-  window.scrollTo(0, 0);
+  window.scrollTo(0, 0)
 
   injectGlobal`
     body{
-      background: ${theme.palette.grayscale[0]};
+      background: ${theme.palette.grayscale[1]};
     }
-  `;
+  `
 
   return (
     <MuiThemeProvider>
@@ -62,10 +61,10 @@ const App = () => {
 
           <Route exact path="/search/:tab?" component={SearchResultsPage} />
           <Route exact path="/occurrence/:id" component={BiologicalRecordPage} />
-          <Route exact path="/provider" component={EntitiesListPage} />
-          <Route exact path="/provider/:id" component={EntitiesRecordPage} />
+          <Route exact path="/publishers" component={EntitiesListPage} />
+          <Route exact path="/publisher/:id" component={EntitiesRecordPage} />
           <Route exact path="/datasets" component={DatasetsListPage} />
-          <Route exact path="/datasets/:id" component={DatasetsRecordPage} />
+          <Route exact path="/dataset/:id" component={DatasetsRecordPage} />
 
           <Route component={NotFoundPage} />
         </Switch>
@@ -75,4 +74,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default App

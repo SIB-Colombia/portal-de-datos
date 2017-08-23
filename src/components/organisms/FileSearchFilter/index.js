@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   width: 35px;
 
   .drawer{
-    margin-top: 65px;
+    margin-top: 70px;
     .paper > div:first-child {
         padding-bottom: 0px !important;
       }
@@ -100,7 +100,7 @@ export default class FileSearchFilter extends Component {
             <Menu />
           </FloatingActionButton>
         </div>
-        <Drawer open={this.state.open} containerClassName="drawer" width={340}>
+        <Drawer open={this.state.open} containerClassName="drawer" width={290}>
           <List>
             <ListItem primaryText="Filtros de búsqueda" leftIcon={<FilterList />} rightIcon={<IconButton className="material-icons" style={{ padding: 0, boxSizing: 'none' }} tooltip="Reiniciar filtros" tooltipPosition="bottom-left"><Replay /></IconButton>} disabled />
           </List>

@@ -6,7 +6,8 @@ const Const = {
     api_bio_v1_5: 'http://api.biodiversidad.co/api/v1.5'
   },
   TOKEN: 'token-p0rt4lD4to5',
-  USER: 'user-p0rt4lD4to5'
+  USER: 'user-p0rt4lD4to5',
+  urlLogo: 'https://s3.amazonaws.com/sib-resources/images/logos-canales/svg/logo-datos.svg',
 }
 
-export default Const;
+export default Const

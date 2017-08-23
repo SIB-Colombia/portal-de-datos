@@ -10,12 +10,21 @@ const Header = styled.header`
 `
 const Content = styled.section`
   height: 100%;
-  padding-bottom: 391px;
+
+  @media ${size('sx')}{
+    padding-bottom: 587px;
+  }
   @media ${size('xs')}{
-    padding-bottom: 618px;
+    padding-bottom: 407px;
   }
   @media ${size('sm')}{
-    padding-bottom: 468px;
+    padding-bottom: 332px;
+  }
+  @media ${size('md')}{
+    padding-bottom: 332px;
+  }
+  @media ${size('lg')}{
+    padding-bottom: 332px;
   }
 `
 const Footer = styled.footer`

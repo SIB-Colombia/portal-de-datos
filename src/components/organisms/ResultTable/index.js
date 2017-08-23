@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { ResultRow, Loading } from 'components'
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'material-ui/Table'
+import { Table, TableBody, TableRowColumn, TableRow } from 'material-ui/Table'
 import Pagination from 'material-ui-pagination'
 import _ from 'lodash'
 import * as DataPortalService from '../../../services/DataPortalService'
@@ -17,7 +17,7 @@ margin-top: 15px;
   .pagination {
     text-align: center;
     margin-top: 20px;
-    margin-bottom: 10px;    
+    margin-bottom: 10px;
   }
 
   div:not(:first-child) {
@@ -73,27 +73,26 @@ export default class ResultTable extends React.Component {
       <Wrapper>
         {this.state.result &&
           <Table selectable={false} style={{ tableLayout: 'none' }}>
-            <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-              <TableRow>
-                <TableHeaderColumn className="font">Nombre Científico</TableHeaderColumn>
-                <TableHeaderColumn className="font">País</TableHeaderColumn>
-                <TableHeaderColumn className="font">Departamento</TableHeaderColumn>
-                <TableHeaderColumn className="font">Coordenadas</TableHeaderColumn>
-                <TableHeaderColumn className="font">Base del Registro</TableHeaderColumn>
-                <TableHeaderColumn className="font">Fecha del Evento</TableHeaderColumn>
-                <TableHeaderColumn className="font">Publicador</TableHeaderColumn>
-                <TableHeaderColumn className="font">Nombre del Recurso</TableHeaderColumn>
-                <TableHeaderColumn className="font">Categoría Taxonómica</TableHeaderColumn>
-                <TableHeaderColumn className="font">Reino</TableHeaderColumn>
-                <TableHeaderColumn className="font">Filo</TableHeaderColumn>
-                <TableHeaderColumn className="font">Clase</TableHeaderColumn>
-                <TableHeaderColumn className="font">Orden</TableHeaderColumn>
-                <TableHeaderColumn className="font">Familia</TableHeaderColumn>
-                <TableHeaderColumn className="font">Género</TableHeaderColumn>
-                <TableHeaderColumn className="font">Epíteto Específico</TableHeaderColumn>
-              </TableRow>
-            </TableHeader>
             <TableBody displayRowCheckbox={false} showRowHover>
+              <TableRow>
+                <TableRowColumn className="font">Nombre Científico</TableRowColumn>
+                <TableRowColumn className="font">País</TableRowColumn>
+                <TableRowColumn className="font">Departamento</TableRowColumn>
+                <TableRowColumn className="font">Coordenadas</TableRowColumn>
+                <TableRowColumn className="font">Base del Registro</TableRowColumn>
+                <TableRowColumn className="font">Fecha del Evento</TableRowColumn>
+                <TableRowColumn className="font">Publicador</TableRowColumn>
+                <TableRowColumn className="font">Nombre del Recurso</TableRowColumn>
+                <TableRowColumn className="font">Categoría Taxonómica</TableRowColumn>
+                <TableRowColumn className="font">Reino</TableRowColumn>
+                <TableRowColumn className="font">Filo</TableRowColumn>
+                <TableRowColumn className="font">Clase</TableRowColumn>
+                <TableRowColumn className="font">Orden</TableRowColumn>
+                <TableRowColumn className="font">Familia</TableRowColumn>
+                <TableRowColumn className="font">Género</TableRowColumn>
+                <TableRowColumn className="font">Epíteto Específico</TableRowColumn>
+              </TableRow>
+
               {this.state.result && _.map(this.state.result.results, (registro) => (
                 <ResultRow key={registro.id} registro={registro} />
               ))}

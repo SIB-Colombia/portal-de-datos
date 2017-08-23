@@ -3,32 +3,28 @@ import { reversePalette } from 'styled-theme/composer'
 const theme = {}
 
 theme.palette = {
-  primary: ['#FF7847'],
+  primary: ['#EF7748'],
   secondary: ['#009CB0'],
-  option: ['white'],
+  option: ['#009CB0'],
   grayscale: [
-    '#f2f2f2',
-    '#e6e6e6',
-    '#cccccc',
-    '#b3b3b3',
+    '#FFFFFF',
+    '#F2F2F2',
+    '#E6E6E6',
+    '#CCCCCC',
+    '#B3B3B3',
     '#999999',
     '#666666',
     '#333333',
-    '#222222',
   ],
   basescale: [
-    '#e2e7e7',
-    '#59a8b7',
-    '#498893',
-    '#316971',
-    '#00282b',
-    '#e8774b',
-    '#465252',
-    '#f44336',
-    '#ff9800',
-    '#795548',
-    '#77A7B6',
-    '#FF6518',
+    '#F1F8F7',
+    '#E0E7E7',
+    '#00AAB9', // title
+    '#008995',
+    '#006972', // title
+    '#002428',
+    '#FF7847', // link
+    '#465252', // title
   ],
   text: ['#465252'],
 }
@@ -36,16 +32,33 @@ theme.palette = {
 theme.reversePalette = reversePalette(theme.palette)
 
 theme.fonts = {
+  titleOne: {
+    font: '28px',
+    weight: 'normal',
+  },
+  titleTwo: {
+    font: '22px',
+    weight: 'normal',
+  },
+  subTitleOne: {
+    font: '18px',
+    weight: 'normal',
+  },
+  subTitleTwo: {
+    font: '16px',
+    weight: 'lighter',
+  },
+  content: {
+    font: '14px',
+    weight: 'lighter',
+  },
   primary: 'Open Sans, sans-serif',
-  lg: '28pt',
-  md: '22pt',
-  sm: '18pt',
-  xs: '16pt',
-  xxs: '14pt',
+  lineHeight: '28',
 }
 
 theme.sizes = {
-  xs: '(max-width:49em)',
+  sx: '(max-width:27em)',
+  xs: '(min-width:27em) and (max-width:49em)',
   sm: '(min-width:49em) and (max-width:65em)',
   md: '(min-width:65em) and (max-width:74em)',
   lg: '(min-width:74em)',

@@ -5,100 +5,74 @@ import { Link } from 'components'
 import { palette } from 'styled-theme'
 
 const Wrapper = styled.footer`
+
+  .participate {
+    background-color: #00484D;
+    color:${palette('grayscale', 0)};
+  }
+
   .creative {
-    padding: 15px 0px;
-    background-color: #000000;
+    padding-top: 5.5px;
+    padding-bottom: 5.5px;
+    background-color: #000;
     text-align: center;
-    color:${palette('option', 0)};
+    color:${palette('grayscale', 0)};
     font-weight: 200;
+    font-size: 14px;
   }
 
   .sib {
-      background-color: #00292B;
-      color: #FFFFFF;
-      padding: 30px;
+    background-color: #00292B;
+    color:${palette('grayscale', 0)};
+    padding: 30px;
   }
 
-  .access-direct {
-      background-color: #00484D;
-      color: #FFFFFF;
-      padding: 70px;
+  .spacing {
+    padding-top: 52.5px;
+    padding-bottom: 52.5px;
   }
 
-  a{
-      font-size: 18px;
-      color:${palette('option', 0)};
-      text-decoration: none;
+  .links {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    a {
+      color:${palette('grayscale', 0)};
+      font-size: 14px;
+    }
   }
 `
 
 const FooterPage = () => {
   return (
     <Wrapper>
-      <Grid fluid className="access-direct">
-        <Row around="md">
-          <Col xs={12} sm={12} md={6} lg={3}>
-            <Grid fluid >
-              <Row middle="xs">
-                <Col xs={4} sm={2} md={2} lg={3}>
-                  <img src="/home/catalogo.png" alt="" />
-                </Col>
-                <Col xs={8} sm={10} md={10} lg={9}>
-                  <a href="http://design.catalogo.lumon.com.co" target="_blank" rel="noopener noreferrer"><strong>CATÁLOGO</strong> DE LA BIODIVERSIDAD</a>
-                </Col>
-              </Row>
-            </Grid>
+      <Grid fluid className="participate">
+        <Row center="xs" className="spacing">
+          <Col xs={12} sm={6} md={3} lg={3}>
+            <a href="http://design.catalogo.lumon.com.co/"><img src="https://s3.amazonaws.com/sib-resources/images/logos-canales/png/logo-catalogo-b.png" alt="" /></a>
           </Col>
-          <Col xs={12} sm={12} md={6} lg={3}>
-            <Grid fluid >
-              <Row middle="xs">
-                <Col xs={4} sm={2} md={2} lg={3}>
-                  <img src="/home/portal.png" alt="" />
-                </Col>
-                <Col xs={8} sm={10} md={10} lg={9}>
-                  <a href="http://design.portal.lumon.com.co" target="_blank" rel="noopener noreferrer">PORTAL DE <strong>DATOS</strong></a>
-                </Col>
-              </Row>
-            </Grid>
+          <Col xs={12} sm={6} md={3} lg={3}>
+            <a href="/"><img src="https://s3.amazonaws.com/sib-resources/images/logos-canales/png/logo-datos-b.png" alt="" /></a>
           </Col>
-          <Col xs={12} sm={12} md={6} lg={3}>
-            <Grid fluid >
-              <Row middle="xs">
-                <Col xs={4} sm={2} md={2} lg={3}>
-                  <img src="/home/colecciones.png" alt="" />
-                </Col>
-                <Col xs={8} sm={10} md={10} lg={9}>
-                  <a href="http://design.catalogo.lumon.com.co" target="_blank" rel="noopener noreferrer"><strong>COLECCIONES</strong> EN LÍNEA</a>
-                </Col>
-              </Row>
-            </Grid>
+          <Col xs={12} sm={6} md={3} lg={3}>
+            <a href="http://colecciones.lumon.com.co/"><img src="https://s3.amazonaws.com/sib-resources/images/logos-canales/png/logo-colecciones-b.png" alt="" /></a>
           </Col>
-          <Col xs={12} sm={12} md={6} lg={3}>
-            <Grid fluid >
-              <Row middle="xs">
-                <Col xs={4} sm={2} md={2} lg={3}>
-                  <img src="/home/listas.png" alt="" />
-                </Col>
-                <Col xs={8} sm={10} md={10} lg={9}>
-                  <a href="http://design.catalogo.lumon.com.co" target="_blank" rel="noopener noreferrer"><strong>LISTAS</strong> DE ESPECIES</a>
-                </Col>
-              </Row>
-            </Grid>
+          <Col xs={12} sm={6} md={3} lg={3}>
+            <a href="http://plistase.lumon.com.co/"><img src="https://s3.amazonaws.com/sib-resources/images/logos-canales/png/logo-listas-b.png" alt="" /></a>
           </Col>
         </Row>
       </Grid>
       <Grid fluid className="sib">
-        <Row middle="xs" center="xs">
-          <Col xs={12} sm={6} md={6} lg={6}>
+        <Row center="xs" middle="xs">
+          <Col sm={6} md={6} lg={5} className="align-left">
             <img src="/SiB-Footer-02.svg" alt="Sistema de Información sobre Biodiversidad de Colombia" width="300" />
           </Col>
-          <Col xs={12} sm={6} md={6} lg={6}>
+          <Col xs={12} sm={6} md={6} lg={5} className="links align-right">
             <Link>Sobre el portal</Link> | <Link>Terminos de uso</Link>
           </Col>
         </Row>
       </Grid>
       <Grid fluid className="creative">
-        <Row around="md">
+        <Row center="md">
           <Col xs={12} sm={12} md={12} lg={12}>
             Creative Commons 4.0 · 2015
           </Col>

@@ -4,29 +4,28 @@ import styled from 'styled-components'
 import { Row, Col } from 'react-flexbox-grid'
 import Paper from 'material-ui/Paper'
 import { Link } from 'components'
+import theme from '../../themes/default'
 
 const Wrapper = styled.div`
-    .circle {
-        height: 170px;
-        width: 170px;
-        text-align: center;
-        display: inline-block;
-       &:hover{
-            cursor: pointer;
-        }
+  .circle {
+    height: 145px;
+    width: 145px;
+    text-align: center;
+    &:hover{
+      cursor: pointer;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 10px, rgba(0, 0, 0, 0.23) 0px 2px 10px !important;
     }
+  }
 
-    .circle-description {
-        text-align: center;
-        color: #545859;
-        font-size: 18px;
-        font-weight: 200;
-        margin: 20px 0px;
-    }
+  .circle-description {
+    text-align: center;
+    color: ${theme.palette.text[0]};
+    font-size: ${theme.fonts.subTitleTwo.font};
+    font-weight: ${theme.fonts.subTitleTwo.weight};
+    margin: 20px 0px;
+  }
 
-    img {
-        width: 100%;
-    }
+  img { width: 100%; }
 `
 
 class BiologicalItem extends Component {
@@ -39,22 +38,13 @@ class BiologicalItem extends Component {
     super(props)
   }
 
-  destino(t) {
-    return '/search/table?' + t  // ToDo: define query params to search
-    //  'q=' + t
-    /* +'&'+
-    'kingdomName='+t+'&'+
-    'phylumName='+t+'&'+
-    'className='+t+'&'+
-    'orderName='+t+'&'+
-    'familyName='+t+'&'+
-    'genusName='+t+'&'+
-    'speciesName='+t
-    */
+  destino = (t) => {
+    return `/search/table?${t}`
   }
+
   render() {
     return (
-      <Col xs={12} sm={6} md={6} lg>
+      <Col xs={12} sm={4} md={4} lg>
         <Row center="xs">
           <Wrapper>
             <Link to={this.destino(this.props.group.q)}>
