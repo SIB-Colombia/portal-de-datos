@@ -11,8 +11,7 @@ import {
   LandingSection,
 } from 'components'
 import _ from 'lodash'
-import { Grid, Row, Col } from 'react-flexbox-grid'
-import FlatButton from 'material-ui/FlatButton'
+import { Grid } from 'react-flexbox-grid'
 import Paper from 'material-ui/Paper'
 import * as DataPortalService from '../../../services/DataPortalService'
 import * as HomePageService from '../../../services/HomePageService'

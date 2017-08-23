@@ -57,7 +57,8 @@ theme.fonts = {
 }
 
 theme.sizes = {
-  xs: '(max-width:49em)',
+  sx: '(max-width:27em)',
+  xs: '(min-width:27em) and (max-width:49em)',
   sm: '(min-width:49em) and (max-width:65em)',
   md: '(min-width:65em) and (max-width:74em)',
   lg: '(min-width:74em)',

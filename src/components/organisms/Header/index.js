@@ -17,6 +17,7 @@ import MenuItem from 'material-ui/MenuItem'
 // import {me, isAuthenticated} from '../../../auth';
 import { isAuthenticated } from '../../../auth'
 import theme from '../../themes/default'
+import Const from '../../../const'
 
 const Wrapper = styled.nav`
 position:fixed;
@@ -26,6 +27,9 @@ z-index: 10 !important;
   .box-nav-search-content{
     text-align: center;
     padding: 6px 0px;
+    @media ${size('sx')}{
+      display: none;
+    }
     @media ${size('xs')}{
       display: none;
     }
@@ -53,6 +57,9 @@ z-index: 10 !important;
     color: ${theme.palette.grayscale[5]} !important;
   }
   .box-logo{
+    @media ${size('sx')}{
+      text-align: center;
+    }
     @media ${size('xs')}{
       text-align: center;
     }
@@ -63,14 +70,12 @@ z-index: 10 !important;
       height:100% !important;
       line-height: 4 !important;
     }
+    @media ${size('sx')}{
+      display: none;
+    }
     @media ${size('xs')}{
       display: none;
     }
-  }
-  .portal-logo{
-    width: 160px;
-    padding: 7px 0px;
-    margin-bottom: -15px;
   }
 `
 
@@ -207,7 +212,7 @@ class Header extends React.Component {
               <Col xs={12} sm={3} md={3} lg={3} className="box-logo">
                 {this.props.filter}
                 <Link to={'/'}>
-                  <img src="/log_portal.png" alt="" className="portal-logo" />
+                  <img src={Const.urlLogo} width="220" height="70" alt="" />
                 </Link>
               </Col>
               <Col xs={12} sm={4} md={4} lg={5} className="box-nav-search-content">

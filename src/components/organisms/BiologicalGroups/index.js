@@ -45,7 +45,7 @@ class BiologicalGroups extends Component {
           <Grid fluid>
             <Row>
               <Col className="title" xs={12} sm={12} md={12} lg={12}>Explora a través de grupos biológicos</Col>
-              <Col className="accent-title" xs={1} sm={1} md={1} lg={1} />
+              <Col className="accent-title" xs={3} sm={2} md={1} lg={1} />
             </Row>
             <Row style={{ marginTop: 45 }} between="md">
               {this.state.groups.map((group, i) => (

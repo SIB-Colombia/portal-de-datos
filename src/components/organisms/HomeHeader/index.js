@@ -17,6 +17,12 @@ const Wrapper = styled.div`
   }
   .control-dots{
     margin: 50px 0 !important;
+    @media ${size('xs')}{
+      margin: 70px 0 !important;
+    }
+    @media ${size('xs')}{
+      margin: 70px 0 !important;
+    }
     @media ${size('sm')}{
       margin: 70px 0 !important;
     }

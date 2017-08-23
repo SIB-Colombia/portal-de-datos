@@ -24,6 +24,9 @@ position: relative;
             font-size: 28px;
         }
       }
+      @media ${size('sx')}{
+        margin: 30px !important;
+      }
       @media ${size('xs')}{
         margin: 30px !important;
       }

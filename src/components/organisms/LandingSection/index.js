@@ -34,8 +34,8 @@ export default class LandingSection extends Component {
       <Wrapper>
         <Grid fluid >
           <Row center="xs" middle="xs">
-            <Col xs={12} sm={8} md={6} lg={5} >¿Quieres compartir tus datos?</Col>
-            <Col xs={12} sm={4} md={5} lg={4} className="landing" onClick={this.redirect}>
+            <Col xs={12} sm={7} md={6} lg={5} >¿Quieres compartir tus datos?</Col>
+            <Col xs={12} sm={5} md={5} lg={4} className="landing" onClick={this.redirect}>
               ENTÉRATE CÓMO
             </Col>
           </Row>

@@ -72,8 +72,8 @@ export default class GeographicExplorer extends Component {
         <Grid>
           <Grid fluid>
             <Row>
-              <Col className="title" md={12}>Explorador geográfico</Col>
-              <Col className="accent-title" md={1} />
+              <Col className="title" xs={12} sm={12} md={12} lg={12}>Explorador geográfico</Col>
+              <Col className="accent-title" xs={3} sm={2} md={1} lg={1} />
             </Row>
           </Grid>
         </Grid>
