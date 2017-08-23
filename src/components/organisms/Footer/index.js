@@ -63,10 +63,10 @@ const FooterPage = () => {
       </Grid>
       <Grid fluid className="sib">
         <Row center="xs" middle="xs">
-          <Col sm={6} md={6} lg={5}>
+          <Col sm={6} md={6} lg={5} className="align-left">
             <img src="/SiB-Footer-02.svg" alt="Sistema de Información sobre Biodiversidad de Colombia" width="300" />
           </Col>
-          <Col xs={12} sm={6} md={6} lg={5} className="links">
+          <Col xs={12} sm={6} md={6} lg={5} className="links align-right">
             <Link>Sobre el portal</Link> | <Link>Terminos de uso</Link>
           </Col>
         </Row>
