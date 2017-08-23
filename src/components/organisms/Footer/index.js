@@ -57,7 +57,7 @@ const FooterPage = () => {
             <a href="http://colecciones.lumon.com.co/"><img src="https://s3.amazonaws.com/sib-resources/images/logos-canales/png/logo-colecciones-b.png" alt="" /></a>
           </Col>
           <Col xs={12} sm={6} md={3} lg={3}>
-            <a href="/"><img src="https://s3.amazonaws.com/sib-resources/images/logos-canales/png/logo-listas-b.png" alt="" /></a>
+            <a href="http://plistase.lumon.com.co/"><img src="https://s3.amazonaws.com/sib-resources/images/logos-canales/png/logo-listas-b.png" alt="" /></a>
           </Col>
         </Row>
       </Grid>
