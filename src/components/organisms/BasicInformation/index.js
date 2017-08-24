@@ -88,14 +88,14 @@ class BasicInformation extends React.Component {
   render() {
     return (
       <Wrapper>
-        <Grid>
-          <Row center="md">
+        <Grid fluid>
+          <Row center="xs">
             <Col className="title" xs={12} sm={12} md={12} lg={12}>REGISTRO BIOLÓGICO</Col>
             <Col className="accent-title" xs={3} sm={2} md={1} lg={1} />
           </Row>
-          <Row>
-            <Col md={12} className="sub-title" >{this.props.record[0].scientificName}</Col>
-            <Col md className="breadcrums">
+          <Row center="xs">
+            <Col xs={12} sm={12} md={12} lg={12} className="sub-title" >{this.props.record[0].scientificName}</Col>
+            <Col xs={12} sm={12} md={12} lg={12} className="breadcrums">
               {this.props.record[0].kingdom} <ChevronRight className="icon" viewBox="0 0 28 10" />
               {this.props.record[0].phylum} <ChevronRight className="icon" viewBox="0 0 28 10" />
               {this.props.record[0].order} <ChevronRight className="icon" viewBox="0 0 28 10" />
@@ -108,20 +108,20 @@ class BasicInformation extends React.Component {
         <Divider />
         <Grid>
           <Row className="detalles-basicos">
-            <Col md={6} className="detalle-item"><span>Nombre científico:</span> <Link to={'to'}><i> {this.props.record[0].scientificName}</i></Link></Col>
-            <Col md={6} className="detalle-item"><span>Nombre del recurso:</span> <Link to={'to'}> {this.props.record[0].resourceName}</Link></Col>
-            <Col md={6} className="detalle-item"><span>Ubicacion:</span> {`${this.props.record[0].country}, ${this.props.record[0].stateProvince}`}</Col>
-            <Col md={6} className="detalle-item"><span>Publicador:</span> <Link to={'to'}> {this.props.record[0].providerName}</Link></Col>
-            <Col md={12} className="detalle-item"><span>Base del Registro:</span> {this.props.record[0].basisOfRecord}</Col>
-            <Col md={12} className="detalle-item"><span>Hábitat:</span> {this.props.record[0].habitat}</Col>
+            <Col xs={12} sm={6} md={6} lg={6} className="detalle-item"><span>Nombre científico:</span> <Link to={'to'}><i> {this.props.record[0].scientificName}</i></Link></Col>
+            <Col xs={12} sm={6} md={6} lg={6} className="detalle-item"><span>Nombre del recurso:</span> <Link to={'to'}> {this.props.record[0].resourceName}</Link></Col>
+            <Col xs={12} sm={6} md={6} lg={6} className="detalle-item"><span>Ubicacion:</span> {`${this.props.record[0].country}, ${this.props.record[0].stateProvince}`}</Col>
+            <Col xs={12} sm={6} md={6} lg={6} className="detalle-item"><span>Publicador:</span> <Link to={'to'}> {this.props.record[0].providerName}</Link></Col>
+            <Col xs={12} sm={12} md={12} lg={12} className="detalle-item"><span>Base del Registro:</span> {this.props.record[0].basisOfRecord}</Col>
+            <Col xs={12} sm={12} md={12} lg={12} className="detalle-item"><span>Hábitat:</span> {this.props.record[0].habitat}</Col>
           </Row>
         </Grid>
         <HumboldtMap marker={[this.props.record[0].decimalLatitude, this.props.record[0].decimalLongitude]} zoom />
         <Grid>
           <Row>
-            <Col className="title-two" md={12}>Sobre el recurso</Col>
-            <Col className="accent-title" md={1} />
-            <Col md={12} className="sobre-recurso">{/* this.props.record.recurso.descripcion*/} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, commodi, error. Amet impedit sit dolorem reiciendis maiores blanditiis qui temporibus numquam, ullam perferendis, labore doloribus officiis aut ipsum explicabo sapiente.</Col>
+            <Col className="title-two" xs={12} sm={12} md={12} lg={12}>Sobre el recurso</Col>
+            <Col className="accent-title" xs={3} sm={2} md={1} lg={1} />
+            <Col xs={12} sm={12} md={12} lg={12} className="sobre-recurso">{/* this.props.record.recurso.descripcion*/} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, commodi, error. Amet impedit sit dolorem reiciendis maiores blanditiis qui temporibus numquam, ullam perferendis, labore doloribus officiis aut ipsum explicabo sapiente.</Col>
           </Row>
         </Grid>
       </Wrapper>
