@@ -1,22 +1,33 @@
 import React from 'react'
 import styled from 'styled-components'
 import { PublisherRow, Loading } from 'components'
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'material-ui/Table'
+import { Table, TableBody, TableRowColumn, TableRow } from 'material-ui/Table'
 import Pagination from 'material-ui-pagination'
 import _ from 'lodash'
 import * as GBIFService from '../../../services/GBIFService'
+import theme from '../../themes/default'
 
 const Wrapper = styled.div`
-    text-align: center;
-    margin: 20px 0px;
-    .font {
-        color: #4B5353 !important;
-        font-size: 15px !important;
-    }
+  margin-top: 15px;
+  .font {
+    color: ${theme.palette.grayscale[7]} !important;
+    font-size: 15px !important;
+  }
 
-    .pagination {
-      margin-top: 20px;
-    }
+  .pagination {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  div:not(:first-child) {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+  }
+
+  .hover {
+    cursor: pointer;
+  }
 `
 
 class PublisherTable extends React.Component {
@@ -54,24 +65,20 @@ class PublisherTable extends React.Component {
   }
 
   render() {
-    const rows = (
-      this.state.publishers && _.map(this.state.publishers.results, (publisher) => (
-        <PublisherRow key={publisher.key} publisher={publisher} />
-      ))
-    )
     return (
       <Wrapper>
-        {this.state.publishers && <Table selectable={false}>
-          <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+        {this.state.publishers && <Table selectable={false} style={{ tableLayout: 'none' }}>
+          <TableBody displayRowCheckbox={false} showRowHover>
             <TableRow>
-              <TableHeaderColumn className="font">Publicador</TableHeaderColumn>
-              <TableHeaderColumn className="font">Registros</TableHeaderColumn>
-              <TableHeaderColumn className="font">Recursos</TableHeaderColumn>
-              <TableHeaderColumn />
+              <TableRowColumn className="font">Publicador</TableRowColumn>
+              <TableRowColumn className="font">Registros</TableRowColumn>
+              <TableRowColumn className="font">Recursos</TableRowColumn>
             </TableRow>
-          </TableHeader>
-          <TableBody displayRowCheckbox={false}>
-            {rows}
+            {
+              this.state.publishers && _.map(this.state.publishers.results, (publisher) => (
+                <PublisherRow key={publisher.key} publisher={publisher} />
+              ))
+            }
           </TableBody>
         </Table> || <Loading />}
         <div className="pagination">

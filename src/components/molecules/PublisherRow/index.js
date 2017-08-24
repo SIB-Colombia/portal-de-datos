@@ -28,13 +28,16 @@ class PublisherRow extends React.Component {
     })
   }
 
+  redirect(url) {
+    window.location.href = url
+  }
+
   render() {
     return (
-      <TableRow>
-        <TableRowColumn>{this.state.publisher.title}</TableRowColumn>
+      <TableRow hoverable onClick={() => this.redirect(`/publisher/${this.props.publisher.key}`)} className="hover">
+        <TableRowColumn>{`${(this.state.publisher.title).substring(0, 40)}...`}</TableRowColumn>
         <TableRowColumn>{this.state.countO}</TableRowColumn>
         <TableRowColumn>{this.state.countD}</TableRowColumn>
-        <TableRowColumn><FlatButton primary href={`/provider/${this.props.publisher.id}`} label="Ver mas" /></TableRowColumn>
       </TableRow>
     )
   }

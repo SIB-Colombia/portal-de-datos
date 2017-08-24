@@ -16,32 +16,9 @@ import {
   MultimediaSection,
   GeologicalContextSection,
 } from 'components'
-import Masonry from 'react-masonry-component'
 
 const Wrapper = styled.div`
   background-color: #ffffff;
-  padding: 50px 0px;
-  .title-two {
-    font-size: 30px;
-    padding-left: 20px;
-    color: #4B5353;
-    margin-top: 40px;
-  }
-  .accent-title {
-    margin-top: 10px;
-    border-top: 2px solid #ff7847;
-  }
-
-  .more-details {
-    color: #4B5353;
-    font-size: 20px;
-    line-height: 45px;
-    font-weight: 200;
-    padding: 30px 0px;
-    .details-title{
-      font-weight: 600;
-    }
-  }
 `
 
 class MoreDetails extends React.Component {
@@ -68,9 +45,9 @@ class MoreDetails extends React.Component {
       <Wrapper>
         <Grid>
           <Row>
-            <Col md={6}>
+            <Col xs={12} sm={6} md={6} lg={6}>
               <Row>
-                <Col md={12}>
+                <Col xs={12} sm={12} md={12} lg={12}>
                   {this.state.detail.occurrence && <RegisterSection ocurrence={this.state.detail.occurrence} />}
                 </Col>
                 <Col md={12}>
@@ -90,9 +67,9 @@ class MoreDetails extends React.Component {
                 </Col>
               </Row>
             </Col>
-            <Col md={6}>
+            <Col xs={12} sm={6} md={6} lg={6}>
               <Row>
-                <Col md={12}>
+                <Col xs={12} sm={12} md={12} lg={12}>
                   {this.state.detail.occurrence && <RegistrationElementSection ocurrence={this.state.detail.occurrence} />}
                 </Col>
                 <Col md={12}>

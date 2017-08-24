@@ -19,7 +19,7 @@ class ResultRow extends React.Component {
 
   render() {
     return (
-      <TableRow hoverable onClick={() => this.redirect(`/occurrence/${this.props.registro.id}`)} className="hover">
+      <TableRow hoverable onClick={() => this.redirect(`/occurrence/${this.props.registro.occurrenceid}`)} className="hover">
         <TableRowColumn>{this.props.registro.canonical ? this.props.registro.canonical : ''}</TableRowColumn>
         <TableRowColumn>{this.props.registro.country_name ? this.props.registro.country_name : ''}</TableRowColumn>
         <TableRowColumn>{this.props.registro.department_interpreted}</TableRowColumn>

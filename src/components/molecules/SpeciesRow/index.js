@@ -10,7 +10,7 @@ export default class SpeciesRow extends Component {
 
   render() {
     return (
-      <TableRow>
+      <TableRow hoverable className="hover">
         <TableRowColumn>{this.props.species.count}</TableRowColumn>
         <TableRowColumn>{this.props.species.scientificName}</TableRowColumn>
         <TableRowColumn>{this.props.species.kingdom}</TableRowColumn>
