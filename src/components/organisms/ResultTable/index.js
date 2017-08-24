@@ -6,11 +6,12 @@ import { Table, TableBody, TableRowColumn, TableRow } from 'material-ui/Table'
 import Pagination from 'material-ui-pagination'
 import _ from 'lodash'
 import * as DataPortalService from '../../../services/DataPortalService'
+import theme from '../../themes/default'
 
 const Wrapper = styled.div`
 margin-top: 15px;
   .font {
-    color: #4B5353 !important;
+    color: ${theme.palette.grayscale[7]} !important;
     font-size: 15px !important;
   }
 
@@ -92,7 +93,6 @@ export default class ResultTable extends React.Component {
                 <TableRowColumn className="font">Género</TableRowColumn>
                 <TableRowColumn className="font">Epíteto Específico</TableRowColumn>
               </TableRow>
-
               {this.state.result && _.map(this.state.result.results, (registro) => (
                 <ResultRow key={registro.id} registro={registro} />
               ))}

@@ -177,7 +177,7 @@ class SearchResultsPage extends React.Component {
           </Grid>
           <Grid fluid={this.state.open}>
             <Row bottom="xs" between="xs">
-              <Col xs={8} sm={8} md={8} lg={8}>
+              <Col xs={8} sm={8} md={9} lg={8}>
                 <Tabs
                   className="tabs"
                   tabItemContainerStyle={{ background: 'transparent' }}
@@ -224,17 +224,17 @@ class SearchResultsPage extends React.Component {
           }
           {this.state.tab === 1 && <HumboldtMap />}
           {this.state.tab === 2 &&
-            <Grid>
+            <Grid fluid={this.state.open}>
               <SpeciesTable />
             </Grid>
           }
           {this.state.tab === 3 &&
-            <Grid>
+            <Grid fluid={this.state.open}>
               <DatasetsTable />
             </Grid>
           }
           {this.state.tab === 4 &&
-            <Grid>
+            <Grid fluid={this.state.open}>
               <PublisherTable />
             </Grid>
           }

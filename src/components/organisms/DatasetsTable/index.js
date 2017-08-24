@@ -1,21 +1,32 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'material-ui/Table'
+import { Table, TableBody, TableRowColumn, TableRow } from 'material-ui/Table'
 import Pagination from 'material-ui-pagination'
 import { DatasetsRow, Loading } from 'components'
 import _ from 'lodash'
 import * as GBIFService from '../../../services/GBIFService'
+import theme from '../../themes/default'
 
 const Wrapper = styled.div`
-  text-align: center;
-  margin: 20px 0px;
+margin-top: 15px;
   .font {
-      color: #4B5353 !important;
-      font-size: 15px !important;
+    color: ${theme.palette.grayscale[7]} !important;
+    font-size: 15px !important;
   }
 
   .pagination {
+    text-align: center;
     margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  div:not(:first-child) {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+  }
+
+  .hover {
+    cursor: pointer;
   }
 `
 
@@ -55,24 +66,20 @@ export default class DatasetsTable extends React.Component {
   }
 
   render() {
-    const rows = (
-      this.state.recursos && _.map(this.state.recursos, (recurso) => (
-        <DatasetsRow key={recurso.key} recurso={recurso} />
-      ))
-    )
     return (
       <Wrapper>
-        {this.state.recursos && <Table selectable={false}>
-          <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+        {this.state.recursos && <Table selectable={false} style={{ tableLayout: 'none' }}>
+          <TableBody displayRowCheckbox={false} showRowHover>
             <TableRow>
-              <TableHeaderColumn className="font">Nombre del Recurso</TableHeaderColumn>
-              <TableHeaderColumn className="font">Registros</TableHeaderColumn>
-              <TableHeaderColumn className="font">Publicador</TableHeaderColumn>
-              <TableHeaderColumn />
+              <TableRowColumn className="font">Nombre del Recurso</TableRowColumn>
+              <TableRowColumn className="font">Registros</TableRowColumn>
+              <TableRowColumn className="font">Publicador</TableRowColumn>
             </TableRow>
-          </TableHeader>
-          <TableBody displayRowCheckbox={false}>
-            {rows}
+            {
+              this.state.recursos && _.map(this.state.recursos, (recurso) => (
+                <DatasetsRow key={recurso.key} recurso={recurso} />
+              ))
+            }
           </TableBody>
         </Table> || <Loading />}
         <div className="pagination">

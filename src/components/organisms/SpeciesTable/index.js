@@ -1,22 +1,31 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'material-ui/Table'
+import { Table, TableBody, TableRowColumn, TableRow } from 'material-ui/Table'
 import Pagination from 'material-ui-pagination'
 import { SpeciesRow, Loading } from 'components'
 import * as SpeciesService from '../../../services/SpeciesService'
+import theme from '../../themes/default'
 
 const Wrapper = styled.div`
-  margin: 20px 0px;
-  text-align: center;
-
+  margin-top: 15px;
   .font {
-    color: #4B5353 !important;
+    color: ${theme.palette.grayscale[7]} !important;
     font-size: 15px !important;
   }
 
   .pagination {
+    text-align: center;
     margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  div:not(:first-child) {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+  }
+
+  .hover {
+    cursor: pointer;
   }
 `
 
@@ -44,21 +53,19 @@ export default class SpeciesTable extends Component {
   render() {
     return (
       <Wrapper>
-        {this.state.species && <Table selectable={false}>
-          <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+        {this.state.species && <Table selectable={false} style={{ tableLayout: 'none' }}>
+          <TableBody displayRowCheckbox={false} showRowHover>
             <TableRow>
-              <TableHeaderColumn className="font"># de Registros</TableHeaderColumn>
-              <TableHeaderColumn className="font">Nombre Cientifico</TableHeaderColumn>
-              <TableHeaderColumn className="font">Reino</TableHeaderColumn>
-              <TableHeaderColumn className="font">Filo</TableHeaderColumn>
-              <TableHeaderColumn className="font">Clase</TableHeaderColumn>
-              <TableHeaderColumn className="font">Orden</TableHeaderColumn>
-              <TableHeaderColumn className="font">Familia</TableHeaderColumn>
-              <TableHeaderColumn className="font">Generó</TableHeaderColumn>
-              <TableHeaderColumn className="font">Epíteto Específico</TableHeaderColumn>
+              <TableRowColumn className="font">Registros</TableRowColumn>
+              <TableRowColumn className="font">Nombre Cientifico</TableRowColumn>
+              <TableRowColumn className="font">Reino</TableRowColumn>
+              <TableRowColumn className="font">Filo</TableRowColumn>
+              <TableRowColumn className="font">Clase</TableRowColumn>
+              <TableRowColumn className="font">Orden</TableRowColumn>
+              <TableRowColumn className="font">Familia</TableRowColumn>
+              <TableRowColumn className="font">Generó</TableRowColumn>
+              <TableRowColumn className="font">Epíteto Específico</TableRowColumn>
             </TableRow>
-          </TableHeader>
-          <TableBody displayRowCheckbox={false}>
             {this.state.species.map((species, i) => (
               <SpeciesRow key={i} species={species} />
             ))}

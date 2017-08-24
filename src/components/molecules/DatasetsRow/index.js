@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { TableRow, TableRowColumn } from 'material-ui/Table'
-import FlatButton from 'material-ui/FlatButton'
 import * as GBIFService from '../../../services/GBIFService'
 
 export default class DatasetsRow extends React.Component {
@@ -28,13 +27,16 @@ export default class DatasetsRow extends React.Component {
     })
   }
 
+  redirect(url) {
+    window.location.href = url
+  }
+
   render() {
     return (
-      <TableRow>
-        <TableRowColumn>{this.props.recurso.title}</TableRowColumn>
+      <TableRow hoverable onClick={() => this.redirect(`/datasets/${this.props.recurso.key}`)} className="hover">
+        <TableRowColumn>{this.props.recurso.title && `${(this.props.recurso.title).substring(0, 40)}...`}</TableRowColumn>
         <TableRowColumn>{this.state.count}</TableRowColumn>
-        <TableRowColumn>{this.state.publisherKey}</TableRowColumn>
-        <TableRowColumn><FlatButton primary href={`/datasets/${this.props.recurso.key}`} label="Ver mas" /></TableRowColumn>
+        <TableRowColumn>{this.state.publisherKey && `${(this.state.publisherKey).substring(0, 40)}...`}</TableRowColumn>
       </TableRow>
     )
   }

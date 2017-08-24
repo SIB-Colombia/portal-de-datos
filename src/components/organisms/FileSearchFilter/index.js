@@ -8,7 +8,6 @@ import { List, ListItem } from 'material-ui/List'
 import FilterList from 'material-ui/svg-icons/content/filter-list'
 import IconButton from 'material-ui/IconButton'
 import Replay from 'material-ui/svg-icons/av/replay'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 
 const Wrapper = styled.div`
