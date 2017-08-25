@@ -54,7 +54,7 @@ export default class DatasetsItem extends Component {
       <Wrapper>
         <Row className="entidad-item">
           <Col md={3}>
-            <Link to={`/datasets/${this.props.dataset.resourceId}`}>
+            <Link to={`/dataset/${this.props.dataset.resourceId}`}>
               <img src={this.props.dataset.imageUrl} alt="" width="100%" />
             </Link>
           </Col>

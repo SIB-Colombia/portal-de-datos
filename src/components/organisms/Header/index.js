@@ -63,6 +63,9 @@ z-index: 10 !important;
     @media ${size('xs')}{
       text-align: center;
     }
+    .align {
+      padding-top:5px;
+    }
   }
   .box-link{
     text-align:right;
@@ -213,7 +216,7 @@ class Header extends React.Component {
               <Col xs={12} sm={3} md={3} lg={3} className="box-logo">
                 {this.props.filter}
                 <Link to={'/'}>
-                  <img src={Const.urlLogo} width="220" height="70" alt="" />
+                  <img src={Const.urlLogo} height="59" alt="" className="align" />
                 </Link>
               </Col>
               <Col xs={12} sm={4} md={4} lg={5} className="box-nav-search-content">

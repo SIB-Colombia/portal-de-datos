@@ -42,7 +42,7 @@ const EntitiesSmallItem = ({ entitie }) => {
       <Paper>
         <Row>
           <Col xs={12} md={12} sm={12} lg={12}>
-            <Link to={`/datasets/${entitie.id}`}>
+            <Link to={`/publisher/${entitie.id}`}>
               <img src={entitie.eml.additionalMetadata.metadata.gbif.resourceLogoUrl} alt="" width="100%" style={styles.img} />
             </Link>
           </Col>

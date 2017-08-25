@@ -52,7 +52,7 @@ const GLobalInfo = ({ style, inf }) => (
   <Wrapper>
     <Row className="paper" center="xs" style={style}>
       {_.map(inf, (value, key) => (
-        <Col xs sm md lg key={key}><Link to="#"><span className="number">{value.count}</span> {value.name}</Link></Col>
+        <Col xs sm md lg key={key}><Link to={value.to}><span className="number">{value.count}</span> {value.name}</Link></Col>
       ))}
     </Row>
   </Wrapper>

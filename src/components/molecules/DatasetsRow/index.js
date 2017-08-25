@@ -33,7 +33,7 @@ export default class DatasetsRow extends React.Component {
 
   render() {
     return (
-      <TableRow hoverable onClick={() => this.redirect(`/datasets/${this.props.recurso.key}`)} className="hover">
+      <TableRow hoverable onClick={() => this.redirect(`/dataset/${this.props.recurso.key}`)} className="hover">
         <TableRowColumn>{this.props.recurso.title && `${(this.props.recurso.title).substring(0, 40)}...`}</TableRowColumn>
         <TableRowColumn>{this.state.count}</TableRowColumn>
         <TableRowColumn>{this.state.publisherKey && `${(this.state.publisherKey).substring(0, 40)}...`}</TableRowColumn>

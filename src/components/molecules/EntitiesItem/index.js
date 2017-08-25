@@ -52,7 +52,7 @@ export default class EntitiesItem extends Component {
   render() {
     return (
       <Wrapper>
-        <Link to={`provider/${this.props.entitie.id}`}>
+        <Link to={`publisher/${this.props.entitie.id}`}>
           <Row className="entidad-item">
             <Col md={3}>
               <img src={this.props.entitie.eml.additionalMetadata.metadata.gbif.resourceLogoUrl} alt="" width="100%" />

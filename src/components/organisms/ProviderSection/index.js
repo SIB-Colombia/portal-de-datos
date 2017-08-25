@@ -33,10 +33,6 @@ const Wrapper = styled.div`
     padding-left: 20px;
   }
 
-  .separated{
-    margin-bottom: 30px;
-  }
-
   .paper {
       color: #3E5151;
       font-size: 24px;
@@ -100,7 +96,7 @@ export default class ProviderSection extends Component {
             <Col xs={12} sm={12} md={12} lg={12} className="sub-title">{this.props.provider.providerName}</Col>
           </Row>
         </Grid>
-        <Paper className="separated">
+        <Paper>
           <Grid>
             <Grid fluid>
               {this.props.provider.occurrence.count &&
@@ -121,7 +117,7 @@ export default class ProviderSection extends Component {
             <Col xs={12} sm={12} md={4} lg={3}>
               <Row center="xs">
                 <Col xs={12} sm={12} md={12} lg={12}>
-                  <img src={this.props.provider.additionalMetadata.metadata.gbif.resourceLogoUrl} alt="" width="262" height="261" />
+                  <img src={`/${this.props.provider.additionalMetadata.metadata.gbif.resourceLogoUrl}`} alt="" width="262" height="261" />
                 </Col>
                 <Col xs={12} sm={12} md={12} lg={12}>
                   <Row middle="xs">

@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   width: 35px;
 
   .drawer{
-    margin-top: 70px;
+    margin-top: 65px;
     .paper > div:first-child {
         padding-bottom: 0px !important;
       }

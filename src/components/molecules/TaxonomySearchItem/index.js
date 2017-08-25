@@ -4,6 +4,8 @@ import { FileSearchItem } from 'components'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import AutoComplete from 'material-ui/AutoComplete'
+import { Grid, Row, Col } from 'react-flexbox-grid'
+import Checkbox from 'material-ui/Checkbox'
 
 const Wrapper = styled.div`
 `
@@ -39,6 +41,13 @@ export default class TaxonomySearchItem extends Component {
     return (
       <Wrapper>
         <FileSearchItem title="Taxonomía">
+          <Grid fluid className="without-padding divider">
+            <Row middle="xs">
+              <Col xs={12} sm={12} md={12} lg={12}>
+                <Checkbox label="Tyrannus melacholicus" />
+              </Col>
+            </Row>
+          </Grid>
           <SelectField
             value={this.state.value}
             onChange={this.handleChange}
