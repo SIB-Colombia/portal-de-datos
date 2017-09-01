@@ -7,7 +7,7 @@ const Const = {
   },
   TOKEN: 'token-p0rt4lD4to5',
   USER: 'user-p0rt4lD4to5',
-  urlLogo: 'https://s3.amazonaws.com/sib-resources/images/logos-canales/svg/logo-datos.svg',
+  urlLogo: 'https://s3.amazonaws.com/sib-resources/images/logos-canales/svg/logo-datos-corte.svg',
 }
 
 export default Const
