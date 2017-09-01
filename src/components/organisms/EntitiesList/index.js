@@ -5,16 +5,18 @@ import styled from 'styled-components'
 import IconButton from 'material-ui/IconButton'
 import ViewList from 'material-ui/svg-icons/action/view-list'
 import Apps from 'material-ui/svg-icons/navigation/apps'
-import SelectField from 'material-ui/SelectField'
+import FlatButton from 'material-ui/FlatButton'
+import Menu from 'material-ui/Menu'
 import MenuItem from 'material-ui/MenuItem'
 import { EntitiesItem, EntitiesSmallItem } from 'components'
 import Pagination from 'material-ui-pagination'
 import Masonry from 'react-masonry-component'
+import Popover, { PopoverAnimationVertical } from 'material-ui/Popover'
 
 const Wrapper = styled.div`
   .accent-divider {
-    margin-top: -20px;
-    border-top: 2px solid #CCCCCC;
+    border-top: 1px solid #CCCCCC;
+    margin-bottom: 15px;
   }
 
   .entidad-divider {
@@ -49,19 +51,38 @@ export default class EntitiesList extends Component {
       total: 20,
       display: 7,
       number: 1,
+      openD: false,
+      anchorEl: null,
     }
   }
 
   handleChange = (event, index, value) => this.setState({ value });
   handleView = (value) => this.setState({ mode: value });
 
+
+  handleTouchTap = (event) => {
+    // This prevents ghost click.
+    event.preventDefault()
+
+    this.setState({
+      openD: true,
+      anchorEl: event.currentTarget,
+    })
+  }
+
+  handleRequestClose = () => {
+    this.setState({
+      openD: false,
+    })
+  }
+
   render() {
     return (
       <Wrapper>
         <Row style={{ marginTop: 30 }}>
-          <Col md={12}>
-            <Row end="md">
-              <Col md={3} className="text-align">
+          <Col xs={12} sm={12} md={12} lg={12}>
+            <Row middle="xs" end="xs">
+              <Col xs={4} sm={4} md={3} lg={3} className="text-align">
                 <IconButton tooltip="modo grilla" touch tooltipPosition="top-center" onTouchTap={() => this.handleView('grid')}>
                   <Apps className={this.state.mode === 'grid' ? 'color-select' : 'color-unselect'} />
                 </IconButton>
@@ -69,17 +90,30 @@ export default class EntitiesList extends Component {
                   <ViewList className={this.state.mode === 'list' ? 'color-select' : 'color-unselect'} />
                 </IconButton>
               </Col>
-              <Col md={1} className="align-center">
-                <SelectField value={this.state.value} onChange={this.handleChange} style={{ width: 200 }}>
-                  <MenuItem value={1} primaryText="A/Z" />
-                  <MenuItem value={2} primaryText="Recientes" />
-                  <MenuItem value={3} primaryText="Número de registros" />
-                </SelectField>
+              <Col xs={3} sm={2} md={1} lg={1}>
+                <FlatButton
+                  onClick={this.handleTouchTap}
+                  label="A/N"
+                />
+                <Popover
+                  open={this.state.openD}
+                  anchorEl={this.state.anchorEl}
+                  anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+                  targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+                  onRequestClose={this.handleRequestClose}
+                  animation={PopoverAnimationVertical}
+                >
+                  <Menu>
+                    <MenuItem primaryText="..." />
+                    <MenuItem primaryText="..." />
+                    <MenuItem primaryText="..." />
+                  </Menu>
+                </Popover>
               </Col>
             </Row>
           </Col>
-          <Col className="accent-divider" md={12} />
-          <Col md={12}>
+          <Col className="accent-divider" xs={12} sm={12} md={12} lg={12} />
+          <Col xs={12} sm={12} md={12} lg={12} >
             <Masonry>
               {this.props.entities && this.state.mode === 'grid' && this.props.entities.map((entitie) => (
                 <EntitiesSmallItem key={entitie.id} entitie={entitie} />

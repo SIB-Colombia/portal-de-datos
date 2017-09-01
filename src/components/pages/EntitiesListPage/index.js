@@ -86,6 +86,8 @@ export default class EntitiesListPage extends Component {
               <Col className="title" xs={12} sm={12} md={12} lg={12}>BÚSQUEDA POR PUBLICADORES <ChevronRight className="icon" viewBox="0 0 25 15" /> 45.954.321 <span>RESULTADOS</span></Col>
               <Col className="accent-title" xs={3} sm={2} md={1} lg={1} />
             </Row>
+          </Grid>
+          <Grid fluid={this.state.open}>
             {this.state.entities && <EntitiesList entities={this.state.entities} />}
           </Grid>
         </Wrapper>
