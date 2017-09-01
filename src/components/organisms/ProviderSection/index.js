@@ -117,7 +117,7 @@ export default class ProviderSection extends Component {
             <Col xs={12} sm={12} md={4} lg={3}>
               <Row center="xs">
                 <Col xs={12} sm={12} md={12} lg={12}>
-                  <img src={`/${this.props.provider.additionalMetadata.metadata.gbif.resourceLogoUrl}`} alt="" width="262" height="261" />
+                  <img src={`${this.props.provider.additionalMetadata.metadata.gbif.resourceLogoUrl}`} alt="" width="262" height="261" />
                 </Col>
                 <Col xs={12} sm={12} md={12} lg={12}>
                   <Row middle="xs">
