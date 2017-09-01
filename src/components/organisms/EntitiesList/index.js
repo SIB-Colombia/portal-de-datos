@@ -59,7 +59,6 @@ export default class EntitiesList extends Component {
   handleChange = (event, index, value) => this.setState({ value });
   handleView = (value) => this.setState({ mode: value });
 
-
   handleTouchTap = (event) => {
     // This prevents ghost click.
     event.preventDefault()
