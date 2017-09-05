@@ -7,6 +7,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid'
 import Slider from 'material-ui/Slider'
 import Divider from 'material-ui/Divider'
 import RaisedButton from 'material-ui/RaisedButton'
+import InputRange from 'react-input-range'
 
 const Wrapper = styled.div`
 `
