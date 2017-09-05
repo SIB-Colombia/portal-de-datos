@@ -21,7 +21,7 @@ export default class FileSearchItem extends Component {
   render() {
     return (
       <Wrapper>
-        <Card className="paper">
+        <Card className="paper" {...this.props}>
           <CardHeader
             title={this.props.title}
             actAsExpander
