@@ -6,6 +6,7 @@ import MenuItem from 'material-ui/MenuItem'
 import AutoComplete from 'material-ui/AutoComplete'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import Checkbox from 'material-ui/Checkbox'
+import Divider from 'material-ui/Divider'
 import theme from '../../themes/default'
 
 const Wrapper = styled.div`
@@ -49,8 +50,8 @@ export default class TaxonomySearchItem extends Component {
 
   render() {
     return (
-      <Wrapper onClick={this.activeFilter}>
-        <FileSearchItem title="Taxonomía">
+      <Wrapper>
+        <FileSearchItem title="Taxonomía" onExpandChange={this.activeFilter}>
           <Grid fluid className="without-padding divider">
             <Row middle="xs">
               <Col xs={12} sm={12} md={12} lg={12}>
@@ -58,6 +59,7 @@ export default class TaxonomySearchItem extends Component {
               </Col>
             </Row>
           </Grid>
+          <Divider style={{ marginTop: 10, marginBottom: 10 }} />
           <SelectField
             value={this.state.value}
             onChange={this.handleChange}
@@ -67,10 +69,14 @@ export default class TaxonomySearchItem extends Component {
             underlineFocusStyle={{ borderColor: '#FF7847' }}
           >
             <MenuItem value={1} primaryText="Nombre científico" />
-            <MenuItem value={2} primaryText="Every Night" />
-            <MenuItem value={3} primaryText="Weeknights" />
-            <MenuItem value={4} primaryText="Weekends" />
-            <MenuItem value={5} primaryText="Weekly" />
+            <MenuItem value={2} primaryText="Reino" />
+            <MenuItem value={3} primaryText="Filo" />
+            <MenuItem value={4} primaryText="Clase" />
+            <MenuItem value={5} primaryText="Orden" />
+            <MenuItem value={6} primaryText="Familia" />
+            <MenuItem value={7} primaryText="Género" />
+            <MenuItem value={8} primaryText="Epíteto específico" />
+            <MenuItem value={9} primaryText="Epíteto infraespecífico" />
           </SelectField>
           <AutoComplete
             hintText="Escriba el nombre científico"
@@ -101,8 +107,8 @@ export default class TaxonomySearchItem extends Component {
             </Row>
           </Grid>
         </FileSearchItem>
-        {this.state.open && <Grid fluid className="without-padding" style={{ paddingTop: 10, paddingBottom: 10, background: '#F3F8F8' }}>
-          <Row middle="xs" center="xs">
+        {this.state.open && <Grid fluid style={{ paddingTop: 10, paddingBottom: 10, background: '#F3F8F8' }}>
+          <Row middle="xs">
             <Col xs={12} sm={12} md={12} lg={12}>
               <Checkbox checked label="Tyrannus melacholicus" iconStyle={{ fill: theme.palette.basescale[6] }} />
             </Col>
