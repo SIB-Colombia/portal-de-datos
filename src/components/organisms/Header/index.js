@@ -249,9 +249,9 @@ class Header extends React.Component {
                 >
                   <Menu>
                     <MenuItem primaryText="Registros" href="/search/table" />
-                    <MenuItem primaryText="Recursos" href="datasets" />
-                    <MenuItem primaryText="Publicadores" href="publishers" />
-                    <MenuItem primaryText="Explorador geográfico" href="departments" />
+                    <MenuItem primaryText="Recursos" href="/datasets" />
+                    <MenuItem primaryText="Publicadores" href="/publishers" />
+                    <MenuItem primaryText="Explorador geográfico" href="/departments" />
                   </Menu>
                 </Popover>
 
