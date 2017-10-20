@@ -144,6 +144,11 @@ class SearchResultsPage extends React.Component {
       openP: false,
     })
   };
+  
+  handleCantidadRecursos = (cantidadResultados) => {
+    this.setState({cantidadResultados : cantidadResultados})
+  };
+  
 
   render() {
     return (
@@ -171,7 +176,7 @@ class SearchResultsPage extends React.Component {
         <Wrapper style={this.state.open ? { marginLeft: 300 } : { marginLeft: 'auto' }} >
           <Grid fluid={this.state.open}>
             <Row between="xs">
-              <Col className="title" xs={12} sm={12} md={12} lg={12}>BÚSQUEDA POR REGISTROS BIOLÓGICOS <ChevronRight className="icon" viewBox="0 0 25 15" /> 45.954.321 <span>RESULTADOS</span></Col>
+              <Col className="title" xs={12} sm={12} md={12} lg={12}>BÚSQUEDA POR REGISTROS BIOLÓGICOS <ChevronRight className="icon" viewBox="0 0 25 15" /> {this.state.cantidadResultados} <span>RESULTADOS</span></Col>
               <Col className="accent-title" xs={3} sm={2} md={1} lg={1} />
             </Row>
           </Grid>
@@ -219,7 +224,7 @@ class SearchResultsPage extends React.Component {
           </Grid>
           {this.state.tab === 0 &&
             <Grid fluid={this.state.open}>
-              <ResultTable id={this.props.location.search} />
+              <ResultTable id={this.props.location.search} handleCantidadRecursos={this.handleCantidadRecursos} />
             </Grid>
           }
           {this.state.tab === 1 && <HumboldtMap />}

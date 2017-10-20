@@ -49,6 +49,10 @@ export default class RegisterSection extends React.Component {
   }
 
   render() {
+  
+    console.log("Register Section this.state.ocurrence")
+    console.log(this.state.ocurrence)
+  
     return (
       <Wrapper>
         <Col className="title-two" xs={12} sm={12} md={12} lg={12}>Registro</Col>

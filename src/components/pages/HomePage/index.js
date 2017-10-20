@@ -35,7 +35,7 @@ class HomePage extends React.Component {
     }).catch(err => new Error(err))
 
     DataPortalService.getOccurrenceCount('geo').then(data => {
-      this.setState({ countGeo: { name: 'GEORREFERENCIADOS', count: format(data.count, '#.###.'), to: '/search/table' } })
+      this.setState({ countGeo: { name: 'CON COORDENADAS', count: format(data.count, '#.###.'), to: '/search/table' } })
     }).catch(err => new Error(err))
 
     HomePageService.getStatisticsData().then(data => {

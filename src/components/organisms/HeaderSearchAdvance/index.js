@@ -69,7 +69,7 @@ class HeaderSearchAdvance extends React.Component {
             { name: 'Mariposas', q: 'orderName=Lepidoptera' },
             { name: 'Hormigas', q: 'familyName=Formicidae' },
             { name: 'Abejas', q: 'familyName=Apidae&familyName=Colletidae&familyName=Halictidae' },
-            { name: 'Moscas y zancudos', q: 'orderName=?Diptera' },
+            { name: 'Moscas y zancudos', q: 'orderName=Diptera' },
             { name: 'Arácnidos', q: 'className=Arachnida' },
             { name: 'Moluscos', q: 'phylumName=Mollusca' },
             { name: 'Decápodos', q: 'orderName=Decapoda' },
