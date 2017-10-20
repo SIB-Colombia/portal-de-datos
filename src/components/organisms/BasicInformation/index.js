@@ -81,7 +81,7 @@ class BasicInformation extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      record: [],
+      record: {},
     }
   }
 
@@ -94,34 +94,34 @@ class BasicInformation extends React.Component {
             <Col className="accent-title" xs={3} sm={2} md={1} lg={1} />
           </Row>
           <Row center="xs">
-            <Col xs={12} sm={12} md={12} lg={12} className="sub-title" >{this.props.record[0].scientificName}</Col>
+            <Col xs={12} sm={12} md={12} lg={12} className="sub-title" >{this.props.record.scientificName}</Col>
             <Col xs={12} sm={12} md={12} lg={12} className="breadcrums">
-              {this.props.record[0].kingdom} <ChevronRight className="icon" viewBox="0 0 28 10" />
-              {this.props.record[0].phylum} <ChevronRight className="icon" viewBox="0 0 28 10" />
-              {this.props.record[0].order} <ChevronRight className="icon" viewBox="0 0 28 10" />
-              {this.props.record[0].family} <ChevronRight className="icon" viewBox="0 0 28 10" />
-              {this.props.record[0].genus} <ChevronRight className="icon" viewBox="0 0 28 10" />
-              {this.props.record[0].specificEpithet}
+              {this.props.record.kingdom} <ChevronRight className="icon" viewBox="0 0 28 10" />
+              {this.props.record.phylum} <ChevronRight className="icon" viewBox="0 0 28 10" />
+              {this.props.record.order} <ChevronRight className="icon" viewBox="0 0 28 10" />
+              {this.props.record.family} <ChevronRight className="icon" viewBox="0 0 28 10" />
+              {this.props.record.genus} <ChevronRight className="icon" viewBox="0 0 28 10" />
+              {this.props.record.specificEpithet}
             </Col>
           </Row>
         </Grid>
         <Divider />
         <Grid>
           <Row className="detalles-basicos">
-            <Col xs={12} sm={6} md={6} lg={6} className="detalle-item"><span>Nombre científico:</span> <Link to={'to'}><i> {this.props.record[0].scientificName}</i></Link></Col>
-            <Col xs={12} sm={6} md={6} lg={6} className="detalle-item"><span>Nombre del recurso:</span> <Link to={'to'}> {this.props.record[0].resourceName}</Link></Col>
-            <Col xs={12} sm={6} md={6} lg={6} className="detalle-item"><span>Ubicacion:</span> {`${this.props.record[0].country}, ${this.props.record[0].stateProvince}`}</Col>
-            <Col xs={12} sm={6} md={6} lg={6} className="detalle-item"><span>Publicador:</span> <Link to={'to'}> {this.props.record[0].providerName}</Link></Col>
-            <Col xs={12} sm={12} md={12} lg={12} className="detalle-item"><span>Base del Registro:</span> {this.props.record[0].basisOfRecord}</Col>
-            <Col xs={12} sm={12} md={12} lg={12} className="detalle-item"><span>Hábitat:</span> {this.props.record[0].habitat}</Col>
+            <Col xs={12} sm={6} md={6} lg={6} className="detalle-item"><span>Nombre científico:</span> <Link to={'to'}><i> {this.props.record.scientificName}</i></Link></Col>
+            <Col xs={12} sm={6} md={6} lg={6} className="detalle-item"><span>Nombre del recurso:</span> <a target="_blank" href={this.props.d.homepage}> {this.props.d.title}</a></Col>
+            <Col xs={12} sm={6} md={6} lg={6} className="detalle-item"><span>Ubicacion:</span> {`${this.props.record.country}, ${this.props.record.stateProvince}`}</Col>
+            <Col xs={12} sm={6} md={6} lg={6} className="detalle-item"><span>Publicador:</span> <Link to={'to'}> {this.props.record.providerName}</Link></Col>
+            <Col xs={12} sm={12} md={12} lg={12} className="detalle-item"><span>Base del Registro:</span> {this.props.o.basisOfRecord}</Col>
+            <Col xs={12} sm={12} md={12} lg={12} className="detalle-item"><span>Hábitat:</span> {this.props.record.habitat}</Col>
           </Row>
         </Grid>
-        <HumboldtMap marker={[this.props.record[0].decimalLatitude, this.props.record[0].decimalLongitude]} zoom />
+        <HumboldtMap marker={[this.props.record.decimalLatitude, this.props.record.decimalLongitude]} zoom />
         <Grid>
           <Row>
             <Col className="title-two" xs={12} sm={12} md={12} lg={12}>Sobre el recurso</Col>
             <Col className="accent-title" xs={3} sm={2} md={1} lg={1} />
-            <Col xs={12} sm={12} md={12} lg={12} className="sobre-recurso">{/* this.props.record.recurso.descripcion*/} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, commodi, error. Amet impedit sit dolorem reiciendis maiores blanditiis qui temporibus numquam, ullam perferendis, labore doloribus officiis aut ipsum explicabo sapiente.</Col>
+            <Col xs={12} sm={12} md={12} lg={12} className="sobre-recurso">{ this.props.record.description}</Col>
           </Row>
         </Grid>
       </Wrapper>

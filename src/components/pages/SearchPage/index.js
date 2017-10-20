@@ -18,6 +18,7 @@ import {
 } from 'components';
 
 import * as DataPortalService from '../../../services/DataPortalService';
+import * as GBIFService from '../../../services/GBIFService';
 
 class SearchPage extends React.Component {
 
@@ -33,7 +34,7 @@ class SearchPage extends React.Component {
   componentDidMount() {}
 
   componentWillMount() {
-    DataPortalService.getOccurrenceSearch(this.props.location.search).then(data => {
+    GBIFService.getOccurrenceSearch(this.props.location.search).then(data => {
       this.setState({result: data.results});
     });
 

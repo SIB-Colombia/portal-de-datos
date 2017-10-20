@@ -39,6 +39,7 @@ export default class EntitiesRecordPage extends Component {
 
   componentWillMount() {
     EntitiesRecordService.getEntitiesRecord().then(data => {
+      console.log(data.eml)
       this.setState({
         entities: data.eml,
       })

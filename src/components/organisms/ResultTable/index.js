@@ -5,8 +5,12 @@ import { ResultRow, Loading } from 'components'
 import { Table, TableBody, TableRowColumn, TableRow } from 'material-ui/Table'
 import Pagination from 'material-ui-pagination'
 import _ from 'lodash'
+
 import * as DataPortalService from '../../../services/DataPortalService'
+import * as GBIFService from '../../../services/GBIFService';
+
 import theme from '../../themes/default'
+
 
 const Wrapper = styled.div`
 margin-top: 15px;
@@ -48,29 +52,52 @@ export default class ResultTable extends React.Component {
   }
 
   componentWillMount() {
-    DataPortalService.getOccurrenceSearch(this.props.id).then(data => {
+    GBIFService.getOccurrenceSearch(this.props.id).then(data => {
+    //DataPortalService.getOccurrenceSearch(this.props.id).then(data => {
+      console.log("Los resultados de GBIF son: ")
+      console.log(data)
+
+      
       this.setState({
-        display: data.size,
+        display: 10,
         current: data.offset,
         total: data.count,
-        result: data,
+        result: data.results,
       })
+      
+      this.props.handleCantidadRecursos(data.count)
+      
+      
     })
   }
 
   getNextOccurrencePage(offset) {
-    DataPortalService.getOccurrenceSearch(this.props.id, offset + 10).then(data => {
+  
+    console.log("Consulta a la siguiente pagina")
+    GBIFService.getOccurrenceSearch(this.props.id, offset + 10).then(data => {
+    //DataPortalService.getOccurrenceSearch(this.props.id, offset + 10).then(data => {
+      console.log("Los resultados de GBIF paginados: ")
+      console.log(data)
       this.setState({
-        display: data.size,
+        display: 10,
         current: data.offset - 10,
         total: data.count,
-        result: data,
+        result: data.results,
       })
+      this.props.handleCantidadRecursos(data.count)
     })
   }
 
   render() {
+    console.log("total")
+    console.log(this.state.total)
+    console.log("Display")
+    console.log(this.state.display)
+    console.log("Current")
+    console.log(this.state.current)
     return (
+    
+    
       <Wrapper>
         {this.state.result &&
           <Table selectable={false} style={{ tableLayout: 'none' }}>
@@ -93,8 +120,8 @@ export default class ResultTable extends React.Component {
                 <TableRowColumn className="font">Género</TableRowColumn>
                 <TableRowColumn className="font">Epíteto Específico</TableRowColumn>
               </TableRow>
-              {this.state.result && _.map(this.state.result.results, (registro) => (
-                <ResultRow key={registro.id} registro={registro} />
+              {this.state.result && _.map(this.state.result, (registro) => (
+                <ResultRow key={registro.key} registro={registro} />
               ))}
             </TableBody>
           </Table>

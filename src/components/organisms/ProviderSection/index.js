@@ -105,7 +105,7 @@ export default class ProviderSection extends Component {
                     { name: 'REGISTROS', count: this.props.provider.occurrence.count.providerName },
                     { name: 'RECURSOS', count: this.props.provider.occurrence.count.providerName },
                     { name: 'ESPECIES', count: this.props.provider.occurrence.count.scientificName },
-                    { name: 'GEORREFERENCIADOS', count: this.props.provider.occurrence.count.resourceName },
+                    { name: 'CON COORDENADAS', count: this.props.provider.occurrence.count.resourceName },
                   ]}
                 />
               }
