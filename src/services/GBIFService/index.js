@@ -12,7 +12,7 @@ export function getOccurrenceSearch(params, page) {
   const inicial = page || params ? "&": "?"
   const offset = page ? `?offset=${page}` : ''
   const p = params ? '&'+params : ''
-  return fetch(`http://api.gbif.org/v1/occurrence/search${params}${offset}${inicial}country=CO`, http('GET')).then((response) => {
+  return fetch(`http://api.gbif.org/v1/occurrence/search${params}${offset}${inicial}country=CO&repatriated=false`, http('GET')).then((response) => {
     return response.json()
   }).then((data) => {
     return data
