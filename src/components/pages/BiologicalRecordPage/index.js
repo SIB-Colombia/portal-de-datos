@@ -27,22 +27,36 @@ class BiologicalRecordPage extends React.Component {
   }
 
   componentWillMount() {
-    GBIFService.getOccurrenceById(this.props.match.params.id).then(data => {
-      this.setState({ occurrenceBasic: data })
-    }).catch(err => {
-      console.log(err)
-    })
-
-    BiologicalRecordService.getBiologicalRecord().then(data => {
-      this.setState({
-        moreDetails: data,
+    if (this.props.match.params.id!=undefined){
+      BiologicalRecordService.getBiologicalRecord(this.props.match.params.id).then(data => {
+        console.log("_--------______-------__--")
+        console.log(data)
+        this.setState({ occurrenceBasic: data,  moreDetails: data })
+      }).catch(err => {
+        console.log("Ocurrio un error")
+        console.log(err)
       })
-    }).catch(err => console.log(err))
+      
+      
+      /*
+      BiologicalRecordService.getBiologicalRecord(this.props.match.params.id).then(data => {
+        this.setState({
+          moreDetails: data,
+        })
+      }).catch(err => console.log(err))
+      */
+      
+    }
   }
 
   render() {
-    const basicInformation = this.state.occurrenceBasic && _.map(this.state.occurrenceBasic.results, (o) => {
-      return {
+    var basicInformation = false
+    var o = {}
+    var d = {}
+    if(this.state.occurrenceBasic){
+      o = this.state.occurrenceBasic.results.occurrence
+      d = this.state.occurrenceBasic.results.dataset
+      basicInformation = {
         scientificName: o.scientificName,
         kingdom: o.kingdom,
         phylum: o.phylum,
@@ -54,17 +68,22 @@ class BiologicalRecordPage extends React.Component {
         stateProvince: o.stateProvince,
         basisOfRecord: o.basisOfRecord,
         habitat: o.habitat,
-        resourceName: o.resourceName,
+        resourceName: d.title,
         providerName: o.providerName,
         decimalLongitude: o.decimalLongitude,
         decimalLatitude: o.decimalLatitude,
+        description: d.description
       }
-    })
-
+    }
+    console.log("basicInformation")
+    console.log(basicInformation)
+    
+    console.log("this.state.moreDetails")
+    console.log(this.state.occurrenceBasic)
     return (
       <PageTemplate header={<Header />} footer={<Footer />}>
-        {basicInformation && <BasicInformation record={basicInformation} />}
-        {this.state.moreDetails && <MoreDetails more={this.state.moreDetails} />}
+        {basicInformation && <BasicInformation record={basicInformation} o={o} d={d} />}
+        {this.state.occurrenceBasic && <MoreDetails more={this.state.occurrenceBasic.results} />}
       </PageTemplate>
     )
   }

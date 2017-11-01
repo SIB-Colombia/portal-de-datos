@@ -16,26 +16,46 @@ class ResultRow extends React.Component {
   redirect(url) {
     window.location.href = url
   }
+  
+  ubicacion(r){
+    var t = ""
+    if (r.decimalLatitude){
+      if (r.decimalLatitude>0)
+        t += r.decimalLatitude.toFixed(2)+" N"
+      else
+        t += (-r.decimalLatitude).toFixed(2)+" S"
+    }
+    if (r.decimalLongitude){
+      t += ", "
+      if (r.decimalLongitude>0)
+        t += r.decimalLongitude.toFixed(2)+" E"
+      else
+        t += (-r.decimalLongitude).toFixed(2)+" O"
+    }
+    return t
+  }
 
   render() {
+    console.log("Id: ")
+    console.log(this.props.registro.key)
     return (
-      <TableRow hoverable onClick={() => this.redirect(`/occurrence/${this.props.registro.occurrenceid}`)} className="hover">
-        <TableRowColumn>{this.props.registro.canonical ? this.props.registro.canonical : ''}</TableRowColumn>
-        <TableRowColumn>{this.props.registro.country_name ? this.props.registro.country_name : ''}</TableRowColumn>
-        <TableRowColumn>{this.props.registro.department_interpreted}</TableRowColumn>
-        <TableRowColumn>{this.props.registro.location ? `${(this.props.registro.location.lat).toFixed(2)}, ${(this.props.registro.location.lon).toFixed(2)}` : ''}</TableRowColumn>
-        <TableRowColumn>{this.props.registro.basis_of_record.name ? this.props.registro.basis_of_record.name : ''}</TableRowColumn>
-        <TableRowColumn>{this.props.registro.eventdate_start ? (this.props.registro.eventdate_start).slice(0, 10) : ''}</TableRowColumn>
-        <TableRowColumn>{this.props.registro.provider.name ? this.props.registro.provider.name : ''}</TableRowColumn>
-        <TableRowColumn>{this.props.registro.resource.name ? this.props.registro.resource.name : ''}</TableRowColumn>
-        <TableRowColumn>{this.props.registro.taxon_rank ? this.props.registro.taxon_rank : ''}</TableRowColumn>
-        <TableRowColumn>{this.props.registro.taxonomy.kingdom_name ? this.props.registro.taxonomy.kingdom_name : ''}</TableRowColumn>
-        <TableRowColumn>{this.props.registro.taxonomy.phylum_name ? this.props.registro.taxonomy.phylum_name : ''}</TableRowColumn>
-        <TableRowColumn>{this.props.registro.taxonomy.class_name ? this.props.registro.taxonomy.class_name : ''}</TableRowColumn>
-        <TableRowColumn>{this.props.registro.taxonomy.order_name ? this.props.registro.taxonomy.order_name : ''}</TableRowColumn>
-        <TableRowColumn>{this.props.registro.taxonomy.family_name ? this.props.registro.taxonomy.family_name : ''}</TableRowColumn>
-        <TableRowColumn>{this.props.registro.taxonomy.genus_name ? this.props.registro.taxonomy.genus_name : ''}</TableRowColumn>
-        <TableRowColumn>{this.props.registro.taxonomy.specific_epithet ? this.props.registro.taxonomy.specific_epithet : ''}</TableRowColumn>
+      <TableRow hoverable onClick={() => this.redirect(`/occurrence/${this.props.registro.key}`)} className="hover">
+        <TableRowColumn>{this.props.registro.scientificName ? this.props.registro.scientificName : ''}</TableRowColumn>
+        <TableRowColumn>{this.props.registro.country ? this.props.registro.country : ''}</TableRowColumn>
+        <TableRowColumn>{this.props.registro.stateProvince ? this.props.registro.stateProvince : ''}</TableRowColumn>
+        <TableRowColumn>{this.ubicacion(this.props.registro)}</TableRowColumn>
+        <TableRowColumn>{this.props.registro.basisOfRecord ? this.props.registro.basisOfRecord : ''}</TableRowColumn>
+        <TableRowColumn>{this.props.registro.eventDate ? this.props.registro.eventDate.substring(0, 10) : ''}</TableRowColumn>
+        <TableRowColumn>{this.props.registro.institutionCode ? this.props.registro.institutionCode : ''}</TableRowColumn>
+        <TableRowColumn>{this.props.registro.identifier ? this.props.registro.identifier : ''}</TableRowColumn>
+        <TableRowColumn>{this.props.registro.taxonRank ? this.props.registro.taxonRank : ''}</TableRowColumn>
+        <TableRowColumn>{this.props.registro.kingdom ? this.props.registro.kingdom : ''}</TableRowColumn>
+        <TableRowColumn>{this.props.registro.phylum ? this.props.registro.phylum : ''}</TableRowColumn>
+        <TableRowColumn>{this.props.registro.class ? this.props.registro.class : ''}</TableRowColumn>
+        <TableRowColumn>{this.props.registro.order ? this.props.registro.order : ''}</TableRowColumn>
+        <TableRowColumn>{this.props.registro.family ? this.props.registro.family : ''}</TableRowColumn>
+        <TableRowColumn>{this.props.registro.genus ? this.props.registro.genus : ''}</TableRowColumn>
+        <TableRowColumn>{this.props.registro.specificEpithet ? this.props.registro.specificEpithet : ''}</TableRowColumn>
       </TableRow>
     )
   }

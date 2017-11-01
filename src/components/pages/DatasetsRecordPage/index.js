@@ -28,7 +28,7 @@ export default class DatasetsRecordPage extends Component {
   }
 
   componentWillMount() {
-    DatasetsService.getDataset().then(data => {
+    DatasetsService.getDataset(this.props.match.params.base, this.props.match.params.id).then(data => {
       this.setState({
         eml: data.eml,
       })

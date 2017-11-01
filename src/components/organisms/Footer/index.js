@@ -4,6 +4,11 @@ import { Grid, Row, Col } from 'react-flexbox-grid'
 import { Link } from 'components'
 import { palette } from 'styled-theme'
 
+
+/*
+    width: 76rem;
+*/
+
 const Wrapper = styled.footer`
 
   .participate {
