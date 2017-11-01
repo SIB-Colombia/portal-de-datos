@@ -66,6 +66,9 @@ export default class EntitiesListPage extends Component {
   }
 
   render() {
+
+    this.state.entities && console.log(this.state.entities)
+
     return (
       <PageTemplate
         header={

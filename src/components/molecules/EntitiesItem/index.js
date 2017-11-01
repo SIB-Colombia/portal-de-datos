@@ -41,10 +41,6 @@ const Wrapper = styled.div`
 
 export default class EntitiesItem extends Component {
 
-  constructor(props) {
-    super(props)
-  }
-
   static propTypes = {
     entitie: PropTypes.any.isRequired,
   }
