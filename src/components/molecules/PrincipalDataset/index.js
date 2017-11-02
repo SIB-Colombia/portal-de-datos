@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
-import { Link, Doi } from 'components'
+import { License, Link, Doi } from 'components'
 
 
 const Wrapper = styled.div`
@@ -59,23 +59,23 @@ export default class PrincipalDataset extends Component {
             <Col xs={12} sm={12} md={4} lg={3}>
               <Row center="xs">
                 <Col xs={12} sm={12} md={12} lg={12}>
-                  <img src="/logo_entidad.png" alt="" width="261" />
+                  <img src={this.state.eml.logoUrl} alt="" width="261" />
                 </Col>
                 <Col xs={12} sm={12} md={12} lg={12}>
-                  <Doi doi={this.state.eml.dataset.alternateIdentifier} />
+                  <Doi doi={this.state.eml.doi} />
                 </Col>
               </Row>
             </Col>
             <Col xs={12} sm={12} md={8} lg={8}>
               <Row>
                 <Col className="description" xs={12} sm={12} md={12} lg={12}>
-                  {this.state.eml.dataset.abstract.para}
+                  {this.state.eml.description}
                 </Col>
               </Row>
               <Row className="direct-links">
-                <Col xs={12} sm={12} md={12} lg={12}>Última modificación: <span>{this.state.eml.dataset.associatedParty.pubDate}</span></Col>
-                <Col xs={12} sm={12} md={12} lg={12}>Licencia <Link>{this.state.eml.dataset.intellectualRights.ulink_url.citetitle}</Link></Col>
-                <Col xs={12} sm={12} md={12} lg={12}>Cómo citar {this.state.eml.additionalMetadata.metadata.gbif.citation_identifier}</Col>
+                <Col xs={12} sm={12} md={12} lg={12}>Última modificación: <span>{this.state.eml.modified}</span></Col>
+                <Col xs={12} sm={12} md={12} lg={12}>Licencia <License id={this.state.eml.license}></License></Col>
+                <Col xs={12} sm={12} md={12} lg={12}>Cómo citar {this.state.eml.citation.text}</Col>
               </Row>
             </Col>
           </Row>
