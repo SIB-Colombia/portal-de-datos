@@ -25,6 +25,9 @@ const Wrapper = styled.div`
       font-size: 18px;
       color: #4B5353;
       margin: 15px 0px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-height: 150px;
     }
 
     .informacion-relevante{
@@ -50,36 +53,37 @@ export default class DatasetsItem extends Component {
   }
 
   render() {
+    console.log(this.props.dataset)
     return (
       <Wrapper>
-        <Row className="entidad-item">
-          <Col md={3}>
-            <Link to={`/dataset/${this.props.dataset.resourceId}`}>
+        <Link to={`/dataset/${this.props.dataset.key}`}>
+          <Row className="entidad-item">
+            <Col md={3}>
               <img src={this.props.dataset.imageUrl} alt="" width="100%" />
-            </Link>
-          </Col>
-          <Col xs={8} sm={8} md={8} lg={8}>
-            <Row>
-              <Col md={12} className="entidad-title">{this.props.dataset.resourceName}</Col>
-              <Col md={12} className="entidad-descripcion">
-                {this.props.dataset.description}
-              </Col>
-              <Col className="entidad-divider" md={12} />
-              <Col md={12}>
-                <Row className="informacion-relevante" middle="xs">
-                  <Col md={6}>PUBLICADOR</Col>
-                  <Col md={6}>
-                    <Row>
-                      <Col md><span>{this.props.dataset.count}</span> REGISTROS</Col>
-                    </Row>
-                  </Col>
-                  <Col md={6}><Doi doi="doi:10.15472/ch49b6" /></Col>
-                  <Col md={6}><License id="by" /></Col>
-                </Row>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
+            </Col>
+            <Col xs={8} sm={8} md={8} lg={8}>
+              <Row>
+                <Col md={12} className="entidad-title">{this.props.dataset.title}</Col>
+                <Col md={12} className="entidad-descripcion">
+                  {this.props.dataset.description}
+                </Col>
+                <Col className="entidad-divider" md={12} />
+                <Col md={12}>
+                  <Row className="informacion-relevante" middle="xs">
+                    <Col md={6}>PUBLICADOR</Col>
+                    <Col md={6}>
+                      <Row>
+                        <Col md><span>{this.props.dataset.recordCount}</span> REGISTROS</Col>
+                      </Row>
+                    </Col>
+                    <Col md={6}>{this.props.dataset.publishingOrganizationTitle}</Col>
+                    <Col md={6}><License id={this.props.dataset.license} /></Col>
+                  </Row>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </Link>
         <Col className="entidad-divider" md={12} />
       </Wrapper>
     )

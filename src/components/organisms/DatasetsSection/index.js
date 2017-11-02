@@ -60,8 +60,8 @@ export default class DatasetsSection extends Component {
             <Col className="accent-title" xs={2} sm={1} md={1} lg={1} />
           </Row>
           <Row center="xs">
-            <Col xs={12} sm={12} md={12} lg={12} className="sub-title">{this.state.eml.resourceName}</Col>
-            <Col xs={12} sm={12} md={12} lg={12} style={{ marginBottom: 10 }}><Link className="link">Publicado por <span>{this.state.eml.providerName}</span></Link></Col>
+            <Col xs={12} sm={12} md={12} lg={12} className="sub-title">{this.state.eml.title}</Col>
+            <Col xs={12} sm={12} md={12} lg={12} style={{ marginBottom: 10 }}><Link className="link" to={"/publisher/"+this.state.eml.publishingOrganization.key}>Publicado por <span>{this.state.eml.publishingOrganization.title}</span></Link></Col>
             <Col xs={12} sm={12} md={12} lg={12} className="">Martha Isabel Vallejo Joyas · <Email style={{ color: '#4B5353' }} viewBox="-8 5 30 1" />   Hernando Garcia</Col>
           </Row>
         </Grid>

@@ -64,7 +64,7 @@ const App = () => {
           <Route exact path="/publishers" component={EntitiesListPage} />
           <Route exact path="/publisher/:id" component={EntitiesRecordPage} />
           <Route exact path="/datasets" component={DatasetsListPage} />
-          <Route exact path="/dataset/:base/:id" component={DatasetsRecordPage} />
+          <Route exact path="/dataset/:id" component={DatasetsRecordPage} />
 
           <Route component={NotFoundPage} />
         </Switch>

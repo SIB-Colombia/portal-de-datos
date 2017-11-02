@@ -83,7 +83,7 @@ export default class DatasetsListPage extends Component {
         <Wrapper style={this.state.open ? { marginLeft: 310 } : { marginLeft: 'auto' }}>
           <Grid>
             <Row>
-              <Col className="title" xs={12} sm={12} md={12} lg={12}>BÚSQUEDA POR PUBLICADORES <ChevronRight className="icon" viewBox="0 0 25 15" /> 45.954.321 <span>RESULTADOS</span></Col>
+              <Col className="title" xs={12} sm={12} md={12} lg={12}>BÚSQUEDA POR PUBLICADORES <ChevronRight className="icon" viewBox="0 0 25 15" /> {this.state.datasets && this.state.datasets.count} <span>RESULTADOS</span></Col>
               <Col className="accent-title" xs={3} sm={2} md={1} lg={1} />
             </Row>
           </Grid>

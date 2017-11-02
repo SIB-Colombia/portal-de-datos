@@ -40,26 +40,26 @@ const DatasetsSmallItem = ({ dataset }) => {
   return (
     <Col xs={12} md={6} sm={3} lg={3}>
       <Paper>
-        <Row>
-          <Col xs={12} md={12} sm={12} lg={12}>
-            <Link to={`/datasets/${dataset.resourceId}`}>
+        <Link to={`/datasets/${dataset.key}`}>
+          <Row>
+            <Col xs={12} md={12} sm={12} lg={12}>
               <img src={dataset.imageUrl} alt="" width="100%" style={styles.img} />
-            </Link>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12} md={12} sm={12} lg={12} style={styles.name}>
+              {dataset.title}
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12} md={12} sm={12} lg={12} style={styles.publisher}>
+              Publicador: {dataset.description}
+            </Col>
+          </Row>
+          <Col xs={12} md={12} sm={12} lg={12} style={styles.specimens}>
+            <span>{dataset.recordCount}</span> ESPECÍMENES
           </Col>
-        </Row>
-        <Row>
-          <Col xs={12} md={12} sm={12} lg={12} style={styles.name}>
-            {dataset.resourceName}
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12} md={12} sm={12} lg={12} style={styles.publisher}>
-            Publicador: {dataset.providerName}
-          </Col>
-        </Row>
-        <Col xs={12} md={12} sm={12} lg={12} style={styles.specimens}>
-          <span>{dataset.count}</span> ESPECÍMENES
-          </Col>
+        </Link>
       </Paper>
     </Col>
   )

@@ -127,6 +127,10 @@ export default class DatasetsDetails extends Component {
   }
 
   render() {
+    console.log("El EML es: ", this.state.eml)
+/*
+                {this.state.eml.bibliographicCitations && <PaperItem title="Bibliografía" id="bibliografia">{this.state.eml.bibliographicCitations}</PaperItem>}
+*/    
     return (
       <Wrapper>
         {this.state.eml && <PrincipalDataset eml={this.state.eml} />}
@@ -157,13 +161,10 @@ export default class DatasetsDetails extends Component {
             </Col>
             <Col xs={12} sm={12} md={9} lg={9}>
               <Row>
-                {this.state.eml.dataset.abstract.para && <PaperItem title="Descripción" id="descripcion">{this.state.eml.dataset.abstract.para}</PaperItem>}
-                {this.state.eml.dataset.purpose.para && <PaperItem title="Propósito" id="proposito">{this.state.eml.dataset.purpose.para}</PaperItem>}
-                {this.state.eml.dataset.coverage.temporalCoverage && <PaperItem title="Cobertura temporal" id="temporal">{this.state.eml.dataset.coverage.temporalCoverage}</PaperItem>}
-                {this.state.eml.dataset.coverage.geographicCoverage && <PaperItem title="Cobertura geográfica" id="geografia"><HumboldtMap /></PaperItem>}
-                {this.state.eml.dataset.coverage.taxonomicCoverage && <PaperItem title="Cobertura taxonómica" id="taxonomia"><TaxonomicCoverageSection /></PaperItem>}
-                {this.state.eml.dataset.methods && <PaperItem title="Metodología" id="metodo_muestro"><MethodologySection method={this.state.eml.dataset.methods} /></PaperItem>}
-                {this.state.eml.additionalMetadata.metadata.gbif.bibliography && <PaperItem title="Bibliografía" id="bibliografia">{this.state.eml.additionalMetadata.metadata.gbif.bibliography}</PaperItem>}
+                {this.state.eml.description && <PaperItem title="Descripción" id="descripcion">{this.state.eml.description}</PaperItem>}
+                {this.state.eml.temporalCoverage && <PaperItem title="Cobertura temporal" id="temporal">{this.state.eml.temporalCoverage}</PaperItem>}
+                {this.state.eml.geographicCoverage && <PaperItem title="Cobertura geográfica" id="geografia"><HumboldtMap /></PaperItem>}
+                {this.state.eml.taxonomicCoverage && <PaperItem title="Cobertura taxonómica" id="taxonomia"><TaxonomicCoverageSection /></PaperItem>}
                 {this.state.eml.contacts && <PaperItem title="Partes asociadas" id="partes_asociadas">
                   <Row className="contacts">
                     {_.map(this.state.eml.contacts, (value, key) => (
@@ -245,7 +246,7 @@ export default class DatasetsDetails extends Component {
                     </Col>
                   </Row>
                 </PaperItem>}
-                {this.state.eml.additionalMetadata.metadata.gbif.citation_identifier && <PaperItem title="Citación" id="citacion">{this.state.eml.additionalMetadata.metadata.gbif.citation_identifier}</PaperItem>}
+                {this.state.eml.citation && <PaperItem title="Citación" id="citacion">{this.state.eml.citation.text}</PaperItem>}
               </Row>
             </Col>
           </Row>

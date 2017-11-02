@@ -114,10 +114,10 @@ export default class DatasetsList extends Component {
           <Col className="accent-divider" xs={12} sm={12} md={12} lg={12} />
           <Col xs={12} sm={12} md={12} lg={12} >
             <Masonry>
-              {this.props.datasets && this.state.mode === 'grid' && this.props.datasets.map((dataset) => (
+              {this.props.datasets && this.state.mode === 'grid' && this.props.datasets.results.map((dataset) => (
                 <DatasetsSmallItem key={dataset.key} dataset={dataset} />
               ))}
-              {this.props.datasets && this.state.mode === 'list' && this.props.datasets.map((dataset) => (
+              {this.props.datasets && this.state.mode === 'list' && this.props.datasets.results.map((dataset) => (
                 <DatasetsItem key={dataset.key} dataset={dataset} />
               ))}
             </Masonry>
