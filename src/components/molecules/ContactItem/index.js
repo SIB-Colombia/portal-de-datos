@@ -31,16 +31,19 @@ export default class ContactItem extends Component {
   }
 
   render() {
+    /*
+                {this.props.contact.map((data, i) => (
+                  <Col xs={12} sm={12} md={12} lg={12} key={i}>{data}</Col>
+                ))}
+    */
+    console.log("Datos de contacto", this.props)
     return (
       <Col xs={12} sm={12} md={6} lg={6}>
         <Wrapper>
           <Row>
-            <Col xs={12} sm={12} md={12} lg={12} className="contact-title">{this.props.contact.name}</Col>
+            <Col xs={12} sm={12} md={12} lg={12} className="contact-title">{this.props.contact.lastName}</Col>
             <Col xs={12} sm={12} md={12} lg={12} className="box">
               <Row>
-                {this.props.contact.inf.map((data, i) => (
-                  <Col xs={12} sm={12} md={12} lg={12} key={i}>{data}</Col>
-                ))}
               </Row>
             </Col>
           </Row>
