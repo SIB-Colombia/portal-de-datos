@@ -11,10 +11,17 @@ export default class License extends Component {
   constructor(props) {
     super(props)
     this.licenses = [
+      { id: 'http://creativecommons.org/publicdomain/zero/1.0/legalcode', img: '/licenses/zero.png', to: 'http://creativecommons.org/publicdomain/zero/1.0/legalcode' },
+      { id: 'http://creativecommons.org/licenses/by/4.0/legalcode', img: '/licenses/by.png', to: 'https://creativecommons.org/licenses/by/4.0' },
+      { id: 'http://creativecommons.org/licenses/by-sa/4.0/legalcode', img: '/licenses/by-sa.png', to: 'https://creativecommons.org/licenses/by-sa/4.0' },
+      { id: 'http://creativecommons.org/licenses/by-nd/4.0/legalcode', img: '/licenses/by-nd.png', to: 'https://creativecommons.org/licenses/by-nd/4.0' },
+      { id: 'http://creativecommons.org/licenses/by-nc/4.0/legalcode', img: '/licenses/by-nc.png', to: 'https://creativecommons.org/licenses/by-nc/4.0' },
+      { id: 'http://creativecommons.org/licenses/by-nc-sa/4.0/legalcode', img: '/licenses/by-nc-sa.png', to: 'https://creativecommons.org/licenses/by-nc-sa/4.0' },
+      { id: 'http://creativecommons.org/licenses/by-nc-nd/4.0/legalcode', img: '/licenses/by-nc-nd.png', to: 'https://creativecommons.org/licenses/by-nc-nd/4.0' },
       { id: 'by', img: '/licenses/by.png', to: 'https://creativecommons.org/licenses/by/4.0' },
       { id: 'by-sa', img: '/licenses/by-sa.png', to: 'https://creativecommons.org/licenses/by-sa/4.0' },
       { id: 'by-nd', img: '/licenses/by-nd.png', to: 'https://creativecommons.org/licenses/by-nd/4.0' },
-      { id: 'by-nc', img: '/licenses/by-nc/.png', to: 'https://creativecommons.org/licenses/by-nc/4.0' },
+      { id: 'by-nc', img: '/licenses/by-nc.png', to: 'https://creativecommons.org/licenses/by-nc/4.0' },
       { id: 'by-nc-sa', img: '/licenses/by-nc-sa.png', to: 'https://creativecommons.org/licenses/by-nc-sa/4.0' },
       { id: 'by-nc-nd', img: '/licenses/by-nc-nd.png', to: 'https://creativecommons.org/licenses/by-nc-nd/4.0' },
     ]
@@ -23,9 +30,9 @@ export default class License extends Component {
   render() {
     const license = _.filter(this.licenses, { id: this.props.id })
     return (
-      <a href={`${license[0].to}`} target="_blank" rel="noopener noreferrer">
-        <img src={license[0].img} alt={license[0].id} />
-      </a>
+        <a href={`${license[0].to}`} target="_blank" rel="noopener noreferrer">
+          <img src={license[0].img} alt={license[0].id} />
+        </a>
     )
   }
 }
