@@ -30,7 +30,7 @@ class ResultRow extends React.Component {
       if (r.decimalLongitude>0)
         t += r.decimalLongitude.toFixed(2)+" E"
       else
-        t += (-r.decimalLongitude).toFixed(2)+" O"
+        t += (-r.decimalLongitude).toFixed(2)+" W"
     }
     return t
   }
