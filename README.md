@@ -1,5 +1,5 @@
 
-# New dataportal of SIB Colombia
+# New dataportal of SiB Colombia
 
 El Portal de Datos del Instituto de Investigación de Recursos Biológicos
 Alexander von Humboldt.  es un esfuerzo por poner a disposición de los
